@@ -1,0 +1,142 @@
+<!-- LINK TÀI XẾ J&T – V6.1 -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LINK TÀI XẾ J&T</title>
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+  :root{
+    --bg-light:#f8fafc;
+    --bg-dark:#111214;
+    --text-light:#0b0b0b;
+    --text-dark:#f5f5f5;
+    --primary:#ff0033;
+    --accent:#25D366;
+    --card:#ffffff;
+    --card-dark:#1d1f21;
+  }
+  body{font-family:Inter,Segoe UI,Arial,sans-serif;margin:0;background:var(--bg-light);color:var(--text-light);transition:background .25s,color .25s}
+  body.dark{background:var(--bg-dark);color:var(--text-dark)}
+  header{background:linear-gradient(90deg,var(--primary),#dd2476);color:#fff;padding:14px 16px;text-align:center;position:relative;font-weight:800}
+  #toggleTheme{position:absolute;right:12px;top:10px;background:none;border:none;color:#fff;font-size:18px;cursor:pointer}
+  .container{max-width:720px;margin:14px auto;padding:12px}
+  .group{margin-bottom:14px;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.08);background:var(--card)}
+  body.dark .group{background:var(--card-dark)}
+  .group-header{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;cursor:pointer;background:rgba(0,0,0,0.02);font-weight:700}
+  .group-header span.title{color:var(--primary)}
+  .group-header .arrow{transition:transform .25s}
+  .group.open .group-header .arrow{transform:rotate(90deg)}
+  .group-content{display:none;padding:10px 12px}
+  .group.open .group-content{display:block}
+  a.link-card{display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:inherit;padding:10px;border-radius:8px;margin:6px 0;background:transparent;transition:transform .12s,box-shadow .12s}
+  a.link-card:hover{box-shadow:0 6px 14px rgba(0,0,0,.08)}
+  .link-left{flex:1;padding-right:10px}
+  .contact-card{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.03);padding:10px;border-radius:8px;margin:6px 0}
+  body.dark .contact-card{background:rgba(255,255,255,0.05)}
+  .contact-info{display:flex;flex-direction:column}
+  .name{font-weight:700}
+  .role{font-size:0.9em;opacity:0.8}
+  .call-btn{border:none;border-radius:6px;background:var(--accent);color:#fff;padding:6px 10px;font-weight:bold;cursor:pointer}
+  .small-note{font-size:.9rem;color:#fff;background:var(--primary);padding:6px 10px;border-radius:6px;display:inline-block;margin-top:8px}
+  footer{padding:12px;text-align:center;background:var(--card);border-top:1px solid rgba(0,0,0,.04);margin-top:18px}
+  body.dark footer{background:var(--card-dark)}
+  footer a{color:var(--accent);text-decoration:none;font-weight:700}
+  @media (max-width:520px){.container{padding:10px}.group-header{padding:12px}.call-btn{padding:5px 7px}}
+</style>
+</head>
+<body>
+<header>
+  LINK TÀI XẾ J&T
+  <button id="toggleTheme" aria-label="chuyển sáng tối">🌙</button>
+</header>
+
+<div class="container">
+
+  <!-- CÔNG VIỆC NỘI BỘ -->
+  <div class="group">
+    <div class="group-header"><span class="title">📋 Công việc nội bộ</span><span class="arrow">▶</span></div>
+    <div class="group-content">
+      <a class="link-card" href="https://jntexpress.vn/attendance" target="_blank"><div class="link-left">CHẤM CÔNG CRM</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwao5eoTslB2Ds1auT05WPg" target="_blank"><div class="link-left">BÁO CÁO HÀNH TRÌNH</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwwFr50osovPX8c5EuYkpVe" target="_blank"><div class="link-left">ĐIỀN THÔNG TIN TĂNG CA</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgeJOb7CxaLL18zxNj6gz1kd" target="_blank"><div class="link-left">ĐĂNG KÍ NGHỈ PHÉP</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgcx3ZWJlUeZ007y7NOMDtAf" target="_blank"><div class="link-left">KIỂM TRA XE HẰNG NGÀY</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlg4jTyiyUBTxoWnXnh3E2jVh" target="_blank"><div class="link-left">KHÔNG BẤM APP ĐƯỢC</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgajLtpG68WY3Kgux9cASwcd" target="_blank"><div class="link-left">GỬI HÌNH VÁ VỎ</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgj3VYEKTEh7tTSaZvfpP7HL" target="_blank"><div class="link-left">BÁO CÁO THÙNG XE TRỐNG</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgHKbeP4ff2P8AoaQcWUzicc" target="_blank"><div class="link-left">THÔNG TIN ĐỔ DẦU</div></a>
+      <a class="link-card" href="https://driver.jtexpress.vn/#/login" target="_blank"><div class="link-left">APP NHIỆM VỤ</div></a>
+    </div>
+  </div>
+
+  <!-- GROUP ZALO -->
+  <div class="group">
+    <div class="group-header"><span class="title">💬 Group Zalo</span><span class="arrow">▶</span></div>
+    <div class="group-content">
+      <a class="link-card" href="https://zalo.me/g/uolmnc539" target="_blank"><div class="link-left">Nhóm báo cáo nội thành</div></a>
+      <a class="link-card" href="https://zalo.me/g/plhjmt899" target="_blank"><div class="link-left">Nhóm bất thường nội thành</div></a>
+      <a class="link-card" href="https://zalo.me/g/byikns239" target="_blank"><div class="link-left">Nhóm thông báo tài xế J&T</div></a>
+      <a class="link-card" href="https://zalo.me/g/xuizfi412" target="_blank"><div class="link-left">Nhóm báo cáo đổ dầu tuyến nhánh</div></a>
+    </div>
+  </div>
+
+  <!-- LIÊN HỆ HỖ TRỢ -->
+  <div class="group">
+    <div class="group-header"><span class="title">📞 Liên hệ hỗ trợ</span><span class="arrow">▶</span></div>
+    <div class="group-content">
+      <div class="contact-card"><div class="contact-info"><span class="name">Giang Nguyễn</span><span class="role">Đội trưởng đội xe</span></div><a href="tel:0973235381"><button class="call-btn">GỌI</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Trí Lê</span><span class="role">Đội trưởng ca ngày</span></div><a href="tel:0762244662"><button class="call-btn">GỌI</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trần</span><span class="role">Đội trưởng ca đêm</span></div><a href="tel:0900000900"><button class="call-btn">GỌI</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trung</span><span class="role">Bảo trì xe Thaco, Isuzu</span></div><a href="tel:0900000900"><button class="call-btn">GỌI</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Thanh Liêm</span><span class="role">Bảo trì Jac, Đô Thành, Gaz</span></div><a href="tel:0906722489"><button class="call-btn">GỌI</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Quốc Thái</span><span class="role">Điều phối xe 5T - 8T</span></div><a href="tel:0399007309"><button class="call-btn">GỌI</button></a></div>
+    </div>
+  </div>
+
+  <!-- GOOGLE MAP -->
+  <div class="group">
+    <div class="group-header"><span class="title">📍 Địa chỉ Google Map</span><span class="arrow">▶</span></div>
+    <div class="group-content">
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW3</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW4</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW5</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW6</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">Lazada</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">TopGia</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H81</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H82</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H85</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H86</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H89</div></a>
+    </div>
+  </div>
+
+  <!-- ỨNG DỤNG -->
+  <div class="group">
+    <div class="group-header"><span class="title">📱 Ứng dụng</span><span class="arrow">▶</span></div>
+    <div class="group-content">
+      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.Fast.BusinessOnline" target="_blank"><div class="link-left">App Nhiệm vụ (Android)</div></a>
+      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.Fast.BusinessOnline" target="_blank"><div class="link-left">App Nhiệm vụ (iOS)</div></a>
+      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.Fast.BusinessOnline" target="_blank"><div class="link-left">Fast Business (Android)</div></a>
+      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.Fast.BusinessOnline" target="_blank"><div class="link-left">Fast Business (iOS)</div></a>
+      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.Fast.BusinessOnline" target="_blank"><div class="link-left">App EUP (Android)</div></a>
+      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.Fast.BusinessOnline" target="_blank"><div class="link-left">App EUP (iOS)</div></a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a></div>
+  <div class="small-note">Trang này chỉ dành cho nội bộ tài xế J&T</div>
+</footer>
+
+<script>
+const btnTheme=document.getElementById('toggleTheme');
+btnTheme.addEventListener('click',()=>{document.body.classList.toggle('dark');btnTheme.textContent=document.body.classList.contains('dark')?'☀️':'🌙';});
+document.querySelectorAll('.group-header').forEach(h=>{h.addEventListener('click',()=>{h.parentElement.classList.toggle('open');});});
+</script>
+</body>
+</html>
