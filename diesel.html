@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tính lượng dầu xe tải</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #6C63FF, #48C6EF);
+        margin: 0;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    .container {
+        background-color: #fff;
+        border-radius: 16px;
+        padding: 20px;
+        max-width: 450px;
+        width: 100%;
+        margin: 0 auto;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        flex: 1;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    label {
+        display: block;
+        margin-top: 10px;
+        font-weight: 500;
+        color: #555;
+    }
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+    button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        background-color: #6C63FF;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.3s;
+    }
+    button:hover { background-color: #574bdb; }
+    .result {
+        margin-top: 20px;
+        background-color: #f1f4ff;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        color: #333;
+    }
+    .result p { margin: 6px 0; font-size: 15px; }
+    .highlight { font-weight: bold; }
+    .du { color: #28a745; }
+    .thieu { color: #dc3545; }
+    canvas { margin-top: 20px; max-width: 100% !important; height: auto !important; }
+    footer {
+        text-align: center;
+        padding: 15px;
+        font-weight: bold;
+        color: #28a745;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    footer a {
+        color: #28a745;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Tính lượng dầu xe tải</h2>
+    <label for="khoan">Mức khoán (lít/100 km):</label>
+    <input type="number" id="khoan" placeholder="Ví dụ: 13" />
+
+    <label for="km">Quãng đường đã đi (km):</label>
+    <input type="number" id="km" placeholder="Ví dụ: 5403" />
+
+    <label for="thuc">Lượng dầu thực tế đã đổ (lít):</label>
+    <input type="number" id="thuc" placeholder="Ví dụ: 569" />
+
+    <label for="gia">Giá dầu (VND/lít):</label>
+    <input type="number" id="gia" placeholder="Ví dụ: 18600" />
+
+    <button onclick="tinhDau()">Tính toán</button>
+
+    <div class="result" id="result"></div>
+    <canvas id="chartDau"></canvas>
+</div>
+
+<footer style="background-color: #ffffff; padding: 15px; text-align: center;">
+    <a href="https://zalo.me/0708312789" target="_blank" style="color: #28a745; font-weight: bold; text-decoration: none; font-size: 16px;">
+        @ 2025 Lê Tỉnh
+    </a>
+</footer>
+
+<script>
+let chartInstance = null;
+
+function tinhDau() {
+    const khoan = parseFloat(document.getElementById('khoan').value);
+    const km = parseFloat(document.getElementById('km').value);
+    const thuc = parseFloat(document.getElementById('thuc').value);
+    const gia = parseFloat(document.getElementById('gia').value);
+
+    if(isNaN(khoan) || isNaN(km) || isNaN(thuc) || isNaN(gia)) {
+        alert("Vui lòng nhập đầy đủ các giá trị hợp lệ!");
+        return;
+    }
+
+    const dauKhoan = (km * khoan) / 100;
+    const chenhlech = dauKhoan - thuc;
+    const tien = chenhlech * gia;
+
+    let message = `<p>Lượng dầu theo khoán: <span class="highlight">${dauKhoan.toFixed(2)} lít</span></p>`;
+    message += `<p>Lượng dầu thực tế: <span class="highlight">${thuc.toFixed(2)} lít</span></p>`;
+
+    let thieuDu = '';
+    let tienHTML = '';
+    if(tien > 0) {
+        thieuDu = `<p>Số lít <span class="highlight du">dư</span>: <span class="highlight du">${Math.abs(chenhlech).toFixed(2)} lít</span></p>`;
+        tienHTML = `<p>Bạn được hưởng: <span class="highlight du">${tien.toLocaleString()} VND</span></p>`;
+    } else if(tien < 0) {
+        thieuDu = `<p>Số lít <span class="highlight thieu">thiếu</span>: <span class="highlight thieu">${Math.abs(chenhlech).toFixed(2)} lít</span></p>`;
+        tienHTML = `<p>Bạn phải bù: <span class="highlight thieu">${Math.abs(tien).toLocaleString()} VND</span></p>`;
+    } else {
+        thieuDu = `<p>Bạn không thiếu hay dư lít nào, không phải bù hay hưởng tiền.</p>`;
+        tienHTML = '';
+    }
+
+    document.getElementById('result').innerHTML = message + thieuDu + tienHTML;
+
+    const ctx = document.getElementById('chartDau').getContext('2d');
+    if(chartInstance) chartInstance.destroy();
+
+    const mauThucTe = tien > 0 ? '#28a745' : (tien < 0 ? '#dc3545' : '#fd7e14');
+
+    chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Lượng dầu (lít)'],
+            datasets: [
+                { label: 'Dầu khoán', data: [dauKhoan], backgroundColor: '#007bff' },
+                { label: 'Dầu thực tế', data: [thuc], backgroundColor: mauThucTe }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: 'So sánh dầu khoán và thực tế' }
+            },
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'Lít' } } }
+        }
+    });
+}
+</script>
+</body>
+</html>
