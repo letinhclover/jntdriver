@@ -179,14 +179,62 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700}
       <a class="link-card" href="https://apps.apple.com/vn/app/edriver-vn/id1458320021?l=vi" target="_blank"><div class="link-left">Quản lý thời gian lái xe (iOS)</div></a>
     </div>
   </div>
-<!-- TÍNH DẦU XE TẢI -->
+<!-- NHÓM TÍNH DẦU XE TẢI -->
 <div class="group">
-  <div class="group-header"><span class="title">⛽ Tính dầu xe tải</span><span class="arrow">▶</span></div>
+  <div class="group-header"><span class="title">🛢 Tính lượng dầu xe tải</span><span class="arrow">▶</span></div>
   <div class="group-content">
-    <iframe src="diesel.html" style="width:100%;border:none;border-radius:8px;" onload="this.style.height=this.contentWindow.document.body.scrollHeight+'px';"></iframe>
+    <div style="padding:10px;">
+      <label for="khoan">Mức khoán (lít/100 km):</label>
+      <input type="number" id="khoan" placeholder="Ví dụ: 13" style="width:100%;padding:6px;margin:5px 0;border-radius:5px;border:1px solid #ccc;">
+
+      <label for="km">Quãng đường đã đi (km):</label>
+      <input type="number" id="km" placeholder="Ví dụ: 5403" style="width:100%;padding:6px;margin:5px 0;border-radius:5px;border:1px solid #ccc;">
+
+      <label for="thuc">Lượng dầu thực tế đã đổ (lít):</label>
+      <input type="number" id="thuc" placeholder="Ví dụ: 569" style="width:100%;padding:6px;margin:5px 0;border-radius:5px;border:1px solid #ccc;">
+
+      <label for="gia">Giá dầu (VND/lít):</label>
+      <input type="number" id="gia" placeholder="Ví dụ: 18600" style="width:100%;padding:6px;margin:5px 0;border-radius:5px;border:1px solid #ccc;">
+
+      <button onclick="tinhDau()" style="margin-top:10px;width:100%;padding:8px;background-color:#ff0033;color:#fff;border:none;border-radius:6px;cursor:pointer;">Tính toán</button>
+
+      <div id="result" style="margin-top:10px;background:#f1f1f1;padding:8px;border-radius:5px;color:#333;line-height:1.5;"></div>
+    </div>
   </div>
 </div>
-</div>
+
+<script>
+function tinhDau() {
+    const khoan = parseFloat(document.getElementById('khoan').value);
+    const km = parseFloat(document.getElementById('km').value);
+    const thuc = parseFloat(document.getElementById('thuc').value);
+    const gia = parseFloat(document.getElementById('gia').value);
+
+    if(isNaN(khoan) || isNaN(km) || isNaN(thuc) || isNaN(gia)) {
+        alert("Vui lòng nhập đầy đủ các giá trị hợp lệ!");
+        return;
+    }
+
+    const dauKhoan = (km * khoan) / 100;
+    const chenhlech = dauKhoan - thuc;
+    const tien = chenhlech * gia;
+
+    let resultHTML = `Lượng dầu theo khoán: ${dauKhoan.toFixed(2)} lít<br>`;
+    resultHTML += `Lượng dầu thực tế: ${thuc.toFixed(2)} lít<br>`;
+
+    if(tien > 0) {
+        resultHTML += `Số lít <span style="color:green;font-weight:bold;">dư</span>: ${Math.abs(chenhlech).toFixed(2)} lít<br>`;
+        resultHTML += `Bạn được hưởng: <span style="color:green;font-weight:bold;">${tien.toLocaleString()} VND</span>`;
+    } else if(tien < 0) {
+        resultHTML += `Số lít <span style="color:red;font-weight:bold;">thiếu</span>: ${Math.abs(chenhlech).toFixed(2)} lít<br>`;
+        resultHTML += `Bạn phải bù: <span style="color:red;font-weight:bold;">${Math.abs(tien).toLocaleString()} VND</span>`;
+    } else {
+        resultHTML += `Bạn không thiếu hay dư lít nào, không phải bù hay hưởng tiền.`;
+    }
+
+    document.getElementById('result').innerHTML = resultHTML;
+}
+</script>
 
 <footer>
   <div>© 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a></div>
