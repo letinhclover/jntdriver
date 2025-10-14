@@ -39,7 +39,6 @@ header{
   margin-bottom:14px;border-radius:10px;
   box-shadow:0 2px 6px rgba(0,0,0,.08);
   background:var(--card);
-  transition:background .3s;
 }
 body.dark .group{background:var(--card-dark)}
 .group-header{
@@ -50,11 +49,8 @@ body.dark .group{background:var(--card-dark)}
 .group-header span.title{color:var(--primary)}
 .group-header .arrow{transition:transform .25s}
 .group.open .group-header .arrow{transform:rotate(90deg)}
-.group-content{
-  overflow:hidden;max-height:0;
-  transition:max-height .4s ease;
-}
-.group.open .group-content{max-height:1000px;}
+.group-content{display:none;}
+.group.open .group-content{display:block;}
 a.link-card{
   display:flex;justify-content:space-between;align-items:center;
   text-decoration:none;color:inherit;
@@ -78,11 +74,7 @@ body.dark .contact-card{background:rgba(255,255,255,0.05)}
   border:none;border-radius:6px;background:var(--accent);
   color:#fff;padding:6px 10px;font-weight:bold;cursor:pointer;
 }
-.small-note{
-  font-size:.9rem;color:#fff;background:var(--primary);
-  padding:6px 10px;border-radius:6px;display:inline-block;
-  margin-top:8px;
-}
+.call-btn:hover{opacity:.9;}
 footer{
   padding:12px;text-align:center;
   background:var(--card);border-top:1px solid rgba(0,0,0,.04);
@@ -90,6 +82,44 @@ footer{
 }
 body.dark footer{background:var(--card-dark)}
 footer a{color:var(--accent);text-decoration:none;font-weight:700}
+
+/* --- PHẦN TÍNH DẦU XE TẢI --- */
+label {
+  display:block;
+  margin-top:8px;
+  font-weight:600;
+}
+input[type=number] {
+  width:100%;
+  padding:8px;
+  margin-top:4px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:15px;
+}
+button.primary {
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  background:var(--primary);
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+}
+button.primary:hover {opacity:.9;}
+.result-box {
+  margin-top:10px;
+  background:rgba(0,0,0,0.05);
+  padding:10px;
+  border-radius:6px;
+  line-height:1.6;
+}
+body.dark .result-box {
+  background:rgba(255,255,255,0.05);
+  color:var(--text-dark);
+}
 @media (max-width:520px){
   .container{padding:10px}
   .group-header{padding:12px}
@@ -150,106 +180,79 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700}
   <div class="group">
     <div class="group-header"><span class="title">📍 Địa chỉ Google Map</span><span class="arrow">▶</span></div>
     <div class="group-content">
-      <a class="link-card" href="https://maps.app.goo.gl/cjcY35qj5jX53uDT7" target="_blank"><div class="link-left">GW0</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/iFKsYKPZMVD5ra5t5" target="_blank"><div class="link-left">GW3</div></a>
-      <a class="link-card" href="https://maps.google.com" target="_blank"><div class="link-left">GW4</div></a>
-      <a class="link-card" href="https://maps.google.com" target="_blank"><div class="link-left">GW5</div></a>
-      <a class="link-card" href="https://maps.google.com" target="_blank"><div class="link-left">GW6</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/eAuwRatRFPKh56at6" target="_blank"><div class="link-left">Lazada</div></a>
-      <a class="link-card" href="https://maps.google.com" target="_blank"><div class="link-left">TopGia</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/iHvzUqbnUzyESNuq5" target="_blank"><div class="link-left">H81</div></a>
-      <a class="link-card" href="https://maps.google.com" target="_blank"><div class="link-left">H82</div></a>
-      <a class="link-card" href="https://maps.google.com" target="_blank"><div class="link-left">H85</div></a>
-      <a class="link-card" href="https://maps.google.com" target="_blank"><div class="link-left">H86</div></a>
-      <a class="link-card" href="https://maps.google.com" target="_blank"><div class="link-left">H89</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW3</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW4</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW5</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW6</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">Lazada</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">TopGia</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H81</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H82</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H85</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H86</div></a>
+      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H89</div></a>
     </div>
   </div>
 
-  <!-- ỨNG DỤNG -->
+  <!-- TÍNH DẦU XE TẢI -->
   <div class="group">
-    <div class="group-header"><span class="title">📱 Ứng dụng</span><span class="arrow">▶</span></div>
+    <div class="group-header"><span class="title">🛢 Tính lượng dầu xe tải</span><span class="arrow">▶</span></div>
     <div class="group-content">
-      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.oceangalaxy.camera.new" target="_blank"><div class="link-left">Chụp ảnh thời gian (Android)</div></a>
-      <a class="link-card" href="https://apps.apple.com/vn/app/timestamp-camera-basic/id840110184?l=vi" target="_blank"><div class="link-left">Chụp ảnh thời gian (iOS)</div></a>
-      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.Fast.BusinessOnline" target="_blank"><div class="link-left">App Nhiệm vụ (Android)</div></a>
-      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.Fast.BusinessOnline" target="_blank"><div class="link-left">App Nhiệm vụ (iOS)</div></a>
-      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.Fast.BusinessOnline" target="_blank"><div class="link-left">Fast Business (Android)</div></a>
-      <a class="link-card" href="https://apps.apple.com/vn/app/fast-business/id1494549627?l=vi" target="_blank"><div class="link-left">Fast Business (iOS)</div></a>
-      <a class="link-card" href="https://play.google.com/store/apps/details?id=com.eup.workhourvn" target="_blank"><div class="link-left">Quản lý thời gian lái xe (Android)</div></a>
-      <a class="link-card" href="https://apps.apple.com/vn/app/edriver-vn/id1458320021?l=vi" target="_blank"><div class="link-left">Quản lý thời gian lái xe (iOS)</div></a>
-    </div>
-  </div>
-<!-- NHÓM TÍNH DẦU XE TẢI -->
-<div class="group">
-  <div class="group-header"><span class="title">🛢 Tính lượng dầu xe tải</span><span class="arrow">▶</span></div>
-  <div class="group-content">
-    <div style="padding:10px;">
       <label for="khoan">Mức khoán (lít/100 km):</label>
-      <input type="number" id="khoan" placeholder="Ví dụ: 13" style="width:100%;padding:6px;margin:5px 0;border-radius:5px;border:1px solid #ccc;">
-
+      <input type="number" id="khoan" placeholder="13">
       <label for="km">Quãng đường đã đi (km):</label>
-      <input type="number" id="km" placeholder="Ví dụ: 5403" style="width:100%;padding:6px;margin:5px 0;border-radius:5px;border:1px solid #ccc;">
-
+      <input type="number" id="km" placeholder="5403">
       <label for="thuc">Lượng dầu thực tế đã đổ (lít):</label>
-      <input type="number" id="thuc" placeholder="Ví dụ: 569" style="width:100%;padding:6px;margin:5px 0;border-radius:5px;border:1px solid #ccc;">
-
+      <input type="number" id="thuc" placeholder="569">
       <label for="gia">Giá dầu (VND/lít):</label>
-      <input type="number" id="gia" placeholder="Ví dụ: 18600" style="width:100%;padding:6px;margin:5px 0;border-radius:5px;border:1px solid #ccc;">
-
-      <button onclick="tinhDau()" style="margin-top:10px;width:100%;padding:8px;background-color:#ff0033;color:#fff;border:none;border-radius:6px;cursor:pointer;">Tính toán</button>
-
-      <div id="result" style="margin-top:10px;background:#f1f1f1;padding:8px;border-radius:5px;color:#333;line-height:1.5;"></div>
+      <input type="number" id="gia" placeholder="18600">
+      <button class="primary" onclick="tinhDau()">Tính toán</button>
+      <div id="result" class="result-box"></div>
     </div>
   </div>
 </div>
 
-<script>
-function tinhDau() {
-    const khoan = parseFloat(document.getElementById('khoan').value);
-    const km = parseFloat(document.getElementById('km').value);
-    const thuc = parseFloat(document.getElementById('thuc').value);
-    const gia = parseFloat(document.getElementById('gia').value);
-
-    if(isNaN(khoan) || isNaN(km) || isNaN(thuc) || isNaN(gia)) {
-        alert("Vui lòng nhập đầy đủ các giá trị hợp lệ!");
-        return;
-    }
-
-    const dauKhoan = (km * khoan) / 100;
-    const chenhlech = dauKhoan - thuc;
-    const tien = chenhlech * gia;
-
-    let resultHTML = `Lượng dầu theo khoán: ${dauKhoan.toFixed(2)} lít<br>`;
-    resultHTML += `Lượng dầu thực tế: ${thuc.toFixed(2)} lít<br>`;
-
-    if(tien > 0) {
-        resultHTML += `Số lít <span style="color:green;font-weight:bold;">dư</span>: ${Math.abs(chenhlech).toFixed(2)} lít<br>`;
-        resultHTML += `Bạn được hưởng: <span style="color:green;font-weight:bold;">${tien.toLocaleString()} VND</span>`;
-    } else if(tien < 0) {
-        resultHTML += `Số lít <span style="color:red;font-weight:bold;">thiếu</span>: ${Math.abs(chenhlech).toFixed(2)} lít<br>`;
-        resultHTML += `Bạn phải bù: <span style="color:red;font-weight:bold;">${Math.abs(tien).toLocaleString()} VND</span>`;
-    } else {
-        resultHTML += `Bạn không thiếu hay dư lít nào, không phải bù hay hưởng tiền.`;
-    }
-
-    document.getElementById('result').innerHTML = resultHTML;
-}
-</script>
-
 <footer>
-  <div>© 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a></div>
-  <div class="small-note">Trang này chỉ dành cho nội bộ tài xế J&T</div>
+  <div style="font-weight:bold;color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
+  <div style="margin-top:4px;">© 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a></div>
 </footer>
 
 <script>
 const btnTheme=document.getElementById('toggleTheme');
 btnTheme.onclick=()=>{document.body.classList.toggle('dark');btnTheme.textContent=document.body.classList.contains('dark')?'☀️':'🌙';};
 document.querySelectorAll('.group-header').forEach(h=>{
-  h.onclick=()=>{
-    const g=h.parentElement;
-    g.classList.toggle('open');
-  };
+  h.onclick=()=>{h.parentElement.classList.toggle('open');};
 });
+
+function tinhDau(){
+  const khoan=parseFloat(document.getElementById('khoan').value);
+  const km=parseFloat(document.getElementById('km').value);
+  const thuc=parseFloat(document.getElementById('thuc').value);
+  const gia=parseFloat(document.getElementById('gia').value);
+  const resultDiv=document.getElementById('result');
+  if(isNaN(khoan)||isNaN(km)||isNaN(thuc)||isNaN(gia)||km<=0){
+    alert("Vui lòng nhập đầy đủ và hợp lệ!");
+    return;
+  }
+  const dauKhoan=(km*khoan)/100;
+  const chenhlech=dauKhoan-thuc;
+  const tien=chenhlech*gia;
+  const tieuhao=(thuc/km)*100;
+
+  let html=`<strong>Lượng dầu theo khoán:</strong> ${dauKhoan.toFixed(2)} lít<br>`;
+  html+=`<strong>Lượng dầu thực tế:</strong> ${thuc.toFixed(2)} lít<br>`;
+  html+=`<strong>Tiêu hao trung bình =</strong> ${tieuhao.toFixed(2)} lít/100km<br>`;
+
+  if(tien>0){
+    html+=`<span style="color:green;">Dư ${Math.abs(chenhlech).toFixed(2)} lít → Được hưởng ${tien.toLocaleString('vi-VN')} VND</span>`;
+  }else if(tien<0){
+    html+=`<span style="color:red;">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít → Phải bù ${Math.abs(tien).toLocaleString('vi-VN')} VND</span>`;
+  }else{
+    html+="Không dư, không thiếu dầu.";
+  }
+
+  resultDiv.innerHTML=html;
+}
 </script>
 </body>
 </html>
