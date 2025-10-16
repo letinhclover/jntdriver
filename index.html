@@ -65,13 +65,13 @@
   --bg-dark:#111214;
   --text-light:#0b0b0b;
   --text-dark:#f5f5f5;
-  --primary:#CC0000;  /* ĐÃ SỬA: Tăng tương phản cho tiêu đề và cảnh báo footer */
-  --accent:#198845;   /* ĐÃ SỬA: Tăng tương phản cho liên kết footer và nút GỌI */
+  --primary:#CC0000;  /* Tăng tương phản (4.83:1) */
+  --accent:#198845;   /* Tăng tương phản (4.79:1) */
   --card:#ffffff;
   --card-dark:#1d1f21;
 }
 body{
-  font-family:Segoe UI,Arial,sans-serif; /* ĐÃ SỬA: Bỏ 'Inter,' để ưu tiên font hệ thống */
+  font-family:Segoe UI,Arial,sans-serif;
   margin:0;background:var(--bg-light);
   color:var(--text-light);
   transition:background .25s,color .25s;
@@ -173,6 +173,34 @@ body.dark .result-box {
   background:rgba(255,255,255,0.05);
   color:var(--text-dark);
 }
+/* --- MAP BUTTONS (Đã gộp từ CSS inline) --- */
+.map-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+  height: 40px;
+  text-align: center;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.03);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.map-btn:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+.map-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2) inset;
+}
+body.dark .map-btn {
+  background: rgba(255,255,255,0.05);
+}
+
 @media (max-width:520px){
   .container{padding:10px}
   .group-header{padding:12px}
@@ -189,7 +217,9 @@ body.dark .result-box {
 <div class="container">
 
   <div class="group">
-    <div class="group-header"><span class="title">📋 Công việc nội bộ</span><span class="arrow">▶</span></div>
+    <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+      <span class="title">📋 Công việc nội bộ</span><span class="arrow">▶</span>
+    </div>
     <div class="group-content">
       <a class="link-card" href="https://jntexpress.vn/attendance" target="_blank"><div class="link-left">CHẤM CÔNG CRM</div></a>
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwao5eoTslB2Ds1auT05WPg" target="_blank"><div class="link-left">BÁO CÁO HÀNH TRÌNH</div></a>
@@ -205,7 +235,9 @@ body.dark .result-box {
   </div>
 
   <div class="group">
-    <div class="group-header"><span class="title">💬 Group Zalo</span><span class="arrow">▶</span></div>
+    <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+      <span class="title">💬 Group Zalo</span><span class="arrow">▶</span>
+    </div>
     <div class="group-content">
       <a class="link-card" href="https://zalo.me/g/uolmnc539" target="_blank"><div class="link-left">Nhóm báo cáo nội thành</div></a>
       <a class="link-card" href="https://zalo.me/g/plhjmt899" target="_blank"><div class="link-left">Nhóm bất thường nội thành</div></a>
@@ -215,7 +247,9 @@ body.dark .result-box {
   </div>
 
   <div class="group">
-    <div class="group-header"><span class="title">📞 Liên hệ hỗ trợ</span><span class="arrow">▶</span></div>
+    <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+      <span class="title">📞 Liên hệ hỗ trợ</span><span class="arrow">▶</span>
+    </div>
     <div class="group-content">
       <div class="contact-card"><div class="contact-info"><span class="name">Giang Nguyễn</span><span class="role">Đội trưởng đội xe</span></div><a href="tel:0973235381"><button class="call-btn">GỌI</button></a></div>
       <div class="contact-card"><div class="contact-info"><span class="name">Trí Lê</span><span class="role">Đội trưởng ca ngày</span></div><a href="tel:0762244662"><button class="call-btn">GỌI</button></a></div>
@@ -225,52 +259,23 @@ body.dark .result-box {
   </div>
 
   <div class="group">
-  <div class="group-header">
-    <span class="title">📍 Địa chỉ Google Map</span>
-    <span class="arrow">▶</span>
+    <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+      <span class="title">📍 Địa chỉ Google Map</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="group-content">
+      <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 8px;
+        padding: 10px;
+      ">
+        <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW0</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW3</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW4</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW5</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW6</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">Lazada</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">TopGia</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H81</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H82</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H85</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H86</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H89</a> </div>
+    </div>
   </div>
-  <div class="group-content">
-    <div style="
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 8px;
-      padding: 10px;
-    ">
-      <style>
-        .map-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 600;
-          font-size: 15px;
-          height: 40px;
-          text-align: center;
-          border-radius: 8px;
-          background: rgba(0,0,0,0.03);
-          text-decoration: none;
-          color: inherit;
-          transition: all 0.15s ease;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .map-btn:hover {
-          box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-          transform: translateY(-1px);
-        }
-        .map-btn:active {
-          transform: scale(0.96);
-          box-shadow: 0 1px 3px rgba(0,0,0,0.2) inset;
-        }
-        body.dark .map-btn {
-          background: rgba(255,255,255,0.05);
-        }
-      </style>
 
-      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW0</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW3</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW4</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW5</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW6</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">Lazada</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">TopGia</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H81</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H82</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H85</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H86</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H89</a> </div>
-  </div>
-</div>
-
- <div class="group">
-  <div class="group-header">
+  <div class="group">
+  <div class="group-header" role="button" tabindex="0" aria-expanded="false">
     <span class="title">🛢 Tính lượng dầu xe tải</span>
     <span class="arrow">▶</span>
   </div>
@@ -338,33 +343,46 @@ function applyTheme(isDark) {
 }
 
 // --- 1. Tự động chuyển đổi chủ đề khi tải trang (Auto Switch on Load) ---
-// Áp dụng cài đặt hệ thống khi trang được tải lần đầu tiên
 function checkSystemPreference() {
-    // Nếu cài đặt hệ thống là tối, áp dụng chủ đề tối
     if (prefersDarkScheme.matches) {
         applyTheme(true);
     } else {
         applyTheme(false);
     }
 }
-checkSystemPreference(); // Chạy ngay khi tải
+checkSystemPreference();
 
 // --- 2. Xử lý Chuyển đổi thủ công (Manual Toggle) ---
 btnTheme.onclick = () => {
-    // Đảo ngược chế độ hiện tại
     const isDark = !body.classList.contains('dark');
     applyTheme(isDark);
 };
 
 // --- 3. Lắng nghe thay đổi của hệ thống (Listen for System Changes) ---
-// Theo dõi sự kiện thay đổi chế độ tối/sáng của hệ thống
 prefersDarkScheme.addEventListener('change', (e) => {
     applyTheme(e.matches);
 });
 
-// === Khởi tạo các group accordion ===
-document.querySelectorAll('.group-header').forEach(h=>{
-  h.onclick=()=>{h.parentElement.classList.toggle('open');};
+// === Khởi tạo các group accordion (A11y Fix) ===
+document.querySelectorAll('.group-header').forEach(h => {
+    // 1. Hàm bật/tắt chính
+    const toggleAccordion = () => {
+        const isOpen = h.parentElement.classList.toggle('open');
+        // Cập nhật trạng thái ARIA
+        h.setAttribute('aria-expanded', isOpen);
+    };
+
+    // 2. Xử lý Click
+    h.addEventListener('click', toggleAccordion);
+
+    // 3. Xử lý Phím (Enter/Space)
+    h.addEventListener('keydown', (e) => {
+        // Kiểm tra phím Enter hoặc Space
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault(); 
+            toggleAccordion();
+        }
+    });
 });
 
 // === Hàm tính dầu xe tải ===
@@ -400,7 +418,7 @@ function tinhDau(){
   resultDiv.innerHTML=html;
 }
 
-// === Khối Service Worker (Giữ nguyên logic load sau khi tải trang) ===
+// === Khối Service Worker ===
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('service-worker.js')
