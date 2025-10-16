@@ -218,26 +218,6 @@ body.dark .result-box {
   <div style="margin-top:4px;">👁️‍🗨️ Lượt truy cập: <span id="count">...</span></div>
   <div style="margin-top:4px;">© 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a></div>
 </footer>
-<script>
-// === ĐẾM LƯỢT TRUY CẬP TRÊN GITHUB PAGES ===
-const counter = document.getElementById('count');
-
-// URL duy nhất cho trang web của bạn
-const counterUrl = 'https://api.countapi.xyz/update/letinhclover.github.io/jntdriver/?amount=1';
-
-fetch(counterUrl)
-  .then(res => res.json())
-  .then(data => {
-    if (data && data.value) {
-      counter.textContent = data.value.toLocaleString('vi-VN');
-    } else {
-      counter.textContent = '0';
-    }
-  })
-  .catch(() => {
-    counter.textContent = 'Không xác định';
-  });
-</script>
 
 <script>
 const btnTheme=document.getElementById('toggleTheme');
