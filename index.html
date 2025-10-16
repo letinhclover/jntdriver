@@ -65,8 +65,8 @@
   --bg-dark:#111214;
   --text-light:#0b0b0b;
   --text-dark:#f5f5f5;
-  --primary:#ff0033;
-  --accent:#1B9C50; /* ĐÃ SỬA: Tăng độ tương phản (WCAG AA) */
+  --primary:#CC0000;  /* ĐÃ SỬA: Tăng tương phản cho tiêu đề và cảnh báo footer */
+  --accent:#198845;   /* ĐÃ SỬA: Tăng tương phản cho liên kết footer và nút GỌI */
   --card:#ffffff;
   --card-dark:#1d1f21;
 }
@@ -310,7 +310,7 @@ body.dark .result-box {
 </div>
 
 <footer>
-  <div style="font-weight:bold; color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
+  <div style="font-weight:bold; color:var(--primary);">Trang này chỉ dành cho nội bộ tài xế J&T</div>
 
   <div style="margin-top:6px;">
     © 2025 <a href="https://zalo.me/0708312789" target="_blank"
@@ -325,18 +325,15 @@ const btnTheme = document.getElementById('toggleTheme');
 const body = document.body;
 // Kiểm tra sở thích hệ thống
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-// ĐÃ XÓA: const footerImg = document.getElementById('counter-img'); 
 
 // --- Hàm cập nhật giao diện (theme) ---
 function applyTheme(isDark) {
     if (isDark) {
         body.classList.add('dark');
         btnTheme.textContent = '☀️';
-        // ĐÃ XÓA logic cập nhật filter cho ảnh đếm truy cập
     } else {
         body.classList.remove('dark');
         btnTheme.textContent = '🌙';
-        // ĐÃ XÓA logic cập nhật filter cho ảnh đếm truy cập
     }
 }
 
