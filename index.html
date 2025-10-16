@@ -165,7 +165,7 @@ body.dark .result-box {
 
   <!-- LIÊN HỆ HỖ TRỢ -->
   <div class="group">
-    <div class="group-header"><span class="title">📞 Liên hệ hỗ trợ ( Đang cập nhật...)</span><span class="arrow">▶</span></div>
+    <div class="group-header"><span class="title">📞 Liên hệ hỗ trợ</span><span class="arrow">▶</span></div>
     <div class="group-content">
       <div class="contact-card"><div class="contact-info"><span class="name">Giang Nguyễn</span><span class="role">Đội trưởng đội xe</span></div><a href="tel:0973235381"><button class="call-btn">GỌI</button></a></div>
       <div class="contact-card"><div class="contact-info"><span class="name">Trí Lê</span><span class="role">Đội trưởng ca ngày</span></div><a href="tel:0762244662"><button class="call-btn">GỌI</button></a></div>
@@ -177,72 +177,132 @@ body.dark .result-box {
   </div>
 
   <!-- GOOGLE MAP -->
-  <div class="group">
-    <div class="group-header"><span class="title">📍 Địa chỉ Google Map ( Chờ Cập nhật...)</span><span class="arrow">▶</span></div>
-    <div class="group-content">
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW3</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW4</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW5</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">GW6</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">Lazada</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">TopGia</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H81</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H82</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H85</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H86</div></a>
-      <a class="link-card" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank"><div class="link-left">H89</div></a>
+<div class="group">
+  <div class="group-header">
+    <span class="title">📍 Địa chỉ Google Map</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="group-content">
+    <div style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 8px;
+      padding: 10px;
+    ">
+      <style>
+        .map-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 600;
+          font-size: 15px;
+          height: 40px;
+          text-align: center;
+          border-radius: 8px;
+          background: rgba(0,0,0,0.03);
+          text-decoration: none;
+          color: inherit;
+          transition: all 0.15s ease;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .map-btn:hover {
+          box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+          transform: translateY(-1px);
+        }
+        .map-btn:active {
+          transform: scale(0.96);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.2) inset;
+        }
+        body.dark .map-btn {
+          background: rgba(255,255,255,0.05);
+        }
+      </style>
+
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW0</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW3</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW4</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW5</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW6</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">Lazada</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">TopGia</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H81</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H82</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H85</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H86</a>
+      <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H89</a>
     </div>
   </div>
+</div>
 
-  <!-- TÍNH DẦU XE TẢI -->
-  <div class="group">
-    <div class="group-header"><span class="title">🛢 Tính lượng dầu xe tải</span><span class="arrow">▶</span></div>
-    <div class="group-content">
-      <label for="khoan">Mức khoán (lít/100 km):</label>
-      <input type="number" id="khoan" placeholder="13">
-      <label for="km">Quãng đường đã đi (km):</label>
-      <input type="number" id="km" placeholder="5403">
-      <label for="thuc">Lượng dầu thực tế đã đổ (lít):</label>
-      <input type="number" id="thuc" placeholder="569">
-      <label for="gia">Giá dầu (VND/lít):</label>
-      <input type="number" id="gia" placeholder="18600">
-      <button class="primary" onclick="tinhDau()">Tính toán</button>
-      <div id="result" class="result-box"></div>
+ <!-- TÍNH DẦU XE TẢI -->
+<div class="group">
+  <div class="group-header">
+    <span class="title">🛢 Tính lượng dầu xe tải</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="group-content">
+    <div style="padding:14px;display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <div style="width:94%;max-width:580px;">
+        <label for="khoan" style="font-size:15px;font-weight:600;">Mức khoán (lít/100 km):</label>
+        <input type="number" id="khoan" placeholder="13"
+          style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;font-size:15px;">
+      </div>
+
+      <div style="width:94%;max-width:580px;">
+        <label for="km" style="font-size:15px;font-weight:600;">Quãng đường đã đi (km):</label>
+        <input type="number" id="km" placeholder="5403"
+          style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;font-size:15px;">
+      </div>
+
+      <div style="width:94%;max-width:580px;">
+        <label for="thuc" style="font-size:15px;font-weight:600;">Lượng dầu thực tế đã đổ (lít):</label>
+        <input type="number" id="thuc" placeholder="569"
+          style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;font-size:15px;">
+      </div>
+
+      <div style="width:94%;max-width:580px;">
+        <label for="gia" style="font-size:15px;font-weight:600;">Giá dầu (VND/lít):</label>
+        <input type="number" id="gia" placeholder="18600"
+          style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;font-size:15px;">
+      </div>
+
+      <button class="primary" onclick="tinhDau()"
+        style="width:92%;max-width:600px;padding:10px;border-radius:10px;font-size:16px;font-weight:700;">Tính toán</button>
+
+      <div id="result" class="result-box"
+        style="width:92%;max-width:600px;margin-top:10px;border-radius:10px;font-size:15px;line-height:1.6;text-align:left;"></div>
     </div>
   </div>
 </div>
 
 <!-- FOOTER -->
-<footer id="footer" style="text-align:center; padding:14px 0; transition:background 0.3s;">
+<footer id="footer">
   <div style="font-weight:bold; color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
 
-  <div style="margin-top:8px;">
+  <div style="margin-top:6px;">
     👁️‍🗨️ <span style="font-weight:600;">Lượt truy cập:</span><br>
-    <a href="https://www.freecounterstat.com" title="hit counter" style="display:inline-block; margin-top:6px;">
+    <a href="https://www.freecounterstat.com" title="hit counter" style="display:inline-block; margin-top:4px;">
       <img id="counter-img"
            src="https://counter1.optistats.ovh/private/freecounterstat.php?c=3x7sg3q33aty2j178sz6ncbe4fqjqwdp"
            border="0" alt="hit counter"
-           style="vertical-align:middle; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.15);
-                  backdrop-filter:blur(3px); transition:filter 0.4s, box-shadow 0.4s;">
+           style="vertical-align:middle; border-radius:6px; transition:filter 0.3s;">
     </a>
   </div>
 
-  <div style="margin-top:8px;">
+  <div style="margin-top:6px;">
     © 2025 <a href="https://zalo.me/0708312789" target="_blank"
-      style="color:var(--accent); font-weight:700; text-decoration:none;">Lê Tỉnh</a>
+    style="color:var(--accent); font-weight:700; text-decoration:none;">Lê Tỉnh</a>
   </div>
 </footer>
 
 <script>
-// === Hiệu ứng dark mode + đổ bóng cho ảnh đếm ===
+// === Hiệu ứng dark mode cho phần footer ===
 const footerImg = document.getElementById('counter-img');
 function updateFooterTheme() {
   if (document.body.classList.contains('dark')) {
-    footerImg.style.filter = 'brightness(0.85) contrast(1.1) blur(0.2px)';
-    footerImg.style.boxShadow = '0 0 12px rgba(255,255,255,0.25)';
+    footerImg.style.filter = 'brightness(0.8) contrast(1.2)';
   } else {
     footerImg.style.filter = 'none';
-    footerImg.style.boxShadow = '0 4px 10px rgba(0,0,0,0.15)';
   }
 }
 updateFooterTheme();
@@ -273,14 +333,14 @@ function tinhDau(){
 
   let html=`<strong>Lượng dầu theo khoán:</strong> ${dauKhoan.toFixed(2)} lít<br>`;
   html+=`<strong>Lượng dầu thực tế:</strong> ${thuc.toFixed(2)} lít<br>`;
-  html+=`<strong>Tiêu hao trung bình =</strong> ${tieuhao.toFixed(2)} lít/100km<br>`;
+  html+=`<strong>Tiêu hao trung bình:</strong> ${tieuhao.toFixed(2)} lít/100km<br>`;
 
   if(tien>0){
-    html+=`<span style="color:green;">Dư ${Math.abs(chenhlech).toFixed(2)} lít → Được hưởng ${tien.toLocaleString('vi-VN')} VND</span>`;
+    html+=`<b style="color:green;">Dư ${Math.abs(chenhlech).toFixed(2)} lít → Được hưởng ${tien.toLocaleString('vi-VN')} VND</b>`;
   }else if(tien<0){
-    html+=`<span style="color:red;">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít → Phải bù ${Math.abs(tien).toLocaleString('vi-VN')} VND</span>`;
+    html+=`<b style="color:red;">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít → Phải bù ${Math.abs(tien).toLocaleString('vi-VN')} VND</b>`;
   }else{
-    html+="Không dư, không thiếu dầu.";
+    html+=`<b>Không dư, không thiếu dầu.</b>`;
   }
 
   resultDiv.innerHTML=html;
