@@ -8,6 +8,9 @@
 
 <!-- 🧭 FAVICON & APP ICONS -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="preconnect" href="https://counter1.optistats.ovh">
+<link rel="preconnect" href="https://zalo.me">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -313,18 +316,18 @@ body.dark .result-box {
   </div>
 </div>
 
-<footer id="footer">
+<footer>
   <div style="font-weight:bold; color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
 
   <div style="margin-top:6px;">
     👁️‍🗨️ <span style="font-weight:600;">Lượt truy cập:</span><br>
     <a href="https://www.freecounterstat.com" title="hit counter" style="display:inline-block; margin-top:4px;">
       <img id="counter-img"
-           src="https://counter1.optistats.ovh/private/freecounterstat.php?c=3x7sg3q33aty2j178sz6ncbe4fqjqwdp"
+           loading="lazy"  width="230" height="20" src="https://counter1.optistats.ovh/private/freecounterstat.php?c=3x7sg3q33aty2j178sz6ncbe4fqjqwdp"
            border="0" alt="hit counter"
            style="vertical-align:middle; border-radius:6px; transition:filter 0.3s;">
     </a>
-  </div>
+    </div>
 
   <div style="margin-top:6px;">
     © 2025 <a href="https://zalo.me/0708312789" target="_blank"
@@ -332,7 +335,8 @@ body.dark .result-box {
   </div>
 </footer>
 
-<script>
+
+<script defer>
 // Lấy các phần tử cần thiết
 const btnTheme = document.getElementById('toggleTheme');
 const body = document.body;
@@ -416,8 +420,8 @@ function tinhDau(){
 
   resultDiv.innerHTML=html;
 }
-</script>
-<script>
+
+// === Khối Service Worker (Giữ nguyên logic load sau khi tải trang) ===
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('service-worker.js')
