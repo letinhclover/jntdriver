@@ -244,10 +244,10 @@ document.querySelectorAll('.group-header').forEach(h=>{
 });
 
 // --- Đếm lượt truy cập + hiệu ứng tăng mượt ---
-fetch('https://api.visitorbadge.io/api/visitors?path=letinhclover.github.io/jntdriver')
+fetch('https://api.countapi.xyz/hit/letinhclover.github.io/jntdriver')
   .then(res => res.json())
   .then(data => {
-    const count = data.count || data.value || 0;
+    const count = data.value || 0;
     animateCounter(document.getElementById('count'), count);
   })
   .catch(() => {
