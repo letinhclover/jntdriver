@@ -9,7 +9,6 @@
 <title>Link Tài Xế J&T Express</title>
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="preconnect" href="https://zalo.me">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -18,6 +17,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link rel="preconnect" href="https://zalo.me">
+<link rel="preconnect" href="https://jtexpress.sg">
+<link rel="preconnect" href="https://driver.jtexpress.vn">
+<link rel="preconnect" href="https://jntexpress.vn">
 
 <meta name="description" content="Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: công việc hàng ngày, nhóm Zalo, địa chỉ Google Map và công cụ tính lượng dầu xe tải nhanh, chính xác.">
 <meta name="keywords" content="J&T Express, tài xế J&T, công việc nội bộ, nhóm Zalo J&T, địa chỉ Google Map, tính dầu xe tải, tính nhiên liệu, Lê Tỉnh, J&T Việt Nam">
@@ -32,15 +36,12 @@
 <meta property="og:url" content="https://letinhclover.github.io/jntdriver">
 <meta property="og:site_name" content="Link Tài Xế J&T">
 <meta property="og:image" content="https://letinhclover.github.io/jntdriver/android-chrome-512x512.png">
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Link Tài Xế J&T Express">
 <meta name="twitter:description" content="Tổng hợp liên kết nội bộ cho tài xế J&T — công việc, nhóm Zalo, địa chỉ Google Map và công cụ tính dầu xe tải.">
 <meta name="twitter:image" content="https://letinhclover.github.io/jntdriver/android-chrome-512x512.png">
-
 <meta name="application-name" content="Link Tài Xế J&T">
 <meta name="apple-mobile-web-app-title" content="J&T Driver Link">
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -60,13 +61,14 @@
 }
 </script>
 <style>
+/* CSS ĐÃ ĐƯỢC TỐI ƯU VÀ GỘP HOÀN TOÀN TẠI ĐÂY */
 :root{
   --bg-light:#f8fafc;
   --bg-dark:#111214;
   --text-light:#0b0b0b;
   --text-dark:#f5f5f5;
-  --primary:#CC0000;  /* Tăng tương phản (4.83:1) */
-  --accent:#198845;   /* Tăng tương phản (4.79:1) */
+  --primary:#CC0000;
+  --accent:#198845;
   --card:#ffffff;
   --card-dark:#1d1f21;
 }
@@ -134,46 +136,71 @@ footer{
   margin-top:18px;
 }
 body.dark footer{background:var(--card-dark)}
-footer a{color:var(--accent);text-decoration:none;font-weight:700}
+.footer-text{font-weight:bold; color:var(--primary);}
+.footer-link{color:var(--accent); font-weight:700; text-decoration:none;}
 
-/* --- PHẦN TÍNH DẦU XE TẢI --- */
-label {
-  display:block;
-  margin-top:8px;
-  font-weight:600;
+/* --- PHẦN TÍNH DẦU XE TẢI (ĐÃ LOẠI BỎ INLINE STYLE) --- */
+.calc-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
-input[type=number] {
-  width:100%;
-  padding:8px;
-  margin-top:4px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  font-size:15px;
+.input-group-calc {
+  width: 94%;
+  max-width: 580px;
 }
-button.primary {
-  width:100%;
-  margin-top:10px;
-  padding:10px;
+.calc-label {
+  display: block;
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 15px;
+}
+.calc-input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+button.calc-submit {
+  width: 92%;
+  max-width: 600px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 10px;
   border:none;
-  border-radius:6px;
   background:var(--primary);
   color:#fff;
-  font-weight:700;
   cursor:pointer;
 }
-button.primary:hover {opacity:.9;}
+button.calc-submit:hover {opacity:.9;}
 .result-box {
-  margin-top:10px;
-  background:rgba(0,0,0,0.05);
-  padding:10px;
-  border-radius:6px;
-  line-height:1.6;
+  width: 92%;
+  max-width: 600px;
+  margin-top: 10px;
+  background: rgba(0,0,0,0.05);
+  padding: 10px;
+  border-radius: 10px;
+  line-height: 1.6;
+  font-size: 15px;
+  text-align: left;
 }
 body.dark .result-box {
   background:rgba(255,255,255,0.05);
   color:var(--text-dark);
 }
-/* --- MAP BUTTONS (Đã gộp từ CSS inline) --- */
+/* --- MAP BUTTONS (Đã loại bỏ INLINE STYLE) --- */
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
 .map-btn {
   display: flex;
   align-items: center;
@@ -264,13 +291,9 @@ body.dark .map-btn {
       <span class="arrow">▶</span>
     </div>
     <div class="group-content">
-      <div style="
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 8px;
-        padding: 10px;
-      ">
-        <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW0</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW3</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW4</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW5</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW6</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">Lazada</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">TopGia</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H81</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H82</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H85</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H86</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H89</a> </div>
+      <div class="map-grid">
+        <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW0</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW3</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW4</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW5</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW6</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">Lazada</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">TopGia</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H81</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H82</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H85</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H86</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H89</a> 
+      </div>
     </div>
   </div>
 
@@ -280,51 +303,47 @@ body.dark .map-btn {
     <span class="arrow">▶</span>
   </div>
   <div class="group-content">
-    <div style="padding:14px;display:flex;flex-direction:column;align-items:center;gap:12px;">
-      <div style="width:94%;max-width:580px;">
-        <label for="khoan" style="font-size:15px;font-weight:600;">Mức khoán (lít/100 km):</label>
-        <input type="number" id="khoan" placeholder="13" min="0" step="0.01"
-          style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;font-size:15px;">
+    <div class="calc-content">
+      <div class="input-group-calc">
+        <label for="khoan" class="calc-label">Mức khoán (lít/100 km):</label>
+        <input type="number" id="khoan" placeholder="13" min="0" step="0.01" class="calc-input">
       </div>
 
-      <div style="width:94%;max-width:580px;">
-        <label for="km" style="font-size:15px;font-weight:600;">Quãng đường đã đi (km):</label>
-        <input type="number" id="km" placeholder="5403" min="0" step="0.01"
-          style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;font-size:15px;">
+      <div class="input-group-calc">
+        <label for="km" class="calc-label">Quãng đường đã đi (km):</label>
+        <input type="number" id="km" placeholder="5403" min="0" step="0.01" class="calc-input">
       </div>
 
-      <div style="width:94%;max-width:580px;">
-        <label for="thuc" style="font-size:15px;font-weight:600;">Lượng dầu thực tế đã đổ (lít):</label>
-        <input type="number" id="thuc" placeholder="569" min="0" step="0.01"
-          style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;font-size:15px;">
+      <div class="input-group-calc">
+        <label for="thuc" class="calc-label">Lượng dầu thực tế đã đổ (lít):</label>
+        <input type="number" id="thuc" placeholder="569" min="0" step="0.01" class="calc-input">
       </div>
 
-      <div style="width:94%;max-width:580px;">
-        <label for="gia" style="font-size:15px;font-weight:600;">Giá dầu (VND/lít):</label>
-        <input type="number" id="gia" placeholder="18600" min="0" step="100"
-          style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid #ccc;font-size:15px;">
+      <div class="input-group-calc">
+        <label for="gia" class="calc-label">Giá dầu (VND/lít):</label>
+        <input type="number" id="gia" placeholder="18600" min="0" step="100" class="calc-input">
       </div>
 
-      <button class="primary" onclick="tinhDau()"
-        style="width:92%;max-width:600px;padding:10px;border-radius:10px;font-size:16px;font-weight:700;">Tính toán</button>
+      <button class="calc-submit" onclick="tinhDau()">Tính toán</button>
 
-      <div id="result" class="result-box"
-        style="width:92%;max-width:600px;margin-top:10px;border-radius:10px;font-size:15px;line-height:1.6;text-align:left;"></div>
+      <div id="result" class="result-box"></div>
     </div>
   </div>
 </div>
 
 <footer>
-  <div style="font-weight:bold; color:var(--primary);">Trang này chỉ dành cho nội bộ tài xế J&T</div>
+  <div class="footer-text">Trang này chỉ dành cho nội bộ tài xế J&T</div>
 
   <div style="margin-top:6px;">
     © 2025 <a href="https://zalo.me/0708312789" target="_blank"
-    style="color:var(--accent); font-weight:700; text-decoration:none;">Lê Tỉnh</a>
+    class="footer-link">Lê Tỉnh</a>
   </div>
 </footer>
 
 
-<script defer>
+<script>
+// TOÀN BỘ JAVASCRIPT ĐÃ GỘP LẠI TẠI ĐÂY (Vị trí tối ưu nhất: cuối body)
+
 // Lấy các phần tử cần thiết
 const btnTheme = document.getElementById('toggleTheme');
 const body = document.body;
@@ -385,8 +404,8 @@ document.querySelectorAll('.group-header').forEach(h => {
     });
 });
 
-// === Hàm tính dầu xe tải ===
-function tinhDau(){
+// === Hàm tính dầu xe tải (Tối ưu hóa: Dùng biến CSS cho màu sắc) ===
+window.tinhDau = function() {
   const khoan=parseFloat(document.getElementById('khoan').value);
   const km=parseFloat(document.getElementById('km').value);
   const thuc=parseFloat(document.getElementById('thuc').value);
@@ -408,9 +427,11 @@ function tinhDau(){
   html+=`<strong>Tiêu hao trung bình:</strong> ${tieuhao.toFixed(2)} lít/100km<br>`;
 
   if(tien>0){
-    html+=`<b style="color:green;">Dư ${Math.abs(chenhlech).toFixed(2)} lít → Được hưởng ${tien.toLocaleString('vi-VN')} VND</b>`;
+    // Dùng biến CSS --accent (xanh)
+    html+=`<b style="color:var(--accent);">Dư ${Math.abs(chenhlech).toFixed(2)} lít → Được hưởng ${tien.toLocaleString('vi-VN')} VND</b>`;
   }else if(tien<0){
-    html+=`<b style="color:red;">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít → Phải bù ${Math.abs(tien).toLocaleString('vi-VN')} VND</b>`;
+    // Dùng biến CSS --primary (đỏ)
+    html+=`<b style="color:var(--primary);">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít → Phải bù ${Math.abs(tien).toLocaleString('vi-VN')} VND</b>`;
   }else{
     html+=`<b>Không dư, không thiếu dầu.</b>`;
   }
@@ -418,7 +439,7 @@ function tinhDau(){
   resultDiv.innerHTML=html;
 }
 
-// === Khối Service Worker ===
+// === Khối Service Worker (Giữ nguyên cho PWA) ===
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('service-worker.js')
