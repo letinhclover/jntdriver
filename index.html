@@ -215,6 +215,17 @@ body.dark .result-box {
 <footer>
   <div style="font-weight:bold;color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
   <div style="margin-top:4px;">© 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a></div>
+  <div id="visitorCounter" style="margin-top:8px;font-size:14px;opacity:0.8;">
+  Lượt truy cập: <span id="count">...</span>
+</div>
+
+<script>
+fetch('https://api.countapi.xyz/hit/jntdriver/visits')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('count').textContent = data.value.toLocaleString('vi-VN');
+  });
+</script>
 </footer>
 
 <script>
