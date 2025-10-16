@@ -6,11 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- 🧭 FAVICON & APP ICONS -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="preconnect" href="https://counter1.optistats.ovh">
-<link rel="preconnect" href="https://zalo.me">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="preconnect" href="https://zalo.me"> <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
@@ -19,14 +16,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<!-- 🔍 META SEO CƠ BẢN -->
 <meta name="description" content="Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: công việc hàng ngày, nhóm Zalo, địa chỉ Google Map và công cụ tính lượng dầu xe tải nhanh, chính xác.">
 <meta name="keywords" content="J&T Express, tài xế J&T, công việc nội bộ, nhóm Zalo J&T, địa chỉ Google Map, tính dầu xe tải, tính nhiên liệu, Lê Tỉnh, J&T Việt Nam">
 <meta name="author" content="Lê Tỉnh">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://letinhclover.github.io/jntdriver">
 
-<!-- 🌐 OPEN GRAPH -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:title" content="Link Tài Xế J&T Express">
@@ -35,17 +30,14 @@
 <meta property="og:site_name" content="Link Tài Xế J&T">
 <meta property="og:image" content="https://letinhclover.github.io/jntdriver/android-chrome-512x512.png">
 
-<!-- 🐦 TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Link Tài Xế J&T Express">
 <meta name="twitter:description" content="Tổng hợp liên kết nội bộ cho tài xế J&T — công việc, nhóm Zalo, địa chỉ Google Map và công cụ tính dầu xe tải.">
 <meta name="twitter:image" content="https://letinhclover.github.io/jntdriver/android-chrome-512x512.png">
 
-<!-- 📱 APP NAME -->
 <meta name="application-name" content="Link Tài Xế J&T">
 <meta name="apple-mobile-web-app-title" content="J&T Driver Link">
 
-<!-- 🧩 JSON-LD SCHEMA -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -76,7 +68,8 @@
   --card-dark:#1d1f21;
 }
 body{
-  font-family:Inter,Segoe UI,Arial,sans-serif;
+  /* Đã loại bỏ 'Inter,' để ưu tiên font hệ thống và tối ưu PageSpeed */
+  font-family:Segoe UI,Arial,sans-serif;
   margin:0;background:var(--bg-light);
   color:var(--text-light);
   transition:background .25s,color .25s;
@@ -147,7 +140,6 @@ label {
   margin-top:8px;
   font-weight:600;
 }
-/* Đã thêm thuộc tính min="0" và step="0.01" để cải thiện nhập liệu */
 input[type=number] {
   width:100%;
   padding:8px;
@@ -319,16 +311,6 @@ body.dark .result-box {
   <div style="font-weight:bold; color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
 
   <div style="margin-top:6px;">
-    👁️‍🗨️ <span style="font-weight:600;">Lượt truy cập:</span><br>
-    <a href="https://www.freecounterstat.com" title="hit counter" style="display:inline-block; margin-top:4px;">
-      <img id="counter-img"
-           loading="lazy"  width="230" height="20" src="https://counter1.optistats.ovh/private/freecounterstat.php?c=3x7sg3q33aty2j178sz6ncbe4fqjqwdp"
-           border="0" alt="hit counter"
-           style="vertical-align:middle; border-radius:6px; transition:filter 0.3s;">
-    </a>
-    </div>
-
-  <div style="margin-top:6px;">
     © 2025 <a href="https://zalo.me/0708312789" target="_blank"
     style="color:var(--accent); font-weight:700; text-decoration:none;">Lê Tỉnh</a>
   </div>
@@ -341,19 +323,18 @@ const btnTheme = document.getElementById('toggleTheme');
 const body = document.body;
 // Kiểm tra sở thích hệ thống
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-const footerImg = document.getElementById('counter-img'); 
+// ĐÃ XÓA: const footerImg = document.getElementById('counter-img'); 
 
 // --- Hàm cập nhật giao diện (theme) ---
 function applyTheme(isDark) {
     if (isDark) {
         body.classList.add('dark');
         btnTheme.textContent = '☀️';
-        // Cập nhật filter cho ảnh đếm truy cập
-        footerImg.style.filter = 'brightness(0.8) contrast(1.2)';
+        // ĐÃ XÓA: Cập nhật filter cho ảnh đếm truy cập
     } else {
         body.classList.remove('dark');
         btnTheme.textContent = '🌙';
-        footerImg.style.filter = 'none';
+        // ĐÃ XÓA: Cập nhật filter cho ảnh đếm truy cập
     }
 }
 
