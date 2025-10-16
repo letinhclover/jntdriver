@@ -1,10 +1,11 @@
 {
   "name": "Link Tài Xế J&T Express",
-  "short_name": "J&T Driver",
-  "start_url": "./",
+  "short_name": "J&T Driver Link",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ff0033",
+  "description": "Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: nhóm Zalo, biểu mẫu công việc, địa chỉ Google Map và công cụ tính lượng dầu xe tải.",
   "icons": [
     {
       "src": "android-chrome-192x192.png",
@@ -14,6 +15,16 @@
     {
       "src": "android-chrome-512x512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-16x16.png",
+      "sizes": "16x16",
       "type": "image/png"
     }
   ]
