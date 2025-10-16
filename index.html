@@ -213,11 +213,41 @@ body.dark .result-box {
 </div>
 
 <!-- FOOTER -->
-<footer>
-  <div style="font-weight:bold;color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
-  <div style="margin-top:4px;">👁️‍🗨️ Lượt truy cập: <span id="count">...</span></div>
-  <div style="margin-top:4px;">© 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a></div>
+<footer id="footer" style="text-align:center; padding:14px 0; transition:background 0.3s;">
+  <div style="font-weight:bold; color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
+
+  <div style="margin-top:8px;">
+    👁️‍🗨️ <span style="font-weight:600;">Lượt truy cập:</span><br>
+    <a href="https://www.freecounterstat.com" title="hit counter" style="display:inline-block; margin-top:6px;">
+      <img id="counter-img"
+           src="https://counter1.optistats.ovh/private/freecounterstat.php?c=3x7sg3q33aty2j178sz6ncbe4fqjqwdp"
+           border="0" alt="hit counter"
+           style="vertical-align:middle; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.15);
+                  backdrop-filter:blur(3px); transition:filter 0.4s, box-shadow 0.4s;">
+    </a>
+  </div>
+
+  <div style="margin-top:8px;">
+    © 2025 <a href="https://zalo.me/0708312789" target="_blank"
+      style="color:var(--accent); font-weight:700; text-decoration:none;">Lê Tỉnh</a>
+  </div>
 </footer>
+
+<script>
+// === Hiệu ứng dark mode + đổ bóng cho ảnh đếm ===
+const footerImg = document.getElementById('counter-img');
+function updateFooterTheme() {
+  if (document.body.classList.contains('dark')) {
+    footerImg.style.filter = 'brightness(0.85) contrast(1.1) blur(0.2px)';
+    footerImg.style.boxShadow = '0 0 12px rgba(255,255,255,0.25)';
+  } else {
+    footerImg.style.filter = 'none';
+    footerImg.style.boxShadow = '0 4px 10px rgba(0,0,0,0.15)';
+  }
+}
+updateFooterTheme();
+document.getElementById('toggleTheme').addEventListener('click', updateFooterTheme);
+</script>
 
 <script>
 const btnTheme=document.getElementById('toggleTheme');
