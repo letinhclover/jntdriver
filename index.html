@@ -213,58 +213,30 @@ body.dark .result-box {
 </div>
 
 <!-- FOOTER -->
-<footer style="text-align:center; padding:16px; margin-top:24px; border-top:1px solid rgba(0,0,0,0.05); background:var(--card);">
-  <div style="font-weight:bold; color:#ff0033; margin-bottom:6px;">
-    Trang này chỉ dành cho nội bộ tài xế J&T
-  </div>
-
-  <div style="margin-bottom:6px; font-size:15px;">
-    👁️‍🗨️ Lượt truy cập:
-    <span id="count" style="font-weight:700; color:#ff0033;">0</span>
-  </div>
-
-  <div style="font-size:14px;">
-    © 2025 <a href="https://zalo.me/0708312789" target="_blank" style="color:#25D366; text-decoration:none; font-weight:700;">Lê Tỉnh</a>
-  </div>
+<footer>
+  <div style="font-weight:bold;color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
+  <div style="margin-top:4px;">👁️‍🗨️ Lượt truy cập: <span id="count">...</span></div>
+  <div style="margin-top:4px;">© 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a></div>
 </footer>
-
 <script>
-// --- Chuyển chế độ sáng/tối ---
-const btnTheme=document.getElementById('toggleTheme');
-if(btnTheme){
-  btnTheme.onclick=()=>{
-    document.body.classList.toggle('dark');
-    btnTheme.textContent=document.body.classList.contains('dark')?'☀️':'🌙';
-  };
-}
+// === ĐẾM LƯỢT TRUY CẬP TRÊN GITHUB PAGES ===
+const counter = document.getElementById('count');
 
-// --- Mở nhóm ---
-document.querySelectorAll('.group-header').forEach(h=>{
-  h.onclick=()=>{h.parentElement.classList.toggle('open');};
-});
+// URL duy nhất cho trang web của bạn
+const counterUrl = 'https://api.countapi.xyz/update/letinhclover.github.io/jntdriver/?amount=1';
 
-// --- Đếm lượt truy cập + hiệu ứng tăng mượt ---
-fetch('https://api.countapi.xyz/hit/letinhclover.github.io/jntdriver')
+fetch(counterUrl)
   .then(res => res.json())
   .then(data => {
-    const count = data.value || 0;
-    animateCounter(document.getElementById('count'), count);
+    if (data && data.value) {
+      counter.textContent = data.value.toLocaleString('vi-VN');
+    } else {
+      counter.textContent = '0';
+    }
   })
   .catch(() => {
-    document.getElementById('count').textContent = 'Không xác định';
+    counter.textContent = 'Không xác định';
   });
-
-// --- Hàm hiệu ứng đếm số ---
-function animateCounter(el, target){
-  let start = 0;
-  const duration = 1000; // 1 giây
-  const stepTime = Math.abs(Math.floor(duration / target));
-  const timer = setInterval(()=>{
-    start++;
-    el.textContent = start.toLocaleString('vi-VN');
-    if(start >= target) clearInterval(timer);
-  }, stepTime > 20 ? stepTime : 20); // tránh quá nhanh
-}
 </script>
 
 <script>
