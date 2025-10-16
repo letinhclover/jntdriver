@@ -6,8 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<title>Link Tài Xế J&T Express</title>
+
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="preconnect" href="https://zalo.me"> <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="preconnect" href="https://zalo.me">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
@@ -63,13 +66,12 @@
   --text-light:#0b0b0b;
   --text-dark:#f5f5f5;
   --primary:#ff0033;
-  --accent:#25D366;
+  --accent:#1B9C50; /* ĐÃ SỬA: Tăng độ tương phản (WCAG AA) */
   --card:#ffffff;
   --card-dark:#1d1f21;
 }
 body{
-  /* Đã loại bỏ 'Inter,' để ưu tiên font hệ thống và tối ưu PageSpeed */
-  font-family:Segoe UI,Arial,sans-serif;
+  font-family:Segoe UI,Arial,sans-serif; /* ĐÃ SỬA: Bỏ 'Inter,' để ưu tiên font hệ thống */
   margin:0;background:var(--bg-light);
   color:var(--text-light);
   transition:background .25s,color .25s;
@@ -330,11 +332,11 @@ function applyTheme(isDark) {
     if (isDark) {
         body.classList.add('dark');
         btnTheme.textContent = '☀️';
-        // ĐÃ XÓA: Cập nhật filter cho ảnh đếm truy cập
+        // ĐÃ XÓA logic cập nhật filter cho ảnh đếm truy cập
     } else {
         body.classList.remove('dark');
         btnTheme.textContent = '🌙';
-        // ĐÃ XÓA: Cập nhật filter cho ảnh đếm truy cập
+        // ĐÃ XÓA logic cập nhật filter cho ảnh đếm truy cập
     }
 }
 
