@@ -212,21 +212,30 @@ body.dark .result-box {
   </div>
 </div>
 
-<footer>
+<!-- FOOTER -->
+<footer style="text-align:center;">
   <div style="font-weight:bold;color:#ff0033;">Trang này chỉ dành cho nội bộ tài xế J&T</div>
-  <div style="margin-top:4px;">© 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a></div>
-  <div id="visitorCounter" style="margin-top:8px;font-size:14px;opacity:0.8;">
-  Lượt truy cập: <span id="count">...</span>
-</div>
+  <div style="margin-top:4px;">
+    © 2025 <a href="https://zalo.me/0708312789" target="_blank">Lê Tỉnh</a>
+  </div>
+  <div id="visitorCounter" 
+       style="margin-top:8px;font-size:14px;opacity:0.9;display:flex;justify-content:center;align-items:center;gap:6px;">
+    👁️‍🗨️ <span>Lượt truy cập:</span>
+    <span id="count" style="font-weight:600;">...</span>
+  </div>
+</footer>
 
 <script>
-fetch('https://api.countapi.xyz/hit/jntdriver/visits')
+// --- Đếm lượt truy cập ---
+fetch('https://api.countapi.xyz/hit/letinhclover.github.io/jntdriver')
   .then(res => res.json())
   .then(data => {
     document.getElementById('count').textContent = data.value.toLocaleString('vi-VN');
+  })
+  .catch(() => {
+    document.getElementById('count').textContent = 'Không xác định';
   });
 </script>
-</footer>
 
 <script>
 const btnTheme=document.getElementById('toggleTheme');
