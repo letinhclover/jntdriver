@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <meta name="description" content="Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: công việc hàng ngày, nhóm Zalo, địa chỉ Google Map và công cụ tính lượng dầu xe tải nhanh, chính xác.">
@@ -87,9 +87,11 @@ body{
 }
 body.dark{background:var(--bg-dark);color:var(--text-dark)}
 header{
+  /* ĐẢM BẢO HEADER LÀ LCP: Tăng kích thước font */
   background:linear-gradient(90deg,var(--primary),#dd2476);
   color:#fff;padding:14px 16px;text-align:center;
   position:relative;font-weight:800;
+  font-size: 1.2em; /* Tăng kích thước font header */
 }
 #toggleTheme{
   position:absolute;right:12px;top:10px;
@@ -144,7 +146,12 @@ footer{
   margin-top:18px;
 }
 body.dark footer{background:var(--card-dark)}
-.footer-text{font-weight:bold; color:var(--primary);}
+.footer-text{
+  /* ĐẢM BẢO FOOTER TEXT KHÔNG CÒN LÀ LCP: Giảm kích thước font */
+  font-weight:bold; 
+  color:var(--primary);
+  font-size: 0.9em; 
+}
 .footer-link{color:var(--accent); font-weight:700; text-decoration:none;}
 
 /* --- PHẦN CÔNG CỤ TÍNH TOÁN --- */
@@ -446,7 +453,7 @@ body.dark .map-btn {
             </div>
 
             <div class="input-group-calc">
-                <label for="ot_soNgayTrongThang" class="calc-label">Số Ngày Trong Tháng:</label>
+                <label for="ot_soNgayTrongThang" class="calc-label">Số Ngày Trong Thang:</label>
                 <input type="text" id="ot_soNgayTrongThang" value="30" required class="calc-input" min="1" max="31">
             </div>
 
@@ -684,15 +691,8 @@ window.tinhLuong = function() {
 }
 // === KẾT THÚC Hàm tính lương tăng ca ===
 
+/* KHỐI SERVICE WORKER ĐÃ ĐƯỢC XÓA HOÀN TOÀN ĐỂ TRÁNH LỖI CACHE */
 
-// === Khối Service Worker ===
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('✅ Service Worker đã đăng ký thành công!'))
-      .catch(err => console.error('❌ Lỗi SW:', err));
-  });
-}
 </script>
 </body>
 </html>
