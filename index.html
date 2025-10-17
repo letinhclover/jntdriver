@@ -22,6 +22,8 @@
 <link rel="preconnect" href="https://jtexpress.sg">
 <link rel="preconnect" href="https://driver.jtexpress.vn">
 <link rel="preconnect" href="https://jntexpress.vn">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 
 <meta name="description" content="Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: công việc hàng ngày, nhóm Zalo, địa chỉ Google Map và công cụ tính lượng dầu xe tải nhanh, chính xác.">
 <meta name="keywords" content="J&T Express, tài xế J&T, công việc nội bộ, nhóm Zalo J&T, địa chỉ Google Map, tính dầu xe tải, tính nhiên liệu, Lê Tỉnh, J&T Việt Nam">
@@ -67,13 +69,14 @@
   --bg-dark:#111214;
   --text-light:#0b0b0b;
   --text-dark:#f5f5f5;
-  --primary:#CC0000;
-  --accent:#198845;
+  --primary:#CC0000; /* Màu đỏ J&T chính */
+  --accent:#198845; /* Màu xanh lá (Zalo/Dư dầu) */
   --card:#ffffff;
   --card-dark:#1d1f21;
+  --highlight-bg: #fff3f2; /* Nền kết quả tính toán (đỏ nhạt) */
 }
 body{
-  font-family:Segoe UI,Arial,sans-serif;
+  font-family:'Roboto', Segoe UI, Arial, sans-serif;
   margin:0;background:var(--bg-light);
   color:var(--text-light);
   transition:background .25s,color .25s;
@@ -95,17 +98,18 @@ header{
   box-shadow:0 2px 6px rgba(0,0,0,.08);
   background:var(--card);
 }
-body.dark .group{background:var(--card-dark)}
+body.dark .group{box-shadow:0 2px 6px rgba(0,0,0,.3);background:var(--card-dark)}
 .group-header{
   display:flex;justify-content:space-between;align-items:center;
   padding:12px 14px;cursor:pointer;font-weight:700;
   background:rgba(0,0,0,0.02);
+  border-radius:10px 10px 0 0;
 }
 .group-header span.title{color:var(--primary)}
 .group-header .arrow{transition:transform .25s}
 .group.open .group-header .arrow{transform:rotate(90deg)}
 .group-content{display:none;}
-.group.open .group-content{display:block;}
+.group.open .group-content{display:block; padding-bottom: 5px;}
 a.link-card{
   display:flex;justify-content:space-between;align-items:center;
   text-decoration:none;color:inherit;
@@ -125,7 +129,7 @@ body.dark .contact-card{background:rgba(255,255,255,0.05)}
 .contact-info{display:flex;flex-direction:column}
 .name{font-weight:700}
 .role{font-size:0.9em;opacity:0.8}
-.call-btn{
+.call-btn{ /* Đã đổi tên thành Zalo */
   border:none;border-radius:6px;background:var(--accent);
   color:#fff;padding:6px 10px;font-weight:bold;cursor:pointer;
 }
@@ -139,7 +143,7 @@ body.dark footer{background:var(--card-dark)}
 .footer-text{font-weight:bold; color:var(--primary);}
 .footer-link{color:var(--accent); font-weight:700; text-decoration:none;}
 
-/* --- PHẦN TÍNH DẦU XE TẢI --- */
+/* --- PHẦN CÔNG CỤ TÍNH TOÁN --- */
 .calc-content {
   padding: 14px;
   display: flex;
@@ -164,6 +168,12 @@ body.dark footer{background:var(--card-dark)}
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 15px;
+  box-sizing: border-box; /* Quan trọng để input ko tràn */
+}
+body.dark .calc-input {
+  border-color: #555;
+  background: #2b2b2b;
+  color: var(--text-dark);
 }
 button.calc-submit {
   width: 92%;
@@ -177,8 +187,11 @@ button.calc-submit {
   background:var(--primary);
   color:#fff;
   cursor:pointer;
+  transition: opacity .2s, transform .1s;
 }
-button.calc-submit:hover {opacity:.9;}
+button.calc-submit:hover {opacity:.9; transform: translateY(-1px);}
+
+/* HỘP KẾT QUẢ CHUNG (Cho tính dầu) */
 .result-box {
   width: 92%;
   max-width: 600px;
@@ -194,6 +207,59 @@ body.dark .result-box {
   background:rgba(255,255,255,0.05);
   color:var(--text-dark);
 }
+
+/* HỘP KẾT QUẢ TĂNG CA (Màu đỏ/cam J&T, hiển thị không xuống hàng) */
+.result-box-ot {
+    background-color: var(--highlight-bg); 
+    border: 1px solid var(--primary); /* Viền màu đỏ J&T */
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    width: 92%;
+    max-width: 600px;
+}
+body.dark .result-box-ot {
+    background-color: #312121; /* Nền tối đồng bộ với màu primary */
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.result-box-ot h3 {
+    color: var(--primary); /* Tiêu đề màu đỏ J&T */
+    font-size: 1.1em; 
+    margin-top: 0; 
+    padding-bottom: 5px; 
+    border-bottom: 1px dashed #ccc;
+}
+body.dark .result-box-ot h3 {
+    border-bottom: 1px dashed #555;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px 0;
+    font-size: 1.0em;
+}
+
+.result-item-total {
+    font-size: 1.15em;
+    font-weight: 700;
+    padding-top: 8px;
+    border-top: 2px solid #ff9788; /* Đường viền đậm hơn cho tổng */
+    margin-top: 8px;
+}
+body.dark .result-item-total {
+    border-top: 2px solid rgba(255,255,255,0.2);
+}
+
+.highlight {
+    color: var(--primary);
+    font-weight: 700;
+}
+/* END CSS TĂNG CA */
+
+
 /* --- MAP BUTTONS --- */
 .map-grid {
   display: grid;
@@ -275,16 +341,35 @@ body.dark .map-btn {
 
   <div class="group">
     <div class="group-header" role="button" tabindex="0" aria-expanded="false">
-      <span class="title">📞 Liên hệ hỗ trợ</span><span class="arrow">▶</span>
+      <span class="title">📞 Liên hệ hỗ trợ Zalo</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
-      <div class="contact-card"><div class="contact-info"><span class="name">Giang Nguyễn</span><span class="role">Đội trưởng đội xe</span></div><a href="tel:0973235381"><button class="call-btn">GỌI</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Trí Lê</span><span class="role">Đội trưởng ca ngày</span></div><a href="tel:0762244662"><button class="call-btn">GỌI</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trần</span><span class="role">Đội trưởng ca đêm</span></div><a href="tel:0900000900"><button class="call-btn">GỌI</button></a></div> <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trung</span><span class="role">Bảo trì xe Thaco, Isuzu</span></div><a href="tel:0900000900"><button class="call-btn">GỌI</button></a></div> <div class="contact-card"><div class="contact-info"><span class="name">Thanh Liêm</span><span class="role">Bảo trì Jac, Đô Thành, Gaz</span></div><a href="tel:0906722489"><button class="call-btn">GỌI</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Quốc Thái</span><span class="role">Điều phối xe 5T - 8T</span></div><a href="tel:0399007309"><button class="call-btn">GỌI</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Giang Nguyễn</span><span class="role">Đội trưởng đội xe</span></div><a href="https://zalo.me/0973235381" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Trí Lê</span><span class="role">Đội trưởng ca ngày</span></div><a href="https://zalo.me/0762244662" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trần</span><span class="role">Đội trưởng ca đêm</span></div><a href="https://zalo.me/0900000900" target="_blank"><button class="call-btn">ZALO</button></a></div> 
+      <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trung</span><span class="role">Bảo trì xe Thaco, Isuzu</span></div><a href="https://zalo.me/0900000900" target="_blank"><button class="call-btn">ZALO</button></a></div> 
+      <div class="contact-card"><div class="contact-info"><span class="name">Thanh Liêm</span><span class="role">Bảo trì Jac, Đô Thành, Gaz</span></div><a href="https://zalo.me/0906722489" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Đặng Quốc Thái</span><span class="role">Điều phối VP (8h-17h30)</span></div><a href="https://zalo.me/0399007309" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Hồ Sỹ Tiến</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0962073741" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Phạm Minh Kỳ</span><span class="role">Ca ngày TTTC (12h-21h)</span></div><a href="https://zalo.me/0962073793" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Đào Đức Đạt</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0374749130" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Ngô Quốc Anh</span><span class="role">Ca đêm TTTC (21h-6h30)</span></div><a href="https://zalo.me/0334457083" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Tiến Trung</span><span class="role">Ca sáng TTTC (7h-16h)</span></div><a href="https://zalo.me/0707008800" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Đỗ Nhật Quang</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0369702372" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Hồ Sỹ Lưu</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0886468035" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Tấn Tài</span><span class="role">Ca ngày TTTC (12h-21h)</span></div><a href="https://zalo.me/0365762179" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Hoàng Phúc</span><span class="role">Ca ngày (12h-21h)</span></div><a href="https://zalo.me/0764341791" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Quốc Trung</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0947550239" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Dương Hoàng Hải</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0336492538" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Phạm Nguyễn Minh Quang</span><span class="role">Ca tối (19h-4h)</span></div><a href="https://zalo.me/0332277821" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Trung Hậu</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0326466205" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Huỳnh Tấn Sang</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0372026225" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Gia Quốc Mạnh</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0933450410" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Đặng Tuấn Kiệt</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0363456035" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Phạm Đức Huy</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0964543757" target="_blank"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Phúc Hậu</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0903969713" target="_blank"><button class="call-btn">ZALO</button></a></div>
     </div>
   </div>
-
   <div class="group">
     <div class="group-header" role="button" tabindex="0" aria-expanded="false">
       <span class="title">📍 Địa chỉ Google Map</span>
@@ -292,11 +377,12 @@ body.dark .map-btn {
     </div>
     <div class="group-content">
       <div class="map-grid">
-        <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW0</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW3</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW4</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW5</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">GW6</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">Lazada</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">TopGia</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H81</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H82</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H85</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H86</a> <a class="map-btn" href="https://maps.app.goo.gl/heG1mWMUYs8tdYjd7" target="_blank">H89</a> 
+        <a class="map-btn" href="https://maps.app.goo.gl/3J7jXXTn7t4pMYTk9" target="_blank">GW0</a> <a class="map-btn" href="https://maps.app.goo.gl/qdCVdF9DygSqSWin7" target="_blank">GW3</a> <a class="map-btn" href="https://maps.app.goo.gl/qdCVdF9DygSqSWin7" target="_blank">GW4-chưa có</a> <a class="map-btn" href="https://maps.app.goo.gl/3J7jXXTn7t4pMYTk9" target="_blank">GW5</a> <a class="map-btn" href="https://maps.app.goo.gl/EZte1BU8pfAkQdUv9" target="_blank">GW6</a> <a class="map-btn" href="https://maps.google.com/?q=10.852803,106.739009" target="_blank">H81</a> <a class="map-btn" href="https://maps.app.goo.gl/EZte1BU8pfAkQdUv9" target="_blank">H82-chưa có</a>
+        <a class="map-btn" href="https://maps.google.com/?q=10.697613,106.6517" target="_blank">H83</a> <a class="map-btn" href="https://maps.google.com/?q=10.853618,106.677715" target="_blank">H85</a> <a class="map-btn" href="https://maps.app.goo.gl/FPPNMz2md3RvnW2h9" target="_blank">H93</a>
       </div>
     </div>
   </div>
-
+  
   <div class="group">
   <div class="group-header" role="button" tabindex="0" aria-expanded="false">
     <span class="title">🛢 Tính lượng dầu xe tải</span>
@@ -330,8 +416,69 @@ body.dark .map-btn {
     </div>
   </div>
 </div>
+<div class="group">
+      <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+        <span class="title">💰 Tính tiền tăng ca</span>
+        <span class="arrow">▶</span>
+      </div>
+      <div class="group-content">
+        <div class="calc-content">
+            <div class="input-group-calc">
+                <label for="ot_luongCanBan" class="calc-label">Lương Căn Bản (VNĐ):</label>
+                <input type="number" id="ot_luongCanBan" value="5007600" required class="calc-input">
+            </div>
 
-<footer>
+            <div class="input-group-calc">
+                <label for="ot_soNgayTrongThang" class="calc-label">Số Ngày Trong Tháng:</label>
+                <input type="number" id="ot_soNgayTrongThang" value="30" required class="calc-input">
+            </div>
+
+            <div class="input-group-calc">
+                <label for="ot_soNgayChuNhat" class="calc-label">Số Ngày Chủ Nhật/Nghỉ Cố Định:</label>
+                <input type="number" id="ot_soNgayChuNhat" value="4" required class="calc-input">
+            </div>
+            
+            <hr style="width:94%; border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+
+            <div class="input-group-calc">
+                <label for="ot_gioTCTuong" class="calc-label">Số Giờ Tăng Ca Ngày Thường (1.5x):</label>
+                <input type="text" id="ot_gioTCTuong" value="" required class="calc-input" placeholder="Ví dụ: 151.5 hoặc 151,5">
+            </div>
+
+            <div class="input-group-calc">
+                <label for="ot_gioTCNghi" class="calc-label">Số Giờ Tăng Ca Ngày Nghỉ/Lễ (2.0x):</label>
+                <input type="text" id="ot_gioTCNghi" value="" required class="calc-input" placeholder="Ví dụ: 61.5 hoặc 61,5">
+            </div>
+
+            <button onclick="tinhLuong()" class="calc-submit">TÍNH KẾT QUẢ TĂNG CA</button>
+
+            <div class="result-box-ot">
+                <h3>📊 KẾT QUẢ TĂNG CA</h3>
+                
+                <div class="result-item">
+                    <span>Lương Giờ Cơ Bản:</span> 
+                    <strong><span id="luongGioCoBan">Tính toán sau khi nhập</span></strong>
+                </div>
+                
+                <div class="result-item">
+                    <span>Tiền TC Ngày Thường:</span> 
+                    <strong><span id="tienTCTuong">0 VNĐ</span></strong>
+                </div>
+                
+                <div class="result-item">
+                    <span>Tiền TC Ngày Off:</span> 
+                    <strong><span id="tienTCNghi">0 VNĐ</span></strong>
+                </div>
+                
+                <div class="result-item result-item-total">
+                    <span>TỔNG TIỀN TĂNG CA:</span> 
+                    <span class="highlight" id="tongTienTangCa">0 VNĐ</span>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  <footer>
   <div class="footer-text">Trang này chỉ dành cho nội bộ tài xế J&T</div>
 
   <div style="margin-top:6px;">
@@ -344,7 +491,6 @@ body.dark .map-btn {
 // Lấy các phần tử cần thiết
 const btnTheme = document.getElementById('toggleTheme');
 const body = document.body;
-// Kiểm tra sở thích hệ thống
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
 // --- Hàm cập nhật giao diện (theme) ---
@@ -360,10 +506,15 @@ function applyTheme(isDark) {
 
 // --- 1. Tự động chuyển đổi chủ đề khi tải trang ---
 function checkSystemPreference() {
-    if (prefersDarkScheme.matches) {
+    // Ưu tiên cài đặt của người dùng nếu có, nếu không dùng cài đặt hệ thống
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
         applyTheme(true);
-    } else {
+    } else if (savedTheme === 'light') {
         applyTheme(false);
+    } else {
+        // Dùng cài đặt hệ thống nếu chưa có cài đặt thủ công
+        applyTheme(prefersDarkScheme.matches);
     }
 }
 checkSystemPreference();
@@ -372,11 +523,15 @@ checkSystemPreference();
 btnTheme.onclick = () => {
     const isDark = !body.classList.contains('dark');
     applyTheme(isDark);
+    // Lưu cài đặt của người dùng
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
 };
 
-// --- 3. Lắng nghe thay đổi của hệ thống ---
+// --- 3. Lắng nghe thay đổi của hệ thống (Chỉ thay đổi nếu người dùng chưa đặt theme) ---
 prefersDarkScheme.addEventListener('change', (e) => {
-    applyTheme(e.matches);
+    if (!localStorage.getItem('theme')) {
+        applyTheme(e.matches);
+    }
 });
 
 // === Khởi tạo các group accordion (A11y Fix) ===
@@ -395,43 +550,34 @@ document.querySelectorAll('.group-header').forEach(h => {
     });
 });
 
-// === Hàm tính dầu xe tải (Tối ưu hóa: Chỉ bắt buộc KM và Dầu thực tế) ===
+// === Hàm tính dầu xe tải ===
 window.tinhDau = function() {
-  // Lấy giá trị, dùng || 0 để đảm bảo không bị lỗi NaN nếu ô bị bỏ trống
   const khoan = parseFloat(document.getElementById('khoan').value) || 0;
   const km = parseFloat(document.getElementById('km').value) || 0;
   const thuc = parseFloat(document.getElementById('thuc').value) || 0;
   const gia = parseFloat(document.getElementById('gia').value) || 0; 
   const resultDiv = document.getElementById('result');
   
-  // KIỂM TRA BẮT BUỘC
   if (km <= 0 || thuc < 0) {
-    alert("Vui lòng nhập Quãng đường đã đi (km > 0) và Lượng dầu thực tế đã đổ (lít >= 0).");
+    resultDiv.innerHTML = '<b style="color:var(--primary);">⚠️ Vui lòng nhập Quãng đường đã đi (km > 0) và Lượng dầu thực tế.</b>';
     return;
   }
   
-  // LUÔN TÍNH ĐƯỢC: Tiêu hao trung bình
   const tieuhao = (thuc / km) * 100;
   
-  // Mở đầu kết quả với thông tin cơ bản
   let html = `<strong>Lượng dầu thực tế:</strong> ${thuc.toFixed(2)} lít<br>`;
   html += `<strong>Tiêu hao trung bình:</strong> ${tieuhao.toFixed(2)} lít/100km<br>`;
 
-  // ----------------------------------------------------
-  // KIỂM TRA TÍNH KHOÁN: Chỉ chạy nếu người dùng nhập Mức khoán
-  // ----------------------------------------------------
   if (khoan > 0) {
     const dauKhoan = (km * khoan) / 100;
     const chenhlech = dauKhoan - thuc;
 
-    // Chèn thông tin khoán vào trên Lượng dầu thực tế
     html = `<strong>Mức khoán:</strong> ${khoan.toFixed(2)} lít/100km<br>` 
-           + html.replace('Lượng dầu thực tế:', 'Lượng dầu theo khoán:')
+           + `<strong>Lượng dầu theo khoán:</strong> ${dauKhoan.toFixed(2)} lít<br>`
+           + html.replace('Lượng dầu thực tế:', 'Lượng dầu thực tế:')
            + `<strong>Lượng dầu thực tế:</strong> ${thuc.toFixed(2)} lít<br>`;
 
-    // XỬ LÝ CHÊNH LỆCH DẦU VÀ TIỀN
     if (gia > 0) {
-      // Có giá dầu: Tính và hiển thị tiền
       const tien = chenhlech * gia;
       
       if (tien > 0) {
@@ -442,7 +588,6 @@ window.tinhDau = function() {
         html += `<b>Đủ dầu theo khoán.</b>`;
       }
     } else {
-      // Thiếu giá dầu: Chỉ hiển thị chênh lệch dầu (dư/thiếu)
       if (chenhlech > 0) {
         html += `<b style="color:var(--accent);">Dư ${chenhlech.toFixed(2)} lít</b> (Chưa tính tiền vì thiếu Giá dầu)`;
       } else if (chenhlech < 0) {
@@ -455,6 +600,77 @@ window.tinhDau = function() {
 
   resultDiv.innerHTML = html;
 }
+
+// === Hàm tính lương tăng ca ===
+function formatCurrency(number) {
+    if (isNaN(number)) return "0 VNĐ";
+    return Math.round(number).toLocaleString('en-US') + ' VNĐ';
+}
+
+function cleanInput(value) {
+    return value.replace(',', '.').trim();
+}
+
+window.tinhLuong = function() {
+    // 1. Lấy dữ liệu đầu vào (Sử dụng ID ot_...)
+    const luongCanBan = parseFloat(document.getElementById('ot_luongCanBan').value); 
+    const soNgayTrongThang = parseInt(document.getElementById('ot_soNgayTrongThang').value); 
+    const soNgayChuNhat = parseInt(document.getElementById('ot_soNgayChuNhat').value); 
+    
+    const rawGioTCTuong = cleanInput(document.getElementById('ot_gioTCTuong').value);
+    const gioTCTuong = parseFloat(rawGioTCTuong) || 0; 
+    
+    const rawGioTCNghi = cleanInput(document.getElementById('ot_gioTCNghi').value);
+    const gioTCNghi = parseFloat(rawGioTCNghi) || 0; 
+
+    // 2. Kiểm tra dữ liệu bắt buộc và cơ bản
+    if (isNaN(luongCanBan) || isNaN(soNgayTrongThang) || isNaN(soNgayChuNhat)) {
+        alert("⚠️ Vui lòng nhập đủ Lương Căn Bản, Số Ngày Tháng và Số Ngày Chủ Nhật!");
+        return;
+    }
+
+    // 3. Kiểm tra giới hạn (Validation)
+    if (soNgayTrongThang > 31 || soNgayTrongThang < 1) {
+        alert("⚠️ Lỗi: Số Ngày Trong Tháng phải nằm trong khoảng từ 1 đến 31.");
+        return;
+    }
+    if (soNgayChuNhat > 5 || soNgayChuNhat < 0) {
+        alert("⚠️ Lỗi: Số Ngày Chủ Nhật/Nghỉ Cố Định không được vượt quá 5 và không được âm.");
+        return;
+    }
+    if (soNgayChuNhat > soNgayTrongThang) {
+        alert("⚠️ Lỗi: Số Ngày Chủ Nhật/Nghỉ Cố Định không thể lớn hơn Số Ngày Trong Tháng.");
+        return;
+    }
+
+    // 4. Tính Lương Giờ Cơ Bản
+    const SO_GIO_LAM_VIEC_MOT_NGAY = 8;
+    const HS_TANG_CA_THUONG = 1.5;
+    const HS_TANG_CA_NGHI = 2.0;
+
+    const soNgayLamViecChuan = soNgayTrongThang - soNgayChuNhat;
+    const soGioLamViecChuan = soNgayLamViecChuan * SO_GIO_LAM_VIEC_MOT_NGAY;
+
+    if (soGioLamViecChuan <= 0) {
+        alert("⚠️ Lỗi tính toán: Số ngày làm việc chuẩn bằng 0 hoặc âm. Vui lòng kiểm tra lại Số Ngày Trong Tháng và Số Ngày Chủ Nhật.");
+        return;
+    }
+
+    const luongGioCoBan = luongCanBan / soGioLamViecChuan; 
+
+    // 5. Tính Tiền Tăng Ca
+    const tienTCTuong = gioTCTuong * luongGioCoBan * HS_TANG_CA_THUONG;
+    const tienTCNghi = gioTCNghi * luongGioCoBan * HS_TANG_CA_NGHI;
+    const tongTienTangCa = tienTCTuong + tienTCNghi;
+
+    // 6. Hiển thị kết quả
+    document.getElementById('luongGioCoBan').textContent = formatCurrency(luongGioCoBan);
+    document.getElementById('tienTCTuong').textContent = formatCurrency(tienTCTuong);
+    document.getElementById('tienTCNghi').textContent = formatCurrency(tienTCNghi);
+    document.getElementById('tongTienTangCa').textContent = formatCurrency(tongTienTangCa);
+}
+// === KẾT THÚC Hàm tính lương tăng ca ===
+
 
 // === Khối Service Worker ===
 if ('serviceWorker' in navigator) {
