@@ -72,11 +72,10 @@
   --text-light:#0b0b0b;
   --text-dark:#f5f5f5;
   --primary:#CC0000;
-  --accent:#198845;
+  --accent:#198845; /* Màu xanh lá cây cho nút gọi */
   --card:#ffffff;
   --card-dark:#1d1f21;
   --highlight-bg: #fff3f2;
-  --call-btn-color: #198845; 
 }
 *, *::before, *::after {
   box-sizing: border-box;
@@ -128,12 +127,12 @@ a.link-card:hover{box-shadow:0 6px 14px rgba(0,0,0,.08)}
 body.dark a.link-card{background:rgba(255,255,255,0.05)}
 .link-left{flex:1;padding-right:10px}
 
-/* --- CSS MỚI CHO LƯỚI LIÊN HỆ --- */
+/* --- CSS MỚI CHO LƯỚI LIÊN HỆ PHONG CÁCH TỐI GIẢN/HIỆN ĐẠI --- */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Chia thành 2 cột đều nhau */
-  gap: 8px; /* Khoảng cách giữa các nút */
-  padding: 10px 8px; /* Giảm padding tổng thể */
+  gap: 10px; 
+  padding: 10px 12px; 
 }
 
 a.contact-btn {
@@ -143,39 +142,55 @@ a.contact-btn {
   align-items: center;
   padding: 10px 5px;
   border-radius: 8px;
-  background: var(--call-btn-color); /* Nền xanh lá cây */
-  color: #fff;
+  
+  /* Thiết kế mới */
+  background: rgba(0,0,0,0.03); /* Nền nhẹ hơn */
+  border: 1px solid rgba(0,0,0,0.1); /* Thêm viền nhẹ */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Shadow nhẹ nhàng */
+  color: var(--text-light);
+  
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 700;
-  height: 70px; /* Chiều cao cố định */
-  transition: transform 0.1s ease, opacity 0.1s ease;
+  height: 70px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-a.contact-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-a.contact-btn:active {
-  transform: scale(0.96);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2) inset;
-}
-.contact-btn .name-contact {
-  font-weight: 900;
-  line-height: 1.3;
-}
-.contact-btn .role-contact {
-  font-size: 0.85em;
-  font-weight: 400;
-  opacity: 0.9;
-  line-height: 1.3;
 }
 
-/* XÓA CÁC CLASS CŨ KHÔNG DÙNG NỮA */
-.contact-card, .call-btn, .name, .role { display: none; } 
-/* Để tạm thời, nếu cần loại bỏ hẳn thì xóa block này */
+/* Dark Mode cho nút liên hệ */
+body.dark a.contact-btn {
+    background: rgba(255,255,255,0.05); 
+    border-color: rgba(255,255,255,0.1); 
+    color: var(--text-dark);
+}
+
+a.contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Shadow rõ ràng hơn khi hover */
+}
+a.contact-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2) inset;
+}
+
+.contact-btn .icon-call {
+    color: var(--accent); /* Icon điện thoại màu xanh */
+    font-size: 1.2em;
+    margin-bottom: 2px;
+}
+.contact-btn .name-contact {
+  font-weight: 700;
+  line-height: 1.2;
+  font-size: 1.0em;
+}
+.contact-btn .role-contact {
+  font-size: 0.75em; /* Kích thước nhỏ hơn để phân biệt */
+  font-weight: 400;
+  opacity: 0.8;
+  line-height: 1.2;
+  margin-top: 1px;
+}
+
 /* --- KẾT THÚC CSS MỚI --- */
+
 
 footer{
   padding:12px;text-align:center;
@@ -346,7 +361,6 @@ body.dark .map-btn {
 @media (max-width:520px){
   .container{padding:10px}
   .group-header{padding:12px}
-  /* XÓA BỎ CSS CŨ */
 }
 </style>
 </head>
@@ -390,103 +404,127 @@ body.dark .map-btn {
 
   <div class="group">
     <div class="group-header" role="button" tabindex="0" aria-expanded="false">
-      <span class="title">📞 Liên hệ hỗ trợ</span><span class="arrow">▶</span>
+      <span class="title">📞 Liên hệ hỗ trợ GỌI ĐIỆN</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
         <div class="contact-grid">
             <a href="tel:0973235381" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Giang Nguyễn</span>
                 <span class="role-contact">Đội trưởng đội xe</span>
             </a>
             <a href="tel:0762244662" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Trí Lê</span>
                 <span class="role-contact">Đội trưởng ca ngày</span>
             </a>
-            <a href="tel:090" class="contact-btn">
+            <a href="tel:0900000900" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Hoàng Trần</span>
                 <span class="role-contact">Đội trưởng ca đêm</span>
             </a>
-            <a href="tel:090" class="contact-btn">
+            <a href="tel:0900000900" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Hoàng Trung</span>
                 <span class="role-contact">Bảo trì xe Thaco, Isuzu</span>
             </a>
             <a href="tel:0906722489" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Thanh Liêm</span>
                 <span class="role-contact">Bảo trì Jac, Đô Thành, Gaz</span>
             </a>
             <a href="tel:0399007309" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Đặng Quốc Thái</span>
                 <span class="role-contact">Điều phối VP (8h-17h30)</span>
             </a>
             <a href="tel:0962073741" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Hồ Sỹ Tiến</span>
                 <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
             </a>
             <a href="tel:0962073793" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Phạm Minh Kỳ</span>
                 <span class="role-contact">Ca ngày TTTC (12h-21h)</span>
             </a>
             <a href="tel:0374749130" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Đào Đức Đạt</span>
                 <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
             </a>
             <a href="tel:0334457083" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Ngô Quốc Anh</span>
                 <span class="role-contact">Ca đêm TTTC (21h-6h30)</span>
             </a>
             <a href="tel:0972251731" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Nguyễn Tiến Trung</span>
                 <span class="role-contact">Ca sáng TTTC (7h-16h)</span>
             </a>
             <a href="tel:0369702372" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Đỗ Nhật Quang</span>
                 <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
             </a>
             <a href="tel:0886468035" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Hồ Sỹ Lưu</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
             </a>
             <a href="tel:0365762179" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Nguyễn Tấn Tài</span>
                 <span class="role-contact">Ca ngày TTTC (12h-21h)</span>
             </a>
             <a href="tel:0764341791" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Nguyễn Hoàng Phúc</span>
                 <span class="role-contact">Ca ngày (12h-21h)</span>
             </a>
             <a href="tel:0947550239" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Nguyễn Quốc Trung</span>
                 <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
             </a>
             <a href="tel:0336492538" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Nguyễn Dương Hoàng Hải</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
             </a>
             <a href="tel:0332277821" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Phạm Nguyễn Minh Quang</span>
                 <span class="role-contact">Ca tối (19h-4h)</span>
             </a>
             <a href="tel:0326466205" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Nguyễn Trung Hậu</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
             </a>
             <a href="tel:0372026225" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Huỳnh Tấn Sang</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
             </a>
             <a href="tel:0933450410" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Nguyễn Gia Quốc Mạnh</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
             </a>
             <a href="tel:0363456035" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Đặng Tuấn Kiệt</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
             </a>
             <a href="tel:0964543757" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Phạm Đức Huy</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
             </a>
             <a href="tel:0903969713" class="contact-btn">
+                <span class="icon-call">📞</span>
                 <span class="name-contact">Nguyễn Phúc Hậu</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
             </a>
