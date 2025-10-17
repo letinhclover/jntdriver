@@ -61,7 +61,7 @@
 }
 </script>
 <style>
-/* CSS ĐÃ ĐƯỢC TỐI ƯU VÀ GỘP HOÀN TOÀN TẠI ĐÂY */
+/* --- CSS NỘI TUYẾN (Đã tối ưu hoàn toàn) --- */
 :root{
   --bg-light:#f8fafc;
   --bg-dark:#111214;
@@ -139,7 +139,7 @@ body.dark footer{background:var(--card-dark)}
 .footer-text{font-weight:bold; color:var(--primary);}
 .footer-link{color:var(--accent); font-weight:700; text-decoration:none;}
 
-/* --- PHẦN TÍNH DẦU XE TẢI (ĐÃ LOẠI BỎ INLINE STYLE) --- */
+/* --- PHẦN TÍNH DẦU XE TẢI --- */
 .calc-content {
   padding: 14px;
   display: flex;
@@ -194,7 +194,7 @@ body.dark .result-box {
   background:rgba(255,255,255,0.05);
   color:var(--text-dark);
 }
-/* --- MAP BUTTONS (Đã loại bỏ INLINE STYLE) --- */
+/* --- MAP BUTTONS --- */
 .map-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -340,10 +340,7 @@ body.dark .map-btn {
   </div>
 </footer>
 
-
 <script>
-// TOÀN BỘ JAVASCRIPT ĐÃ GỘP LẠI TẠI ĐÂY (Vị trí tối ưu nhất: cuối body)
-
 // Lấy các phần tử cần thiết
 const btnTheme = document.getElementById('toggleTheme');
 const body = document.body;
@@ -361,7 +358,7 @@ function applyTheme(isDark) {
     }
 }
 
-// --- 1. Tự động chuyển đổi chủ đề khi tải trang (Auto Switch on Load) ---
+// --- 1. Tự động chuyển đổi chủ đề khi tải trang ---
 function checkSystemPreference() {
     if (prefersDarkScheme.matches) {
         applyTheme(true);
@@ -371,32 +368,26 @@ function checkSystemPreference() {
 }
 checkSystemPreference();
 
-// --- 2. Xử lý Chuyển đổi thủ công (Manual Toggle) ---
+// --- 2. Xử lý Chuyển đổi thủ công ---
 btnTheme.onclick = () => {
     const isDark = !body.classList.contains('dark');
     applyTheme(isDark);
 };
 
-// --- 3. Lắng nghe thay đổi của hệ thống (Listen for System Changes) ---
+// --- 3. Lắng nghe thay đổi của hệ thống ---
 prefersDarkScheme.addEventListener('change', (e) => {
     applyTheme(e.matches);
 });
 
 // === Khởi tạo các group accordion (A11y Fix) ===
 document.querySelectorAll('.group-header').forEach(h => {
-    // 1. Hàm bật/tắt chính
     const toggleAccordion = () => {
         const isOpen = h.parentElement.classList.toggle('open');
-        // Cập nhật trạng thái ARIA
         h.setAttribute('aria-expanded', isOpen);
     };
 
-    // 2. Xử lý Click
     h.addEventListener('click', toggleAccordion);
-
-    // 3. Xử lý Phím (Enter/Space)
     h.addEventListener('keydown', (e) => {
-        // Kiểm tra phím Enter hoặc Space
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault(); 
             toggleAccordion();
@@ -404,44 +395,71 @@ document.querySelectorAll('.group-header').forEach(h => {
     });
 });
 
-// === Hàm tính dầu xe tải (Tối ưu hóa: Dùng biến CSS cho màu sắc) ===
+// === Hàm tính dầu xe tải (Tối ưu hóa: Chỉ bắt buộc KM và Dầu thực tế) ===
 window.tinhDau = function() {
-  const khoan=parseFloat(document.getElementById('khoan').value);
-  const km=parseFloat(document.getElementById('km').value);
-  const thuc=parseFloat(document.getElementById('thuc').value);
-  const gia=parseFloat(document.getElementById('gia').value);
-  const resultDiv=document.getElementById('result');
+  // Lấy giá trị, dùng || 0 để đảm bảo không bị lỗi NaN nếu ô bị bỏ trống
+  const khoan = parseFloat(document.getElementById('khoan').value) || 0;
+  const km = parseFloat(document.getElementById('km').value) || 0;
+  const thuc = parseFloat(document.getElementById('thuc').value) || 0;
+  const gia = parseFloat(document.getElementById('gia').value) || 0; 
+  const resultDiv = document.getElementById('result');
   
-  if(isNaN(khoan)||isNaN(km)||isNaN(thuc)||isNaN(gia)||km<=0){
-    alert("Vui lòng nhập đầy đủ và hợp lệ! Quãng đường phải lớn hơn 0.");
+  // KIỂM TRA BẮT BUỘC
+  if (km <= 0 || thuc < 0) {
+    alert("Vui lòng nhập Quãng đường đã đi (km > 0) và Lượng dầu thực tế đã đổ (lít >= 0).");
     return;
   }
   
-  const dauKhoan=(km*khoan)/100;
-  const chenhlech=dauKhoan-thuc;
-  const tien=chenhlech*gia;
-  const tieuhao=(thuc/km)*100;
+  // LUÔN TÍNH ĐƯỢC: Tiêu hao trung bình
+  const tieuhao = (thuc / km) * 100;
+  
+  // Mở đầu kết quả với thông tin cơ bản
+  let html = `<strong>Lượng dầu thực tế:</strong> ${thuc.toFixed(2)} lít<br>`;
+  html += `<strong>Tiêu hao trung bình:</strong> ${tieuhao.toFixed(2)} lít/100km<br>`;
 
-  let html=`<strong>Lượng dầu theo khoán:</strong> ${dauKhoan.toFixed(2)} lít<br>`;
-  html+=`<strong>Lượng dầu thực tế:</strong> ${thuc.toFixed(2)} lít<br>`;
-  html+=`<strong>Tiêu hao trung bình:</strong> ${tieuhao.toFixed(2)} lít/100km<br>`;
+  // ----------------------------------------------------
+  // KIỂM TRA TÍNH KHOÁN: Chỉ chạy nếu người dùng nhập Mức khoán
+  // ----------------------------------------------------
+  if (khoan > 0) {
+    const dauKhoan = (km * khoan) / 100;
+    const chenhlech = dauKhoan - thuc;
 
-  if(tien>0){
-    // Dùng biến CSS --accent (xanh)
-    html+=`<b style="color:var(--accent);">Dư ${Math.abs(chenhlech).toFixed(2)} lít → Được hưởng ${tien.toLocaleString('vi-VN')} VND</b>`;
-  }else if(tien<0){
-    // Dùng biến CSS --primary (đỏ)
-    html+=`<b style="color:var(--primary);">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít → Phải bù ${Math.abs(tien).toLocaleString('vi-VN')} VND</b>`;
-  }else{
-    html+=`<b>Không dư, không thiếu dầu.</b>`;
+    // Chèn thông tin khoán vào trên Lượng dầu thực tế
+    html = `<strong>Mức khoán:</strong> ${khoan.toFixed(2)} lít/100km<br>` 
+           + html.replace('Lượng dầu thực tế:', 'Lượng dầu theo khoán:')
+           + `<strong>Lượng dầu thực tế:</strong> ${thuc.toFixed(2)} lít<br>`;
+
+    // XỬ LÝ CHÊNH LỆCH DẦU VÀ TIỀN
+    if (gia > 0) {
+      // Có giá dầu: Tính và hiển thị tiền
+      const tien = chenhlech * gia;
+      
+      if (tien > 0) {
+        html += `<b style="color:var(--accent);">Dư ${Math.abs(chenhlech).toFixed(2)} lít → Được hưởng ${tien.toLocaleString('vi-VN')} VND</b>`;
+      } else if (tien < 0) {
+        html += `<b style="color:var(--primary);">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít → Phải bù ${Math.abs(tien).toLocaleString('vi-VN')} VND</b>`;
+      } else {
+        html += `<b>Đủ dầu theo khoán.</b>`;
+      }
+    } else {
+      // Thiếu giá dầu: Chỉ hiển thị chênh lệch dầu (dư/thiếu)
+      if (chenhlech > 0) {
+        html += `<b style="color:var(--accent);">Dư ${chenhlech.toFixed(2)} lít</b> (Chưa tính tiền vì thiếu Giá dầu)`;
+      } else if (chenhlech < 0) {
+        html += `<b style="color:var(--primary);">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít</b> (Chưa tính tiền vì thiếu Giá dầu)`;
+      } else {
+        html += `<b>Đủ dầu theo khoán.</b>`;
+      }
+    }
   }
 
-  resultDiv.innerHTML=html;
+  resultDiv.innerHTML = html;
 }
 
-// === Khối Service Worker (Giữ nguyên cho PWA) ===
+// === Khối Service Worker ===
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
+    // Lưu ý: service-worker.js cần tồn tại nếu bạn muốn dùng PWA
     navigator.serviceWorker.register('service-worker.js')
       .then(() => console.log('✅ Service Worker đã đăng ký thành công!'))
       .catch(err => console.error('❌ Lỗi SW:', err));
