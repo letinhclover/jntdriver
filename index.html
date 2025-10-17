@@ -21,15 +21,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preload" as="style" 
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" 
-      crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" 
       rel="stylesheet" 
       media="print" 
       onload="this.media='all'" 
       crossorigin>
+
 <meta name="description" content="Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: công việc hàng ngày, nhóm Zalo, địa chỉ Google Map và công cụ tính lượng dầu xe tải nhanh, chính xác.">
 <meta name="keywords" content="J&T Express, tài xế J&T, công việc nội bộ, nhóm Zalo J&T, địa chỉ Google Map, tính dầu xe tải, tính nhiên liệu, Lê Tỉnh, J&T Việt Nam">
 <meta name="author" content="Lê Tỉnh">
@@ -69,19 +66,17 @@
 </script>
 <style>
 /* --- CSS NỘI TUYẾN (Đã tối ưu hoàn toàn) --- */
-/* Việc đặt CSS nội tuyến toàn bộ giúp FCP và LCP hiển thị nhanh chóng */
 :root{
   --bg-light:#f8fafc;
   --bg-dark:#111214;
   --text-light:#0b0b0b;
   --text-dark:#f5f5f5;
-  --primary:#CC0000; /* Màu đỏ J&T chính */
-  --accent:#198845; /* Màu xanh lá (Zalo/Dư dầu) */
+  --primary:#CC0000;
+  --accent:#198845;
   --card:#ffffff;
   --card-dark:#1d1f21;
-  --highlight-bg: #fff3f2; /* Nền kết quả tính toán (đỏ nhạt) */
+  --highlight-bg: #fff3f2;
 }
-/* Thêm box-sizing toàn cục (UX/Consistency) */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -93,11 +88,10 @@ body{
 }
 body.dark{background:var(--bg-dark);color:var(--text-dark)}
 header{
-  /* ĐẢM BẢO HEADER LÀ LCP: Tăng kích thước font */
   background:linear-gradient(90deg,var(--primary),#dd2476);
   color:#fff;padding:14px 16px;text-align:center;
   position:relative;font-weight:800;
-  font-size: 1.2em; /* Tăng kích thước font header */
+  font-size: 1.2em;
 }
 #toggleTheme{
   position:absolute;right:12px;top:10px;
@@ -141,7 +135,7 @@ body.dark .contact-card{background:rgba(255,255,255,0.05)}
 .contact-info{display:flex;flex-direction:column}
 .name{font-weight:700}
 .role{font-size:0.9em;opacity:0.8}
-.call-btn{ /* Đã đổi tên thành Zalo */
+.call-btn{
   border:none;border-radius:6px;background:var(--accent);
   color:#fff;padding:6px 10px;font-weight:bold;cursor:pointer;
 }
@@ -153,14 +147,11 @@ footer{
 }
 body.dark footer{background:var(--card-dark)}
 .footer-text{
-  /* ĐẢM BẢO FOOTER TEXT KHÔNG CÒN LÀ LCP: Giảm kích thước font */
   font-weight:bold; 
   color:var(--primary);
   font-size: 0.9em; 
 }
 .footer-link{color:var(--accent); font-weight:700; text-decoration:none;}
-
-/* --- PHẦN CÔNG CỤ TÍNH TOÁN --- */
 .calc-content {
   padding: 14px;
   display: flex;
@@ -206,8 +197,6 @@ button.calc-submit {
   transition: opacity .2s, transform .1s;
 }
 button.calc-submit:hover {opacity:.9; transform: translateY(-1px);}
-
-/* HỘP KẾT QUẢ CHUNG (Cho tính dầu) */
 .result-box {
   width: 92%;
   max-width: 600px;
@@ -223,11 +212,9 @@ body.dark .result-box {
   background:rgba(255,255,255,0.05);
   color:var(--text-dark);
 }
-
-/* HỘP KẾT QUẢ TĂNG CA */
 .result-box-ot {
     background-color: var(--highlight-bg); 
-    border: 1px solid var(--primary); /* Viền màu đỏ J&T */
+    border: 1px solid var(--primary);
     margin-top: 10px;
     padding: 15px;
     border-radius: 10px;
@@ -235,12 +222,12 @@ body.dark .result-box {
     max-width: 600px;
 }
 body.dark .result-box-ot {
-    background-color: #312121; /* Nền tối đồng bộ với màu primary */
+    background-color: #312121;
     border: 1px solid rgba(255,255,255,0.1);
 }
 
 .result-box-ot h3 {
-    color: var(--primary); /* Tiêu đề màu đỏ J&T */
+    color: var(--primary);
     font-size: 1.1em; 
     margin-top: 0; 
     padding-bottom: 5px; 
@@ -250,7 +237,6 @@ body.dark .result-box-ot h3 {
     border-bottom: 1px dashed #555;
 }
 .ot-note {
-    /* Đã đưa về kiểu chữ bình thường, màu văn bản mặc định */
     font-size: 0.85em; 
     color: var(--text-light); 
     font-weight: 400; 
@@ -273,7 +259,7 @@ body.dark .ot-note {
 }
 
 .result-item-total {
-    font-size: 1.05em; /* Kích thước chữ cho tổng tiền */
+    font-size: 1.05em;
     font-weight: 700;
     padding-top: 8px;
     border-top: 2px solid #ff9788; 
@@ -287,10 +273,6 @@ body.dark .result-item-total {
     color: var(--primary);
     font-weight: 700;
 }
-/* END CSS TĂNG CA */
-
-
-/* --- MAP BUTTONS --- */
 .map-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -374,30 +356,30 @@ body.dark .map-btn {
       <span class="title">📞 Liên hệ hỗ trợ Zalo</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
-      <div class="contact-card"><div class="contact-info"><span class="name">Giang Nguyễn</span><span class="role">Đội trưởng đội xe</span></div><a href="https://zalo.me/0973235381" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Trí Lê</span><span class="role">Đội trưởng ca ngày</span></div><a href="https://zalo.me/0762244662" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trần</span><span class="role">Đội trưởng ca đêm</span></div><a href="https://zalo.me/0900000900" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div> 
-      <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trung</span><span class="role">Bảo trì xe Thaco, Isuzu</span></div><a href="https://zalo.me/0900000900" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div> 
-      <div class="contact-card"><div class="contact-info"><span class="name">Thanh Liêm</span><span class="role">Bảo trì Jac, Đô Thành, Gaz</span></div><a href="https://zalo.me/0906722489" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Đặng Quốc Thái</span><span class="role">Điều phối VP (8h-17h30)</span></div><a href="https://zalo.me/0399007309" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Hồ Sỹ Tiến</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0962073741" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Phạm Minh Kỳ</span><span class="role">Ca ngày TTTC (12h-21h)</span></div><a href="https://zalo.me/0962073793" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Đào Đức Đạt</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0374749130" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Ngô Quốc Anh</span><span class="role">Ca đêm TTTC (21h-6h30)</span></div><a href="https://zalo.me/0334457083" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Tiến Trung</span><span class="role">Ca sáng TTTC (7h-16h)</span></div><a href="https://zalo.me/0972251731" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Đỗ Nhật Quang</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0369702372" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Hồ Sỹ Lưu</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0886468035" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Tấn Tài</span><span class="role">Ca ngày TTTC (12h-21h)</span></div><a href="https://zalo.me/0365762179" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Hoàng Phúc</span><span class="role">Ca ngày (12h-21h)</span></div><a href="https://zalo.me/0764341791" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Quốc Trung</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0947550239" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Dương Hoàng Hải</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0336492538" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Phạm Nguyễn Minh Quang</span><span class="role">Ca tối (19h-4h)</span></div><a href="https://zalo.me/0332277821" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Trung Hậu</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0326466205" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Huỳnh Tấn Sang</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0372026225" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Gia Quốc Mạnh</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0933450410" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Đặng Tuấn Kiệt</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0363456035" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Phạm Đức Huy</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0964543757" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
-      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Phúc Hậu</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0903969713" target="_blank" rel="noopener noreferrer"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Giang Nguyễn</span><span class="role">Đội trưởng đội xe</span></div><a href="https://zalo.me/0973235381" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Trí Lê</span><span class="role">Đội trưởng ca ngày</span></div><a href="https://zalo.me/0762244662" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trần</span><span class="role">Đội trưởng ca đêm</span></div><a href="https://zalo.me/0900000900" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div> 
+      <div class="contact-card"><div class="contact-info"><span class="name">Hoàng Trung</span><span class="role">Bảo trì xe Thaco, Isuzu</span></div><a href="https://zalo.me/0900000900" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div> 
+      <div class="contact-card"><div class="contact-info"><span class="name">Thanh Liêm</span><span class="role">Bảo trì Jac, Đô Thành, Gaz</span></div><a href="https://zalo.me/0906722489" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Đặng Quốc Thái</span><span class="role">Điều phối VP (8h-17h30)</span></div><a href="https://zalo.me/0399007309" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Hồ Sỹ Tiến</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0962073741" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Phạm Minh Kỳ</span><span class="role">Ca ngày TTTC (12h-21h)</span></div><a href="https://zalo.me/0962073793" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Đào Đức Đạt</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0374749130" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Ngô Quốc Anh</span><span class="role">Ca đêm TTTC (21h-6h30)</span></div><a href="https://zalo.me/0334457083" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Tiến Trung</span><span class="role">Ca sáng TTTC (7h-16h)</span></div><a href="https://zalo.me/0972251731" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Đỗ Nhật Quang</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0369702372" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Hồ Sỹ Lưu</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0886468035" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Tấn Tài</span><span class="role">Ca ngày TTTC (12h-21h)</span></div><a href="https://zalo.me/0365762179" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Hoàng Phúc</span><span class="role">Ca ngày (12h-21h)</span></div><a href="https://zalo.me/0764341791" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Quốc Trung</span><span class="role">Ca đêm TTTC (21h-6h)</span></div><a href="https://zalo.me/0947550239" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Dương Hoàng Hải</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0336492538" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Phạm Nguyễn Minh Quang</span><span class="role">Ca tối (19h-4h)</span></div><a href="https://zalo.me/0332277821" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Trung Hậu</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0326466205" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Huỳnh Tấn Sang</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0372026225" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Gia Quốc Mạnh</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0933450410" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Đặng Tuấn Kiệt</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0363456035" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Phạm Đức Huy</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0964543757" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
+      <div class="contact-card"><div class="contact-info"><span class="name">Nguyễn Phúc Hậu</span><span class="role">Ca tối (18h-3h)</span></div><a href="https://zalo.me/0903969713" target="_blank" rel="noopener noreferrer" class="zalo-contact"><button class="call-btn">ZALO</button></a></div>
     </div>
   </div>
   <div class="group">
@@ -592,7 +574,6 @@ function parseInputFloat(inputValue) {
 
 // === Hàm tính dầu xe tải ===
 window.tinhDau = function() {
-  // Đã sử dụng parseInputFloat để xử lý input type="text"
   const khoan = parseInputFloat(document.getElementById('khoan').value);
   const km = parseInputFloat(document.getElementById('km').value);
   const thuc = parseInputFloat(document.getElementById('thuc').value);
@@ -649,7 +630,6 @@ function formatCurrency(number) {
 }
 
 window.tinhLuong = function() {
-    // 1. Lấy và chuẩn hóa dữ liệu đầu vào (Đã dùng parseInputFloat)
     const luongCanBan = parseInputFloat(document.getElementById('ot_luongCanBan').value); 
     const soNgayTrongThang = parseInputFloat(document.getElementById('ot_soNgayTrongThang').value); 
     const soNgayChuNhat = parseInputFloat(document.getElementById('ot_soNgayChuNhat').value); 
@@ -657,19 +637,16 @@ window.tinhLuong = function() {
     const gioTCTuong = parseInputFloat(document.getElementById('ot_gioTCTuong').value); 
     const gioTCNghi = parseInputFloat(document.getElementById('ot_gioTCNghi').value); 
 
-    // 2. Kiểm tra dữ liệu bắt buộc và cơ bản
     if (luongCanBan <= 0 || soNgayTrongThang <= 0) {
-        alert("⚠️ Vui lòng nhập đủ Lương Căn Bản và Số Ngày Trong Tháng!");
+        alert("⚠️ Vui lòng nhập đủ Lương Căn Bản và Số Ngày Trong Thang!");
         return;
     }
 
-    // 3. Kiểm tra giới hạn (Validation)
     if (soNgayTrongThang > 31 || soNgayTrongThang < 1 || soNgayChuNhat < 0 || soNgayChuNhat > soNgayTrongThang) {
         alert("⚠️ Lỗi: Vui lòng kiểm tra lại Số Ngày Trong Tháng (1-31) và Số Ngày Chủ Nhật/Nghỉ Cố Định (0-5).");
         return;
     }
 
-    // 4. Tính Lương Giờ Cơ Bản
     const SO_GIO_LAM_VIEC_MOT_NGAY = 8;
     const HS_TANG_CA_THUONG = 1.5;
     const HS_TANG_CA_NGHI = 2.0;
@@ -684,20 +661,45 @@ window.tinhLuong = function() {
 
     const luongGioCoBan = luongCanBan / soGioLamViecChuan; 
 
-    // 5. Tính Tiền Tăng Ca
     const tienTCTuong = gioTCTuong * luongGioCoBan * HS_TANG_CA_THUONG;
     const tienTCNghi = gioTCNghi * luongGioCoBan * HS_TANG_CA_NGHI;
     const tongTienTangCa = tienTCTuong + tienTCNghi;
 
-    // 6. Hiển thị kết quả
     document.getElementById('luongGioCoBan').textContent = formatCurrency(luongGioCoBan);
     document.getElementById('tienTCTuong').textContent = formatCurrency(tienTCTuong);
     document.getElementById('tienTCNghi').textContent = formatCurrency(tienTCNghi);
     document.getElementById('tongTienTangCa').textContent = formatCurrency(tongTienTangCa);
 }
-// === KẾT THÚC Hàm tính lương tăng ca ===
 
-/* KHỐI SERVICE WORKER ĐÃ ĐƯỢC XÓA HOÀN TOÀN ĐỂ TRÁNH LỖI CACHE */
+// === KHẮC PHỤC LỖI LINK ZALO LÚC ĐƯỢC LÚC KHÔNG (Deep Link Fix) ===
+document.addEventListener('DOMContentLoaded', () => {
+    // Chỉ áp dụng cho các thẻ <a> có class 'zalo-contact'
+    const zaloLinks = document.querySelectorAll('a.zalo-contact');
+
+    zaloLinks.forEach(link => {
+        // Tắt hành vi mặc định của thẻ <a> (ngăn nó mở trình duyệt)
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); 
+            
+            // 1. Lấy href (ví dụ: https://zalo.me/0973235381)
+            const href = link.getAttribute('href');
+            
+            // 2. Tách lấy số điện thoại (ví dụ: 0973235381)
+            // Lấy phần sau dấu '/' cuối cùng
+            const phoneNumber = href.split('/').pop();
+
+            if (phoneNumber) {
+                // 3. Chuyển sang Deep Link (zalo://conversation?phone=0973235381)
+                // Link này sẽ mở thẳng ứng dụng Zalo trên điện thoại
+                window.location.href = `zalo://conversation?phone=${phoneNumber}`;
+            } else {
+                // Trường hợp ngoại lệ: nếu không lấy được số, vẫn chuyển hướng về link Zalo gốc
+                window.location.href = href;
+            }
+        });
+    });
+});
+// === KẾT THÚC KHẮC PHỤC ZALO ===
 
 </script>
 </body>
