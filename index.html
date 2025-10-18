@@ -303,12 +303,19 @@ body.dark .ot-note {
     border-top: 1px solid #555;
 }
 
+/* SỬA ĐỔI CHÍNH Ở ĐÂY: Dùng Flexbox để căn chỉnh trên 1 hàng */
 .result-item {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Đẩy tên mục và giá trị về hai phía */
     align-items: center;
     margin: 6px 0;
     font-size: 1.0em;
+}
+
+/* ĐIỀU CHỈNH THÊM: Ngăn không cho văn bản giá trị bị ngắt dòng */
+.result-item strong {
+    white-space: nowrap; /* QUAN TRỌNG: Ngăn không cho văn bản ngắt dòng */
+    text-align: right;   
 }
 
 .result-item-total {
@@ -370,7 +377,7 @@ body.dark .map-btn {
   LINK TÀI XẾ J&T
   <button id="toggleTheme" aria-label="chuyển sáng tối">🌙</button>
 </header>
-
+<div class="container">
   <div class="group">
     <div class="group-header" role="button" tabindex="0" aria-expanded="false">
       <span class="title">📋 Công việc nội bộ</span><span class="arrow">▶</span>
@@ -407,7 +414,11 @@ body.dark .map-btn {
     </div>
     <div class="group-content">
         <div class="contact-grid">
-            <a href="tel:0973235381" class="contact-btn">
+            <div style="grid-column: 1 / 3; text-align: left; font-size: 0.9em; font-weight: 700; color: var(--primary); padding-top: 5px;">
+                ĐỘI TRƯỞNG
+            </div>
+
+            <a href="tel:0973235381" class="contact-btn" style="grid-column: 1 / 3;">
                 <span class="name-contact">Giang Nguyễn</span>
                 <span class="role-contact">Đội trưởng đội xe</span>
             </a>
@@ -419,6 +430,11 @@ body.dark .map-btn {
                 <span class="name-contact">Hoàng Trần</span>
                 <span class="role-contact">Đội trưởng ca đêm</span>
             </a>
+
+            <div style="grid-column: 1 / 3; text-align: left; font-size: 0.9em; font-weight: 700; color: var(--primary); padding-top: 10px;">
+                BẢO TRÌ XE
+            </div>
+
             <a href="tel:090" class="contact-btn">
                 <span class="name-contact">Hoàng Trung</span>
                 <span class="role-contact">Bảo trì Thaco, Isuzu</span>
@@ -427,57 +443,49 @@ body.dark .map-btn {
                 <span class="name-contact">Thanh Liêm</span>
                 <span class="role-contact">Bảo trì Jac, Đô Thành, Gaz</span>
             </a>
-            <a href="tel:0399007309" class="contact-btn">
+
+            <div style="grid-column: 1 / 3; text-align: left; font-size: 0.9em; font-weight: 700; color: var(--primary); padding-top: 10px; margin-bottom: 2px;">
+                ĐIỀU PHỐI / TTTC (Theo ca)
+            </div>
+            
+            <div style="grid-column: 1 / 3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(25, 136, 69, 0.15); border: 1px solid var(--accent); color: var(--accent); border-radius: 4px; padding: 4px 0; margin-bottom: 5px;">
+                CA SÁNG (7h - 17h30) 🟢
+            </div>
+            <a href="tel:0399007309" class="contact-btn" style="grid-column: 1 / 3;">
                 <span class="name-contact">Đặng Quốc Thái</span>
                 <span class="role-contact">Điều phối VP (8h-17h30)</span>
             </a>
-            <a href="tel:0962073741" class="contact-btn">
-                <span class="name-contact">Hồ Sỹ Tiến</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
-            </a>
-            <a href="tel:0962073793" class="contact-btn">
-                <span class="name-contact">Phạm Minh Kỳ</span>
-                <span class="role-contact">Ca ngày TTTC (12h-21h)</span>
-            </a>
-            <a href="tel:0374749130" class="contact-btn">
-                <span class="name-contact">Đào Đức Đạt</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
-            </a>
-            <a href="tel:0334457083" class="contact-btn">
-                <span class="name-contact">Ngô Quốc Anh</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h30)</span>
-            </a>
-            <a href="tel:0972251731" class="contact-btn">
+             <a href="tel:0972251731" class="contact-btn" style="grid-column: 1 / 3;">
                 <span class="name-contact">Nguyễn Tiến Trung</span>
                 <span class="role-contact">Ca sáng TTTC (7h-16h)</span>
             </a>
-            <a href="tel:0369702372" class="contact-btn">
-                <span class="name-contact">Đỗ Nhật Quang</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
-            </a>
-            <a href="tel:0886468035" class="contact-btn">
-                <span class="name-contact">Hồ Sỹ Lưu</span>
-                <span class="role-contact">Ca tối (18h-3h)</span>
+
+            <div style="grid-column: 1 / 3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(255, 165, 0, 0.2); border: 1px solid orange; color: #CC6600; border-radius: 4px; padding: 4px 0; margin-bottom: 5px; margin-top: 8px;">
+                CA NGÀY (12h - 21h) 🟠
+            </div>
+            <a href="tel:0962073793" class="contact-btn">
+                <span class="name-contact">Phạm Minh Kỳ</span>
+                <span class="role-contact">Ca ngày TTTC (12h-21h)</span>
             </a>
             <a href="tel:0365762179" class="contact-btn">
                 <span class="name-contact">Nguyễn Tấn Tài</span>
                 <span class="role-contact">Ca ngày TTTC (12h-21h)</span>
             </a>
-            <a href="tel:0764341791" class="contact-btn">
+            <a href="tel:0764341791" class="contact-btn" style="grid-column: 1 / 3;">
                 <span class="name-contact">Nguyễn Hoàng Phúc</span>
                 <span class="role-contact">Ca ngày (12h-21h)</span>
             </a>
-            <a href="tel:0947550239" class="contact-btn">
-                <span class="name-contact">Nguyễn Quốc Trung</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
+
+            <div style="grid-column: 1 / 3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(204, 0, 0, 0.15); border: 1px solid var(--primary); color: var(--primary); border-radius: 4px; padding: 4px 0; margin-bottom: 5px; margin-top: 8px;">
+                CA TỐI (18h - 4h) 🔴
+            </div>
+            <a href="tel:0886468035" class="contact-btn">
+                <span class="name-contact">Hồ Sỹ Lưu</span>
+                <span class="role-contact">Ca tối (18h-3h)</span>
             </a>
             <a href="tel:0336492538" class="contact-btn">
                 <span class="name-contact">Nguyễn Dương Hoàng Hải</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
-            </a>
-            <a href="tel:0332277821" class="contact-btn">
-                <span class="name-contact">Phạm Nguyễn Minh Quang</span>
-                <span class="role-contact">Ca tối (19h-4h)</span>
             </a>
             <a href="tel:0326466205" class="contact-btn">
                 <span class="name-contact">Nguyễn Trung Hậu</span>
@@ -502,6 +510,34 @@ body.dark .map-btn {
             <a href="tel:0903969713" class="contact-btn">
                 <span class="name-contact">Nguyễn Phúc Hậu</span>
                 <span class="role-contact">Ca tối (18h-3h)</span>
+            </a>
+            <a href="tel:0332277821" class="contact-btn" style="grid-column: 1 / 3;">
+                <span class="name-contact">Phạm Nguyễn Minh Quang</span>
+                <span class="role-contact">Ca tối (19h-4h)</span>
+            </a>
+
+            <div style="grid-column: 1 / 3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(128, 0, 128, 0.15); border: 1px solid purple; color: purple; border-radius: 4px; padding: 4px 0; margin-bottom: 5px; margin-top: 8px;">
+                CA ĐÊM (21h - 6h30) 🟣
+            </div>
+            <a href="tel:0962073741" class="contact-btn">
+                <span class="name-contact">Hồ Sỹ Tiến</span>
+                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
+            </a>
+            <a href="tel:0374749130" class="contact-btn">
+                <span class="name-contact">Đào Đức Đạt</span>
+                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
+            </a>
+            <a href="tel:0947550239" class="contact-btn">
+                <span class="name-contact">Nguyễn Quốc Trung</span>
+                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
+            </a>
+            <a href="tel:0369702372" class="contact-btn">
+                <span class="name-contact">Đỗ Nhật Quang</span>
+                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
+            </a>
+            <a href="tel:0334457083" class="contact-btn" style="grid-column: 1 / 3;">
+                <span class="name-contact">Ngô Quốc Anh</span>
+                <span class="role-contact">Ca đêm TTTC (21h-6h30)</span>
             </a>
         </div>
     </div>
@@ -538,22 +574,27 @@ body.dark .map-btn {
     <div class="calc-content">
       <div class="input-group-calc">
         <label for="khoan" class="calc-label">Mức khoán (lít/100 km):</label>
-        <input type="text" id="khoan" placeholder="13" min="0" step="0.01" class="calc-input">
+        <input type="text" id="khoan" placeholder="13" min="0" step="0.01" class="calc-input" inputmode="decimal">
       </div>
 
       <div class="input-group-calc">
-        <label for="km" class="calc-label">Quãng đường đã đi (km):</label>
-        <input type="text" id="km" placeholder="5403" min="0" step="0.01" class="calc-input">
+        <label for="km" class="calc-label">Nhập số km hoặc số ODO cuối - ODO đầu:</label>
+        <input type="text" 
+               id="km" 
+               placeholder="Ví dụ: 1000 hoặc 9000-8000" 
+               min="0" 
+               step="0.01" 
+               class="calc-input">
       </div>
 
       <div class="input-group-calc">
         <label for="thuc" class="calc-label">Lượng dầu thực tế đã đổ (lít):</label>
-        <input type="text" id="thuc" placeholder="569" min="0" step="0.01" class="calc-input">
+        <input type="text" id="thuc" placeholder="130 hoặc 40+45+45" min="0" step="0.01" class="calc-input">
       </div>
 
       <div class="input-group-calc">
         <label for="gia" class="calc-label">Giá dầu (VND/lít):</label>
-        <input type="text" id="gia" placeholder="18600" min="0" step="100" class="calc-input">
+        <input type="text" id="gia" placeholder="18600" min="0" step="100" class="calc-input" inputmode="numeric">
       </div>
 
       <button class="calc-submit" onclick="tinhDau()">Tính toán</button>
@@ -571,29 +612,29 @@ body.dark .map-btn {
         <div class="calc-content">
             <div class="input-group-calc">
                 <label for="ot_luongCanBan" class="calc-label">Lương Căn Bản (VNĐ):</label>
-                <input type="text" id="ot_luongCanBan" value="5007600" required class="calc-input">
+                <input type="text" id="ot_luongCanBan" value="5007600" required class="calc-input" inputmode="numeric">
             </div>
 
             <div class="input-group-calc">
                 <label for="ot_soNgayTrongThang" class="calc-label">Số Ngày Trong Tháng:</label>
-                <input type="text" id="ot_soNgayTrongThang" value="30" required class="calc-input" min="1" max="31">
+                <input type="text" id="ot_soNgayTrongThang" value="30" required class="calc-input" min="1" max="31" inputmode="numeric">
             </div>
 
             <div class="input-group-calc">
                 <label for="ot_soNgayChuNhat" class="calc-label">Số Ngày Chủ Nhật:</label>
-                <input type="text" id="ot_soNgayChuNhat" value="4" required class="calc-input" min="0" max="5">
+                <input type="text" id="ot_soNgayChuNhat" value="4" required class="calc-input" min="0" max="5" inputmode="numeric">
             </div>
             
             <hr style="width:94%; border: 0; border-top: 1px solid #eee; margin: 10px 0;">
 
             <div class="input-group-calc">
                 <label for="ot_gioTCTuong" class="calc-label">Số Giờ Tăng Ca Ngày Thường (1.5x):</label>
-                <input type="text" id="ot_gioTCTuong" value="" required class="calc-input" placeholder="Ví dụ: 151.5 hoặc 151,5" step="0.5" min="0">
+                <input type="text" id="ot_gioTCTuong" value="" required class="calc-input" placeholder="Ví dụ: 40 hoặc 10+10+9.5+10.5" step="0.5" min="0">
             </div>
 
             <div class="input-group-calc">
                 <label for="ot_gioTCNghi" class="calc-label">Số Giờ Tăng Ca Ngày OFF (2.0x):</label>
-                <input type="text" id="ot_gioTCNghi" value="" required class="calc-input" placeholder="Ví dụ: 61.5 hoặc 61,5" step="0.5" min="0">
+                <input type="text" id="ot_gioTCNghi" value="" required class="calc-input" placeholder="Ví dụ: 20.5 hoặc 6+6+8.5" step="0.5" min="0">
             </div>
 
             <button onclick="tinhLuong()" class="calc-submit">TÍNH KẾT QUẢ TĂNG CA</button>
@@ -603,21 +644,21 @@ body.dark .map-btn {
                 
                 <div class="result-item">
                     <span>Lương Giờ Cơ Bản:</span> 
-                    <strong><span id="luongGioCoBan">Tính toán sau khi nhập</span></strong>
+                    <strong><span id="luongGioCoBan">Tính sau khi nhập</span></strong>
                 </div>
                 
                 <div class="result-item">
-                    <span>Tiền TC Ngày Thường:</span> 
+                    <span>TC Thường:</span> 
                     <strong><span id="tienTCTuong">0 VNĐ</span></strong>
                 </div>
                 
                 <div class="result-item">
-                    <span>Tiền TC Ngày Off:</span> 
+                    <span>TC Off:</span> 
                     <strong><span id="tienTCNghi">0 VNĐ</span></strong>
                 </div>
                 
                 <div class="result-item result-item-total">
-                    <span>TỔNG TIỀN TĂNG CA:</span> 
+                    <span>Tổng Tiền Tăng Ca:</span> 
                     <span class="highlight" id="tongTienTangCa">0 VNĐ</span>
                 </div>
                 <div class="ot-note">
@@ -627,7 +668,8 @@ body.dark .map-btn {
         </div>
       </div>
   </div>
-  <footer>
+</div>
+<footer>
   <div class="footer-text">Trang này chỉ dành cho nội bộ tài xế J&T</div>
 
   <div style="margin-top:6px;">
@@ -696,21 +738,68 @@ document.querySelectorAll('.group-header').forEach(h => {
     });
 });
 
-// === Hàm chuẩn hóa dữ liệu nhập (Chấp nhận cả dấu . và , cho số thập phân) ===
+// === Hàm xử lý phép tính cộng/trừ từ chuỗi nhập liệu ===
+function evaluateExpression(inputValue) {
+    if (typeof inputValue !== 'string') return 0;
+    
+    // 1. CHUẨN HÓA: Loại bỏ dấu phẩy (nếu người dùng nhập nhầm) và giữ lại số, dấu chấm, dấu cộng, dấu trừ.
+    let cleanValue = inputValue.replace(/,/g, '.').replace(/[^\d.+-]/g, '').trim(); 
+    
+    // Nếu rỗng, trả về 0
+    if (!cleanValue) return 0;
+
+    // 2. Xử lý phép TRỪ (giả định chỉ có 2 số: ODO cuối - ODO đầu)
+    if (cleanValue.includes('-') && !cleanValue.includes('+')) {
+        // Tách chuỗi theo dấu trừ, nhưng chỉ xử lý trường hợp A - B
+        const parts = cleanValue.split('-');
+        // Lọc các phần tử rỗng và đảm bảo có đúng 2 số để trừ
+        const numericParts = parts.filter(p => p.trim() !== '');
+        
+        if (numericParts.length === 2) {
+            const val1 = parseFloat(numericParts[0]);
+            const val2 = parseFloat(numericParts[1]);
+            return isNaN(val1) || isNaN(val2) ? 0 : val1 - val2;
+        }
+    }
+    
+    // 3. Xử lý phép CỘNG (tính tổng các lần đổ dầu/tổng giờ tăng ca)
+    const parts = cleanValue.split('+');
+    let total = 0;
+    
+    if (parts.length > 1) {
+        for (const part of parts) {
+            if (part.trim() !== '') {
+                const parsed = parseFloat(part.trim()); 
+                if (!isNaN(parsed)) {
+                    total += parsed;
+                }
+            }
+        }
+        return total;
+    }
+    
+    // 4. Giá trị số đơn lẻ (nếu không có phép tính)
+    const singleValue = parseFloat(cleanValue);
+    return isNaN(singleValue) ? 0 : singleValue;
+}
+
+
+// === Hàm chuẩn hóa dữ liệu nhập (Chỉ dùng cho các ô không phải phép tính) ===
 function parseInputFloat(inputValue) {
     if (typeof inputValue !== 'string') return 0;
-    // Thay thế dấu phẩy bằng dấu chấm, loại bỏ các ký tự không phải số/dấu chấm/dấu trừ
+    // Chỉ loại bỏ dấu phẩy và giữ lại dấu chấm/số
     const cleanValue = inputValue.replace(/,/g, '.');
     const parsed = parseFloat(cleanValue);
     return isNaN(parsed) ? 0 : parsed;
 }
 
 
-// === Hàm tính dầu xe tải ===
+// === Hàm tính dầu xe tải (Sử dụng evaluateExpression) ===
 window.tinhDau = function() {
+  // Sử dụng evaluateExpression cho các giá trị có thể là phép tính
   const khoan = parseInputFloat(document.getElementById('khoan').value);
-  const km = parseInputFloat(document.getElementById('km').value);
-  const thuc = parseInputFloat(document.getElementById('thuc').value);
+  const km = evaluateExpression(document.getElementById('km').value); // Có thể là phép trừ ODO
+  const thuc = evaluateExpression(document.getElementById('thuc').value); // Có thể là phép cộng lít dầu
   const gia = parseInputFloat(document.getElementById('gia').value); 
   const resultDiv = document.getElementById('result');
   
@@ -729,9 +818,9 @@ window.tinhDau = function() {
     const chenhlech = dauKhoan - thuc;
 
     html = `<strong>Mức khoán:</strong> ${khoan.toFixed(2)} lít/100km<br>` 
+           + `<strong>Quãng đường đã đi:</strong> ${km.toFixed(2)} km<br>`
            + `<strong>Lượng dầu theo khoán:</strong> ${dauKhoan.toFixed(2)} lít<br>`
-           + html.replace('Lượng dầu thực tế:', 'Lượng dầu thực tế:')
-           + `<strong>Lượng dầu thực tế:</strong> ${thuc.toFixed(2)} lít<br>`;
+           + html;
 
     if (gia > 0) {
       const tien = chenhlech * gia;
@@ -757,22 +846,25 @@ window.tinhDau = function() {
   resultDiv.innerHTML = html;
 }
 
-// === Hàm tính lương tăng ca ===
+// === Hàm tính lương tăng ca (Sử dụng evaluateExpression) ===
 function formatCurrency(number) {
     if (isNaN(number)) return "0 VNĐ";
+    // Đảm bảo làm tròn trước khi format
     return Math.round(number).toLocaleString('vi-VN') + ' VNĐ';
 }
 
 window.tinhLuong = function() {
+    // Sử dụng parseInputFloat() cho các giá trị cố định
     const luongCanBan = parseInputFloat(document.getElementById('ot_luongCanBan').value); 
     const soNgayTrongThang = parseInputFloat(document.getElementById('ot_soNgayTrongThang').value); 
     const soNgayChuNhat = parseInputFloat(document.getElementById('ot_soNgayChuNhat').value); 
     
-    const gioTCTuong = parseInputFloat(document.getElementById('ot_gioTCTuong').value); 
-    const gioTCNghi = parseInputFloat(document.getElementById('ot_gioTCNghi').value); 
+    // SỬ DỤNG evaluateExpression() cho giờ tăng ca
+    const gioTCTuong = evaluateExpression(document.getElementById('ot_gioTCTuong').value); 
+    const gioTCNghi = evaluateExpression(document.getElementById('ot_gioTCNghi').value); 
 
     if (luongCanBan <= 0 || soNgayTrongThang <= 0) {
-        alert("⚠️ Vui lòng nhập đủ Lương Căn Bản và Số Ngày Trong Thang!");
+        alert("⚠️ Vui lòng nhập đủ Lương Căn Bản và Số Ngày Trong Tháng!");
         return;
     }
 
@@ -793,15 +885,20 @@ window.tinhLuong = function() {
         return;
     }
 
+    // Lương giờ cơ bản phải được tính bằng số thập phân
     const luongGioCoBan = luongCanBan / soGioLamViecChuan; 
 
     const tienTCTuong = gioTCTuong * luongGioCoBan * HS_TANG_CA_THUONG;
     const tienTCNghi = gioTCNghi * luongGioCoBan * HS_TANG_CA_NGHI;
     const tongTienTangCa = tienTCTuong + tienTCNghi;
 
+    // Cập nhật kết quả: Hiển thị 1 hàng với định dạng ( 40.0 giờ )
     document.getElementById('luongGioCoBan').textContent = formatCurrency(luongGioCoBan);
-    document.getElementById('tienTCTuong').textContent = formatCurrency(tienTCTuong);
-    document.getElementById('tienTCNghi').textContent = formatCurrency(tienTCNghi);
+    
+    // ĐÃ SỬA: Giữ lại "giờ", bỏ "tổng"
+    document.getElementById('tienTCTuong').textContent = `${formatCurrency(tienTCTuong)} ( ${gioTCTuong.toFixed(1)} giờ )`;
+    document.getElementById('tienTCNghi').textContent = `${formatCurrency(tienTCNghi)} ( ${gioTCNghi.toFixed(1)} giờ )`;
+    
     document.getElementById('tongTienTangCa').textContent = formatCurrency(tongTienTangCa);
 }
 
