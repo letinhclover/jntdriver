@@ -47,22 +47,66 @@
 <meta name="application-name" content="Link Tài Xế J&T">
 <meta name="apple-mobile-web-app-title" content="J&T Driver Link">
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Link Tài Xế J&T Express",
-  "url": "https://letinhclover.github.io/jntdriver",
-  "description": "Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: nhóm Zalo, biểu mẫu công việc, địa chỉ Google Map và công cụ tính dầu xe tải.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Lê Tỉnh",
-    "url": "https://zalo.me/0708312789",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://letinhclover.github.io/jntdriver/android-chrome-512x512.png"
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Link Tài Xế J&T Express",
+    "url": "https://letinhclover.github.io/jntdriver",
+    "description": "Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: nhóm Zalo, biểu mẫu công việc, địa chỉ Google Map và công cụ tính dầu xe tải.",
+    "publisher": {
+      "@type": "Person",
+      "name": "Lê Tỉnh",
+      "url": "https://zalo.me/0708312789"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://letinhclover.github.io/jntdriver/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
     }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Cách tính tiền tăng ca tài xế J&T như thế nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Công cụ tính tăng ca J&T sử dụng Lương Căn Bản (thường là 5.007.600 VNĐ) chia cho số giờ làm việc chuẩn (Ngày Trong Tháng - Chủ Nhật) * 8 giờ. Tiền tăng ca ngày thường nhân với hệ số 1.5x, ngày nghỉ nhân với hệ số 2.0x. Vui lòng nhập giờ tăng ca vào mục 💰 Tính tiền tăng ca để có kết quả tham khảo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Làm sao để tính lượng dầu xe tải theo mức khoán?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bạn cần nhập 3 giá trị: Mức khoán (lít/100km), Quãng đường đã đi (km - có thể nhập ODO cuối - ODO đầu), và Lượng dầu thực tế đã đổ (lít). Công cụ sẽ tính toán lượng dầu khoán và chênh lệch (dư/thiếu) so với thực tế."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Tôi có thể tìm các link báo cáo công việc J&T ở đâu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tất cả các link báo cáo nội bộ như Chấm công, Báo cáo Hành trình, Điền thông tin Tăng ca, và Đăng kí Nghỉ phép đều được tổng hợp gọn trong mục 📋 Công việc nội bộ trên trang này."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cách nhập dữ liệu cho mục tính lượng dầu xe tải như thế nào để chính xác?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Công cụ tính dầu hỗ trợ nhập liệu linh hoạt: <br>1. **Quãng đường:** Có thể nhập số km đơn lẻ (ví dụ: 1000) hoặc phép trừ ODO cuối và ODO đầu (ví dụ: 9000-8000). <br>2. **Dầu thực tế:** Có thể nhập tổng số lít đã đổ (ví dụ: 130) hoặc phép cộng các lần đổ dầu (ví dụ: 40+45+35)."
+        }
+      }
+    ]
   }
-}
+]
 </script>
 <style>
 /* --- CSS NỘI TUYẾN (Đã tối ưu hoàn toàn) --- */
