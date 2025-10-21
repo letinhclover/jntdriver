@@ -19,10 +19,14 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" 
       rel="stylesheet" 
-      crossorigin> 
-
+      crossorigin
+      media="print" onload="this.media='all'">
+<noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" crossorigin>
+</noscript>
 <meta name="description" content="Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: công việc hàng ngày, nhóm Zalo, địa chỉ Google Map và công cụ tính lượng dầu xe tải nhanh, chính xác.">
 <meta name="keywords" content="J&T Express, tài xế J&T, công việc nội bộ, nhóm Zalo J&T, địa chỉ Google Map, tính dầu xe tải, tính nhiên liệu, Lê Tỉnh, J&T Việt Nam">
 <meta name="author" content="Lê Tỉnh">
@@ -122,7 +126,7 @@
   box-sizing: border-box;
 }
 body{
-  /* Vấn đề 1: Đã xóa font-family để tránh CLS do font flash */
+  /* Đã giữ lại Roboto, nhưng việc tải bất đồng bộ bên trên sẽ giúp giảm CLS */
   font-family:'Roboto', Segoe UI, Arial, sans-serif;
   margin:0;background:var(--bg-light);
   color:var(--text-light);
@@ -140,7 +144,7 @@ header{
   background:none;border:none;color:#fff;
   font-size:18px;cursor:pointer;
 }
-/* Vấn đề 3: Bọc nội dung chính bằng thẻ <main> để hỗ trợ tiếp cận (Accessibility) */
+/* Đã có thẻ <main> bọc nội dung chính. Tốt cho Accessibility/SEO. */
 .container{max-width:720px;margin:14px auto;padding:12px}
 .group{
   margin-bottom:14px;border-radius:10px;
@@ -956,30 +960,7 @@ window.tinhLuong = function() {
     document.getElementById('tongTienTangCa').textContent = formatCurrency(tongTienTangCa);
 }
 
-// === Khối Service Worker (Đã thêm điều kiện kiểm tra giao thức) ===
-if ('serviceWorker' in navigator) {
-  const isLocalhost = Boolean(window.location.hostname === 'localhost' ||
-    // [::1] là địa chỉ localhost IPv6
-    window.location.hostname === '[::1]' ||
-    // 127.0.0.0/8 là địa chỉ localhost IPv4
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
-  );
-  
-  // CHỈ ĐĂNG KÝ KHI LÀ HTTPS HOẶC LOCALHOST
-  if (window.location.protocol === 'https:' || isLocalhost) {
-    window.addEventListener('load', () => {
-        // Vấn đề 4: Khắc phục lỗi 404 SW bằng cách đảm bảo file service-worker.js TỒN TẠI
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('✅ Service Worker đã đăng ký thành công!'))
-          .catch(err => console.error('❌ Lỗi SW:', err));
-    });
-  } else {
-      // Nếu không phải HTTPS hoặc localhost, không đăng ký SW (tránh lỗi trên HTTP)
-      console.log('⚠️ Service Worker bị bỏ qua vì không phải HTTPS hoặc localhost.');
-  }
-}
+// === KHỐI SERVICE WORKER ĐÃ BỊ XÓA THEO YÊU CẦU ĐỂ KHẮC PHỤC LỖI 404 ===
 </script>
 </body>
 </html>
