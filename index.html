@@ -171,7 +171,7 @@ a.link-card:hover{box-shadow:0 6px 14px rgba(0,0,0,.08)}
 body.dark a.link-card{background:rgba(255,255,255,0.05)}
 .link-left{flex:1;padding-right:10px}
 
-/* --- CSS CHO LƯỚI LIÊN HỆ PHONG CÁCH PHẲNG (GIỐNG MAP) --- */
+/* --- CSS CHO LƯỚI LIÊN HỆ PHONG CÁCH PHẲNG --- */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Chia thành 2 cột đều nhau */
@@ -234,7 +234,7 @@ body.dark .contact-btn .name-contact {
   /* Giảm opacity cho Vai trò để không rối mắt */
   opacity: 0.7; 
 }
-/* --- KẾT THÚC CSS MỚI --- */
+/* --- KẾT THÚC CSS LIÊN HỆ --- */
 
 
 footer{
@@ -377,38 +377,7 @@ body.dark .result-item-total {
     color: var(--primary);
     font-weight: 700;
 }
-.map-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 8px;
-  padding: 10px;
-}
-.map-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 15px;
-  height: 40px;
-  text-align: center;
-  border-radius: 8px;
-  background: rgba(0,0,0,0.03);
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.15s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.map-btn:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  transform: translateY(-1px);
-}
-.map-btn:active {
-  transform: scale(0.96);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2) inset;
-}
-body.dark .map-btn {
-  background: rgba(255,255,255,0.05);
-}
+/* --- CSS MỚI CHO MAP GRID ĐÃ BỊ LOẠI BỎ VÀ THAY BẰNG LINK-CARD --- */
 
 @media (max-width:520px){
   .container{padding:10px}
@@ -591,22 +560,8 @@ body.dark .map-btn {
       <span class="title">📍 Địa chỉ Google Map</span>
       <span class="arrow">▶</span>
     </div>
-    <div class="group-content">
-      <div class="map-grid">
-        <a class="map-btn" href="https://maps.app.goo.gl/3J7jXXTn7t4pMYTk9" target="_blank" rel="noopener noreferrer">GW0</a> 
-        <a class="map-btn" href="https://maps.app.goo.gl/qdCVdF9DygSqSWin7" target="_blank" rel="noopener noreferrer">GW3</a> 
-        <a class="map-btn" href="https://maps.app.goo.gl/c5A8ZNvydTkjeC7LA" target="_blank" rel="noopener noreferrer">GW4</a> 
-        <a class="map-btn" href="https://maps.app.goo.gl/51hATp4srTzHAJH98" target="_blank" rel="noopener noreferrer">GW5</a> 
-        <a class="map-btn" href="https://maps.app.goo.gl/EZte1BU8pfAkQdUv9" target="_blank" rel="noopener noreferrer">GW6</a>
-        <a class="map-btn" href="https://maps.google.com/?q=10.852803,106.739009" target="_blank" rel="noopener noreferrer">H81</a> 
-        <a class="map-btn" href="https://maps.app.goo.gl/brgAHa6UWc7ZPFqAA" target="_blank" rel="noopener noreferrer">H82</a>
-        <a class="map-btn" href="https://maps.google.com/?q=10.697613,106.6517" target="_blank" rel="noopener noreferrer">H83</a>
-        <a class="map-btn" href="https://maps.google.com/?q=10.853618,106.677715" target="_blank" rel="noopener noreferrer">H85</a> 
-        <a class="map-btn" href="https://maps.app.goo.gl/FPPNMz2md3RvnW2h9" target="_blank" rel="noopener noreferrer">H93</a>
-        <a class="map-btn" href="https://maps.app.goo.gl/eAuwRatRFPKh56at6" target="_blank" rel="noopener noreferrer">Lazada</a> 
-        <a class="map-btn" href="https://goo.gl/maps/mwE8pJGfhDZqB9Bf8" target="_blank" rel="noopener noreferrer">TopGia</a>
+    <div class="group-content" id="mapListContainer">
       </div>
-    </div>
   </div>
   
   <div class="group">
@@ -723,6 +678,54 @@ body.dark .map-btn {
 </footer>
 
 <script>
+// Dữ liệu Google Map phiên bản v14
+const googleMapsData = [
+    // 1. GATEWAYs (Đã sắp xếp lại)
+    { code: 'GW0', address: 'Nhà kho 1, Lô TT1, Quốc lộ 22, KCN Tân Phú Trung, Củ Chi', link: 'https://maps.app.goo.gl/8ue4xcmMdxwMS5uX9' }, 
+    { code: 'GW3', address: '1103 QL1A, Bình Trị Đông A, Bình Tân, Hồ Chí Minh', link: 'https://maps.app.goo.gl/qdCVdF9DygSqSWin7' }, 
+    { code: 'GW4', address: 'Quốc lộ 22 Xã Tân Phú Trung Huyện Củ Chi TPHCM (Kho GHTK cũ)', link: 'https://maps.app.goo.gl/c5A8ZNvydTkjeC7LA' }, 
+    { code: 'GW5', address: 'Lô J, Đường N6, KCN Lê Minh Xuân 3, Bình Chánh, Hồ Chí Minh', link: 'https://maps.app.goo.gl/51hATp4srTzHAJH98' }, 
+    { code: 'GW6', address: 'Lô đất 3D-8, đường số 12, KCN Long Hậu 3, Cần Giuộc, Tinh Tây Ninh', link: 'https://maps.app.goo.gl/EZte1BU8pfAkQdUv9' },
+    
+    // 2. CÁC ĐỊA CHỈ H MỚI
+    { code: 'H81', address: '21 Đường Ụ Ghe, Thủ Đức', link: 'https://goo.gl/maps/hxigDoxuf2rMm1s78' },
+    { code: 'H82', address: '17/6A Phan Huy Ích, Gò Vấp', link: 'https://maps.app.goo.gl/LF6n2nSBkwVmg1h5A' },
+    { code: 'H83', address: '202/G9 Ấp 4, Phong Phú, Bình Chánh', link: 'https://maps.app.goo.gl/BRYyahH2xRJkApBi9' },
+    { code: 'H85', address: 'Số 9 Thạnh Lộc 08, Q12', link: 'https://maps.app.goo.gl/Luaguf3a7NeSFvCs7' },
+    { code: 'H86', address: '722 Âu Cơ, Tân Bình', link: 'https://maps.google.com/?q=10.790361,106.640077' },
+    { code: 'H87', address: 'Cụm kho SoTrans KM7-9 Xa Lộ Hà Nội, Thủ Đức', link: 'https://maps.app.goo.gl/Eig83EZtiGpY7vgY9' },
+    { code: 'H89', address: '874/51 Tân Kỳ Tân Quý, Bình Hưng Hòa', link: 'https://maps.app.goo.gl/SjSMrEcVJGqnLzo76' },
+    { code: 'H91', address: '285 Nơ Trang Long, Bình Thạnh', link: 'https://maps.app.goo.gl/uHE7xqVq4bTpQ4C37' },
+    { code: 'H93', address: '4 Đào Trí, Q7', link: 'https://maps.app.goo.gl/7NX3CjqeSju77DRt6' },
+    { code: 'H96', address: 'Lô B26, Cụm CN-TTCN Xuân Thới Sơn, Hóc Môn', link: 'https://maps.app.goo.gl/om59mKEP1Z1u4PY36' },
+    { code: 'H98', address: '1185 Lê Đức Anh, Bình Tân', link: 'https://maps.app.goo.gl/543EgfyuHcYiqA12A' },
+
+    // 3. CÁC ĐỊA CHỈ ĐẶC BIỆT (Đã chuyển xuống cuối)
+    { code: 'LAZADA', address: '2-4 Đường M14, Bình Hưng Hoà, Bình Tân, Thành phố Hồ Chí Minh', link: 'https://maps.app.goo.gl/eAuwRatRFPKh56at6' }, 
+    { code: 'TOPGIA', address: '581 Tỉnh Lộ 2, Trung Lập Hạ, Củ Chi, Hồ Chí Minh, Việt Nam', link: 'https://goo.gl/maps/mwE8pJGfhDZqB9Bf8' },
+];
+
+function generateMapLinks() {
+    const container = document.getElementById('mapListContainer');
+    if (!container) return;
+
+    let html = '';
+    googleMapsData.forEach(item => {
+        // Rút gọn địa chỉ hiển thị nếu quá dài
+        const displayAddress = item.address.length > 55 ? item.address.substring(0, 55) + '...' : item.address;
+        html += `
+            <a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer">
+                <div class="link-left">
+                    <strong>${item.code}</strong><br>
+                    <span style="font-size: 0.9em; opacity: 0.8;">${displayAddress}</span>
+                </div>
+                <span style="font-size: 1.1em; color: var(--primary);">📍</span>
+            </a>
+        `;
+    });
+    container.innerHTML = html;
+}
+
 // Lấy các phần tử cần thiết
 const btnTheme = document.getElementById('toggleTheme');
 const body = document.body;
@@ -749,6 +752,8 @@ function checkSystemPreference() {
     } else {
         applyTheme(prefersDarkScheme.matches);
     }
+    // Gọi hàm tạo link sau khi theme đã được áp dụng
+    generateMapLinks(); 
 }
 checkSystemPreference();
 
@@ -782,18 +787,20 @@ document.querySelectorAll('.group-header').forEach(h => {
     });
 });
 
-// === Hàm xử lý phép tính cộng/trừ từ chuỗi nhập liệu ===
+// === Hàm xử lý phép tính cộng/trừ/nhân từ chuỗi nhập liệu ===
 function evaluateExpression(inputValue) {
     if (typeof inputValue !== 'string') return 0;
     
-    // 1. CHUẨN HÓA: Loại bỏ dấu phẩy (nếu người dùng nhập nhầm) và giữ lại số, dấu chấm, dấu cộng, dấu trừ.
-    let cleanValue = inputValue.replace(/,/g, '.').replace(/[^\d.+-]/g, '').trim(); 
-    
+    // 1. CHUẨN HÓA:
+    // Loại bỏ dấu phẩy, chuyển 'x' và '×' thành '*'
+    let cleanValue = inputValue.replace(/,/g, '.').replace(/[^\d.+-x×*]/g, '').trim(); 
+    cleanValue = cleanValue.replace(/x/g, '*').replace(/×/g, '*');
+
     // Nếu rỗng, trả về 0
     if (!cleanValue) return 0;
 
     // 2. Xử lý phép TRỪ (giả định chỉ có 2 số: ODO cuối - ODO đầu)
-    if (cleanValue.includes('-') && !cleanValue.includes('+')) {
+    if (cleanValue.includes('-') && !cleanValue.includes('+') && !cleanValue.includes('*')) {
         // Tách chuỗi theo dấu trừ, nhưng chỉ xử lý trường hợp A - B
         const parts = cleanValue.split('-');
         // Lọc các phần tử rỗng và đảm bảo có đúng 2 số để trừ
@@ -806,20 +813,16 @@ function evaluateExpression(inputValue) {
         }
     }
     
-    // 3. Xử lý phép CỘNG (tính tổng các lần đổ dầu/tổng giờ tăng ca)
-    const parts = cleanValue.split('+');
-    let total = 0;
-    
-    if (parts.length > 1) {
-        for (const part of parts) {
-            if (part.trim() !== '') {
-                const parsed = parseFloat(part.trim()); 
-                if (!isNaN(parsed)) {
-                    total += parsed;
-                }
-            }
+    // 3. Xử lý phép CỘNG VÀ NHÂN (sử dụng eval một cách an toàn)
+    if (cleanValue.includes('+') || cleanValue.includes('*')) {
+        try {
+            // Sử dụng hàm tạo Function để tránh eval toàn cục, an toàn hơn.
+            const result = new Function('return ' + cleanValue)();
+            return isNaN(result) ? 0 : result;
+        } catch (e) {
+            console.error("Lỗi tính toán biểu thức:", e);
+            return 0;
         }
-        return total;
     }
     
     // 4. Giá trị số đơn lẻ (nếu không có phép tính)
@@ -840,7 +843,7 @@ function parseInputFloat(inputValue) {
 
 // === Hàm tính dầu xe tải (Sử dụng evaluateExpression) ===
 window.tinhDau = function() {
-  // Sử dụng evaluateExpression cho các giá trị có thể là phép tính
+  // Sử dụng parseInputFloat cho các giá trị cố định (khoán, giá)
   const khoan = parseInputFloat(document.getElementById('khoan').value);
   const km = evaluateExpression(document.getElementById('km').value); // Có thể là phép trừ ODO
   const thuc = evaluateExpression(document.getElementById('thuc').value); // Có thể là phép cộng lít dầu
@@ -896,6 +899,10 @@ function formatCurrency(number) {
     // Đảm bảo làm tròn trước khi format
     return Math.round(number).toLocaleString('vi-VN') + ' VNĐ';
 }
+function formatHourlyRate(number) {
+    if (isNaN(number)) return "0 VNĐ/giờ";
+    return Math.round(number).toLocaleString('vi-VN') + ' VNĐ/giờ';
+}
 
 window.tinhLuong = function() {
     // Sử dụng parseInputFloat() cho các giá trị cố định
@@ -903,7 +910,7 @@ window.tinhLuong = function() {
     const soNgayTrongThang = parseInputFloat(document.getElementById('ot_soNgayTrongThang').value); 
     const soNgayChuNhat = parseInputFloat(document.getElementById('ot_soNgayChuNhat').value); 
     
-    // SỬ DỤNG evaluateExpression() cho giờ tăng ca
+    // SỬ DỤNG evaluateExpression() cho giờ tăng ca (có thể là phép cộng/nhân)
     const gioTCTuong = evaluateExpression(document.getElementById('ot_gioTCTuong').value); 
     const gioTCNghi = evaluateExpression(document.getElementById('ot_gioTCNghi').value); 
 
@@ -936,16 +943,38 @@ window.tinhLuong = function() {
     const tienTCNghi = gioTCNghi * luongGioCoBan * HS_TANG_CA_NGHI;
     const tongTienTangCa = tienTCTuong + tienTCNghi;
 
-    // Cập nhật kết quả: Hiển thị 1 hàng với định dạng ( 40.0 giờ )
-    document.getElementById('luongGioCoBan').textContent = formatCurrency(luongGioCoBan);
+    // Cập nhật kết quả
+    document.getElementById('luongGioCoBan').textContent = formatHourlyRate(luongGioCoBan);
     
-    // ĐÃ SỬA: Giữ lại "giờ", bỏ "tổng"
     document.getElementById('tienTCTuong').textContent = `${formatCurrency(tienTCTuong)} ( ${gioTCTuong.toFixed(1)} giờ )`;
     document.getElementById('tienTCNghi').textContent = `${formatCurrency(tienTCNghi)} ( ${gioTCNghi.toFixed(1)} giờ )`;
     
     document.getElementById('tongTienTangCa').textContent = formatCurrency(tongTienTangCa);
 }
 
+// === Khối Service Worker (Đã thêm điều kiện kiểm tra giao thức) ===
+if ('serviceWorker' in navigator) {
+  const isLocalhost = Boolean(window.location.hostname === 'localhost' ||
+    // [::1] là địa chỉ localhost IPv6
+    window.location.hostname === '[::1]' ||
+    // 127.0.0.0/8 là địa chỉ localhost IPv4
+    window.location.hostname.match(
+      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+    )
+  );
+  
+  // CHỈ ĐĂNG KÝ KHI LÀ HTTPS HOẶC LOCALHOST (Sửa lỗi 'null' protocol)
+  if (window.location.protocol === 'https:' || isLocalhost) {
+    window.addEventListener('load', () => {
+        // service-worker.js cần tồn tại nếu muốn dùng PWA
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('✅ Service Worker đã đăng ký thành công!'))
+          .catch(err => console.error('❌ Lỗi SW:', err));
+    });
+  } else {
+      console.log('⚠️ Service Worker bị bỏ qua vì không phải HTTPS hoặc localhost.');
+  }
+}
 </script>
 </body>
 </html>
