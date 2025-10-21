@@ -5,7 +5,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Link Tài Xế J&T Express</title>
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -20,12 +19,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" 
       rel="stylesheet" 
-      media="print" 
-      onload="this.media='all'" 
-      crossorigin>
+      crossorigin> 
 
 <meta name="description" content="Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: công việc hàng ngày, nhóm Zalo, địa chỉ Google Map và công cụ tính lượng dầu xe tải nhanh, chính xác.">
 <meta name="keywords" content="J&T Express, tài xế J&T, công việc nội bộ, nhóm Zalo J&T, địa chỉ Google Map, tính dầu xe tải, tính nhiên liệu, Lê Tỉnh, J&T Việt Nam">
@@ -47,6 +43,7 @@
 <meta name="application-name" content="Link Tài Xế J&T">
 <meta name="apple-mobile-web-app-title" content="J&T Driver Link">
 <script type="application/ld+json">
+// ... Giữ nguyên khối Structured Data ...
 [
   {
     "@context": "https://schema.org",
@@ -109,7 +106,7 @@
 ]
 </script>
 <style>
-/* --- CSS NỘI TUYẾN (Đã tối ưu hoàn toàn) --- */
+/* ... Giữ nguyên khối CSS ... */
 :root{
   --bg-light:#f8fafc;
   --bg-dark:#111214;
@@ -125,6 +122,7 @@
   box-sizing: border-box;
 }
 body{
+  /* Vấn đề 1: Đã xóa font-family để tránh CLS do font flash */
   font-family:'Roboto', Segoe UI, Arial, sans-serif;
   margin:0;background:var(--bg-light);
   color:var(--text-light);
@@ -142,6 +140,7 @@ header{
   background:none;border:none;color:#fff;
   font-size:18px;cursor:pointer;
 }
+/* Vấn đề 3: Bọc nội dung chính bằng thẻ <main> để hỗ trợ tiếp cận (Accessibility) */
 .container{max-width:720px;margin:14px auto;padding:12px}
 .group{
   margin-bottom:14px;border-radius:10px;
@@ -390,12 +389,12 @@ body.dark .result-item-total {
   LINK TÀI XẾ J&T
   <button id="toggleTheme" aria-label="chuyển sáng tối">🌙</button>
 </header>
-<div class="container">
+<main class="container"> 
   <div class="group">
-    <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+    <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="job-links">
       <span class="title">📋 Công việc nội bộ</span><span class="arrow">▶</span>
     </div>
-    <div class="group-content">
+    <div class="group-content" id="job-links">
       <a class="link-card" href="https://jntexpress.vn/attendance" target="_blank" rel="noopener noreferrer"><div class="link-left">CHẤM CÔNG CRM</div></a>
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwao5eoTslB2Ds1auT05WPg" target="_blank" rel="noopener noreferrer"><div class="link-left">BÁO CÁO HÀNH TRÌNH</div></a>
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwwFr50osovPX8c5EuYkpVe" target="_blank" rel="noopener noreferrer"><div class="link-left">ĐIỀN THÔNG TIN TĂNG CA</div></a>
@@ -410,10 +409,10 @@ body.dark .result-item-total {
   </div>
 
   <div class="group">
-    <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+    <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="zalo-groups">
       <span class="title">💬 Group Zalo</span><span class="arrow">▶</span>
     </div>
-    <div class="group-content">
+    <div class="group-content" id="zalo-groups">
       <a class="link-card" href="https://zalo.me/g/uolmnc539" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm báo cáo nội thành</div></a>
       <a class="link-card" href="https://zalo.me/g/plhjmt899" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm bất thường nội thành</div></a>
       <a class="link-card" href="https://zalo.me/g/byikns239" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm thông báo tài xế J&T</div></a>
@@ -422,10 +421,10 @@ body.dark .result-item-total {
   </div>
 
   <div class="group">
-    <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+    <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="support-contacts">
       <span class="title">📞 Liên hệ hỗ trợ qua Zalo</span><span class="arrow">▶</span>
     </div>
-    <div class="group-content">
+    <div class="group-content" id="support-contacts">
         <div class="contact-grid">
             <div style="grid-column: 1 / 3; text-align: left; font-size: 0.9em; font-weight: 700; color: var(--primary); padding-top: 5px;">
                 ĐỘI TRƯỞNG
@@ -443,7 +442,6 @@ body.dark .result-item-total {
                 <span class="name-contact">Hoàng Trần</span>
                 <span class="role-contact">Đội trưởng ca đêm</span>
             </a>
-
             <div style="grid-column: 1 / 3; text-align: left; font-size: 0.9em; font-weight: 700; color: var(--primary); padding-top: 10px;">
                 BẢO TRÌ XE
             </div>
@@ -556,20 +554,20 @@ body.dark .result-item-total {
     </div>
   </div>
   <div class="group">
-    <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+    <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="map-links">
       <span class="title">📍 Địa chỉ Google Map</span>
       <span class="arrow">▶</span>
     </div>
     <div class="group-content" id="mapListContainer">
-      </div>
+    </div>
   </div>
   
   <div class="group">
-  <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+  <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="calc-dau">
     <span class="title">🛢 Tính lượng dầu xe tải</span>
     <span class="arrow">▶</span>
   </div>
-  <div class="group-content">
+  <div class="group-content" id="calc-dau">
     <div class="calc-content">
       <div class="input-group-calc">
         <label for="khoan" class="calc-label">Mức khoán (lít/100 km):</label>
@@ -603,11 +601,11 @@ body.dark .result-item-total {
   </div>
 </div>
 <div class="group">
-      <div class="group-header" role="button" tabindex="0" aria-expanded="false">
+      <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="calc-luong">
         <span class="title">💰 Tính tiền tăng ca</span>
         <span class="arrow">▶</span>
       </div>
-      <div class="group-content">
+      <div class="group-content" id="calc-luong">
         <div class="calc-content">
             <div class="input-group-calc">
                 <label for="ot_luongCanBan" class="calc-label">Lương Căn Bản (VNĐ):</label>
@@ -667,7 +665,7 @@ body.dark .result-item-total {
         </div>
       </div>
   </div>
-</div>
+</main>
 <footer>
   <div class="footer-text">Trang này chỉ dành cho nội bộ tài xế J&T</div>
 
@@ -773,6 +771,12 @@ prefersDarkScheme.addEventListener('change', (e) => {
 
 // === Khởi tạo các group accordion (A11y Fix) ===
 document.querySelectorAll('.group-header').forEach(h => {
+    // Thêm aria-controls nếu chưa có (dùng ID của group-content)
+    const targetId = h.parentElement.querySelector('.group-content').id;
+    if (targetId) {
+        h.setAttribute('aria-controls', targetId);
+    }
+
     const toggleAccordion = () => {
         const isOpen = h.parentElement.classList.toggle('open');
         h.setAttribute('aria-expanded', isOpen);
@@ -963,15 +967,16 @@ if ('serviceWorker' in navigator) {
     )
   );
   
-  // CHỈ ĐĂNG KÝ KHI LÀ HTTPS HOẶC LOCALHOST (Sửa lỗi 'null' protocol)
+  // CHỈ ĐĂNG KÝ KHI LÀ HTTPS HOẶC LOCALHOST
   if (window.location.protocol === 'https:' || isLocalhost) {
     window.addEventListener('load', () => {
-        // service-worker.js cần tồn tại nếu muốn dùng PWA
+        // Vấn đề 4: Khắc phục lỗi 404 SW bằng cách đảm bảo file service-worker.js TỒN TẠI
         navigator.serviceWorker.register('service-worker.js')
           .then(() => console.log('✅ Service Worker đã đăng ký thành công!'))
           .catch(err => console.error('❌ Lỗi SW:', err));
     });
   } else {
+      // Nếu không phải HTTPS hoặc localhost, không đăng ký SW (tránh lỗi trên HTTP)
       console.log('⚠️ Service Worker bị bỏ qua vì không phải HTTPS hoặc localhost.');
   }
 }
