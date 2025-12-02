@@ -1,968 +1,702 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+<!-- 1. XÁC MINH & CẤU HÌNH -->
 <meta name="google-site-verification" content="dE9NgLvppbsz9DsFv3CwhHBR8KNF9hiM5CDQ2Houyvc" />
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Link Tài Xế J&T Express</title>
 
+<!-- 2. PWA & ICONS -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ff0033">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="application-name" content="Link Tài Xế J&T">
+<meta name="apple-mobile-web-app-title" content="J&T Driver Link">
 
+<!-- 3. FONTS & SEO -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" 
-      rel="stylesheet" 
-      crossorigin
-      media="print" onload="this.media='all'">
-<noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" crossorigin>
-</noscript>
-<meta name="description" content="Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: công việc hàng ngày, nhóm Zalo, địa chỉ Google Map và công cụ tính lượng dầu xe tải nhanh, chính xác.">
-<meta name="keywords" content="J&T Express, tài xế J&T, công việc nội bộ, nhóm Zalo J&T, địa chỉ Google Map, tính dầu xe tải, tính nhiên liệu, Lê Tỉnh, J&T Việt Nam">
-<meta name="author" content="Lê Tỉnh">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="App hỗ trợ tài xế J&T: Link nội bộ, bản đồ kho, tính dầu, tính lương, tra cứu phạt nguội.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://letinhclover.github.io/jntdriver">
 
-<meta property="og:type" content="website">
-<meta property="og:locale" content="vi_VN">
-<meta property="og:title" content="Link Tài Xế J&T Express">
-<meta property="og:description" content="Tổng hợp link nội bộ cho tài xế J&T — nhóm Zalo, biểu mẫu công việc, Google Map và công cụ tính lượng dầu xe tải.">
-<meta property="og:url" content="https://letinhclover.github.io/jntdriver">
-<meta property="og:site_name" content="Link Tài Xế J&T Express">
-<meta property="og:image" content="https://letinhclover.github.io/jntdriver/android-chrome-512x512.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Link Tài Xế J&T Express">
-<meta name="twitter:description" content="Tổng hợp liên kết nội bộ cho tài xế J&T — công việc, nhóm Zalo, địa chỉ Google Map và công cụ tính dầu xe tải.">
-<meta name="twitter:image" content="https://letinhclover.github.io/jntdriver/android-chrome-512x512.png">
-<meta name="application-name" content="Link Tài Xế J&T">
-<meta name="apple-mobile-web-app-title" content="J&T Driver Link">
 <script type="application/ld+json">
-// ... Giữ nguyên khối Structured Data ...
 [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Link Tài Xế J&T Express",
     "url": "https://letinhclover.github.io/jntdriver",
-    "description": "Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: nhóm Zalo, biểu mẫu công việc, địa chỉ Google Map và công cụ tính dầu xe tải.",
-    "publisher": {
-      "@type": "Person",
-      "name": "Lê Tỉnh",
-      "url": "https://zalo.me/0708312789"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://letinhclover.github.io/jntdriver/?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Cách tính tiền tăng ca tài xế J&T như thế nào?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Công cụ tính tăng ca J&T sử dụng Lương Căn Bản (thường là 5.007.600 VNĐ) chia cho số giờ làm việc chuẩn (Ngày Trong Tháng - Chủ Nhật) * 8 giờ. Tiền tăng ca ngày thường nhân với hệ số 1.5x, ngày nghỉ nhân với hệ số 2.0x. Vui lòng nhập giờ tăng ca vào mục 💰 Tính tiền tăng ca để có kết quả tham khảo."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Làm sao để tính lượng dầu xe tải theo mức khoán?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Bạn cần nhập 3 giá trị: Mức khoán (lít/100km), Quãng đường đã đi (km - có thể nhập ODO cuối - ODO đầu), và Lượng dầu thực tế đã đổ (lít). Công cụ sẽ tính toán lượng dầu khoán và chênh lệch (dư/thiếu) so với thực tế."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Tôi có thể tìm các link báo cáo công việc J&T ở đâu?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tất cả các link báo cáo nội bộ như Chấm công, Báo cáo Hành trình, Điền thông tin Tăng ca, và Đăng kí Nghỉ phép đều được tổng hợp gọn trong mục 📋 Công việc nội bộ trên trang này."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Cách nhập dữ liệu cho mục tính lượng dầu xe tải như thế nào để chính xác?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Công cụ tính dầu hỗ trợ nhập liệu linh hoạt: <br>1. **Quãng đường:** Có thể nhập số km đơn lẻ (ví dụ: 1000) hoặc phép trừ ODO cuối và ODO đầu (ví dụ: 9000-8000). <br>2. **Dầu thực tế:** Có thể nhập tổng số lít đã đổ (ví dụ: 130) hoặc phép cộng các lần đổ dầu (ví dụ: 40+45+35)."
-        }
-      }
-    ]
+    "publisher": { "@type": "Person", "name": "Lê Tỉnh" }
   }
 ]
 </script>
+
 <style>
-/* ... Giữ nguyên khối CSS ... */
-:root{
-  --bg-light:#f8fafc;
-  --bg-dark:#111214;
-  --text-light:#0b0b0b;
-  --text-dark:#f5f5f5;
-  --primary:#CC0000;
-  --accent:#198845; /* Màu xanh lá cây cho nút gọi/link phụ */
-  --card:#ffffff;
-  --card-dark:#1d1f21;
+/* --- CSS GLOBAL --- */
+:root {
+  --bg-light: #f8fafc; --bg-dark: #111214;
+  --text-light: #0b0b0b; --text-dark: #f5f5f5;
+  --primary: #CC0000; --accent: #198845;
+  --card: #ffffff; --card-dark: #1d1f21;
   --highlight-bg: #fff3f2;
 }
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-body{
-  /* Đã giữ lại Roboto, nhưng việc tải bất đồng bộ bên trên sẽ giúp giảm CLS */
-  font-family:'Roboto', Segoe UI, Arial, sans-serif;
-  margin:0;background:var(--bg-light);
-  color:var(--text-light);
-  transition:background .25s,color .25s;
-}
-body.dark{background:var(--bg-dark);color:var(--text-dark)}
-header{
-  background:linear-gradient(90deg,var(--primary),#dd2476);
-  color:#fff;padding:14px 16px;text-align:center;
-  position:relative;font-weight:800;
-  font-size: 1.2em;
-}
-#toggleTheme{
-  position:absolute;right:12px;top:10px;
-  background:none;border:none;color:#fff;
-  font-size:18px;cursor:pointer;
-}
-/* Đã có thẻ <main> bọc nội dung chính. Tốt cho Accessibility/SEO. */
-.container{max-width:720px;margin:14px auto;padding:12px}
-.group{
-  margin-bottom:14px;border-radius:10px;
-  box-shadow:0 2px 6px rgba(0,0,0,.08);
-  background:var(--card);
-}
-body.dark .group{box-shadow:0 2px 6px rgba(0,0,0,.3);background:var(--card-dark)}
-.group-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px 14px;cursor:pointer;font-weight:700;
-  background:rgba(0,0,0,0.02);
-  border-radius:10px 10px 0 0;
-}
-.group-header span.title{color:var(--primary)}
-.group-header .arrow{transition:transform .25s}
-.group.open .group-header .arrow{transform:rotate(90deg)}
-.group-content{display:none;}
-.group.open .group-content{display:block; padding-bottom: 5px;}
-a.link-card{
-  display:flex;justify-content:space-between;align-items:center;
-  text-decoration:none;color:inherit;
-  padding:10px;border-radius:8px;margin:6px 10px;
-  background:rgba(0,0,0,0.03);
-  transition:transform .12s,box-shadow .12s;
-}
-a.link-card:hover{box-shadow:0 6px 14px rgba(0,0,0,.08)}
-body.dark a.link-card{background:rgba(255,255,255,0.05)}
-.link-left{flex:1;padding-right:10px}
+*, *::before, *::after { box-sizing: border-box; }
 
-/* --- CSS CHO LƯỚI LIÊN HỆ PHONG CÁCH PHẲNG --- */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Chia thành 2 cột đều nhau */
-  gap: 8px; /* Giảm gap một chút */
-  padding: 10px 12px; 
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0; background: var(--bg-light); color: var(--text-light);
+  transition: background .25s, color .25s;
+  -webkit-tap-highlight-color: transparent;
+}
+body.dark { background: var(--bg-dark); color: var(--text-dark); }
+
+header {
+  background: linear-gradient(90deg, var(--primary), #dd2476);
+  color: #fff; padding: 14px 16px; text-align: center;
+  position: relative; font-weight: 800; font-size: 1.2em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+#toggleTheme {
+  position: absolute; right: 12px; top: 10px;
+  background: none; border: none; color: #fff;
+  font-size: 18px; cursor: pointer; padding: 5px;
 }
 
+.container { max-width: 720px; margin: 10px auto; padding: 10px; }
+
+/* --- GROUPS --- */
+.group {
+  margin-bottom: 14px; border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  background: var(--card);
+}
+body.dark .group { box-shadow: 0 2px 6px rgba(0,0,0,.3); background: var(--card-dark); }
+
+.group-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 14px; cursor: pointer; font-weight: 700;
+  background: rgba(0,0,0,0.02); border-radius: 10px 10px 0 0; user-select: none;
+}
+.group-header span.title { color: var(--primary); }
+.group-header .arrow { transition: transform .25s; }
+.group.open .group-header .arrow { transform: rotate(90deg); }
+.group-content { display: none; padding-bottom: 5px; animation: fadeIn 0.2s ease; }
+.group.open .group-content { display: block; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- LINKS & BUTTONS --- */
+a.link-card {
+  display: flex; justify-content: space-between; align-items: center;
+  text-decoration: none; color: inherit;
+  padding: 10px; border-radius: 8px; margin: 6px 10px;
+  background: rgba(0,0,0,0.03); transition: transform .1s;
+}
+a.link-card:active { transform: scale(0.98); background: rgba(0,0,0,0.08); }
+body.dark a.link-card { background: rgba(255,255,255,0.05); }
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px 12px; }
 a.contact-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 5px; /* Giảm padding để nút nhỏ hơn */
-  border-radius: 8px;
-  
-  /* Thiết kế phẳng */
-  background: rgba(0,0,0,0.03); 
-  border: none; /* Bỏ viền */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Giữ shadow nhẹ nhàng */
-  color: var(--text-light); /* Màu mặc định cho toàn bộ nút */
-  
-  text-decoration: none;
-  height: 60px; /* Giảm chiều cao */
-  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
-  text-align: center;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 8px 5px; border-radius: 8px;
+  background: rgba(0,0,0,0.03); color: var(--text-light);
+  text-decoration: none; height: 60px; text-align: center;
+}
+body.dark a.contact-btn { background: rgba(255,255,255,0.05); color: var(--text-dark); }
+.contact-btn .name-contact { font-weight: 700; font-size: 0.95em; }
+.contact-btn .role-contact { font-size: 0.75em; opacity: 0.7; margin-top: 2px; }
+
+.contact-note {
+    text-align: center; margin-bottom: 10px;
+    font-size: 0.9em; font-style: italic; opacity: 0.8;
 }
 
-/* Dark Mode cho nút liên hệ */
-body.dark a.contact-btn {
-    background: rgba(255,255,255,0.05); 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    color: var(--text-dark);
-}
-
-a.contact-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15); 
-}
-a.contact-btn:active {
-  transform: scale(0.98);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2) inset;
-}
-
-.contact-btn .name-contact {
-  font-weight: 700;
-  line-height: 1.2;
-  font-size: 0.95em; 
-  /* Tên chuyển sang màu chữ chính (đen/trắng) */
-  color: var(--text-light); 
-}
-body.dark .contact-btn .name-contact {
-    color: var(--text-dark);
-}
-
-.contact-btn .role-contact {
-  font-size: 0.75em; 
-  font-weight: 400;
-  line-height: 1.2;
-  margin-top: 1px;
-  /* Giảm opacity cho Vai trò để không rối mắt */
-  opacity: 0.7; 
-}
-/* --- KẾT THÚC CSS LIÊN HỆ --- */
-
-
-footer{
-  padding:12px;text-align:center;
-  background:var(--card);border-top:1px solid rgba(0,0,0,.04);
-  margin-top:18px;
-}
-body.dark footer{background:var(--card-dark)}
-.footer-text{
-  font-weight:bold; 
-  color:var(--primary);
-  font-size: 0.9em; 
-}
-.footer-link{color:var(--accent); font-weight:700; text-decoration:none;}
-.calc-content {
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-.input-group-calc {
-  width: 94%;
-  max-width: 580px;
-}
-.calc-label {
-  display: block;
-  margin-top: 8px;
-  font-weight: 600;
-  font-size: 15px;
-}
+/* --- CALCULATOR --- */
+.calc-content { padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.input-group-calc { width: 94%; max-width: 580px; }
+.calc-label { display: block; margin-top: 8px; font-weight: 600; font-size: 15px; }
 .calc-input {
-  width: 100%;
-  padding: 8px 10px;
-  margin-top: 4px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
+  width: 100%; padding: 10px; margin-top: 4px;
+  border: 1px solid #ccc; border-radius: 8px; font-size: 16px;
+  background: var(--bg-light); color: var(--text-light);
 }
-body.dark .calc-input {
-  border-color: #555;
-  background: #2b2b2b;
-  color: var(--text-dark);
-}
+body.dark .calc-input { border-color: #555; background: #2b2b2b; color: var(--text-dark); }
 button.calc-submit {
-  width: 92%;
-  max-width: 600px;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 700;
-  margin-top: 10px;
-  border:none;
-  background:var(--primary);
-  color:#fff;
-  cursor:pointer;
-  transition: opacity .2s, transform .1s;
+  width: 92%; max-width: 600px; padding: 12px;
+  border-radius: 10px; font-size: 16px; font-weight: 700;
+  margin-top: 10px; border: none; background: var(--primary); color: #fff; cursor: pointer;
 }
-button.calc-submit:hover {opacity:.9; transform: translateY(-1px);}
-.result-box {
-  width: 92%;
-  max-width: 600px;
-  margin-top: 10px;
-  background: rgba(0,0,0,0.05);
-  padding: 10px;
-  border-radius: 10px;
-  line-height: 1.6;
-  font-size: 15px;
-  text-align: left;
-}
-body.dark .result-box {
-  background:rgba(255,255,255,0.05);
-  color:var(--text-dark);
-}
-.result-box-ot {
-    background-color: var(--highlight-bg); 
-    border: 1px solid var(--primary);
-    margin-top: 10px;
-    padding: 15px;
-    border-radius: 10px;
-    width: 92%;
-    max-width: 600px;
-}
-body.dark .result-box-ot {
-    background-color: #312121;
-    border: 1px solid rgba(255,255,255,0.1);
-}
+button.calc-submit:active { opacity: .9; transform: translateY(1px); }
 
-.result-box-ot h3 {
-    color: var(--primary);
-    font-size: 1.1em; 
-    margin-top: 0; 
-    padding-bottom: 5px; 
-    border-bottom: 1px dashed #ccc;
-}
-body.dark .result-box-ot h3 {
-    border-bottom: 1px dashed #555;
-}
-.ot-note {
-    font-size: 0.85em; 
-    color: var(--text-light); 
-    font-weight: 400; 
-    margin-top: 8px;
-    padding-top: 5px;
-    border-top: 1px solid #ddd; 
-    text-align: center;
-}
-body.dark .ot-note {
-    color: var(--text-dark); 
-    border-top: 1px solid #555;
-}
+.salary-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; width: 94%; max-width: 580px; }
+.salary-col { display: flex; flex-direction: column; }
+.salary-col .calc-label { font-size: 13px; margin-top: 0; margin-bottom: 2px; text-align: center; }
+.salary-col .calc-input { text-align: center; padding: 8px 4px; }
 
-/* SỬA ĐỔI CHÍNH Ở ĐÂY: Dùng Flexbox để căn chỉnh trên 1 hàng */
-.result-item {
-    display: flex;
-    justify-content: space-between; /* Đẩy tên mục và giá trị về hai phía */
-    align-items: center;
-    margin: 6px 0;
-    font-size: 1.0em;
+.result-box, .result-box-ot {
+  width: 92%; max-width: 600px; margin-top: 10px; padding: 12px;
+  border-radius: 10px; font-size: 15px; line-height: 1.5;
 }
+.result-box { background: rgba(0,0,0,0.05); }
+body.dark .result-box { background: rgba(255,255,255,0.05); color: var(--text-dark); }
+.result-box-ot { background-color: var(--highlight-bg); border: 1px solid var(--primary); }
+body.dark .result-box-ot { background-color: #312121; border: 1px solid rgba(255,255,255,0.1); }
 
-/* ĐIỀU CHỈNH THÊM: Ngăn không cho văn bản giá trị bị ngắt dòng */
-.result-item strong {
-    white-space: nowrap; /* QUAN TRỌNG: Ngăn không cho văn bản ngắt dòng */
-    text-align: right;   
-}
+.result-box-ot h3 { color: var(--primary); font-size: 1.1em; margin: 0 0 8px 0; border-bottom: 1px dashed #ccc; padding-bottom: 5px; text-align: center; }
+.result-item { display: flex; justify-content: space-between; margin: 6px 0; }
+.result-item-total { font-size: 1.05em; font-weight: 700; border-top: 2px solid #ff9788; padding-top: 8px; margin-top: 8px; color: var(--primary); }
+.ot-note { font-size: 0.85em; font-style: italic; opacity: 0.8; margin-top: 10px; border-top: 1px solid #ddd; padding-top: 5px; text-align: center; }
 
-.result-item-total {
-    font-size: 1.05em;
-    font-weight: 700;
-    padding-top: 8px;
-    border-top: 2px solid #ff9788; 
-    margin-top: 8px;
+/* --- NOTEBOOK --- */
+.note-area {
+  width: 96%; height: 120px; padding: 10px;
+  border: 1px solid #ccc; border-radius: 8px;
+  font-family: inherit; margin: 10px auto; display: block;
+  background: var(--bg-light); color: var(--text-light);
 }
-body.dark .result-item-total {
-    border-top: 2px solid rgba(255,255,255,0.2);
-}
+body.dark .note-area { background: #2b2b2b; color: var(--text-dark); border-color: #555; }
+.save-btn { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-.highlight {
-    color: var(--primary);
-    font-weight: 700;
+/* --- FINES & SECTIONS --- */
+.section-title {
+    padding: 10px 10px 5px 10px; font-weight: bold; color: var(--primary); 
+    border-bottom: 1px solid rgba(0,0,0,0.1); margin: 15px 10px 5px 10px;
+    font-size: 0.95em; text-transform: uppercase;
 }
-/* --- CSS MỚI CHO MAP GRID ĐÃ BỊ LOẠI BỎ VÀ THAY BẰNG LINK-CARD --- */
+body.dark .section-title { border-color: rgba(255,255,255,0.1); }
 
-@media (max-width:520px){
-  .container{padding:10px}
-  .group-header{padding:12px}
+.fine-cat-header {
+    background: rgba(0,0,0,0.05); padding: 8px 12px;
+    font-weight: bold; font-size: 1.1em; color: #333;
+    border-left: 4px solid var(--primary); margin-top: 15px;
 }
+body.dark .fine-cat-header { background: rgba(255,255,255,0.1); color: #fff; }
+
+.fine-item { padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.fine-title { font-weight: 700; color: var(--primary); display: block; margin-bottom: 4px; }
+.fine-money { color: var(--accent); font-weight: bold; }
+.fine-extra { font-size: 0.9em; font-style: italic; opacity: 0.9; color: #d35400; }
+body.dark .fine-extra { color: #e67e22; }
+
+/* --- QR SHARE STYLE --- */
+.share-container { 
+    text-align: center; padding: 20px 10px; 
+    margin-top: 20px; border-top: 1px dashed #ccc;
+}
+.qr-img { width: 160px; height: 160px; mix-blend-mode: multiply; margin-bottom: 10px; }
+body.dark .qr-img { border: 5px solid white; border-radius: 8px; }
+.share-btn-native {
+    background: #007bff; color: white; border: none;
+    padding: 12px 25px; border-radius: 30px;
+    font-weight: bold; cursor: pointer;
+    font-size: 16px; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,123,255,0.3); transition: transform 0.1s;
+}
+.share-btn-native:active { transform: scale(0.95); }
+
+footer { padding: 15px; text-align: center; background: var(--card); border-top: 1px solid rgba(0,0,0,.04); margin-top: 20px; }
+body.dark footer { background: var(--card-dark); }
+.footer-text { font-weight: bold; color: var(--primary); font-size: 0.9em; }
+.footer-link { color: var(--accent); font-weight: 700; text-decoration: none; }
 </style>
 </head>
 <body>
+
 <header>
-  LINK TÀI XẾ J&T 
+  LINK TÀI XẾ J&T
   <button id="toggleTheme" aria-label="chuyển sáng tối">🌙</button>
 </header>
-<main class="container"> 
+
+<main class="container">
+  
+  <!-- 1. CÔNG VIỆC -->
   <div class="group">
-    <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="job-links">
+    <div class="group-header" role="button" tabindex="0">
       <span class="title">📋 Công việc nội bộ</span><span class="arrow">▶</span>
     </div>
-    <div class="group-content" id="job-links">
-      <a class="link-card" href="https://jntexpress.vn/attendance" target="_blank" rel="noopener noreferrer"><div class="link-left">CHẤM CÔNG CRM</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwao5eoTslB2Ds1auT05WPg" target="_blank" rel="noopener noreferrer"><div class="link-left">BÁO CÁO HÀNH TRÌNH</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwwFr50osovPX8c5EuYkpVe" target="_blank" rel="noopener noreferrer"><div class="link-left">ĐIỀN THÔNG TIN TĂNG CA</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgeJOb7CxaLL18zxNj6gz1kd" target="_blank" rel="noopener noreferrer"><div class="link-left">ĐĂNG KÍ NGHỈ PHÉP</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgcx3ZWJlUeZ007y7NOMDtAf" target="_blank" rel="noopener noreferrer"><div class="link-left">KIỂM TRA XE HẰNG NGÀY</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlg4jTyiyUBTxoWnXnh3E2jVh" target="_blank" rel="noopener noreferrer"><div class="link-left">KHÔNG BẤM APP ĐƯỢC</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlglpEg10qLFAoBoN6FYGm0Nv" target="_blank" rel="noopener noreferrer"><div class="link-left">GỬI HÌNH VÁ VỎ</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgj3VYEKTEh7tTSaZvfpP7HL" target="_blank" rel="noopener noreferrer"><div class="link-left">BÁO CÁO THÙNG XE TRỐNG</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgHKbeP4ff2P8AoaQcWUzicc" target="_blank" rel="noopener noreferrer"><div class="link-left">THÔNG TIN ĐỔ DẦU</div></a>
+    <div class="group-content">
+      <a class="link-card" href="https://jntexpress.vn/attendance" target="_blank"><div class="link-left">CHẤM CÔNG CRM</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwao5eoTslB2Ds1auT05WPg" target="_blank"><div class="link-left">BÁO CÁO HÀNH TRÌNH</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwwFr50osovPX8c5EuYkpVe" target="_blank"><div class="link-left">ĐIỀN THÔNG TIN TĂNG CA</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgeJOb7CxaLL18zxNj6gz1kd" target="_blank"><div class="link-left">ĐĂNG KÍ NGHỈ PHÉP</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgcx3ZWJlUeZ007y7NOMDtAf" target="_blank"><div class="link-left">KIỂM TRA XE HẰNG NGÀY</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlg4jTyiyUBTxoWnXnh3E2jVh" target="_blank"><div class="link-left">KHÔNG BẤM APP ĐƯỢC</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlglpEg10qLFAoBoN6FYGm0Nv" target="_blank"><div class="link-left">GỬI HÌNH VÁ VỎ</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgj3VYEKTEh7tTSaZvfpP7HL" target="_blank"><div class="link-left">BÁO CÁO THÙNG XE TRỐNG</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgHKbeP4ff2P8AoaQcWUzicc" target="_blank"><div class="link-left">THÔNG TIN ĐỔ DẦU</div></a>
     </div>
   </div>
 
+  <!-- 2. ZALO -->
   <div class="group">
-    <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="zalo-groups">
+    <div class="group-header" role="button" tabindex="0">
       <span class="title">💬 Group Zalo</span><span class="arrow">▶</span>
     </div>
-    <div class="group-content" id="zalo-groups">
-      <a class="link-card" href="https://zalo.me/g/uolmnc539" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm báo cáo nội thành</div></a>
-      <a class="link-card" href="https://zalo.me/g/plhjmt899" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm bất thường nội thành</div></a>
-      <a class="link-card" href="https://zalo.me/g/byikns239" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm thông báo tài xế J&T</div></a>
-      <a class="link-card" href="https://zalo.me/g/xuizfi412" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm báo cáo đổ dầu tuyến nhánh</div></a>
+    <div class="group-content">
+      <a class="link-card" href="https://zalo.me/g/uolmnc539" target="_blank"><div class="link-left">Nhóm báo cáo nội thành</div></a>
+      <a class="link-card" href="https://zalo.me/g/plhjmt899" target="_blank"><div class="link-left">Nhóm bất thường nội thành</div></a>
+      <a class="link-card" href="https://zalo.me/g/byikns239" target="_blank"><div class="link-left">Nhóm thông báo tài xế J&T</div></a>
+      <a class="link-card" href="https://zalo.me/g/xuizfi412" target="_blank"><div class="link-left">Nhóm báo cáo đổ dầu tuyến nhánh</div></a>
     </div>
   </div>
 
+  <!-- 3. LIÊN HỆ -->
   <div class="group">
-    <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="support-contacts">
-      <span class="title">📞 Liên hệ hỗ trợ qua Zalo</span><span class="arrow">▶</span>
+    <div class="group-header" role="button" tabindex="0">
+      <span class="title">📞 Liên hệ hỗ trợ</span><span class="arrow">▶</span>
     </div>
-    <div class="group-content" id="support-contacts">
+    <div class="group-content">
+        <div class="contact-note">⚠️ Ưu tiên nhắn Zalo & liên hệ trong giờ làm việc.</div>
         <div class="contact-grid">
-            <div style="grid-column: 1 / 3; text-align: left; font-size: 0.9em; font-weight: 700; color: var(--primary); padding-top: 5px;">
-                ĐỘI TRƯỞNG
-            </div>
+            <div style="grid-column: 1/3; font-weight: 700; color: var(--primary); padding-top: 5px;">ĐỘI TRƯỞNG</div>
+            <a href="tel:0973235381" class="contact-btn" style="grid-column: 1/3;"><span class="name-contact">Giang Nguyễn</span><span class="role-contact">Đội trưởng đội xe</span></a>
+            <a href="tel:0762244662" class="contact-btn"><span class="name-contact">Trí Lê</span><span class="role-contact">Đội trưởng ca ngày</span></a>
+            <a href="tel:090" class="contact-btn"><span class="name-contact">Hoàng Trần</SPAN><span class="role-contact">Đội trưởng ca đêm</span></a>
 
-            <a href="tel:0973235381" class="contact-btn" style="grid-column: 1 / 3;">
-                <span class="name-contact">Giang Nguyễn</span>
-                <span class="role-contact">Đội trưởng đội xe</span>
-            </a>
-            <a href="tel:0762244662" class="contact-btn">
-                <span class="name-contact">Trí Lê</span>
-                <span class="role-contact">Đội trưởng ca ngày</span>
-            </a>
-            <a href="tel:090" class="contact-btn">
-                <span class="name-contact">Hoàng Trần</span>
-                <span class="role-contact">Đội trưởng ca đêm</span>
-            </a>
-            <div style="grid-column: 1 / 3; text-align: left; font-size: 0.9em; font-weight: 700; color: var(--primary); padding-top: 10px;">
-                BẢO TRÌ XE
-            </div>
+            <div style="grid-column: 1/3; font-weight: 700; color: var(--primary); padding-top: 10px;">BẢO TRÌ XE</div>
+            <a href="tel:090" class="contact-btn"><span class="name-contact">Hoàng Trung</span><span class="role-contact">Bảo trì Thaco, Isuzu</span></a>
+            <a href="tel:0906722489" class="contact-btn"><span class="name-contact">Thanh Liêm</span><span class="role-contact">Bảo trì Jac, Gaz</span></a>
 
-            <a href="tel:090" class="contact-btn">
-                <span class="name-contact">Hoàng Trung</span>
-                <span class="role-contact">Bảo trì Thaco, Isuzu</span>
-            </a>
-            <a href="tel:0906722489" class="contact-btn">
-                <span class="name-contact">Thanh Liêm</span>
-                <span class="role-contact">Bảo trì Jac, Đô Thành, Gaz</span>
-            </a>
+            <div style="grid-column: 1/3; font-weight: 700; color: var(--primary); padding-top: 10px;">ĐIỀU PHỐI</div>
+            <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(25, 136, 69, 0.15); color: var(--accent); border-radius: 4px; padding: 4px 0;">CA SÁNG (7h - 17h30) 🟢</div>
+            <a href="tel:0399007309" class="contact-btn" style="grid-column: 1/3;"><span class="name-contact">Đặng Quốc Thái</span><span class="role-contact">Điều phối VP</span></a>
+            <a href="tel:0972251731" class="contact-btn"><span class="name-contact">Nguyễn Tiến Trung</span><span class="role-contact">TTTC (7h-16h)</span></a>
+            <a href="tel:0869814645" class="contact-btn"><span class="name-contact">Nguyễn Thành Vinh</span><span class="role-contact">Xe 5T-9T</span></a>
 
-            <div style="grid-column: 1 / 3; text-align: left; font-size: 0.9em; font-weight: 700; color: var(--primary); padding-top: 10px; margin-bottom: 2px;">
-                ĐIỀU PHỐI / TTTC (Theo ca)
-            </div>
-            
-            <div style="grid-column: 1 / 3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(25, 136, 69, 0.15); border: 1px solid var(--accent); color: var(--accent); border-radius: 4px; padding: 4px 0; margin-bottom: 5px;">
-                CA SÁNG (7h - 17h30) 🟢
-            </div>
-            <a href="tel:0399007309" class="contact-btn" style="grid-column: 1 / 3;">
-                <span class="name-contact">Đặng Quốc Thái</span>
-                <span class="role-contact">Điều phối VP (8h-17h30)</span>
-            </a>
-             <a href="tel:0972251731" class="contact-btn" style="grid-column: 1 / 3;">
-                <span class="name-contact">Nguyễn Tiến Trung</span>
-                <span class="role-contact">Ca sáng TTTC (7h-16h)</span>
-            </a>
-            <a href="tel:0869814645" class="contact-btn" style="grid-column: 1 / 3;">
-                <span class="name-contact">Nguyễn Thành Vinh</span>
-                <span class="role-contact">Điều phối xe 5T-9T</span>
-            </a>
-            <div style="grid-column: 1 / 3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(255, 165, 0, 0.2); border: 1px solid orange; color: #CC6600; border-radius: 4px; padding: 4px 0; margin-bottom: 5px; margin-top: 8px;">
-                CA NGÀY (12h - 21h) 🟠
-            </div>
-            <a href="tel:0962073793" class="contact-btn">
-                <span class="name-contact">Phạm Minh Kỳ</span>
-                <span class="role-contact">Ca ngày TTTC (12h-21h)</span>
-            </a>
-            <a href="tel:0365762179" class="contact-btn">
-                <span class="name-contact">Nguyễn Tấn Tài</span>
-                <span class="role-contact">Ca ngày TTTC (12h-21h)</span>
-            </a>
-            <a href="tel:0764341791" class="contact-btn" style="grid-column: 1 / 3;">
-                <span class="name-contact">Nguyễn Hoàng Phúc</span>
-                <span class="role-contact">Ca ngày (12h-21h)</span>
-            </a>
+            <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(255, 165, 0, 0.2); color: #CC6600; border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA NGÀY (12h - 21h) 🟠</div>
+            <a href="tel:0962073793" class="contact-btn"><span class="name-contact">Phạm Minh Kỳ</span><span class="role-contact">GW0 (12h-21h)</span></a>
+            <a href="tel:0365762179" class="contact-btn"><span class="name-contact">Nguyễn Tấn Tài</span><span class="role-contact">GW0 (12h-21h)</span></a>
+            <a href="tel:0764341791" class="contact-btn" style="grid-column: 1/3;"><span class="name-contact">Nguyễn Hoàng Phúc</span><span class="role-contact">GW0 (12h-21h)</span></a>
 
-            <div style="grid-column: 1 / 3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(204, 0, 0, 0.15); border: 1px solid var(--primary); color: var(--primary); border-radius: 4px; padding: 4px 0; margin-bottom: 5px; margin-top: 8px;">
-                CA TỐI (18h - 4h) 🔴
-            </div>
-            <a href="tel:0886468035" class="contact-btn">
-                <span class="name-contact">Hồ Sỹ Lưu</span>
-                <span class="role-contact">Ca tối (18h-3h)</span>
-            </a>
-            <a href="tel:0336492538" class="contact-btn">
-                <span class="name-contact">Nguyễn Dương Hoàng Hải</span>
-                <span class="role-contact">Ca tối (18h-3h)</span>
-            </a>
-            <a href="tel:0326466205" class="contact-btn">
-                <span class="name-contact">Nguyễn Trung Hậu</span>
-                <span class="role-contact">Ca tối (18h-3h)</span>
-            </a>
-            <a href="tel:0372026225" class="contact-btn">
-                <span class="name-contact">Huỳnh Tấn Sang</span>
-                <span class="role-contact">Ca tối (18h-3h)</span>
-            </a>
-            <a href="tel:0933450410" class="contact-btn">
-                <span class="name-contact">Nguyễn Gia Quốc Mạnh</span>
-                <span class="role-contact">Ca tối (18h-3h)</span>
-            </a>
-            <a href="tel:0363456035" class="contact-btn">
-                <span class="name-contact">Đặng Tuấn Kiệt</span>
-                <span class="role-contact">Ca tối (18h-3h)</span>
-            </a>
-            <a href="tel:0964543757" class="contact-btn">
-                <span class="name-contact">Phạm Đức Huy</span>
-                <span class="role-contact">Ca tối (18h-3h)</span>
-            </a>
-            <a href="tel:0903969713" class="contact-btn">
-                <span class="name-contact">Nguyễn Phúc Hậu</span>
-                <span class="role-contact">Ca tối (18h-3h)</span>
-            </a>
-            <a href="tel:0332277821" class="contact-btn" style="grid-column: 1 / 3;">
-                <span class="name-contact">Phạm Nguyễn Minh Quang</span>
-                <span class="role-contact">Ca tối (19h-4h)</span>
-            </a>
+            <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(204, 0, 0, 0.15); color: var(--primary); border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA TỐI (18h - 4h) 🔴</div>
+            <a href="tel:0886468035" class="contact-btn"><span class="name-contact">Hồ Sỹ Lưu</span><span class="role-contact">18h-3h</span></a>
+            <a href="tel:0336492538" class="contact-btn"><span class="name-contact">Hoàng Hải</span><span class="role-contact">GW3 (18h-3h)</span></a>
+            <a href="tel:0326466205" class="contact-btn"><span class="name-contact">Trung Hậu</span><span class="role-contact">GW4 (18h-3h)</span></a>
+            <a href="tel:0372026225" class="contact-btn"><span class="name-contact">Tấn Sang</span><span class="role-contact">18h-3h</span></a>
+            <a href="tel:0903969713" class="contact-btn"><span class="name-contact">Phúc Hậu</span><span class="role-contact">GW6 (18h-3h)</span></a>
+            <a href="tel:0332277821" class="contact-btn"><span class="name-contact">Minh Quang</span><span class="role-contact">GW5 (19h-4h)</span></a>
 
-            <div style="grid-column: 1 / 3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(128, 0, 128, 0.15); border: 1px solid purple; color: purple; border-radius: 4px; padding: 4px 0; margin-bottom: 5px; margin-top: 8px;">
-                CA ĐÊM (21h - 6h30) 🟣
-            </div>
-            <a href="tel:0962073741" class="contact-btn">
-                <span class="name-contact">Hồ Sỹ Tiến</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
-            </a>
-            <a href="tel:0374749130" class="contact-btn">
-                <span class="name-contact">Đào Đức Đạt</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
-            </a>
-            <a href="tel:0947550239" class="contact-btn">
-                <span class="name-contact">Nguyễn Quốc Trung</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
-            </a>
-            <a href="tel:0369702372" class="contact-btn">
-                <span class="name-contact">Đỗ Nhật Quang</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h)</span>
-            </a>
-            <a href="tel:0334457083" class="contact-btn" style="grid-column: 1 / 3;">
-                <span class="name-contact">Ngô Quốc Anh</span>
-                <span class="role-contact">Ca đêm TTTC (21h-6h30)</span>
-            </a>
+            <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(128, 0, 128, 0.15); color: purple; border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA ĐÊM (21h - 6h30) 🟣</div>
+            <a href="tel:0374749130" class="contact-btn"><span class="name-contact">Đào Đức Đạt</span><span class="role-contact">GW0 (21h-6h)</span></a>
+            <a href="tel:0947550239" class="contact-btn"><span class="name-contact">Quốc Trung</span><span class="role-contact">GW0 (21h-6h)</span></a>
+            <a href="tel:0369702372" class="contact-btn"><span class="name-contact">Nhật Quang</span><span class="role-contact">GW3 (21h-6h)</span></a>
+
+            <div style="grid-column: 1/3; text-align: center; font-size: 0.9em; font-weight: 700; color: #007bff; border-top: 1px dashed #ccc; padding-top: 10px; margin-top: 10px;">BÌNH DƯƠNG - TÂY NINH 🔵</div>
+             <a href="tel:0334457083" class="contact-btn"> <span class="name-contact">Quốc Anh</span><span class="role-contact">GW0 (21h-6h30)</span></a>
+            <a href="tel:0962073741" class="contact-btn"> <span class="name-contact">Hồ Sỹ Tiến</span><span class="role-contact">GW0 (21h-6h)</span></a>
         </div>
     </div>
   </div>
+
+  <!-- 4. MAPS -->
   <div class="group">
-    <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="map-links">
-      <span class="title">📍 Địa chỉ Google Map</span>
-      <span class="arrow">▶</span>
+    <div class="group-header" role="button" tabindex="0">
+      <span class="title">📍 Địa chỉ Google Map</span><span class="arrow">▶</span>
     </div>
-    <div class="group-content" id="mapListContainer">
-    </div>
+    <div class="group-content" id="mapListContainer"></div>
   </div>
-  
+
+  <!-- 5. TÍNH DẦU -->
   <div class="group">
-  <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="calc-dau">
-    <span class="title">🛢 Tính lượng dầu xe tải</span>
-    <span class="arrow">▶</span>
-  </div>
-  <div class="group-content" id="calc-dau">
-    <div class="calc-content">
-      <div class="input-group-calc">
-        <label for="khoan" class="calc-label">Mức khoán (lít/100 km):</label>
-        <input type="text" id="khoan" placeholder="13" min="0" step="0.01" class="calc-input" inputmode="decimal">
+    <div class="group-header" role="button" tabindex="0">
+      <span class="title">🛢 Tính lượng dầu xe tải</span><span class="arrow">▶</span>
+    </div>
+    <div class="group-content">
+      <div class="calc-content">
+        <div class="input-group-calc">
+          <label class="calc-label">Mức khoán (lít/100 km):</label>
+          <input type="text" id="khoan" placeholder="VD: 14" inputmode="decimal" class="calc-input">
+        </div>
+        <div class="input-group-calc">
+          <label class="calc-label">Quãng đường đã đi (km) :</label>
+          <input type="text" id="km" placeholder="VD: 1000" class="calc-input">
+        </div>
+        <div class="input-group-calc">
+          <label class="calc-label">Lượng dầu thực tế (lít):</label>
+          <input type="text" id="thuc" placeholder="VD: 130 hoặc 40+45+45" class="calc-input">
+        </div>
+        <div class="input-group-calc">
+          <label class="calc-label">Giá dầu (VND/lít):</label>
+          <input type="text" id="gia" placeholder="VD: 19000" inputmode="numeric" class="calc-input">
+        </div>
+        <button class="calc-submit" onclick="tinhDau()">TÍNH KẾT QUẢ DẦU</button>
+        <div id="resultDau" class="result-box" style="display:none;"></div>
       </div>
-
-      <div class="input-group-calc">
-        <label for="km" class="calc-label">Quãng đường đã đi (km) :</label>
-        <input type="text" 
-               id="km" 
-               placeholder="Ví dụ: 1000 hoặc 450+550" 
-               min="0" 
-               step="0.01" 
-               class="calc-input">
-      </div>
-
-      <div class="input-group-calc">
-        <label for="thuc" class="calc-label">Lượng dầu thực tế đã đổ (lít):</label>
-        <input type="text" id="thuc" placeholder="130 hoặc 40+45+45" min="0" step="0.01" class="calc-input">
-      </div>
-
-      <div class="input-group-calc">
-        <label for="gia" class="calc-label">Giá dầu (VND/lít):</label>
-        <input type="text" id="gia" placeholder="18600" min="0" step="100" class="calc-input" inputmode="numeric">
-      </div>
-
-      <button class="calc-submit" onclick="tinhDau()">Tính toán</button>
-
-      <div id="result" class="result-box"></div>
     </div>
   </div>
-</div>
-<div class="group">
-      <div class="group-header" role="button" tabindex="0" aria-expanded="false" aria-controls="calc-luong">
-        <span class="title">💰 Tính tiền tăng ca</span>
-        <span class="arrow">▶</span>
+
+  <!-- 6. TÍNH LƯƠNG -->
+  <div class="group">
+    <div class="group-header" role="button" tabindex="0">
+      <span class="title">💰 Tính tiền tăng ca</span><span class="arrow">▶</span>
+    </div>
+    <div class="group-content">
+      <div class="calc-content">
+          <div class="salary-row">
+              <div class="salary-col">
+                  <label class="calc-label">Lương CB</label>
+                  <input type="text" id="ot_luongCanBan" value="5.007.600" class="calc-input" inputmode="numeric">
+              </div>
+              <div class="salary-col">
+                  <label class="calc-label">Ngày công</label>
+                  <input type="text" id="ot_soNgayTrongThang" value="30" class="calc-input" inputmode="numeric">
+              </div>
+              <div class="salary-col">
+                  <label class="calc-label">Chủ nhật</label>
+                  <input type="text" id="ot_soNgayChuNhat" value="4" class="calc-input" inputmode="numeric">
+              </div>
+          </div>
+          <hr style="width:94%; border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+          <div class="input-group-calc">
+              <label class="calc-label">Giờ Tăng Ca Ngày Thường (1.5x):</label>
+              <input type="text" id="ot_gioTCTuong" placeholder="Nhập giờ hoặc cộng dồn (10+5)" class="calc-input">
+          </div>
+          <div class="input-group-calc">
+              <label class="calc-label">Giờ Tăng Ca Ngày OFF (2.0x):</label>
+              <input type="text" id="ot_gioTCNghi" placeholder="Nhập giờ hoặc cộng dồn (8+8)" class="calc-input">
+          </div>
+          <button onclick="tinhLuong()" class="calc-submit">TÍNH KẾT QUẢ TĂNG CA</button>
+          <div class="result-box-ot" id="ketQuaLuong" style="display:none;">
+              <h3>📊 KẾT QUẢ TĂNG CA</h3>
+              <div class="result-item"><span>Lương Giờ Cơ Bản:</span><strong><span id="luongGioCoBan">...</span></strong></div>
+              <div class="result-item"><span>TC Thường:</span><strong><span id="tienTCTuong">0 VNĐ</span></strong></div>
+              <div class="result-item"><span>TC Off:</span><strong><span id="tienTCNghi">0 VNĐ</span></strong></div>
+              <div class="result-item result-item-total"><span>Tổng Tiền Tăng Ca:</span><span class="highlight" id="tongTienTangCa">0 VNĐ</span></div>
+              <div class="ot-note">Lưu ý: Kết quả này chỉ mang tính tham khảo. Tiền tăng ca thực tế có thể khác do ngày công, ngày nghỉ thực tế và chính sách từng tháng.</div>
+          </div>
       </div>
-      <div class="group-content" id="calc-luong">
-        <div class="calc-content">
-            <div class="input-group-calc">
-                <label for="ot_luongCanBan" class="calc-label">Lương Căn Bản (VNĐ):</label>
-                <input type="text" id="ot_luongCanBan" value="5007600" required class="calc-input" inputmode="numeric">
-            </div>
+    </div>
+  </div>
 
-            <div class="input-group-calc">
-                <label for="ot_soNgayTrongThang" class="calc-label">Số Ngày Trong Tháng:</label>
-                <input type="text" id="ot_soNgayTrongThang" value="30" required class="calc-input" min="1" max="31" inputmode="numeric">
-            </div>
-
-            <div class="input-group-calc">
-                <label for="ot_soNgayChuNhat" class="calc-label">Số Ngày Chủ Nhật:</label>
-                <input type="text" id="ot_soNgayChuNhat" value="4" required class="calc-input" min="0" max="5" inputmode="numeric">
-            </div>
-            
-            <hr style="width:94%; border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-
-            <div class="input-group-calc">
-                <label for="ot_gioTCTuong" class="calc-label">Số Giờ Tăng Ca Ngày Thường (1.5x):</label>
-                <input type="text" id="ot_gioTCTuong" value="" required class="calc-input" placeholder="Ví dụ: 40 hoặc 10+10+9.5+10.5" step="0.5" min="0">
-            </div>
-
-            <div class="input-group-calc">
-                <label for="ot_gioTCNghi" class="calc-label">Số Giờ Tăng Ca Ngày OFF (2.0x):</label>
-                <input type="text" id="ot_gioTCNghi" value="" required class="calc-input" placeholder="Ví dụ: 20.5 hoặc 6+6+8.5" step="0.5" min="0">
-            </div>
-
-            <button onclick="tinhLuong()" class="calc-submit">TÍNH KẾT QUẢ TĂNG CA</button>
-
-            <div class="result-box-ot">
-                <h3>📊 KẾT QUẢ TĂNG CA</h3>
-                
-                <div class="result-item">
-                    <span>Lương Giờ Cơ Bản:</span> 
-                    <strong><span id="luongGioCoBan">Tính sau khi nhập</span></strong>
-                </div>
-                
-                <div class="result-item">
-                    <span>TC Thường:</span> 
-                    <strong><span id="tienTCTuong">0 VNĐ</span></strong>
-                </div>
-                
-                <div class="result-item">
-                    <span>TC Off:</span> 
-                    <strong><span id="tienTCNghi">0 VNĐ</span></strong>
-                </div>
-                
-                <div class="result-item result-item-total">
-                    <span>Tổng Tiền Tăng Ca:</span> 
-                    <span class="highlight" id="tongTienTangCa">0 VNĐ</span>
-                </div>
-                <div class="ot-note">
-                    * Lưu ý: Kết quả này chỉ mang tính tham khảo. Tiền tăng ca thực tế có thể khác do ngày công, ngày nghỉ thực tế và chính sách từng tháng.
-                </div>
-            </div>
+  <!-- 7. SỔ TAY -->
+  <div class="group">
+    <div class="group-header" role="button" tabindex="0">
+      <span class="title">📝 Sổ tay tài xế</span><span class="arrow">▶</span>
+    </div>
+    <div class="group-content">
+      <div class="calc-content">
+        <textarea id="myNote" class="note-area" placeholder="Ghi chú nhanh: ODO đổ dầu, Giờ tăng ca, Tiền nợ... "></textarea>
+        <div style="display:flex; justify-content:space-between; width:100%">
+          <span style="font-size:12px; color:#666; align-self:center">Dữ liệu chỉ lưu trên máy bạn</span>
+          <button class="save-btn" onclick="if(confirm('Xóa hết ghi chú?')){document.getElementById('myNote').value='';localStorage.removeItem('userNote');}">Xóa trắng</button>
         </div>
       </div>
+    </div>
   </div>
+
+  <!-- 8. TIỆN ÍCH GOM NHÓM -->
+  <div class="group">
+    <div class="group-header" role="button" tabindex="0">
+      <span class="title">🧩 Tiện ích & Tra cứu khác</span><span class="arrow">▶</span>
+    </div>
+    <div class="group-content">
+      
+      <!-- TẢI APP -->
+      <div class="section-title">📱 TẢI APP NHIỆM VỤ (VnDriver)</div>
+      <a class="link-card" href="https://drive.google.com/file/d/1F5Ln5qr86FPn5zybBKha72jKkFyEVwKB/view?usp=drivesdk" target="_blank"><div class="link-left">Tải App Android (APK)</div></a>
+      <a class="link-card" href="https://testflight.apple.com/join/ngwb0Mpe" target="_blank"><div class="link-left">Tải App iOS (TestFlight)</div></a>
+
+      <!-- DỊCH VỤ CÔNG -->
+      <div class="section-title">🚦 DỊCH VỤ CÔNG TRỰC TUYẾN</div>
+      <a class="link-card" href="https://www.csgt.vn/tra-cuu-phuong-tien-vi-pham.html" target="_blank"><div class="link-left">🚨 Tra cứu Phạt Nguội (Cục CSGT)</div></a>
+      <a class="link-card" href="https://dichvucong.gov.vn/p/home/dvc-thanh-toan-vi-pham-giao-thong.html" target="_blank"><div class="link-left">💸 Nộp phạt Vi phạm giao thông</div></a>
+      <a class="link-card" href="https://dvc4.gplx.gov.vn/p/home/dvc-trang-chu.html" target="_blank"><div class="link-left">🆔 Đổi Giấy phép lái xe Online</div></a>
+
+      <!-- MỨC PHẠT 2025 -->
+      <div class="section-title">🚫 TRA CỨU MỨC PHẠT 2025</div>
+      <div class="fine-cat-header">Nồng độ cồn</div>
+      <div class="fine-item">
+           <span class="fine-title">Mức 1 (Chưa vượt 50mg/100ml)</span>
+           <span class="fine-money">Phạt 6 - 8 triệu</span>
+           <span class="fine-extra">- Trừ 4 điểm GPLX</span>
+       </div>
+       <div class="fine-item">
+           <span class="fine-title">Mức 2 (50 - 80mg/100ml)</span>
+           <span class="fine-money">Phạt 18 - 20 triệu</span>
+           <span class="fine-extra">- Trừ 10 điểm GPLX</span>
+       </div>
+       <div class="fine-item">
+           <span class="fine-title">Mức 3 (Vượt 80mg/100ml)</span>
+           <span class="fine-money">Phạt 30 - 40 triệu</span>
+           <span class="fine-extra" style="color:red; font-weight:bold">- TƯỚC BẰNG 22 - 24 THÁNG</span>
+       </div>
+
+       <div class="fine-cat-header">🚀 Vi phạm tốc độ</div>
+       <div class="fine-item">
+           <span class="fine-title">Quá tốc độ 5 - 10 km/h</span>
+           <span class="fine-money">Phạt 800k - 1 triệu</span>
+       </div>
+       <div class="fine-item">
+           <span class="fine-title">Quá tốc độ 10 - 20 km/h</span>
+           <span class="fine-money">Phạt 4 - 6 triệu</span>
+           <span class="fine-extra">- Trừ 2 điểm GPLX</span>
+       </div>
+       <div class="fine-item">
+           <span class="fine-title">Quá tốc độ 20 - 35 km/h</span>
+           <span class="fine-money">Phạt 6 - 8 triệu</span>
+           <span class="fine-extra">- Trừ 4 điểm GPLX</span>
+       </div>
+       <div class="fine-item">
+           <span class="fine-title">Quá tốc độ trên 35 km/h</span>
+           <span class="fine-money">Phạt 12 - 14 triệu</span>
+           <span class="fine-extra">- Trừ 6 điểm GPLX</span>
+       </div>
+
+       <div class="fine-cat-header">🛑 Lỗi phổ biến khác</div>
+       <div class="fine-item">
+           <span class="fine-title">Vượt đèn đỏ, đèn vàng</span>
+           <span class="fine-money">Phạt 18 - 20 triệu</span>
+           <span class="fine-extra">- Trừ 4 điểm (Tăng mạnh)</span>
+       </div>
+       <div class="fine-item">
+           <span class="fine-title">Đi ngược chiều</span>
+           <span class="fine-money">Phạt 18 - 20 triệu</span>
+           <span class="fine-extra">- Trừ 4 - 6 điểm</span>
+       </div>
+       <div class="fine-item">
+           <span class="fine-title">Đi vào đường cấm, giờ cấm</span>
+           <span class="fine-money">Phạt 4 - 6 triệu</span>
+           <span class="fine-extra">- Trừ 2 điểm</span>
+       </div>
+       <div class="fine-item">
+           <span class="fine-title">Đi sai làn đường, phần đường</span>
+           <span class="fine-money">Phạt 4 - 6 triệu</span>
+           <span class="fine-extra">- Trừ 2 điểm GPLX</span>
+       </div>
+
+       <!-- CHIA SẺ APP (ĐÃ CHUYỂN VÀO ĐÂY) -->
+       <div class="share-container">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://letinhclover.github.io/jntdriver" alt="QR Code" class="qr-img">
+          <br>
+          <button class="share-btn-native" onclick="shareApp()">
+              📤 Chia sẻ cho đồng đội
+          </button>
+      </div>
+
+    </div>
+  </div>
+
 </main>
+
 <footer>
   <div class="footer-text">Trang này chỉ dành cho nội bộ tài xế J&T</div>
-
   <div style="margin-top:6px;">
-    © 2025 <a href="https://zalo.me/0708312789" target="_blank" rel="noopener noreferrer"
-    class="footer-link">Lê Tỉnh</a>
+    © 2025 <a href="https://zalo.me/0708312789" class="footer-link">Lê Tỉnh</a>
   </div>
 </footer>
 
 <script>
-// Dữ liệu Google Map phiên bản v14
+// --- DATA MAPS ---
 const googleMapsData = [
-    // 1. GATEWAYs (Đã sắp xếp lại)
-    { code: 'GW0', address: 'Nhà kho 1, Lô TT1, Quốc lộ 22, KCN Tân Phú Trung, Củ Chi', link: 'https://maps.app.goo.gl/8ue4xcmMdxwMS5uX9' }, 
-    { code: 'GW3', address: '1103 QL1A, Bình Trị Đông A, Bình Tân, Hồ Chí Minh', link: 'https://maps.app.goo.gl/qdCVdF9DygSqSWin7' }, 
-    { code: 'GW4', address: 'Quốc lộ 22 Xã Tân Phú Trung Huyện Củ Chi TPHCM (Kho GHTK cũ)', link: 'https://maps.app.goo.gl/c5A8ZNvydTkjeC7LA' }, 
-    { code: 'GW5', address: 'Lô J, Đường N6, KCN Lê Minh Xuân 3, Bình Chánh, Hồ Chí Minh', link: 'https://maps.app.goo.gl/LZme5LnDZiw1obNU9' }, 
-    { code: 'GW6', address: 'Lô đất 3D-8, đường số 12, KCN Long Hậu 3, Cần Giuộc, Tinh Tây Ninh', link: 'https://maps.app.goo.gl/EZte1BU8pfAkQdUv9' },
+    { code: 'GW0', address: 'Kho 1, Lô TT1, QL22, KCN Tân Phú Trung, Củ Chi', link: 'https://maps.app.goo.gl/8ue4xcmMdxwMS5uX9', type: 'GW' },
+    { code: 'GW3', address: '1103 QL1A, Bình Trị Đông A, Bình Tân', link: 'https://maps.app.goo.gl/qdCVdF9DygSqSWin7', type: 'GW' },
+    { code: 'GW4', address: 'QL22, Tân Phú Trung, Củ Chi (Kho GHTK cũ)', link: 'https://maps.app.goo.gl/c5A8ZNvydTkjeC7LA', type: 'GW' },
+    { code: 'GW5', address: 'Lô J, Đường N6, KCN Lê Minh Xuân 3, Bình Chánh', link: 'https://maps.app.goo.gl/LZme5LnDZiw1obNU9', type: 'GW' },
+    { code: 'GW6', address: 'Lô 3D-8, Đường 12, KCN Long Hậu 3, Cần Giuộc', link: 'https://maps.app.goo.gl/EZte1BU8pfAkQdUv9', type: 'GW' },
     
-    // 2. CÁC ĐỊA CHỈ H MỚI
-    { code: 'H81', address: '21 Đường Ụ Ghe, Thủ Đức', link: 'https://goo.gl/maps/hxigDoxuf2rMm1s78' },
-    { code: 'H82', address: '17/6A Phan Huy Ích, Gò Vấp', link: 'https://maps.app.goo.gl/LF6n2nSBkwVmg1h5A' },
-    { code: 'H83 mới', address: '4 Đào Trí, Khu phố 5, Phường Phú Thuận, Quận 7', link: 'https://maps.app.goo.gl/7NX3CjqeSju77DRt6' },
-    { code: 'H85', address: 'Số 9 Thạnh Lộc 08, Q12', link: 'https://maps.app.goo.gl/Luaguf3a7NeSFvCs7' },
-    { code: 'H86', address: '722 Âu Cơ, Tân Bình', link: 'https://maps.app.goo.gl/bbMaJPQytnaeQgNp8' },
-    { code: 'H87', address: 'Cụm kho SoTrans KM7-9 Xa Lộ Hà Nội, Thủ Đức', link: 'https://maps.app.goo.gl/Eig83EZtiGpY7vgY9' },
-    { code: 'H89', address: '874/51 Tân Kỳ Tân Quý, Bình Hưng Hòa', link: 'https://maps.app.goo.gl/SjSMrEcVJGqnLzo76' },
-    { code: 'H91', address: '285 Nơ Trang Long, Bình Thạnh', link: 'https://maps.app.goo.gl/uHE7xqVq4bTpQ4C37' },
-    { code: 'H93', address: '4 Đào Trí, Q7', link: 'https://maps.app.goo.gl/7NX3CjqeSju77DRt6' },
-    { code: 'H96', address: 'Lô B26, Cụm CN-TTCN Xuân Thới Sơn, Hóc Môn', link: 'https://maps.app.goo.gl/om59mKEP1Z1u4PY36' },
-    { code: 'H98', address: '1185 Lê Đức Anh, Bình Tân', link: 'https://maps.app.goo.gl/543EgfyuHcYiqA12A' },
-
-    // 3. CÁC ĐỊA CHỈ ĐẶC BIỆT (Đã chuyển xuống cuối)
-    { code: 'LAZADA', address: '2-4 Đường M14, Bình Hưng Hoà, Bình Tân, Thành phố Hồ Chí Minh', link: 'https://maps.app.goo.gl/eAuwRatRFPKh56at6' }, 
-    { code: 'TOPGIA', address: '581 Tỉnh Lộ 2, Trung Lập Hạ, Củ Chi, Hồ Chí Minh, Việt Nam', link: 'https://goo.gl/maps/mwE8pJGfhDZqB9Bf8' },
+    { code: 'H81', address: '21 Đường Ụ Ghe, Thủ Đức', link: 'https://goo.gl/maps/hxigDoxuf2rMm1s78', type: 'HUB' },
+    { code: 'H82', address: '17/6A Phan Huy Ích, Gò Vấp', link: 'https://maps.app.goo.gl/LF6n2nSBkwVmg1h5A', type: 'HUB' },
+    { code: 'H83', address: '4 Đào Trí, KP5, Phú Thuận, Q7', link: 'https://maps.app.goo.gl/7NX3CjqeSju77DRt6', type: 'HUB' },
+    { code: 'H85', address: 'Số 9 Thạnh Lộc 08, Q12', link: 'https://maps.app.goo.gl/Luaguf3a7NeSFvCs7', type: 'HUB' },
+    { code: 'H86', address: '722 Âu Cơ, Tân Bình', link: 'https://maps.app.goo.gl/bbMaJPQytnaeQgNp8', type: 'HUB' },
+    { code: 'H87', address: 'Kho SoTrans KM7-9 Xa Lộ Hà Nội, Thủ Đức', link: 'https://maps.app.goo.gl/Eig83EZtiGpY7vgY9', type: 'HUB' },
+    { code: 'H89', address: '874/51 Tân Kỳ Tân Quý, Bình Hưng Hòa', link: 'https://maps.app.goo.gl/SjSMrEcVJGqnLzo76', type: 'HUB' },
+    { code: 'H91', address: '285 Nơ Trang Long, Bình Thạnh', link: 'https://maps.app.goo.gl/uHE7xqVq4bTpQ4C37', type: 'HUB' },
+    { code: 'H93', address: '4 Đào Trí, Q7', link: 'https://maps.app.goo.gl/7NX3CjqeSju77DRt6', type: 'HUB' },
+    { code: 'H96', address: 'Lô B26, Cụm CN Xuân Thới Sơn, Hóc Môn', link: 'https://maps.app.goo.gl/om59mKEP1Z1u4PY36', type: 'HUB' },
+    { code: 'H98', address: '1185 Lê Đức Anh, Bình Tân', link: 'https://maps.app.goo.gl/543EgfyuHcYiqA12A', type: 'HUB' },
+    { code: 'LAZADA', address: '2-4 Đường M14, Bình Hưng Hoà, Bình Tân', link: 'https://maps.app.goo.gl/eAuwRatRFPKh56at6', type: 'HUB' },
+    { code: 'TOPGIA', address: '581 Tỉnh Lộ 2, Trung Lập Hạ, Củ Chi', link: 'https://goo.gl/maps/mwE8pJGfhDZqB9Bf8', type: 'HUB' },
 ];
 
 function generateMapLinks() {
     const container = document.getElementById('mapListContainer');
     if (!container) return;
+    
+    const gws = googleMapsData.filter(x => x.type === 'GW');
+    const hubs = googleMapsData.filter(x => x.type !== 'GW');
 
     let html = '';
-    googleMapsData.forEach(item => {
-        // Rút gọn địa chỉ hiển thị nếu quá dài
-        const displayAddress = item.address.length > 55 ? item.address.substring(0, 55) + '...' : item.address;
-        html += `
-            <a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer">
-                <div class="link-left">
-                    <strong>${item.code}</strong><br>
-                    <span style="font-size: 0.9em; opacity: 0.8;">${displayAddress}</span>
-                </div>
-                <span style="font-size: 1.1em; color: var(--primary);">📍</span>
-            </a>
-        `;
-    });
+    html += gws.map(item => `
+        <a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer">
+            <div class="link-left">
+                <strong>${item.code}</strong><br>
+                <span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span>
+            </div>
+            <span style="color: var(--primary);">📍</span>
+        </a>
+    `).join('');
+    html += `<div style="border-top: 1px dashed #ccc; margin: 10px 15px;"></div>`;
+    html += hubs.map(item => `
+        <a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer">
+            <div class="link-left">
+                <strong>${item.code}</strong><br>
+                <span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span>
+            </div>
+            <span style="color: var(--primary);">📍</span>
+        </a>
+    `).join('');
     container.innerHTML = html;
 }
+generateMapLinks();
 
-// Lấy các phần tử cần thiết
+// --- THEME & ACCORDION ---
 const btnTheme = document.getElementById('toggleTheme');
 const body = document.body;
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-// --- Hàm cập nhật giao diện (theme) ---
 function applyTheme(isDark) {
-    if (isDark) {
-        body.classList.add('dark');
-        btnTheme.textContent = '☀️';
-    } else {
-        body.classList.remove('dark');
-        btnTheme.textContent = '🌙';
-    }
+    if (isDark) { body.classList.add('dark'); btnTheme.textContent = '☀️'; }
+    else { body.classList.remove('dark'); btnTheme.textContent = '🌙'; }
 }
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') applyTheme(true);
+else if (savedTheme === 'light') applyTheme(false);
+else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme(true);
 
-// --- 1. Tự động chuyển đổi chủ đề khi tải trang ---
-function checkSystemPreference() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        applyTheme(true);
-    } else if (savedTheme === 'light') {
-        applyTheme(false);
-    } else {
-        applyTheme(prefersDarkScheme.matches);
-    }
-    // Gọi hàm tạo link sau khi theme đã được áp dụng
-    generateMapLinks(); 
-}
-checkSystemPreference();
-
-// --- 2. Xử lý Chuyển đổi thủ công ---
 btnTheme.onclick = () => {
     const isDark = !body.classList.contains('dark');
     applyTheme(isDark);
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 };
 
-// --- 3. Lắng nghe thay đổi của hệ thống (Chỉ thay đổi nếu người dùng chưa đặt theme) ---
-prefersDarkScheme.addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-        applyTheme(e.matches);
-    }
-});
-
-// === Khởi tạo các group accordion (A11y Fix) ===
-document.querySelectorAll('.group-header').forEach(h => {
-    // Thêm aria-controls nếu chưa có (dùng ID của group-content)
-    const targetId = h.parentElement.querySelector('.group-content').id;
-    if (targetId) {
-        h.setAttribute('aria-controls', targetId);
-    }
-
-    const toggleAccordion = () => {
-        const isOpen = h.parentElement.classList.toggle('open');
-        h.setAttribute('aria-expanded', isOpen);
-    };
-
-    h.addEventListener('click', toggleAccordion);
-    h.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault(); 
-            toggleAccordion();
-        }
+document.querySelectorAll('.group-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const currentGroup = header.parentElement;
+        const isOpen = currentGroup.classList.contains('open');
+        document.querySelectorAll('.group').forEach(group => {
+            if (group !== currentGroup) group.classList.remove('open');
+        });
+        if (isOpen) currentGroup.classList.remove('open');
+        else currentGroup.classList.add('open');
     });
 });
 
-// === Hàm xử lý phép tính cộng/trừ/nhân từ chuỗi nhập liệu ===
-function evaluateExpression(inputValue) {
-    if (typeof inputValue !== 'string') return 0;
-    
-    // 1. CHUẨN HÓA:
-    // Loại bỏ dấu phẩy, chuyển 'x' và '×' thành '*'
-    let cleanValue = inputValue.replace(/,/g, '.').replace(/[^\d.+-x×*]/g, '').trim(); 
-    cleanValue = cleanValue.replace(/x/g, '*').replace(/×/g, '*');
+// --- SỔ TAY ---
+const noteArea = document.getElementById('myNote');
+if(localStorage.getItem('userNote')) noteArea.value = localStorage.getItem('userNote');
+noteArea.addEventListener('input', () => localStorage.setItem('userNote', noteArea.value));
 
-    // Nếu rỗng, trả về 0
-    if (!cleanValue) return 0;
+// --- HELPER LOGIC ---
+const fmt = (n) => parseFloat(n.toFixed(2));
 
-    // 2. Xử lý phép TRỪ (giả định chỉ có 2 số: ODO cuối - ODO đầu)
-    if (cleanValue.includes('-') && !cleanValue.includes('+') && !cleanValue.includes('*')) {
-        // Tách chuỗi theo dấu trừ, nhưng chỉ xử lý trường hợp A - B
-        const parts = cleanValue.split('-');
-        // Lọc các phần tử rỗng và đảm bảo có đúng 2 số để trừ
-        const numericParts = parts.filter(p => p.trim() !== '');
-        
-        if (numericParts.length === 2) {
-            const val1 = parseFloat(numericParts[0]);
-            const val2 = parseFloat(numericParts[1]);
-            return isNaN(val1) || isNaN(val2) ? 0 : val1 - val2;
-        }
+function evaluateExpression(val) {
+    if (!val) return 0;
+    let clean = val.toString().replace(/,/g, '.').replace(/[^\d.+-x*]/gi, '').replace(/x/gi, '*');
+    if (clean.includes('-') && !clean.includes('+') && !clean.includes('*')) {
+        const parts = clean.split('-');
+        if (parts.length === 2) return parseFloat(parts[0]) - parseFloat(parts[1]);
     }
-    
-    // 3. Xử lý phép CỘNG VÀ NHÂN (sử dụng eval một cách an toàn)
-    if (cleanValue.includes('+') || cleanValue.includes('*')) {
+    try { return Function('"use strict";return (' + clean + ')')() || 0; } catch { return 0; }
+}
+function parseInputFloat(id) { 
+    let val = document.getElementById(id).value;
+    if(id === 'ot_luongCanBan') {
+        return parseFloat(val.replace(/\./g, '').replace(/,/g, '')) || 0;
+    }
+    return parseFloat(val.replace(/,/g, '.')) || 0; 
+}
+function formatMoney(n) { return Math.round(n).toLocaleString('vi-VN') + ' VNĐ'; }
+
+// --- CHIA SẺ APP (WEB SHARE API) ---
+async function shareApp() {
+    const shareData = {
+        title: 'Link Tài Xế J&T Express',
+        text: 'App hỗ trợ anh em tài xế J&T: Tính dầu, Tính lương, Map kho...',
+        url: 'https://letinhclover.github.io/jntdriver'
+    };
+
+    if (navigator.share) {
         try {
-            // Sử dụng hàm tạo Function để tránh eval toàn cục, an toàn hơn.
-            const result = new Function('return ' + cleanValue)();
-            return isNaN(result) ? 0 : result;
-        } catch (e) {
-            console.error("Lỗi tính toán biểu thức:", e);
-            return 0;
-        }
+            await navigator.share(shareData);
+        } catch (err) { }
+    } else {
+        copyLink(); // Fallback
     }
-    
-    // 4. Giá trị số đơn lẻ (nếu không có phép tính)
-    const singleValue = parseFloat(cleanValue);
-    return isNaN(singleValue) ? 0 : singleValue;
 }
 
-
-// === Hàm chuẩn hóa dữ liệu nhập (Chỉ dùng cho các ô không phải phép tính) ===
-function parseInputFloat(inputValue) {
-    if (typeof inputValue !== 'string') return 0;
-    // Chỉ loại bỏ dấu phẩy và giữ lại dấu chấm/số
-    const cleanValue = inputValue.replace(/,/g, '.');
-    const parsed = parseFloat(cleanValue);
-    return isNaN(parsed) ? 0 : parsed;
+// Hàm copy thủ công
+function copyLink() {
+    const url = "https://letinhclover.github.io/jntdriver";
+    var tempInput = document.createElement("input");
+    tempInput.value = url;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999);
+    try {
+        document.execCommand("copy");
+        alert("Đã sao chép Link! Hãy dán vào Zalo.");
+    } catch (e) {
+        alert("Không thể copy tự động. Bạn hãy copy link trên trình duyệt.");
+    }
+    document.body.removeChild(tempInput);
 }
 
-
-// === Hàm tính dầu xe tải (Sử dụng evaluateExpression) ===
+// --- TÍNH DẦU ---
 window.tinhDau = function() {
-  // Sử dụng parseInputFloat cho các giá trị cố định (khoán, giá)
-  const khoan = parseInputFloat(document.getElementById('khoan').value);
-  const km = evaluateExpression(document.getElementById('km').value); // Có thể là phép trừ ODO
-  const thuc = evaluateExpression(document.getElementById('thuc').value); // Có thể là phép cộng lít dầu
-  const gia = parseInputFloat(document.getElementById('gia').value); 
-  const resultDiv = document.getElementById('result');
-  
+  const khoan = parseInputFloat('khoan');
+  const km = evaluateExpression(document.getElementById('km').value);
+  const thuc = evaluateExpression(document.getElementById('thuc').value);
+  const gia = parseInputFloat('gia');
+  const resultDiv = document.getElementById('resultDau');
+  resultDiv.style.display = 'block';
+
   if (km <= 0 || thuc < 0) {
-    resultDiv.innerHTML = '<b style="color:var(--primary);">⚠️ Vui lòng nhập Quãng đường đã đi (km > 0) và Lượng dầu thực tế.</b>';
+    resultDiv.innerHTML = '<b style="color:var(--primary);">⚠️ Vui lòng nhập Quãng đường (>0) và Dầu thực tế.</b>';
     return;
   }
-  
   const tieuhao = (thuc / km) * 100;
-  
-  let html = `<strong>Lượng dầu thực tế:</strong> ${thuc.toFixed(2)} lít<br>`;
-  html += `<strong>Tiêu hao trung bình:</strong> ${tieuhao.toFixed(2)} lít/100km<br>`;
-
+  let html = `<strong>Mức khoán:</strong> ${fmt(khoan)} lít/100km<br>`;
+  html += `<strong>Quãng đường đã đi:</strong> ${fmt(km)} km<br>`;
   if (khoan > 0) {
     const dauKhoan = (km * khoan) / 100;
     const chenhlech = dauKhoan - thuc;
-
-    html = `<strong>Mức khoán:</strong> ${khoan.toFixed(2)} lít/100km<br>` 
-           + `<strong>Quãng đường đã đi:</strong> ${km.toFixed(2)} km<br>`
-           + `<strong>Lượng dầu theo khoán:</strong> ${dauKhoan.toFixed(2)} lít<br>`
-           + html;
-
-    if (gia > 0) {
-      const tien = chenhlech * gia;
-      
-      if (tien > 0) {
-        html += `<b style="color:var(--accent);">Dư ${Math.abs(chenhlech).toFixed(2)} lít → Được hưởng ${tien.toLocaleString('vi-VN')} VND</b>`;
-      } else if (tien < 0) {
-        html += `<b style="color:var(--primary);">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít → Phải bù ${Math.abs(tien).toLocaleString('vi-VN')} VND</b>`;
-      } else {
-        html += `<b>Đủ dầu theo khoán.</b>`;
-      }
+    html += `<strong>Lượng dầu theo khoán:</strong> ${fmt(dauKhoan)} lít<br>`;
+    html += `<strong>Lượng dầu thực tế:</strong> ${fmt(thuc)} lít<br>`;
+    html += `<strong>Tiêu hao trung bình:</strong> ${fmt(tieuhao)} lít/100km<br>`;
+    let msg = '';
+    if (chenhlech >= 0) {
+        msg = `<span style="color:var(--accent); font-weight:bold;">Dư ${fmt(chenhlech)} lít`;
+        if (gia > 0) msg += ` → Được hưởng ${formatMoney(chenhlech * gia)}`;
+        msg += `</span>`;
     } else {
-      if (chenhlech > 0) {
-        html += `<b style="color:var(--accent);">Dư ${chenhlech.toFixed(2)} lít</b> (Chưa tính tiền vì thiếu Giá dầu)`;
-      } else if (chenhlech < 0) {
-        html += `<b style="color:var(--primary);">Thiếu ${Math.abs(chenhlech).toFixed(2)} lít</b> (Chưa tính tiền vì thiếu Giá dầu)`;
-      } else {
-        html += `<b>Đủ dầu theo khoán.</b>`;
-      }
+        msg = `<span style="color:var(--primary); font-weight:bold;">Thiếu ${fmt(Math.abs(chenhlech))} lít`;
+        if (gia > 0) msg += ` → Phải bù ${formatMoney(Math.abs(chenhlech * gia))}`;
+        msg += `</span>`;
     }
+    html += `<div style="margin-top:8px; border-top:1px dashed #ccc; padding-top:8px;">${msg}</div>`;
+  } else {
+      html += `<strong>Lượng dầu thực tế:</strong> ${fmt(thuc)} lít<br>`;
+      html += `<strong>Tiêu hao trung bình:</strong> ${fmt(tieuhao)} lít/100km<br>`;
   }
-
   resultDiv.innerHTML = html;
 }
 
-// === Hàm tính lương tăng ca (Sử dụng evaluateExpression) ===
-function formatCurrency(number) {
-    if (isNaN(number)) return "0 VNĐ";
-    // Đảm bảo làm tròn trước khi format
-    return Math.round(number).toLocaleString('vi-VN') + ' VNĐ';
-}
-function formatHourlyRate(number) {
-    if (isNaN(number)) return "0 VNĐ/giờ";
-    return Math.round(number).toLocaleString('vi-VN') + ' VNĐ/giờ';
-}
-
+// --- TÍNH LƯƠNG ---
 window.tinhLuong = function() {
-    // Sử dụng parseInputFloat() cho các giá trị cố định
-    const luongCanBan = parseInputFloat(document.getElementById('ot_luongCanBan').value); 
-    const soNgayTrongThang = parseInputFloat(document.getElementById('ot_soNgayTrongThang').value); 
-    const soNgayChuNhat = parseInputFloat(document.getElementById('ot_soNgayChuNhat').value); 
+    const luongCB = parseInputFloat('ot_luongCanBan');
+    const ngayThang = parseInputFloat('ot_soNgayTrongThang');
+    const ngayCN = parseInputFloat('ot_soNgayChuNhat');
+    const gio15 = evaluateExpression(document.getElementById('ot_gioTCTuong').value);
+    const gio20 = evaluateExpression(document.getElementById('ot_gioTCNghi').value);
     
-    // SỬ DỤNG evaluateExpression() cho giờ tăng ca (có thể là phép cộng/nhân)
-    const gioTCTuong = evaluateExpression(document.getElementById('ot_gioTCTuong').value); 
-    const gioTCNghi = evaluateExpression(document.getElementById('ot_gioTCNghi').value); 
+    document.getElementById('ketQuaLuong').style.display = 'block';
+    if (luongCB <= 0 || ngayThang <= 0) { alert("Vui lòng nhập Lương CB và Tổng ngày công!"); return; }
+    const ngayCongChuan = ngayThang - ngayCN;
+    const luongGio = luongCB / (ngayCongChuan * 8);
+    const tien15 = gio15 * luongGio * 1.5;
+    const tien20 = gio20 * luongGio * 2.0;
 
-    if (luongCanBan <= 0 || soNgayTrongThang <= 0) {
-        alert("⚠️ Vui lòng nhập đủ Lương Căn Bản và Số Ngày Trong Tháng!");
-        return;
-    }
-
-    if (soNgayTrongThang > 31 || soNgayTrongThang < 1 || soNgayChuNhat < 0 || soNgayChuNhat > soNgayTrongThang) {
-        alert("⚠️ Lỗi: Vui lòng kiểm tra lại Số Ngày Trong Tháng (1-31) và Số Ngày Chủ Nhật/Nghỉ Cố Định (0-5).");
-        return;
-    }
-
-    const SO_GIO_LAM_VIEC_MOT_NGAY = 8;
-    const HS_TANG_CA_THUONG = 1.5;
-    const HS_TANG_CA_NGHI = 2.0;
-
-    const soNgayLamViecChuan = soNgayTrongThang - soNgayChuNhat;
-    const soGioLamViecChuan = soNgayLamViecChuan * SO_GIO_LAM_VIEC_MOT_NGAY;
-
-    if (soGioLamViecChuan <= 0) {
-        alert("⚠️ Lỗi tính toán: Số ngày làm việc chuẩn bằng 0 hoặc âm. Vui lòng kiểm tra lại Số Ngày Trong Tháng và Số Ngày Chủ Nhật!");
-        return;
-    }
-
-    // Lương giờ cơ bản phải được tính bằng số thập phân
-    const luongGioCoBan = luongCanBan / soGioLamViecChuan; 
-
-    const tienTCTuong = gioTCTuong * luongGioCoBan * HS_TANG_CA_THUONG;
-    const tienTCNghi = gioTCNghi * luongGioCoBan * HS_TANG_CA_NGHI;
-    const tongTienTangCa = tienTCTuong + tienTCNghi;
-
-    // Cập nhật kết quả
-    document.getElementById('luongGioCoBan').textContent = formatHourlyRate(luongGioCoBan);
-    
-    document.getElementById('tienTCTuong').textContent = `${formatCurrency(tienTCTuong)} ( ${gioTCTuong.toFixed(1)} giờ )`;
-    document.getElementById('tienTCNghi').textContent = `${formatCurrency(tienTCNghi)} ( ${gioTCNghi.toFixed(1)} giờ )`;
-    
-    document.getElementById('tongTienTangCa').textContent = formatCurrency(tongTienTangCa);
+    document.getElementById('luongGioCoBan').innerText = formatMoney(luongGio) + "/giờ";
+    document.getElementById('tienTCTuong').innerText = formatMoney(tien15) + ` (${gio15}h)`;
+    document.getElementById('tienTCNghi').innerText = formatMoney(tien20) + ` (${gio20}h)`;
+    document.getElementById('tongTienTangCa').innerText = formatMoney(tien15 + tien20);
 }
-
-// === KHỐI SERVICE WORKER ĐÃ BỊ XÓA THEO YÊU CẦU ĐỂ KHẮC PHỤC LỖI 404 ===
 </script>
 </body>
 </html>
