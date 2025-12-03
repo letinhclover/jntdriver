@@ -116,7 +116,9 @@ body.dark a.contact-btn { background: rgba(255,255,255,0.05); color: var(--text-
 .contact-note {
     text-align: center; margin-bottom: 10px;
     font-size: 0.9em; font-style: italic; opacity: 0.8;
+    color: var(--text-light);
 }
+body.dark .contact-note { color: var(--text-dark); }
 
 /* --- CALCULATOR --- */
 .calc-content { padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
@@ -164,14 +166,7 @@ body.dark .result-box-ot { background-color: #312121; border: 1px solid rgba(255
 body.dark .note-area { background: #2b2b2b; color: var(--text-dark); border-color: #555; }
 .save-btn { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-/* --- FINES & SECTIONS --- */
-.section-title {
-    padding: 10px 10px 5px 10px; font-weight: bold; color: var(--primary); 
-    border-bottom: 1px solid rgba(0,0,0,0.1); margin: 15px 10px 5px 10px;
-    font-size: 0.95em; text-transform: uppercase;
-}
-body.dark .section-title { border-color: rgba(255,255,255,0.1); }
-
+/* --- FINES --- */
 .fine-cat-header {
     background: rgba(0,0,0,0.05); padding: 8px 12px;
     font-weight: bold; font-size: 1.1em; color: #333;
@@ -185,19 +180,41 @@ body.dark .fine-cat-header { background: rgba(255,255,255,0.1); color: #fff; }
 .fine-extra { font-size: 0.9em; font-style: italic; opacity: 0.9; color: #d35400; }
 body.dark .fine-extra { color: #e67e22; }
 
-/* --- QR SHARE STYLE --- */
-.share-container { 
-    text-align: center; padding: 20px 10px; 
-    margin-top: 20px; border-top: 1px dashed #ccc;
+/* --- SECTION DIVIDER --- */
+.section-title {
+    padding: 10px 10px 5px 10px; font-weight: bold; color: var(--primary); 
+    border-bottom: 1px solid rgba(0,0,0,0.1); margin: 15px 10px 5px 10px;
+    font-size: 0.95em; text-transform: uppercase;
 }
-.qr-img { width: 160px; height: 160px; mix-blend-mode: multiply; margin-bottom: 10px; }
-body.dark .qr-img { border: 5px solid white; border-radius: 8px; }
+body.dark .section-title { border-color: rgba(255,255,255,0.1); }
+
+/* --- QR SHARE (ĐÃ FIX) --- */
+.footer-share {
+    text-align: center; padding: 15px 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.qr-img { 
+    width: 160px; height: 160px; 
+    mix-blend-mode: multiply;
+    margin-bottom: 10px;
+    /* Fix cho Dark Mode: Thêm nền trắng + viền */
+    background-color: #fff; 
+    border: 5px solid #fff; 
+    border-radius: 8px;
+}
+/* Ở dark mode, QR vẫn có nền trắng để dễ quét */
+body.dark .qr-img { 
+    mix-blend-mode: normal; 
+    border: 4px solid #fff;
+}
+
 .share-btn-native {
     background: #007bff; color: white; border: none;
     padding: 12px 25px; border-radius: 30px;
     font-weight: bold; cursor: pointer;
     font-size: 16px; display: inline-flex; align-items: center; gap: 8px;
-    box-shadow: 0 4px 10px rgba(0,123,255,0.3); transition: transform 0.1s;
+    box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+    transition: transform 0.1s;
 }
 .share-btn-native:active { transform: scale(0.95); }
 
@@ -382,7 +399,7 @@ body.dark footer { background: var(--card-dark); }
     </div>
     <div class="group-content">
       <div class="calc-content">
-        <textarea id="myNote" class="note-area" placeholder="Ghi chú nhanh: ODO đổ dầu, Giờ tăng ca, Tiền nợ... "></textarea>
+        <textarea id="myNote" class="note-area" placeholder="Ghi chú nhanh: ODO thay nhớt, Tiền nợ, Sự việc... (Lưu trên máy)"></textarea>
         <div style="display:flex; justify-content:space-between; width:100%">
           <span style="font-size:12px; color:#666; align-self:center">Dữ liệu chỉ lưu trên máy bạn</span>
           <button class="save-btn" onclick="if(confirm('Xóa hết ghi chú?')){document.getElementById('myNote').value='';localStorage.removeItem('userNote');}">Xóa trắng</button>
@@ -398,19 +415,20 @@ body.dark footer { background: var(--card-dark); }
     </div>
     <div class="group-content">
       
-      <!-- TẢI APP -->
+      <!-- PHẦN 1: TẢI APP -->
       <div class="section-title">📱 TẢI APP NHIỆM VỤ (VnDriver)</div>
       <a class="link-card" href="https://drive.google.com/file/d/1F5Ln5qr86FPn5zybBKha72jKkFyEVwKB/view?usp=drivesdk" target="_blank"><div class="link-left">Tải App Android (APK)</div></a>
       <a class="link-card" href="https://testflight.apple.com/join/ngwb0Mpe" target="_blank"><div class="link-left">Tải App iOS (TestFlight)</div></a>
 
-      <!-- DỊCH VỤ CÔNG -->
+      <!-- PHẦN 2: DỊCH VỤ CÔNG -->
       <div class="section-title">🚦 DỊCH VỤ CÔNG TRỰC TUYẾN</div>
       <a class="link-card" href="https://www.csgt.vn/tra-cuu-phuong-tien-vi-pham.html" target="_blank"><div class="link-left">🚨 Tra cứu Phạt Nguội (Cục CSGT)</div></a>
       <a class="link-card" href="https://dichvucong.gov.vn/p/home/dvc-thanh-toan-vi-pham-giao-thong.html" target="_blank"><div class="link-left">💸 Nộp phạt Vi phạm giao thông</div></a>
       <a class="link-card" href="https://dvc4.gplx.gov.vn/p/home/dvc-trang-chu.html" target="_blank"><div class="link-left">🆔 Đổi Giấy phép lái xe Online</div></a>
 
-      <!-- MỨC PHẠT 2025 -->
+      <!-- PHẦN 3: MỨC PHẠT 2025 -->
       <div class="section-title">🚫 TRA CỨU MỨC PHẠT 2025</div>
+      
       <div class="fine-cat-header">Nồng độ cồn</div>
       <div class="fine-item">
            <span class="fine-title">Mức 1 (Chưa vượt 50mg/100ml)</span>
@@ -472,7 +490,7 @@ body.dark footer { background: var(--card-dark); }
        </div>
 
        <!-- CHIA SẺ APP (ĐÃ CHUYỂN VÀO ĐÂY) -->
-       <div class="share-container">
+       <div class="footer-share">
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://letinhclover.github.io/jntdriver" alt="QR Code" class="qr-img">
           <br>
           <button class="share-btn-native" onclick="shareApp()">
@@ -524,6 +542,8 @@ function generateMapLinks() {
     const hubs = googleMapsData.filter(x => x.type !== 'GW');
 
     let html = '';
+    
+    // Render GW
     html += gws.map(item => `
         <a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer">
             <div class="link-left">
@@ -533,7 +553,11 @@ function generateMapLinks() {
             <span style="color: var(--primary);">📍</span>
         </a>
     `).join('');
+
+    // Dấu phân cách
     html += `<div style="border-top: 1px dashed #ccc; margin: 10px 15px;"></div>`;
+
+    // Render Hub
     html += hubs.map(item => `
         <a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer">
             <div class="link-left">
@@ -543,6 +567,7 @@ function generateMapLinks() {
             <span style="color: var(--primary);">📍</span>
         </a>
     `).join('');
+
     container.innerHTML = html;
 }
 generateMapLinks();
@@ -569,11 +594,20 @@ document.querySelectorAll('.group-header').forEach(header => {
     header.addEventListener('click', () => {
         const currentGroup = header.parentElement;
         const isOpen = currentGroup.classList.contains('open');
+
+        // Đóng TẤT CẢ các group khác
         document.querySelectorAll('.group').forEach(group => {
-            if (group !== currentGroup) group.classList.remove('open');
+            if (group !== currentGroup) {
+                group.classList.remove('open');
+            }
         });
-        if (isOpen) currentGroup.classList.remove('open');
-        else currentGroup.classList.add('open');
+
+        // Toggle group hiện tại
+        if (isOpen) {
+            currentGroup.classList.remove('open');
+        } else {
+            currentGroup.classList.add('open');
+        }
     });
 });
 
@@ -603,11 +637,9 @@ function parseInputFloat(id) {
 }
 function formatMoney(n) { return Math.round(n).toLocaleString('vi-VN') + ' VNĐ'; }
 
-// --- CHIA SẺ APP (WEB SHARE API) ---
+// --- CHIA SẺ NATIVE (SIMPLE LINK) ---
 async function shareApp() {
     const shareData = {
-        title: 'Link Tài Xế J&T Express',
-        text: 'App hỗ trợ anh em tài xế J&T: Tính dầu, Tính lương, Map kho...',
         url: 'https://letinhclover.github.io/jntdriver'
     };
 
@@ -620,7 +652,7 @@ async function shareApp() {
     }
 }
 
-// Hàm copy thủ công
+// Hàm copy thủ công (Simple Link)
 function copyLink() {
     const url = "https://letinhclover.github.io/jntdriver";
     var tempInput = document.createElement("input");
@@ -630,9 +662,9 @@ function copyLink() {
     tempInput.setSelectionRange(0, 99999);
     try {
         document.execCommand("copy");
-        alert("Đã sao chép Link! Hãy dán vào Zalo.");
+        alert("Đã sao chép Link!");
     } catch (e) {
-        alert("Không thể copy tự động. Bạn hãy copy link trên trình duyệt.");
+        // Silent fail
     }
     document.body.removeChild(tempInput);
 }
