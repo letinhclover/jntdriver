@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<!-- 1. XÁC MINH -->
+<!-- 1. XÁC MINH & CẤU HÌNH -->
 <meta name="google-site-verification" content="dE9NgLvppbsz9DsFv3CwhHBR8KNF9hiM5CDQ2Houyvc" />
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -133,7 +133,7 @@ button.btn-update { background: var(--edit) !important; }
 .salary-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; width: 94%; max-width: 580px; }
 .salary-col { display: flex; flex-direction: column; }
 .salary-col .calc-label { font-size: 13px; margin-top: 0; margin-bottom: 2px; text-align: center; }
-.salary-col .calc-input { text-align: center; padding: 10px 4px; font-weight: 500;}
+.salary-col .calc-input { text-align: center; padding: 10px 4px; font-weight: 500; }
 
 /* RESULT BOXES */
 .result-box, .result-box-ot {
@@ -385,7 +385,7 @@ body.dark footer { background: var(--card-dark); }
                  <input type="date" id="logDate" class="log-input">
              </div>
              <div class="log-row-2">
-                 <input type="number" id="logLiters" class="log-input" placeholder="Số Lít" inputmode="numeric" onfocus="this.select()" min="0">
+                 <input type="number" id="logLiters" class="log-input" placeholder="Số Lít" inputmode="decimal" onfocus="this.select()" min="0">
                  <input type="number" id="logOdo" class="log-input" placeholder="ODO Hiện tại" inputmode="numeric" onfocus="this.select()" min="0">
              </div>
         </div>
@@ -638,9 +638,14 @@ const salaryFields = ['ot_luongCanBan', 'ot_soNgayTrongThang', 'ot_soNgayChuNhat
 function loadSalarySettings() {
     salaryFields.forEach(id => {
         const saved = localStorage.getItem(id);
-        if (saved) document.getElementById(id).value = saved;
+        if (saved) {
+            const el = document.getElementById(id);
+            el.value = saved;
+            // Nếu là ô lương (có id chứa 'luong'), chạy định dạng ngay
+            if(id === 'ot_luongCanBan') formatInputMoney(el);
+        }
     });
-    // Gọi trigger input để format tiền nếu lưu dạng thô, nhưng thôi, để nguyên
+    // Không tính toán ở đây nữa, chỉ load dữ liệu
 }
 
 function saveSalarySettings() {
@@ -920,10 +925,12 @@ setToday('otLogDate'); // Gán ngày hiện tại (đã sửa lỗi)
 
 let otLogs = JSON.parse(localStorage.getItem('otLogs')) || [];
 let editOTIndex = -1;
-renderOTLogs();
 
-// ===> LOAD SALARY SETTINGS (QUAN TRỌNG: GỌI NGAY KHI LOAD TRANG) <===
+// *** QUAN TRỌNG: LOAD DỮ LIỆU CŨ TRƯỚC - RỒI MỚI TÍNH TOÁN ***
+// 1. Load các con số 31, 4 từ bộ nhớ lên ô input
 loadSalarySettings();
+// 2. Sau đó mới chạy hàm render (tính toán dựa trên số vừa load)
+renderOTLogs();
 
 function addOTLog() {
     const date = document.getElementById('otLogDate').value;
