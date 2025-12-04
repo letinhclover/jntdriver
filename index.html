@@ -357,7 +357,7 @@ body.dark footer { background: var(--card-dark); }
             <a href="tel:0903969713" class="contact-btn"><span class="name-contact">Phúc Hậu</span><span class="role-contact">GW6 (18h-3h)</span></a>
             <a href="tel:0332277821" class="contact-btn"><span class="name-contact">Minh Quang</span><span class="role-contact">GW5 (19h-4h)</span></a>
 
-            <div style="grid-column: 1/3; text-align: center; font-size: 0.9em; font-weight: 700; color: #007bff; border-top: 1px dashed #ccc; padding-top: 10px; margin-top: 10px;">BÌNH DƯƠNG - TÂY NINH 🔵</div>
+            <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 700; color: #007bff; border-top: 1px dashed #ccc; padding-top: 10px; margin-top: 10px;">BÌNH DƯƠNG - TÂY NINH 🔵</div>
              <a href="tel:0334457083" class="contact-btn"> <span class="name-contact">Quốc Anh</span><span class="role-contact">GW0 (21h-6h30)</span></a>
             <a href="tel:0962073741" class="contact-btn"> <span class="name-contact">Hồ Sỹ Tiến</span><span class="role-contact">GW0 (21h-6h)</span></a>
         </div>
@@ -375,13 +375,13 @@ body.dark footer { background: var(--card-dark); }
   <!-- 5. TÍNH DẦU & NHẬT KÝ -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
-      <span class="title">🛢 Nhật ký đổ dầu</span><span class="arrow">▶</span>
+      <span class="title">🛢 Tính Dầu & Nhật Ký ODO</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
       <div class="calc-content">
         
         <!-- NHẬT KÝ -->
-        <div class="section-title" style="margin-top:0">📒 NHẬT KÝ ĐỔ DẦU (GHI SỔ)</div>
+        <div class="section-title" style="margin-top:0">📒 NHẬT KÝ ODO (GHI SỔ)</div>
         
         <div class="odo-setup">
              <label class="calc-label" style="margin:0">📌 ODO Chốt Tháng Trước:</label>
@@ -444,7 +444,7 @@ body.dark footer { background: var(--card-dark); }
   <!-- 6. TÍNH LƯƠNG & NHẬT KÝ -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
-      <span class="title">💰 Nhật ký tăng ca & Tính lương</span><span class="arrow">▶</span>
+      <span class="title">💰 Lương & Nhật ký tăng ca</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
       <div class="calc-content">
@@ -615,6 +615,35 @@ if ('serviceWorker' in navigator) {
        .catch(err => console.log('SW failed', err));
    });
 }
+
+// --- AUTO SAVE SALARY SETTINGS (ĐOẠN CODE TỰ ĐỘNG LƯU) ---
+const salaryFields = ['ot_luongCanBan', 'ot_soNgayTrongThang', 'ot_soNgayChuNhat'];
+
+function loadSalarySettings() {
+    salaryFields.forEach(id => {
+        const saved = localStorage.getItem(id);
+        if (saved) document.getElementById(id).value = saved;
+    });
+    // Tính lại tiền khi load trang
+    // Lưu ý: Cần đảm bảo các element hiển thị tổng tiền tồn tại
+    // Vì hàm calculateOTMoney cần giá trị từ DOM, ta gọi nó sau khi render log
+}
+
+function saveSalarySettings() {
+    salaryFields.forEach(id => {
+        const val = document.getElementById(id).value;
+        localStorage.setItem(id, val);
+    });
+    // Tính lại tiền ngay khi nhập
+    let h15 = parseFloat(document.getElementById('sum15').innerText) || 0;
+    let h20 = parseFloat(document.getElementById('sum20').innerText) || 0;
+    calculateOTMoney(h15, h20);
+}
+
+// Gắn sự kiện lắng nghe nhập liệu
+salaryFields.forEach(id => {
+    document.getElementById(id).addEventListener('input', saveSalarySettings);
+});
 
 // --- MAPS ---
 const googleMapsData = [
@@ -873,6 +902,9 @@ document.getElementById('otLogDate').valueAsDate = new Date();
 let otLogs = JSON.parse(localStorage.getItem('otLogs')) || [];
 let editOTIndex = -1;
 renderOTLogs();
+
+// ===> LOAD SALARY SETTINGS (QUAN TRỌNG: GỌI NGAY KHI LOAD TRANG) <===
+loadSalarySettings();
 
 function addOTLog() {
     const date = document.getElementById('otLogDate').value;
