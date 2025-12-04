@@ -24,18 +24,6 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://letinhclover.github.io/jntdriver">
 
-<script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Link Tài Xế J&T Express",
-    "url": "https://letinhclover.github.io/jntdriver",
-    "publisher": { "@type": "Person", "name": "Lê Tỉnh" }
-  }
-]
-</script>
-
 <style>
 /* CSS GIAO DIỆN */
 :root {
@@ -126,7 +114,7 @@ body.dark .contact-note { color: var(--text-dark); }
 .input-group-calc { width: 94%; max-width: 580px; }
 .calc-label { display: block; margin-top: 8px; font-weight: 600; font-size: 15px; }
 .calc-input {
-  width: 100%; padding: 10px; margin-top: 4px;
+  width: 100%; padding: 12px; margin-top: 4px;
   border: 1px solid #ccc; border-radius: 8px; font-size: 16px;
   background: var(--bg-light); color: var(--text-light);
 }
@@ -145,7 +133,7 @@ button.btn-update { background: var(--edit) !important; }
 .salary-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; width: 94%; max-width: 580px; }
 .salary-col { display: flex; flex-direction: column; }
 .salary-col .calc-label { font-size: 13px; margin-top: 0; margin-bottom: 2px; text-align: center; }
-.salary-col .calc-input { text-align: center; padding: 8px 4px; }
+.salary-col .calc-input { text-align: center; padding: 10px 4px; font-weight: 500;}
 
 /* RESULT BOXES */
 .result-box, .result-box-ot {
@@ -201,9 +189,9 @@ body.dark .log-input-container { background: rgba(255,255,255,0.05); border-colo
 .log-row-1 { width: 100%; margin-bottom: 8px; } 
 .log-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } 
 
-.log-input { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; }
+.log-input { padding: 12px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; }
 body.dark .log-input { background: #2b2b2b; border-color: #555; color: #fff; }
-.log-select { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; background: #fff; }
+.log-select { padding: 12px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; background: #fff; }
 body.dark .log-select { background: #2b2b2b; color: #fff; border-color: #555; }
 
 .log-list { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
@@ -229,7 +217,7 @@ body.dark .log-summary { background: #312121; border-color: rgba(255,255,255,0.2
   width: 96%; height: 120px; padding: 10px;
   border: 1px solid #ccc; border-radius: 8px;
   font-family: inherit; margin: 10px auto; display: block;
-  background: var(--bg-light); color: var(--text-light);
+  background: var(--bg-light); color: var(--text-light); font-size: 16px;
 }
 body.dark .note-area { background: #2b2b2b; color: var(--text-dark); border-color: #555; }
 .save-btn { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
@@ -386,7 +374,7 @@ body.dark footer { background: var(--card-dark); }
         <div class="odo-setup">
              <label class="calc-label" style="margin:0">📌 ODO Chốt Tháng Trước:</label>
              <div style="display:flex; gap:8px; margin-top:8px;">
-                 <input type="number" id="closingOdo" class="calc-input" placeholder="VD: 22000" onfocus="this.select()" min="0">
+                 <input type="number" id="closingOdo" class="calc-input" placeholder="VD: 22000" inputmode="numeric" onfocus="this.select()" min="0">
                  <button class="save-btn" onclick="saveClosingOdo()" style="width:90px">Lưu</button>
              </div>
              <div id="savedOdoText" style="font-size:14px; color:var(--accent); margin-top:5px; font-style:italic; font-weight:500"></div>
@@ -397,8 +385,8 @@ body.dark footer { background: var(--card-dark); }
                  <input type="date" id="logDate" class="log-input">
              </div>
              <div class="log-row-2">
-                 <input type="number" id="logLiters" class="log-input" placeholder="Số Lít" onfocus="this.select()" min="0">
-                 <input type="number" id="logOdo" class="log-input" placeholder="ODO Hiện tại" onfocus="this.select()" min="0">
+                 <input type="number" id="logLiters" class="log-input" placeholder="Số Lít" inputmode="numeric" onfocus="this.select()" min="0">
+                 <input type="number" id="logOdo" class="log-input" placeholder="ODO Hiện tại" inputmode="numeric" onfocus="this.select()" min="0">
              </div>
         </div>
         <button class="calc-submit" id="btnAddFuel" onclick="addFuelLog()">➕ Thêm Nhật Ký</button>
@@ -423,15 +411,15 @@ body.dark footer { background: var(--card-dark); }
         </div>
         <div class="input-group-calc">
           <label class="calc-label">Quãng đường đã đi (km) :</label>
-          <input type="text" id="km" placeholder="VD: 1000" class="calc-input" onfocus="this.select()" min="0">
+          <input type="text" id="km" placeholder="VD: 1000" inputmode="decimal" class="calc-input" onfocus="this.select()" min="0">
         </div>
         <div class="input-group-calc">
           <label class="calc-label">Lượng dầu thực tế (lít):</label>
-          <input type="text" id="thuc" placeholder="VD: 130" class="calc-input" onfocus="this.select()" min="0">
+          <input type="text" id="thuc" placeholder="VD: 130" inputmode="decimal" class="calc-input" onfocus="this.select()" min="0">
         </div>
         <div class="input-group-calc">
           <label class="calc-label">Giá dầu (VND/lít):</label>
-          <input type="text" id="gia" placeholder="VD: 19000" inputmode="numeric" class="calc-input" onfocus="this.select()" min="0">
+          <input type="text" id="gia" placeholder="VD: 19.000" inputmode="numeric" class="calc-input" onfocus="this.select()" oninput="formatInputMoney(this)" min="0">
         </div>
         <button class="calc-submit" onclick="tinhDau()">TÍNH KẾT QUẢ</button>
         <div id="resultDau" class="result-box-ot" style="display:none;">
@@ -452,7 +440,7 @@ body.dark footer { background: var(--card-dark); }
           <div class="salary-row">
               <div class="salary-col">
                   <label class="calc-label">Lương CB</label>
-                  <input type="text" id="ot_luongCanBan" value="5.007.600" class="calc-input" inputmode="numeric" onfocus="this.select()" min="0">
+                  <input type="text" id="ot_luongCanBan" value="5.007.600" class="calc-input" inputmode="numeric" onfocus="this.select()" oninput="formatInputMoney(this)" min="0">
               </div>
               <div class="salary-col">
                   <label class="calc-label">Ngày công</label>
@@ -475,7 +463,7 @@ body.dark footer { background: var(--card-dark); }
                      <option value="1.5">Tăng ca thường</option>
                      <option value="2.0">Tăng ca OFF</option>
                  </select>
-                 <input type="number" id="otLogHours" class="log-input" placeholder="Số giờ (VD: 8)" onfocus="this.select()" min="0">
+                 <input type="number" id="otLogHours" class="log-input" placeholder="Số giờ (VD: 8)" inputmode="decimal" onfocus="this.select()" min="0">
              </div>
           </div>
           <button class="calc-submit" id="btnAddOT" onclick="addOTLog()">➕ Thêm Nhật Ký</button>
@@ -498,11 +486,11 @@ body.dark footer { background: var(--card-dark); }
           <div class="section-title" style="margin-top:25px">⚡ TÍNH NHANH (DỰ TÍNH)</div>
           <div class="input-group-calc">
               <label class="calc-label">Tổng Giờ Thường (1.5x):</label>
-              <input type="text" id="ot_gioTCTuong" placeholder="Nhập giờ..." class="calc-input" onfocus="this.select()" min="0">
+              <input type="text" id="ot_gioTCTuong" placeholder="Nhập giờ..." inputmode="decimal" class="calc-input" onfocus="this.select()" min="0">
           </div>
           <div class="input-group-calc">
               <label class="calc-label">Tổng Giờ OFF (2.0x):</label>
-              <input type="text" id="ot_gioTCNghi" placeholder="Nhập giờ..." class="calc-input" onfocus="this.select()" min="0">
+              <input type="text" id="ot_gioTCNghi" placeholder="Nhập giờ..." inputmode="decimal" class="calc-input" onfocus="this.select()" min="0">
           </div>
           <button onclick="tinhLuong()" class="calc-submit">TÍNH KẾT QUẢ</button>
           <div class="result-box-ot" id="ketQuaLuong" style="display:none;">
@@ -616,7 +604,35 @@ if ('serviceWorker' in navigator) {
    });
 }
 
-// --- AUTO SAVE SALARY SETTINGS (ĐOẠN CODE TỰ ĐỘNG LƯU) ---
+// --- HÀM LẤY NGÀY HIỆN TẠI (THEO GIỜ VIỆT NAM) ---
+function setToday(elementId) {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const todayStr = `${year}-${month}-${day}`;
+    const el = document.getElementById(elementId);
+    if(el) el.value = todayStr;
+}
+
+// --- HÀM ĐỊNH DẠNG TIỀN KHI NHẬP (VD: 5.000.000) ---
+function formatInputMoney(el) {
+    // 1. Lấy giá trị hiện tại và xóa hết ký tự không phải số
+    let val = el.value.replace(/\D/g, ''); 
+    // 2. Nếu rỗng thì thoát
+    if(val === '') { el.value = ''; return; }
+    // 3. Định dạng lại có dấu chấm
+    el.value = Number(val).toLocaleString('vi-VN');
+}
+
+// --- HÀM LẤY SỐ TỪ INPUT (XÓA DẤU CHẤM TRƯỚC KHI TÍNH) ---
+function parseMoney(id) {
+    let val = document.getElementById(id).value;
+    // Xóa dấu chấm phân cách ngàn, chuyển dấu phẩy thập phân thành chấm (nếu có)
+    return parseFloat(val.replace(/\./g, '').replace(/,/g, '.')) || 0;
+}
+
+// --- AUTO SAVE SALARY SETTINGS ---
 const salaryFields = ['ot_luongCanBan', 'ot_soNgayTrongThang', 'ot_soNgayChuNhat'];
 
 function loadSalarySettings() {
@@ -624,9 +640,7 @@ function loadSalarySettings() {
         const saved = localStorage.getItem(id);
         if (saved) document.getElementById(id).value = saved;
     });
-    // Tính lại tiền khi load trang
-    // Lưu ý: Cần đảm bảo các element hiển thị tổng tiền tồn tại
-    // Vì hàm calculateOTMoney cần giá trị từ DOM, ta gọi nó sau khi render log
+    // Gọi trigger input để format tiền nếu lưu dạng thô, nhưng thôi, để nguyên
 }
 
 function saveSalarySettings() {
@@ -634,7 +648,11 @@ function saveSalarySettings() {
         const val = document.getElementById(id).value;
         localStorage.setItem(id, val);
     });
-    // Tính lại tiền ngay khi nhập
+    // Tự động tính lại tiền khi thay đổi thông số
+    reCalcSalaryAuto();
+}
+
+function reCalcSalaryAuto() {
     let h15 = parseFloat(document.getElementById('sum15').innerText) || 0;
     let h20 = parseFloat(document.getElementById('sum20').innerText) || 0;
     calculateOTMoney(h15, h20);
@@ -719,11 +737,7 @@ function evaluateExpression(val) {
     let clean = val.toString().replace(/,/g, '.').replace(/[^\d.+-x*]/gi, '').replace(/x/gi, '*');
     try { return Function('"use strict";return (' + clean + ')')() || 0; } catch { return 0; }
 }
-function parseInputFloat(id) { 
-    let val = document.getElementById(id).value;
-    if(id === 'ot_luongCanBan') return parseFloat(val.replace(/\./g, '').replace(/,/g, '')) || 0;
-    return parseFloat(val.replace(/,/g, '.')) || 0; 
-}
+
 function formatMoney(n) { return Math.round(n).toLocaleString('vi-VN') + ' VNĐ'; }
 
 async function shareApp() {
@@ -746,10 +760,11 @@ fetch("https://api.counterapi.dev/v1/letinhclover.github.io/jntdriver/up")
 
 // --- TÍNH DẦU ---
 window.tinhDau = function() {
-  const khoan = parseInputFloat('khoan');
-  const km = evaluateExpression(document.getElementById('km').value);
-  const thuc = evaluateExpression(document.getElementById('thuc').value);
-  const gia = parseInputFloat('gia');
+  const khoan = parseMoney('khoan'); // Dùng parseMoney để xử lý số có thể có dấu chấm
+  const km = parseMoney('km');
+  const thuc = parseMoney('thuc');
+  const gia = parseMoney('gia');
+  
   const resultDiv = document.getElementById('resultDau');
   resultDiv.style.display = 'block';
 
@@ -780,7 +795,8 @@ window.tinhDau = function() {
 }
 
 // --- NHẬT KÝ DẦU ---
-document.getElementById('logDate').valueAsDate = new Date();
+setToday('logDate'); // Gán ngày hiện tại (đã sửa lỗi)
+
 let closingOdo = parseFloat(localStorage.getItem('closingOdo')) || 0;
 if(closingOdo > 0) {
     document.getElementById('closingOdo').value = closingOdo;
@@ -871,11 +887,13 @@ function renderLogs() {
 
 // --- TÍNH LƯƠNG ---
 window.tinhLuong = function() {
-    const luongCB = parseInputFloat('ot_luongCanBan');
-    const ngayThang = parseInputFloat('ot_soNgayTrongThang');
-    const ngayCN = parseInputFloat('ot_soNgayChuNhat');
-    const gio15 = evaluateExpression(document.getElementById('ot_gioTCTuong').value);
-    const gio20 = evaluateExpression(document.getElementById('ot_gioTCNghi').value);
+    const luongCB = parseMoney('ot_luongCanBan');
+    const ngayThang = parseMoney('ot_soNgayTrongThang');
+    const ngayCN = parseMoney('ot_soNgayChuNhat');
+    
+    // Giờ tăng ca cũng có thể nhập số lẻ, dùng parseMoney cho an toàn
+    const gio15 = parseMoney('ot_gioTCTuong');
+    const gio20 = parseMoney('ot_gioTCNghi');
     
     document.getElementById('ketQuaLuong').style.display = 'block';
     
@@ -894,11 +912,12 @@ window.tinhLuong = function() {
     document.getElementById('tienTCNghi').innerText = formatMoney(tien20);
     document.getElementById('tongTienTangCa').innerText = formatMoney(tien15 + tien20);
     
-    calculateOTMoney(parseFloat(document.getElementById('sum15').innerText), parseFloat(document.getElementById('sum20').innerText));
+    reCalcSalaryAuto();
 }
 
 // --- NHẬT KÝ TĂNG CA ---
-document.getElementById('otLogDate').valueAsDate = new Date();
+setToday('otLogDate'); // Gán ngày hiện tại (đã sửa lỗi)
+
 let otLogs = JSON.parse(localStorage.getItem('otLogs')) || [];
 let editOTIndex = -1;
 renderOTLogs();
@@ -962,7 +981,6 @@ function renderOTLogs() {
         const typeLabel = log.type === 1.5 ? 'Tăng ca thường' : 'Tăng ca OFF';
         
         const row = document.createElement('tr');
-        // Áp dụng class màu cho cả text loại và giờ
         row.innerHTML = `<td>${shortDate}</td><td class="${typeClass}" style="font-weight:bold">${typeLabel}</td><td class="${typeClass}" style="font-weight:bold">${fmt(log.hours)}</td><td><button class="log-action-btn btn-edit" onclick="editOTLog(${index})">✎</button><button class="log-action-btn btn-del" onclick="deleteOTLog(${index})">×</button></td>`;
         list.appendChild(row);
     });
@@ -972,9 +990,10 @@ function renderOTLogs() {
 }
 
 function calculateOTMoney(h15, h20) {
-    const luongCB = parseInputFloat('ot_luongCanBan');
-    const ngayCong = parseInputFloat('ot_soNgayTrongThang');
-    const ngayCN = parseInputFloat('ot_soNgayChuNhat');
+    // Dùng hàm parseMoney mới để xử lý số có dấu chấm
+    const luongCB = parseMoney('ot_luongCanBan');
+    const ngayCong = parseMoney('ot_soNgayTrongThang');
+    const ngayCN = parseMoney('ot_soNgayChuNhat');
     
     if(luongCB > 0 && ngayCong > 0) {
         const ngayChuan = ngayCong - ngayCN;
