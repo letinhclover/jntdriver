@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<!-- 1. XÁC MINH & CẤU HÌNH -->
+<!-- 1. XÁC MINH -->
 <meta name="google-site-verification" content="dE9NgLvppbsz9DsFv3CwhHBR8KNF9hiM5CDQ2Houyvc" />
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,20 +10,17 @@
 
 <!-- 2. PWA & ICONS -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ff0033">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="application-name" content="Link Tài Xế J&T">
-<meta name="apple-mobile-web-app-title" content="J&T Driver Link">
 
 <!-- 3. FONTS & SEO -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<meta name="description" content="App hỗ trợ tài xế J&T: Link nội bộ, bản đồ kho, tính dầu, tính lương, tra cứu phạt nguội.">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<meta name="description" content="Link tài xế J&T Express: Tổng hợp Link nội bộ, Nhóm Zalo, Tính lương, Dầu, Map kho. Tất cả trong một.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://letinhclover.github.io/jntdriver">
 
@@ -40,13 +37,16 @@
 </script>
 
 <style>
-/* --- CSS GLOBAL --- */
+/* CSS GIAO DIỆN */
 :root {
   --bg-light: #f8fafc; --bg-dark: #111214;
   --text-light: #0b0b0b; --text-dark: #f5f5f5;
   --primary: #CC0000; --accent: #198845;
   --card: #ffffff; --card-dark: #1d1f21;
   --highlight-bg: #fff3f2;
+  --edit: #f39c12;
+  --blue-text: #007bff; 
+  --red-text: #d32f2f;
 }
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -54,7 +54,7 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0; background: var(--bg-light); color: var(--text-light);
   transition: background .25s, color .25s;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent; font-size: 15px; line-height: 1.4;
 }
 body.dark { background: var(--bg-dark); color: var(--text-dark); }
 
@@ -72,7 +72,7 @@ header {
 
 .container { max-width: 720px; margin: 10px auto; padding: 10px; }
 
-/* --- GROUPS --- */
+/* GROUP STYLES */
 .group {
   margin-bottom: 14px; border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,.08);
@@ -92,7 +92,7 @@ body.dark .group { box-shadow: 0 2px 6px rgba(0,0,0,.3); background: var(--card-
 .group.open .group-content { display: block; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* --- LINKS & BUTTONS --- */
+/* LINK CARDS */
 a.link-card {
   display: flex; justify-content: space-between; align-items: center;
   text-decoration: none; color: inherit;
@@ -102,6 +102,7 @@ a.link-card {
 a.link-card:active { transform: scale(0.98); background: rgba(0,0,0,0.08); }
 body.dark a.link-card { background: rgba(255,255,255,0.05); }
 
+/* CONTACT GRID */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px 12px; }
 a.contact-btn {
   display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -120,7 +121,7 @@ body.dark a.contact-btn { background: rgba(255,255,255,0.05); color: var(--text-
 }
 body.dark .contact-note { color: var(--text-dark); }
 
-/* --- CALCULATOR --- */
+/* INPUTS & BUTTONS */
 .calc-content { padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .input-group-calc { width: 94%; max-width: 580px; }
 .calc-label { display: block; margin-top: 8px; font-weight: 600; font-size: 15px; }
@@ -130,18 +131,23 @@ body.dark .contact-note { color: var(--text-dark); }
   background: var(--bg-light); color: var(--text-light);
 }
 body.dark .calc-input { border-color: #555; background: #2b2b2b; color: var(--text-dark); }
+
 button.calc-submit {
   width: 92%; max-width: 600px; padding: 12px;
   border-radius: 10px; font-size: 16px; font-weight: 700;
-  margin-top: 10px; border: none; background: var(--primary); color: #fff; cursor: pointer;
+  margin-top: 15px;
+  border: none; background: var(--primary); color: #fff; cursor: pointer;
 }
 button.calc-submit:active { opacity: .9; transform: translateY(1px); }
+button.btn-update { background: var(--edit) !important; }
 
+/* LAYOUT 3 CỘT CHO LƯƠNG */
 .salary-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; width: 94%; max-width: 580px; }
 .salary-col { display: flex; flex-direction: column; }
 .salary-col .calc-label { font-size: 13px; margin-top: 0; margin-bottom: 2px; text-align: center; }
 .salary-col .calc-input { text-align: center; padding: 8px 4px; }
 
+/* RESULT BOXES */
 .result-box, .result-box-ot {
   width: 92%; max-width: 600px; margin-top: 10px; padding: 12px;
   border-radius: 10px; font-size: 15px; line-height: 1.5;
@@ -152,11 +158,73 @@ body.dark .result-box { background: rgba(255,255,255,0.05); color: var(--text-da
 body.dark .result-box-ot { background-color: #312121; border: 1px solid rgba(255,255,255,0.1); }
 
 .result-box-ot h3 { color: var(--primary); font-size: 1.1em; margin: 0 0 8px 0; border-bottom: 1px dashed #ccc; padding-bottom: 5px; text-align: center; }
+
+/* GRID KẾT QUẢ LƯƠNG */
+.result-grid-row {
+    display: grid;
+    grid-template-columns: 45% 15% 40%; 
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    padding-bottom: 6px;
+}
+body.dark .result-grid-row { border-color: rgba(255,255,255,0.1); }
+
+.grid-label { font-weight: 700; text-align: left; font-size: 1.0em; }
+.grid-hours { font-weight: 700; text-align: center; font-size: 1.1em; } 
+.grid-money { font-weight: 700; text-align: right; font-size: 1.1em; }
+
+/* MÀU SẮC TĂNG CA */
+.text-blue { color: var(--blue-text); }
+body.dark .text-blue { color: #4da3ff; }
+.text-red { color: var(--red-text); }
+body.dark .text-red { color: #ff6659; }
+
 .result-item { display: flex; justify-content: space-between; margin: 6px 0; }
-.result-item-total { font-size: 1.05em; font-weight: 700; border-top: 2px solid #ff9788; padding-top: 8px; margin-top: 8px; color: var(--primary); }
+.result-item-total { font-size: 1.05em; font-weight: 700; border-top: 2px solid #ff9788; padding-top: 8px; margin-top: 8px; color: var(--primary); display: flex; justify-content: space-between; align-items: center; }
 .ot-note { font-size: 0.85em; font-style: italic; opacity: 0.8; margin-top: 10px; border-top: 1px solid #ddd; padding-top: 5px; text-align: center; }
 
-/* --- NOTEBOOK --- */
+/* LOGBOOK STYLE */
+.odo-setup {
+    background: rgba(0,0,0,0.03); padding: 10px; 
+    border-radius: 8px; border: 1px solid var(--accent);
+    margin-bottom: 10px; width: 100%;
+}
+body.dark .odo-setup { background: rgba(25, 136, 69, 0.1); }
+
+.log-input-container {
+    width: 100%; background: rgba(0,0,0,0.02);
+    padding: 8px; border-radius: 8px; border: 1px solid #eee;
+}
+body.dark .log-input-container { background: rgba(255,255,255,0.05); border-color: #333; }
+
+.log-row-1 { width: 100%; margin-bottom: 8px; } 
+.log-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } 
+
+.log-input { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; }
+body.dark .log-input { background: #2b2b2b; border-color: #555; color: #fff; }
+.log-select { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; background: #fff; }
+body.dark .log-select { background: #2b2b2b; color: #fff; border-color: #555; }
+
+.log-list { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+.log-list th { background: rgba(0,0,0,0.05); padding: 8px 4px; text-align: left; font-size: 12px; color: var(--primary); }
+body.dark .log-list th { background: rgba(255,255,255,0.1); }
+.log-list td { border-bottom: 1px solid rgba(0,0,0,0.1); padding: 10px 4px; vertical-align: middle; }
+body.dark .log-list td { border-bottom: 1px solid rgba(255,255,255,0.3); } 
+
+.log-action-btn { font-size: 16px; border: none; background: none; cursor: pointer; margin-left: 8px; }
+.btn-edit { color: var(--edit); }
+.btn-del { color: #999; }
+
+.log-summary {
+    background: var(--highlight-bg); border: 1px dashed var(--primary);
+    border-radius: 8px; padding: 10px; margin-top: 15px; width: 100%;
+    font-size: 14px;
+}
+body.dark .log-summary { background: #312121; border-color: rgba(255,255,255,0.2); }
+.log-summary div { margin-bottom: 4px; display: flex; justify-content: space-between; }
+
+/* NOTEBOOK STYLE */
 .note-area {
   width: 96%; height: 120px; padding: 10px;
   border: 1px solid #ccc; border-radius: 8px;
@@ -166,21 +234,7 @@ body.dark .result-box-ot { background-color: #312121; border: 1px solid rgba(255
 body.dark .note-area { background: #2b2b2b; color: var(--text-dark); border-color: #555; }
 .save-btn { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-/* --- FINES --- */
-.fine-cat-header {
-    background: rgba(0,0,0,0.05); padding: 8px 12px;
-    font-weight: bold; font-size: 1.1em; color: #333;
-    border-left: 4px solid var(--primary); margin-top: 15px;
-}
-body.dark .fine-cat-header { background: rgba(255,255,255,0.1); color: #fff; }
-
-.fine-item { padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.05); }
-.fine-title { font-weight: 700; color: var(--primary); display: block; margin-bottom: 4px; }
-.fine-money { color: var(--accent); font-weight: bold; }
-.fine-extra { font-size: 0.9em; font-style: italic; opacity: 0.9; color: #d35400; }
-body.dark .fine-extra { color: #e67e22; }
-
-/* --- SECTION DIVIDER --- */
+/* SECTION DIVIDER */
 .section-title {
     padding: 10px 10px 5px 10px; font-weight: bold; color: var(--primary); 
     border-bottom: 1px solid rgba(0,0,0,0.1); margin: 15px 10px 5px 10px;
@@ -188,25 +242,15 @@ body.dark .fine-extra { color: #e67e22; }
 }
 body.dark .section-title { border-color: rgba(255,255,255,0.1); }
 
-/* --- QR SHARE (ĐÃ FIX) --- */
-.footer-share {
-    text-align: center; padding: 15px 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
+/* QR SHARE */
+.qr-container { text-align: center; padding: 10px; margin-top:10px;}
 .qr-img { 
     width: 160px; height: 160px; 
     mix-blend-mode: multiply;
     margin-bottom: 10px;
-    /* Fix cho Dark Mode: Thêm nền trắng + viền */
-    background-color: #fff; 
-    border: 5px solid #fff; 
-    border-radius: 8px;
+    background-color: #fff; border: 5px solid #fff; border-radius: 8px;
 }
-/* Ở dark mode, QR vẫn có nền trắng để dễ quét */
-body.dark .qr-img { 
-    mix-blend-mode: normal; 
-    border: 4px solid #fff;
-}
+body.dark .qr-img { mix-blend-mode: normal; border: 4px solid #fff; }
 
 .share-btn-native {
     background: #007bff; color: white; border: none;
@@ -217,6 +261,19 @@ body.dark .qr-img {
     transition: transform 0.1s;
 }
 .share-btn-native:active { transform: scale(0.95); }
+
+/* INTRO */
+.intro-box {
+    padding: 15px; margin: 10px 5px;
+    font-size: 0.95em; color: #444; line-height: 1.6; text-align: justify;
+    background: rgba(0,0,0,0.02); border-radius: 8px; border-left: 3px solid #ccc;
+}
+body.dark .intro-box { color: #ccc; background: rgba(255,255,255,0.05); }
+
+.author-box {
+    text-align: center; font-size: 0.9em; color: var(--text-light); margin-top: 20px; border-top:1px dashed #ccc; padding-top:15px;
+}
+body.dark .author-box { color: var(--text-dark); }
 
 footer { padding: 15px; text-align: center; background: var(--card); border-top: 1px solid rgba(0,0,0,.04); margin-top: 20px; }
 body.dark footer { background: var(--card-dark); }
@@ -300,11 +357,6 @@ body.dark footer { background: var(--card-dark); }
             <a href="tel:0903969713" class="contact-btn"><span class="name-contact">Phúc Hậu</span><span class="role-contact">GW6 (18h-3h)</span></a>
             <a href="tel:0332277821" class="contact-btn"><span class="name-contact">Minh Quang</span><span class="role-contact">GW5 (19h-4h)</span></a>
 
-            <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(128, 0, 128, 0.15); color: purple; border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA ĐÊM (21h - 6h30) 🟣</div>
-            <a href="tel:0374749130" class="contact-btn"><span class="name-contact">Đào Đức Đạt</span><span class="role-contact">GW0 (21h-6h)</span></a>
-            <a href="tel:0947550239" class="contact-btn"><span class="name-contact">Quốc Trung</span><span class="role-contact">GW0 (21h-6h)</span></a>
-            <a href="tel:0369702372" class="contact-btn"><span class="name-contact">Nhật Quang</span><span class="role-contact">GW3 (21h-6h)</span></a>
-
             <div style="grid-column: 1/3; text-align: center; font-size: 0.9em; font-weight: 700; color: #007bff; border-top: 1px dashed #ccc; padding-top: 10px; margin-top: 10px;">BÌNH DƯƠNG - TÂY NINH 🔵</div>
              <a href="tel:0334457083" class="contact-btn"> <span class="name-contact">Quốc Anh</span><span class="role-contact">GW0 (21h-6h30)</span></a>
             <a href="tel:0962073741" class="contact-btn"> <span class="name-contact">Hồ Sỹ Tiến</span><span class="role-contact">GW0 (21h-6h)</span></a>
@@ -320,184 +372,227 @@ body.dark footer { background: var(--card-dark); }
     <div class="group-content" id="mapListContainer"></div>
   </div>
 
-  <!-- 5. TÍNH DẦU -->
+  <!-- 5. TÍNH DẦU & NHẬT KÝ -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
-      <span class="title">🛢 Tính lượng dầu xe tải</span><span class="arrow">▶</span>
+      <span class="title">🛢 Nhật ký đổ dầu</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
       <div class="calc-content">
+        
+        <!-- NHẬT KÝ -->
+        <div class="section-title" style="margin-top:0">📒 NHẬT KÝ ĐỔ DẦU (GHI SỔ)</div>
+        
+        <div class="odo-setup">
+             <label class="calc-label" style="margin:0">📌 ODO Chốt Tháng Trước:</label>
+             <div style="display:flex; gap:8px; margin-top:8px;">
+                 <input type="number" id="closingOdo" class="calc-input" placeholder="VD: 22000" onfocus="this.select()" min="0">
+                 <button class="save-btn" onclick="saveClosingOdo()" style="width:90px">Lưu</button>
+             </div>
+             <div id="savedOdoText" style="font-size:14px; color:var(--accent); margin-top:5px; font-style:italic; font-weight:500"></div>
+        </div>
+
+        <div class="log-input-container">
+             <div class="log-row-1">
+                 <input type="date" id="logDate" class="log-input">
+             </div>
+             <div class="log-row-2">
+                 <input type="number" id="logLiters" class="log-input" placeholder="Số Lít" onfocus="this.select()" min="0">
+                 <input type="number" id="logOdo" class="log-input" placeholder="ODO Hiện tại" onfocus="this.select()" min="0">
+             </div>
+        </div>
+        <button class="calc-submit" id="btnAddFuel" onclick="addFuelLog()">➕ Thêm Nhật Ký</button>
+        <button class="calc-submit" id="btnCancelFuel" onclick="cancelFuelEdit()" style="background:#7f8c8d; display:none; margin-top:8px">Hủy Sửa</button>
+
+        <table class="log-list" id="fuelLogList"></table>
+
+        <div class="log-summary">
+            <div>Đã chạy: <span id="totalKm" class="result-value">0 km</span></div>
+            <div>Đã đổ: <span id="totalLiters" class="result-value">0 Lít</span></div>
+            <div style="border-top:1px dashed #999; margin-top:8px; padding-top:8px; color:var(--primary); font-weight:700; text-align:center">
+                Tiêu hao trung bình: <span id="avgCons" style="font-size:1.2em">0</span> Lít/100km
+            </div>
+        </div>
+        <button class="save-btn" style="background:#555; width:100%; margin-top:15px; padding:12px" onclick="resetFuelMonth()">🗑️ Qua tháng mới (Xóa hết)</button>
+
+        <!-- TÍNH NHANH -->
+        <div class="section-title" style="margin-top:25px">⚡ TÍNH NHANH (DỰ TÍNH)</div>
         <div class="input-group-calc">
           <label class="calc-label">Mức khoán (lít/100 km):</label>
-          <input type="text" id="khoan" placeholder="VD: 14" inputmode="decimal" class="calc-input">
+          <input type="text" id="khoan" placeholder="VD: 14" inputmode="decimal" class="calc-input" onfocus="this.select()" min="0">
         </div>
         <div class="input-group-calc">
           <label class="calc-label">Quãng đường đã đi (km) :</label>
-          <input type="text" id="km" placeholder="VD: 1000" class="calc-input">
+          <input type="text" id="km" placeholder="VD: 1000" class="calc-input" onfocus="this.select()" min="0">
         </div>
         <div class="input-group-calc">
           <label class="calc-label">Lượng dầu thực tế (lít):</label>
-          <input type="text" id="thuc" placeholder="VD: 130 hoặc 40+45+45" class="calc-input">
+          <input type="text" id="thuc" placeholder="VD: 130" class="calc-input" onfocus="this.select()" min="0">
         </div>
         <div class="input-group-calc">
           <label class="calc-label">Giá dầu (VND/lít):</label>
-          <input type="text" id="gia" placeholder="VD: 19000" inputmode="numeric" class="calc-input">
+          <input type="text" id="gia" placeholder="VD: 19000" inputmode="numeric" class="calc-input" onfocus="this.select()" min="0">
         </div>
-        <button class="calc-submit" onclick="tinhDau()">TÍNH KẾT QUẢ DẦU</button>
-        <div id="resultDau" class="result-box" style="display:none;"></div>
+        <button class="calc-submit" onclick="tinhDau()">TÍNH KẾT QUẢ</button>
+        <div id="resultDau" class="result-box-ot" style="display:none;">
+             <!-- KẾT QUẢ DẦU HIỆN Ở ĐÂY -->
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 6. TÍNH LƯƠNG -->
+  <!-- 6. TÍNH LƯƠNG & NHẬT KÝ -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
-      <span class="title">💰 Tính tiền tăng ca</span><span class="arrow">▶</span>
+      <span class="title">💰 Nhật ký tăng ca & Tính lương</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
       <div class="calc-content">
+          <!-- CÀI ĐẶT LƯƠNG -->
           <div class="salary-row">
               <div class="salary-col">
                   <label class="calc-label">Lương CB</label>
-                  <input type="text" id="ot_luongCanBan" value="5.007.600" class="calc-input" inputmode="numeric">
+                  <input type="text" id="ot_luongCanBan" value="5.007.600" class="calc-input" inputmode="numeric" onfocus="this.select()" min="0">
               </div>
               <div class="salary-col">
                   <label class="calc-label">Ngày công</label>
-                  <input type="text" id="ot_soNgayTrongThang" value="30" class="calc-input" inputmode="numeric">
+                  <input type="text" id="ot_soNgayTrongThang" value="30" class="calc-input" inputmode="numeric" onfocus="this.select()" min="0">
               </div>
               <div class="salary-col">
                   <label class="calc-label">Chủ nhật</label>
-                  <input type="text" id="ot_soNgayChuNhat" value="4" class="calc-input" inputmode="numeric">
+                  <input type="text" id="ot_soNgayChuNhat" value="4" class="calc-input" inputmode="numeric" onfocus="this.select()" min="0">
               </div>
           </div>
-          <hr style="width:94%; border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+          
+          <!-- NHẬT KÝ TĂNG CA -->
+          <div class="section-title" style="margin-top:15px">🗓 NHẬT KÝ TĂNG CA (GHI SỔ)</div>
+          <div class="log-input-container">
+             <div class="log-row-1">
+                 <input type="date" id="otLogDate" class="log-input">
+             </div>
+             <div class="log-row-2">
+                 <select id="otLogType" class="log-select">
+                     <option value="1.5">Tăng ca thường</option>
+                     <option value="2.0">Tăng ca OFF</option>
+                 </select>
+                 <input type="number" id="otLogHours" class="log-input" placeholder="Số giờ (VD: 8)" onfocus="this.select()" min="0">
+             </div>
+          </div>
+          <button class="calc-submit" id="btnAddOT" onclick="addOTLog()">➕ Thêm Nhật Ký</button>
+          <button class="calc-submit" id="btnCancelOT" onclick="cancelOTEdit()" style="background:#7f8c8d; display:none; margin-top:8px">Hủy Sửa</button>
+
+          <table class="log-list" id="otLogList"></table>
+
+          <div class="log-summary">
+              <div>Tăng ca thường: <span id="sum15" class="result-value text-blue">0h</span> - <span id="money15" style="font-weight:bold">0đ</span></div>
+              <div>Tăng ca .....OFF: <span id="sum20" class="result-value text-red">0h</span> - <span id="money20" style="font-weight:bold">0đ</span></div>
+              <div class="result-item-total">
+                  <span>TỔNG TIỀN:</span>
+                  <span class="big-number" id="sumMoney">0 VNĐ</span>
+              </div>
+              <div class="ot-note">Kết quả tự động tính theo Lương Cơ bản, Hãy nhập đúng số ngày công, ngày chủ nhật của tháng.<br>KẾT QUẢ CHỈ MANG TÍNH THAM KHẢO.</div>
+          </div>
+          <button class="save-btn" style="background:#555; width:100%; margin-top:15px; padding:12px" onclick="resetOTMonth()">🗑️ Qua tháng mới (Xóa hết)</button>
+
+          <!-- TÍNH NHANH -->
+          <div class="section-title" style="margin-top:25px">⚡ TÍNH NHANH (DỰ TÍNH)</div>
           <div class="input-group-calc">
-              <label class="calc-label">Giờ Tăng Ca Ngày Thường (1.5x):</label>
-              <input type="text" id="ot_gioTCTuong" placeholder="Nhập giờ hoặc cộng dồn (10+5)" class="calc-input">
+              <label class="calc-label">Tổng Giờ Thường (1.5x):</label>
+              <input type="text" id="ot_gioTCTuong" placeholder="Nhập giờ..." class="calc-input" onfocus="this.select()" min="0">
           </div>
           <div class="input-group-calc">
-              <label class="calc-label">Giờ Tăng Ca Ngày OFF (2.0x):</label>
-              <input type="text" id="ot_gioTCNghi" placeholder="Nhập giờ hoặc cộng dồn (8+8)" class="calc-input">
+              <label class="calc-label">Tổng Giờ OFF (2.0x):</label>
+              <input type="text" id="ot_gioTCNghi" placeholder="Nhập giờ..." class="calc-input" onfocus="this.select()" min="0">
           </div>
-          <button onclick="tinhLuong()" class="calc-submit">TÍNH KẾT QUẢ TĂNG CA</button>
+          <button onclick="tinhLuong()" class="calc-submit">TÍNH KẾT QUẢ</button>
           <div class="result-box-ot" id="ketQuaLuong" style="display:none;">
-              <h3>📊 KẾT QUẢ TĂNG CA</h3>
-              <div class="result-item"><span>Lương Giờ Cơ Bản:</span><strong><span id="luongGioCoBan">...</span></strong></div>
-              <div class="result-item"><span>TC Thường:</span><strong><span id="tienTCTuong">0 VNĐ</span></strong></div>
-              <div class="result-item"><span>TC Off:</span><strong><span id="tienTCNghi">0 VNĐ</span></strong></div>
-              <div class="result-item result-item-total"><span>Tổng Tiền Tăng Ca:</span><span class="highlight" id="tongTienTangCa">0 VNĐ</span></div>
-              <div class="ot-note">Lưu ý: Kết quả này chỉ mang tính tham khảo. Tiền tăng ca thực tế có thể khác do ngày công, ngày nghỉ thực tế và chính sách từng tháng.</div>
+              <h3>📊 KẾT QUẢ</h3>
+              <div class="result-grid-row">
+                  <span class="grid-label">Lương/Giờ:</span>
+                  <span class="grid-money" style="grid-column: span 2; text-align:right" id="luongGioCoBan">...</span>
+              </div>
+              <div class="result-grid-row">
+                  <span class="grid-label text-blue">TC Thường:</span>
+                  <span class="grid-hours text-blue" id="showH15">0h</span>
+                  <span class="grid-money text-blue" id="tienTCTuong">0 VNĐ</span>
+              </div>
+              <div class="result-grid-row">
+                  <span class="grid-label text-red">TC OFF:</span>
+                  <span class="grid-hours text-red" id="showH20">0h</span>
+                  <span class="grid-money text-red" id="tienTCNghi">0 VNĐ</span>
+              </div>
+              <div class="result-item-total">
+                  <span>TỔNG CỘNG:</span>
+                  <span class="big-number" id="tongTienTangCa">0 VNĐ</span>
+              </div>
           </div>
       </div>
     </div>
   </div>
 
-  <!-- 7. SỔ TAY -->
+  <!-- 7. TIỆN ÍCH GOM NHÓM -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
-      <span class="title">📝 Sổ tay tài xế</span><span class="arrow">▶</span>
-    </div>
-    <div class="group-content">
-      <div class="calc-content">
-        <textarea id="myNote" class="note-area" placeholder="Ghi chú nhanh: ODO đổ dầu, Giờ Tăng ca, Tiền nợ..."></textarea>
-        <div style="display:flex; justify-content:space-between; width:100%">
-          <span style="font-size:12px; color:#666; align-self:center">Dữ liệu chỉ lưu trên máy bạn</span>
-          <button class="save-btn" onclick="if(confirm('Xóa hết ghi chú?')){document.getElementById('myNote').value='';localStorage.removeItem('userNote');}">Xóa trắng</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 8. TIỆN ÍCH GOM NHÓM -->
-  <div class="group">
-    <div class="group-header" role="button" tabindex="0">
-      <span class="title">🧩 Tiện ích & Tra cứu khác</span><span class="arrow">▶</span>
+      <span class="title">🧩 Tiện ích khác</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
       
-      <!-- PHẦN 1: TẢI APP -->
+      <!-- SỔ TAY TÀI XẾ (ĐƯA VÀO ĐÂY - TRÊN CÙNG) -->
+      <div class="section-title" style="margin-top:0">📝 SỔ TAY TÀI XẾ</div>
+      <div class="calc-content" style="padding:0">
+        <textarea id="myNote" class="note-area" placeholder="Ghi chú nhanh: ODO thay nhớt, Tiền nợ, Sự việc... (Lưu trên máy)"></textarea>
+        <div style="display:flex; justify-content:flex-end; padding:0 10px 10px;">
+          <button class="save-btn" onclick="if(confirm('Xóa hết ghi chú?')){document.getElementById('myNote').value='';localStorage.removeItem('userNote');}">Xóa trắng</button>
+        </div>
+      </div>
+
+      <!-- TẢI APP -->
       <div class="section-title">📱 TẢI APP NHIỆM VỤ (VnDriver)</div>
       <a class="link-card" href="https://drive.google.com/file/d/1F5Ln5qr86FPn5zybBKha72jKkFyEVwKB/view?usp=drivesdk" target="_blank"><div class="link-left">Tải App Android (APK)</div></a>
       <a class="link-card" href="https://testflight.apple.com/join/ngwb0Mpe" target="_blank"><div class="link-left">Tải App iOS (TestFlight)</div></a>
 
-      <!-- PHẦN 2: DỊCH VỤ CÔNG -->
+      <!-- DỊCH VỤ CÔNG -->
       <div class="section-title">🚦 DỊCH VỤ CÔNG TRỰC TUYẾN</div>
       <a class="link-card" href="https://www.csgt.vn/tra-cuu-phuong-tien-vi-pham.html" target="_blank"><div class="link-left">🚨 Tra cứu Phạt Nguội (Cục CSGT)</div></a>
       <a class="link-card" href="https://dichvucong.gov.vn/p/home/dvc-thanh-toan-vi-pham-giao-thong.html" target="_blank"><div class="link-left">💸 Nộp phạt Vi phạm giao thông</div></a>
       <a class="link-card" href="https://dvc4.gplx.gov.vn/p/home/dvc-trang-chu.html" target="_blank"><div class="link-left">🆔 Đổi Giấy phép lái xe Online</div></a>
+    </div>
+  </div>
+  
+    <!-- 8. GIỚI THIỆU & HỖ TRỢ -->
+  <div class="group">
+    <div class="group-header" role="button" tabindex="0">
+      <span class="title">ℹ️ Giới thiệu</span><span class="arrow">▶</span>
+    </div>
+    <div class="group-content">
+        <div class="intro-box">
+            <b>Link Tài Xế J&T Express</b> là ứng dụng web miễn phí, được phát triển bởi Lê Tỉnh nhằm hỗ trợ anh em tài xế trong công việc hàng ngày.
+            <br><br>
+            <b>Các tính năng chính:</b>
+            <ul style="padding-left:20px; margin:5px 0;">
+                <li><b>Tổng hợp Link & Zalo:</b> Gom tất cả các nhóm Zalo, link báo cáo, SĐT điều phối về một nơi, không cần tìm kiếm.</li>
+                <li><b>Tính lương tăng ca:</b> Tự động quy đổi giờ ra tiền chính xác.</li>
+                <li><b>Nhật ký vận hành:</b> Ghi chép ODO, tính định mức dầu.</li>
+                <li><b>Tra cứu nhanh:</b> Link nộp phạt, tra cứu phạt nguội...</li>
+            </ul>
+            Ứng dụng hoạt động tốt ngay cả khi <b>không có mạng (Offline)</b>.
+        </div>
+        
+        <!-- QR CODE & CHIA SẺ -->
+        <div class="qr-container">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://letinhclover.github.io/jntdriver" alt="QR Code" class="qr-img">
+            <br>
+            <button class="share-btn-native" onclick="shareApp()">
+                📤 Chia sẻ cho đồng đội
+            </button>
+        </div>
 
-      <!-- PHẦN 3: MỨC PHẠT 2025 -->
-      <div class="section-title">🚫 TRA CỨU MỨC PHẠT 2025</div>
-      
-      <div class="fine-cat-header">Nồng độ cồn</div>
-      <div class="fine-item">
-           <span class="fine-title">Mức 1 (Chưa vượt 50mg/100ml)</span>
-           <span class="fine-money">Phạt 6 - 8 triệu</span>
-           <span class="fine-extra">- Trừ 4 điểm GPLX</span>
-       </div>
-       <div class="fine-item">
-           <span class="fine-title">Mức 2 (50 - 80mg/100ml)</span>
-           <span class="fine-money">Phạt 18 - 20 triệu</span>
-           <span class="fine-extra">- Trừ 10 điểm GPLX</span>
-       </div>
-       <div class="fine-item">
-           <span class="fine-title">Mức 3 (Vượt 80mg/100ml)</span>
-           <span class="fine-money">Phạt 30 - 40 triệu</span>
-           <span class="fine-extra" style="color:red; font-weight:bold">- TƯỚC BẰNG 22 - 24 THÁNG</span>
-       </div>
-
-       <div class="fine-cat-header">🚀 Vi phạm tốc độ</div>
-       <div class="fine-item">
-           <span class="fine-title">Quá tốc độ 5 - 10 km/h</span>
-           <span class="fine-money">Phạt 800k - 1 triệu</span>
-       </div>
-       <div class="fine-item">
-           <span class="fine-title">Quá tốc độ 10 - 20 km/h</span>
-           <span class="fine-money">Phạt 4 - 6 triệu</span>
-           <span class="fine-extra">- Trừ 2 điểm GPLX</span>
-       </div>
-       <div class="fine-item">
-           <span class="fine-title">Quá tốc độ 20 - 35 km/h</span>
-           <span class="fine-money">Phạt 6 - 8 triệu</span>
-           <span class="fine-extra">- Trừ 4 điểm GPLX</span>
-       </div>
-       <div class="fine-item">
-           <span class="fine-title">Quá tốc độ trên 35 km/h</span>
-           <span class="fine-money">Phạt 12 - 14 triệu</span>
-           <span class="fine-extra">- Trừ 6 điểm GPLX</span>
-       </div>
-
-       <div class="fine-cat-header">🛑 Lỗi phổ biến khác</div>
-       <div class="fine-item">
-           <span class="fine-title">Vượt đèn đỏ, đèn vàng</span>
-           <span class="fine-money">Phạt 18 - 20 triệu</span>
-           <span class="fine-extra">- Trừ 4 điểm (Tăng mạnh)</span>
-       </div>
-       <div class="fine-item">
-           <span class="fine-title">Đi ngược chiều</span>
-           <span class="fine-money">Phạt 18 - 20 triệu</span>
-           <span class="fine-extra">- Trừ 4 - 6 điểm</span>
-       </div>
-       <div class="fine-item">
-           <span class="fine-title">Đi vào đường cấm, giờ cấm</span>
-           <span class="fine-money">Phạt 4 - 6 triệu</span>
-           <span class="fine-extra">- Trừ 2 điểm</span>
-       </div>
-       <div class="fine-item">
-           <span class="fine-title">Đi sai làn đường, phần đường</span>
-           <span class="fine-money">Phạt 4 - 6 triệu</span>
-           <span class="fine-extra">- Trừ 2 điểm GPLX</span>
-       </div>
-
-       <!-- CHIA SẺ APP (ĐÃ CHUYỂN VÀO ĐÂY) -->
-       <div class="footer-share">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://letinhclover.github.io/jntdriver" alt="QR Code" class="qr-img">
-          <br>
-          <button class="share-btn-native" onclick="shareApp()">
-              📤 Chia sẻ cho đồng đội
-          </button>
-      </div>
-
+        <div class="author-box">
+            <p>Mọi ý kiến đóng góp hoặc cần hỗ trợ cách sử dụng,<br>anh em cứ nhắn tin Zalo cho mình nhé.</p>
+            <a href="https://zalo.me/0708312789" class="contact-btn" style="height:auto; width:fit-content; margin:10px auto; padding:8px 20px;">
+                <span style="font-weight:bold; color:var(--blue-text)">💬 Nhắn tin cho Lê Tỉnh</span>
+            </a>
+        </div>
     </div>
   </div>
 
@@ -505,20 +600,29 @@ body.dark footer { background: var(--card-dark); }
 
 <footer>
   <div class="footer-text">Trang này chỉ dành cho nội bộ tài xế J&T</div>
-  <div style="margin-top:6px;">
+  <div class="visitor-count" id="visitCount">Đang tải lượt truy cập...</div>
+  <div style="margin-top:4px;">
     © 2025 <a href="https://zalo.me/0708312789" class="footer-link">Lê Tỉnh</a>
   </div>
 </footer>
 
 <script>
-// --- DATA MAPS ---
+// --- SW REGISTRATION (OFFLINE MODE) ---
+if ('serviceWorker' in navigator) {
+   window.addEventListener('load', () => {
+     navigator.serviceWorker.register('sw.js')
+       .then(reg => console.log('SW registered!', reg))
+       .catch(err => console.log('SW failed', err));
+   });
+}
+
+// --- MAPS ---
 const googleMapsData = [
     { code: 'GW0', address: 'Kho 1, Lô TT1, QL22, KCN Tân Phú Trung, Củ Chi', link: 'https://maps.app.goo.gl/8ue4xcmMdxwMS5uX9', type: 'GW' },
     { code: 'GW3', address: '1103 QL1A, Bình Trị Đông A, Bình Tân', link: 'https://maps.app.goo.gl/qdCVdF9DygSqSWin7', type: 'GW' },
     { code: 'GW4', address: 'QL22, Tân Phú Trung, Củ Chi (Kho GHTK cũ)', link: 'https://maps.app.goo.gl/c5A8ZNvydTkjeC7LA', type: 'GW' },
     { code: 'GW5', address: 'Lô J, Đường N6, KCN Lê Minh Xuân 3, Bình Chánh', link: 'https://maps.app.goo.gl/LZme5LnDZiw1obNU9', type: 'GW' },
     { code: 'GW6', address: 'Lô 3D-8, Đường 12, KCN Long Hậu 3, Cần Giuộc', link: 'https://maps.app.goo.gl/EZte1BU8pfAkQdUv9', type: 'GW' },
-    
     { code: 'H81', address: '21 Đường Ụ Ghe, Thủ Đức', link: 'https://goo.gl/maps/hxigDoxuf2rMm1s78', type: 'HUB' },
     { code: 'H82', address: '17/6A Phan Huy Ích, Gò Vấp', link: 'https://maps.app.goo.gl/LF6n2nSBkwVmg1h5A', type: 'HUB' },
     { code: 'H83', address: '4 Đào Trí, KP5, Phú Thuận, Q7', link: 'https://maps.app.goo.gl/7NX3CjqeSju77DRt6', type: 'HUB' },
@@ -537,37 +641,12 @@ const googleMapsData = [
 function generateMapLinks() {
     const container = document.getElementById('mapListContainer');
     if (!container) return;
-    
     const gws = googleMapsData.filter(x => x.type === 'GW');
     const hubs = googleMapsData.filter(x => x.type !== 'GW');
-
     let html = '';
-    
-    // Render GW
-    html += gws.map(item => `
-        <a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer">
-            <div class="link-left">
-                <strong>${item.code}</strong><br>
-                <span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span>
-            </div>
-            <span style="color: var(--primary);">📍</span>
-        </a>
-    `).join('');
-
-    // Dấu phân cách
+    html += gws.map(item => `<a class="link-card" href="${item.link}" target="_blank"><div class="link-left"><strong>${item.code}</strong><br><span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span></div><span style="color: var(--primary);">📍</span></a>`).join('');
     html += `<div style="border-top: 1px dashed #ccc; margin: 10px 15px;"></div>`;
-
-    // Render Hub
-    html += hubs.map(item => `
-        <a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer">
-            <div class="link-left">
-                <strong>${item.code}</strong><br>
-                <span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span>
-            </div>
-            <span style="color: var(--primary);">📍</span>
-        </a>
-    `).join('');
-
+    html += hubs.map(item => `<a class="link-card" href="${item.link}" target="_blank"><div class="link-left"><strong>${item.code}</strong><br><span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span></div><span style="color: var(--primary);">📍</span></a>`).join('');
     container.innerHTML = html;
 }
 generateMapLinks();
@@ -594,20 +673,8 @@ document.querySelectorAll('.group-header').forEach(header => {
     header.addEventListener('click', () => {
         const currentGroup = header.parentElement;
         const isOpen = currentGroup.classList.contains('open');
-
-        // Đóng TẤT CẢ các group khác
-        document.querySelectorAll('.group').forEach(group => {
-            if (group !== currentGroup) {
-                group.classList.remove('open');
-            }
-        });
-
-        // Toggle group hiện tại
-        if (isOpen) {
-            currentGroup.classList.remove('open');
-        } else {
-            currentGroup.classList.add('open');
-        }
+        document.querySelectorAll('.group').forEach(group => { if (group !== currentGroup) group.classList.remove('open'); });
+        if (isOpen) currentGroup.classList.remove('open'); else currentGroup.classList.add('open');
     });
 });
 
@@ -616,58 +683,37 @@ const noteArea = document.getElementById('myNote');
 if(localStorage.getItem('userNote')) noteArea.value = localStorage.getItem('userNote');
 noteArea.addEventListener('input', () => localStorage.setItem('userNote', noteArea.value));
 
-// --- HELPER LOGIC ---
+// --- HELPER ---
 const fmt = (n) => parseFloat(n.toFixed(2));
-
 function evaluateExpression(val) {
     if (!val) return 0;
     let clean = val.toString().replace(/,/g, '.').replace(/[^\d.+-x*]/gi, '').replace(/x/gi, '*');
-    if (clean.includes('-') && !clean.includes('+') && !clean.includes('*')) {
-        const parts = clean.split('-');
-        if (parts.length === 2) return parseFloat(parts[0]) - parseFloat(parts[1]);
-    }
     try { return Function('"use strict";return (' + clean + ')')() || 0; } catch { return 0; }
 }
 function parseInputFloat(id) { 
     let val = document.getElementById(id).value;
-    if(id === 'ot_luongCanBan') {
-        return parseFloat(val.replace(/\./g, '').replace(/,/g, '')) || 0;
-    }
+    if(id === 'ot_luongCanBan') return parseFloat(val.replace(/\./g, '').replace(/,/g, '')) || 0;
     return parseFloat(val.replace(/,/g, '.')) || 0; 
 }
 function formatMoney(n) { return Math.round(n).toLocaleString('vi-VN') + ' VNĐ'; }
 
-// --- CHIA SẺ NATIVE (SIMPLE LINK) ---
 async function shareApp() {
-    const shareData = {
-        url: 'https://letinhclover.github.io/jntdriver'
-    };
-
-    if (navigator.share) {
-        try {
-            await navigator.share(shareData);
-        } catch (err) { }
-    } else {
-        copyLink(); // Fallback
-    }
+    const shareData = { url: 'https://letinhclover.github.io/jntdriver' };
+    if (navigator.share) { try { await navigator.share(shareData); } catch (err) { } } else { copyLink(); }
 }
-
-// Hàm copy thủ công (Simple Link)
 function copyLink() {
     const url = "https://letinhclover.github.io/jntdriver";
     var tempInput = document.createElement("input");
-    tempInput.value = url;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999);
-    try {
-        document.execCommand("copy");
-        alert("Đã sao chép Link!");
-    } catch (e) {
-        // Silent fail
-    }
+    tempInput.value = url; document.body.appendChild(tempInput);
+    tempInput.select(); tempInput.setSelectionRange(0, 99999);
+    try { document.execCommand("copy"); alert("Đã sao chép Link!"); } catch (e) { }
     document.body.removeChild(tempInput);
 }
+
+fetch("https://api.counterapi.dev/v1/letinhclover.github.io/jntdriver/up")
+    .then(res => res.json())
+    .then(data => { document.getElementById('visitCount').innerText = "👀 Lượt truy cập: " + data.count.toLocaleString(); })
+    .catch(err => { document.getElementById('visitCount').style.display = "none"; });
 
 // --- TÍNH DẦU ---
 window.tinhDau = function() {
@@ -678,35 +724,120 @@ window.tinhDau = function() {
   const resultDiv = document.getElementById('resultDau');
   resultDiv.style.display = 'block';
 
-  if (km <= 0 || thuc < 0) {
-    resultDiv.innerHTML = '<b style="color:var(--primary);">⚠️ Vui lòng nhập Quãng đường (>0) và Dầu thực tế.</b>';
-    return;
-  }
+  if(khoan < 0 || km < 0 || thuc < 0 || gia < 0) { alert("Số không được âm!"); return; }
+
+  if (km <= 0 || thuc < 0) { resultDiv.innerHTML = '<b style="color:var(--primary);">⚠️ Vui lòng nhập Quãng đường (>0) và Dầu thực tế.</b>'; return; }
   const tieuhao = (thuc / km) * 100;
-  let html = `<strong>Mức khoán:</strong> ${fmt(khoan)} lít/100km<br>`;
-  html += `<strong>Quãng đường đã đi:</strong> ${fmt(km)} km<br>`;
+  let html = `<div class="result-item"><span>Mức khoán:</span><span class="result-value">${fmt(khoan)} Lít</span></div>`;
+  html += `<div class="result-item"><span>Quãng đường:</span><span class="result-value">${fmt(km)} km</span></div>`;
   if (khoan > 0) {
     const dauKhoan = (km * khoan) / 100;
     const chenhlech = dauKhoan - thuc;
-    html += `<strong>Lượng dầu theo khoán:</strong> ${fmt(dauKhoan)} lít<br>`;
-    html += `<strong>Lượng dầu thực tế:</strong> ${fmt(thuc)} lít<br>`;
-    html += `<strong>Tiêu hao trung bình:</strong> ${fmt(tieuhao)} lít/100km<br>`;
-    let msg = '';
-    if (chenhlech >= 0) {
-        msg = `<span style="color:var(--accent); font-weight:bold;">Dư ${fmt(chenhlech)} lít`;
-        if (gia > 0) msg += ` → Được hưởng ${formatMoney(chenhlech * gia)}`;
-        msg += `</span>`;
-    } else {
-        msg = `<span style="color:var(--primary); font-weight:bold;">Thiếu ${fmt(Math.abs(chenhlech))} lít`;
-        if (gia > 0) msg += ` → Phải bù ${formatMoney(Math.abs(chenhlech * gia))}`;
-        msg += `</span>`;
+    html += `<div class="result-item"><span>Theo khoán:</span><span class="result-value">${fmt(dauKhoan)} Lít</span></div>`;
+    html += `<div class="result-item"><span>Thực tế:</span><span class="result-value">${fmt(thuc)} Lít</span></div>`;
+    let msgClass = chenhlech >= 0 ? 'color:var(--accent)' : 'color:var(--primary)';
+    let msgText = chenhlech >= 0 ? `DƯ ${fmt(chenhlech)} LÍT` : `THIẾU ${fmt(Math.abs(chenhlech))} LÍT`;
+    let moneyText = '';
+    if(gia > 0) {
+        moneyText = formatMoney(Math.abs(chenhlech * gia));
+        if(chenhlech >= 0) moneyText = "(+" + moneyText + ")"; else moneyText = "(-" + moneyText + ")";
     }
-    html += `<div style="margin-top:8px; border-top:1px dashed #ccc; padding-top:8px;">${msg}</div>`;
+    html += `<div class="result-item-total" style="${msgClass}"><span>${msgText}</span><span>${moneyText}</span></div>`;
   } else {
-      html += `<strong>Lượng dầu thực tế:</strong> ${fmt(thuc)} lít<br>`;
-      html += `<strong>Tiêu hao trung bình:</strong> ${fmt(tieuhao)} lít/100km<br>`;
+      html += `<div class="result-item"><span>Thực tế:</span><span class="result-value">${fmt(thuc)} Lít</span></div>`;
+      html += `<div class="result-item"><span>Tiêu hao trung bình:</span><span class="result-value">${fmt(tieuhao)} L/100km</span></div>`;
   }
   resultDiv.innerHTML = html;
+}
+
+// --- NHẬT KÝ DẦU ---
+document.getElementById('logDate').valueAsDate = new Date();
+let closingOdo = parseFloat(localStorage.getItem('closingOdo')) || 0;
+if(closingOdo > 0) {
+    document.getElementById('closingOdo').value = closingOdo;
+    document.getElementById('savedOdoText').innerText = "Đã lưu ODO chốt: " + closingOdo;
+}
+
+let fuelLogs = JSON.parse(localStorage.getItem('fuelLogs')) || [];
+let editFuelIndex = -1; 
+renderLogs();
+
+function saveClosingOdo() {
+    const val = parseFloat(document.getElementById('closingOdo').value);
+    if(!isNaN(val) && val > 0) {
+        localStorage.setItem('closingOdo', val);
+        closingOdo = val;
+        document.getElementById('savedOdoText').innerText = "Đã lưu ODO chốt: " + val;
+        alert("Đã lưu ODO cuối tháng trước!");
+        renderLogs(); 
+    }
+}
+
+function addFuelLog() {
+    if(closingOdo === 0) { alert("Vui lòng lưu 'ODO Chốt' trước!"); return; }
+    const date = document.getElementById('logDate').value;
+    const liters = parseFloat(document.getElementById('logLiters').value);
+    const currentOdo = parseFloat(document.getElementById('logOdo').value);
+    
+    if(!date || isNaN(liters) || isNaN(currentOdo)) { alert("Nhập đủ thông tin!"); return; }
+    if(liters < 0 || currentOdo < 0) { alert("Số không được âm!"); return; }
+    if(currentOdo <= closingOdo) { alert("ODO hiện tại phải lớn hơn ODO chốt!"); return; }
+    
+    if(editFuelIndex > -1) {
+        fuelLogs[editFuelIndex] = { date, liters, odo: currentOdo };
+        cancelFuelEdit();
+    } else {
+        fuelLogs.push({ date, liters, odo: currentOdo });
+    }
+    saveAndRender();
+    document.getElementById('logLiters').value = '';
+    document.getElementById('logOdo').value = '';
+}
+
+function editFuelLog(index) {
+    editFuelIndex = index;
+    const log = fuelLogs[index];
+    document.getElementById('logDate').value = log.date;
+    document.getElementById('logLiters').value = log.liters;
+    document.getElementById('logOdo').value = log.odo;
+    document.getElementById('btnAddFuel').innerText = "💾 Cập nhật";
+    document.getElementById('btnAddFuel').classList.add('btn-update');
+    document.getElementById('btnCancelFuel').style.display = "inline-block";
+}
+
+function cancelFuelEdit() {
+    editFuelIndex = -1;
+    document.getElementById('logLiters').value = '';
+    document.getElementById('logOdo').value = '';
+    document.getElementById('btnAddFuel').innerText = "➕ Thêm Nhật Ký";
+    document.getElementById('btnAddFuel').classList.remove('btn-update');
+    document.getElementById('btnCancelFuel').style.display = "none";
+}
+
+function deleteLog(index) { if(confirm("Xóa dòng này?")) { fuelLogs.splice(index, 1); saveAndRender(); } }
+function resetFuelMonth() { if(confirm("Xóa hết nhật ký tháng này?")) { fuelLogs = []; saveAndRender(); } }
+function saveAndRender() { localStorage.setItem('fuelLogs', JSON.stringify(fuelLogs)); renderLogs(); }
+
+function renderLogs() {
+    const list = document.getElementById('fuelLogList');
+    list.innerHTML = `<tr><th>Ngày</th><th>Lít</th><th>ODO</th><th>Km chạy</th><th>L/100km</th><th></th></tr>`;
+    let totalLiters = 0; let totalKm = 0;
+    fuelLogs.sort((a, b) => a.odo - b.odo);
+    let previousOdo = closingOdo;
+    fuelLogs.forEach((log, index) => {
+        let dist = log.odo - previousOdo;
+        let cons = 0; if(dist > 0) cons = (log.liters / dist) * 100;
+        totalLiters += log.liters; totalKm += dist;
+        const d = log.date.split('-'); const shortDate = `${d[2]}/${d[1]}`;
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${shortDate}</td><td>${log.liters}</td><td>${log.odo}</td><td style="color:var(--primary);font-weight:bold">${dist}</td><td>${cons > 0 ? cons.toFixed(1) : '-'}</td><td><button class="log-action-btn btn-edit" onclick="editFuelLog(${index})">✎</button><button class="log-action-btn btn-del" onclick="deleteLog(${index})">×</button></td>`;
+        list.appendChild(row);
+        previousOdo = log.odo;
+    });
+    document.getElementById('totalLiters').innerText = totalLiters.toFixed(1) + " Lít";
+    document.getElementById('totalKm').innerText = totalKm + " km";
+    let avg = 0; if(totalKm > 0) avg = (totalLiters / totalKm) * 100;
+    document.getElementById('avgCons').innerText = avg.toFixed(2);
 }
 
 // --- TÍNH LƯƠNG ---
@@ -718,16 +849,113 @@ window.tinhLuong = function() {
     const gio20 = evaluateExpression(document.getElementById('ot_gioTCNghi').value);
     
     document.getElementById('ketQuaLuong').style.display = 'block';
-    if (luongCB <= 0 || ngayThang <= 0) { alert("Vui lòng nhập Lương CB và Tổng ngày công!"); return; }
+    
+    if(luongCB < 0 || ngayThang < 0 || ngayCN < 0 || gio15 < 0 || gio20 < 0) { alert("Số không được âm!"); return; }
+
+    if (luongCB <= 0 || ngayThang <= 0) { alert("Nhập Lương CB và Ngày công!"); return; }
     const ngayCongChuan = ngayThang - ngayCN;
     const luongGio = luongCB / (ngayCongChuan * 8);
     const tien15 = gio15 * luongGio * 1.5;
     const tien20 = gio20 * luongGio * 2.0;
 
     document.getElementById('luongGioCoBan').innerText = formatMoney(luongGio) + "/giờ";
-    document.getElementById('tienTCTuong').innerText = formatMoney(tien15) + ` (${gio15}h)`;
-    document.getElementById('tienTCNghi').innerText = formatMoney(tien20) + ` (${gio20}h)`;
+    document.getElementById('showH15').innerText = fmt(gio15); 
+    document.getElementById('tienTCTuong').innerText = formatMoney(tien15);
+    document.getElementById('showH20').innerText = fmt(gio20); 
+    document.getElementById('tienTCNghi').innerText = formatMoney(tien20);
     document.getElementById('tongTienTangCa').innerText = formatMoney(tien15 + tien20);
+    
+    calculateOTMoney(parseFloat(document.getElementById('sum15').innerText), parseFloat(document.getElementById('sum20').innerText));
+}
+
+// --- NHẬT KÝ TĂNG CA ---
+document.getElementById('otLogDate').valueAsDate = new Date();
+let otLogs = JSON.parse(localStorage.getItem('otLogs')) || [];
+let editOTIndex = -1;
+renderOTLogs();
+
+function addOTLog() {
+    const date = document.getElementById('otLogDate').value;
+    const type = parseFloat(document.getElementById('otLogType').value);
+    const hours = parseFloat(document.getElementById('otLogHours').value);
+    if(!date || isNaN(hours)) { alert("Nhập đủ thông tin!"); return; }
+    if(hours < 0) { alert("Giờ không được âm!"); return; }
+    
+    if(editOTIndex > -1) {
+        otLogs[editOTIndex] = { date, type, hours };
+        cancelOTEdit();
+    } else {
+        otLogs.push({ date, type, hours });
+    }
+    saveAndRenderOT();
+    document.getElementById('otLogHours').value = '';
+}
+
+function editOTLog(index) {
+    editOTIndex = index;
+    const log = otLogs[index];
+    document.getElementById('otLogDate').value = log.date;
+    document.getElementById('otLogType').value = log.type;
+    document.getElementById('otLogHours').value = log.hours;
+    
+    document.getElementById('btnAddOT').innerText = "💾 Cập nhật";
+    document.getElementById('btnAddOT').classList.add('btn-update');
+    document.getElementById('btnCancelOT').style.display = "inline-block";
+}
+
+function cancelOTEdit() {
+    editOTIndex = -1;
+    document.getElementById('otLogHours').value = '';
+    document.getElementById('btnAddOT').innerText = "➕ Thêm Nhật Ký";
+    document.getElementById('btnAddOT').classList.remove('btn-update');
+    document.getElementById('btnCancelOT').style.display = "none";
+}
+
+function deleteOTLog(index) { if(confirm("Xóa dòng này?")) { otLogs.splice(index, 1); saveAndRenderOT(); } }
+function resetOTMonth() { if(confirm("Xóa hết?")) { otLogs = []; saveAndRenderOT(); } }
+function saveAndRenderOT() { localStorage.setItem('otLogs', JSON.stringify(otLogs)); renderOTLogs(); }
+
+function renderOTLogs() {
+    const list = document.getElementById('otLogList');
+    list.innerHTML = `<tr><th>Ngày</th><th>Loại</th><th>Giờ</th><th></th></tr>`;
+    let sum15 = 0; let sum20 = 0;
+    
+    otLogs.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    otLogs.forEach((log, index) => {
+        if(log.type === 1.5) sum15 += log.hours;
+        if(log.type === 2.0) sum20 += log.hours;
+        const d = log.date.split('-'); const shortDate = `${d[2]}/${d[1]}`;
+        const typeClass = log.type === 1.5 ? 'text-blue' : 'text-red';
+        const typeLabel = log.type === 1.5 ? 'Tăng ca thường' : 'Tăng ca OFF';
+        
+        const row = document.createElement('tr');
+        // Áp dụng class màu cho cả text loại và giờ
+        row.innerHTML = `<td>${shortDate}</td><td class="${typeClass}" style="font-weight:bold">${typeLabel}</td><td class="${typeClass}" style="font-weight:bold">${fmt(log.hours)}</td><td><button class="log-action-btn btn-edit" onclick="editOTLog(${index})">✎</button><button class="log-action-btn btn-del" onclick="deleteOTLog(${index})">×</button></td>`;
+        list.appendChild(row);
+    });
+    document.getElementById('sum15').innerText = fmt(sum15);
+    document.getElementById('sum20').innerText = fmt(sum20);
+    calculateOTMoney(sum15, sum20);
+}
+
+function calculateOTMoney(h15, h20) {
+    const luongCB = parseInputFloat('ot_luongCanBan');
+    const ngayCong = parseInputFloat('ot_soNgayTrongThang');
+    const ngayCN = parseInputFloat('ot_soNgayChuNhat');
+    
+    if(luongCB > 0 && ngayCong > 0) {
+        const ngayChuan = ngayCong - ngayCN;
+        const luongGio = luongCB / (ngayChuan * 8);
+        
+        const tien15 = h15 * 1.5 * luongGio;
+        const tien20 = h20 * 2.0 * luongGio;
+        const total = tien15 + tien20;
+        
+        document.getElementById('money15').innerText = formatMoney(tien15);
+        document.getElementById('money20').innerText = formatMoney(tien20);
+        document.getElementById('sumMoney').innerText = formatMoney(total);
+    }
 }
 </script>
 </body>
