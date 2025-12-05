@@ -645,7 +645,6 @@ function loadSalarySettings() {
             if(id === 'ot_luongCanBan') formatInputMoney(el);
         }
     });
-    // Không tính toán ở đây nữa, chỉ load dữ liệu
 }
 
 function saveSalarySettings() {
@@ -800,8 +799,6 @@ window.tinhDau = function() {
 }
 
 // --- NHẬT KÝ DẦU ---
-setToday('logDate'); // Gán ngày hiện tại (đã sửa lỗi)
-
 let closingOdo = parseFloat(localStorage.getItem('closingOdo')) || 0;
 if(closingOdo > 0) {
     document.getElementById('closingOdo').value = closingOdo;
@@ -810,7 +807,6 @@ if(closingOdo > 0) {
 
 let fuelLogs = JSON.parse(localStorage.getItem('fuelLogs')) || [];
 let editFuelIndex = -1; 
-renderLogs();
 
 function saveClosingOdo() {
     const val = parseFloat(document.getElementById('closingOdo').value);
@@ -921,16 +917,8 @@ window.tinhLuong = function() {
 }
 
 // --- NHẬT KÝ TĂNG CA ---
-setToday('otLogDate'); // Gán ngày hiện tại (đã sửa lỗi)
-
 let otLogs = JSON.parse(localStorage.getItem('otLogs')) || [];
 let editOTIndex = -1;
-
-// *** QUAN TRỌNG: LOAD DỮ LIỆU CŨ TRƯỚC - RỒI MỚI TÍNH TOÁN ***
-// 1. Load các con số 31, 4 từ bộ nhớ lên ô input
-loadSalarySettings();
-// 2. Sau đó mới chạy hàm render (tính toán dựa trên số vừa load)
-renderOTLogs();
 
 function addOTLog() {
     const date = document.getElementById('otLogDate').value;
@@ -1015,6 +1003,23 @@ function calculateOTMoney(h15, h20) {
         document.getElementById('sumMoney').innerText = formatMoney(total);
     }
 }
+
+// --- KHỞI TẠO ỨNG DỤNG (CHẠY CUỐI CÙNG ĐỂ ĐẢM BẢO THỨ TỰ) ---
+function initApp() {
+    // 1. Lấy ngày giờ hiện tại
+    setToday('logDate');
+    setToday('otLogDate');
+
+    // 2. Tải cài đặt lương TRƯỚC (QUAN TRỌNG)
+    loadSalarySettings();
+
+    // 3. Tải nhật ký sau (Khi số liệu cài đặt đã có trong ô input)
+    renderLogs();
+    renderOTLogs();
+}
+
+// Gọi hàm khởi tạo
+initApp();
 </script>
 </body>
 </html>
