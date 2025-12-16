@@ -90,6 +90,105 @@ a.link-card {
 a.link-card:active { transform: scale(0.98); background: rgba(0,0,0,0.08); }
 body.dark a.link-card { background: rgba(255,255,255,0.05); }
 
+/* --- SHOPPING GRID (GÓC MUA SẮM) --- */
+.shop-grid {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    padding: 10px 5px;
+}
+
+.shop-item {
+    background: var(--card);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px; 
+    padding: 0; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: left;
+    text-decoration: none; 
+    color: inherit; 
+    transition: transform 0.2s;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+body.dark .shop-item { 
+    background: rgba(255,255,255,0.05); 
+    border-color: rgba(255,255,255,0.1); 
+}
+
+.shop-item:active { transform: scale(0.98); }
+
+.shop-img-box {
+    width: 100%;
+    height: 140px; /* Chiều cao ảnh */
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 5px;
+}
+
+.shop-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.shop-content {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.shop-name { 
+    font-weight: 700; 
+    font-size: 0.9em; 
+    line-height: 1.3; 
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 38px;
+}
+
+.shop-desc { 
+    font-size: 0.75em; 
+    opacity: 0.7; 
+    margin-bottom: 8px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+.shop-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-price {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 0.95em;
+}
+
+.shop-btn-buy {
+    background: var(--primary);
+    color: white;
+    font-size: 0.7em;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
 /* CONTACT GRID */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px 12px; }
 a.contact-btn {
@@ -328,14 +427,14 @@ body.dark footer { background: var(--card-dark); }
                 <span class="name-contact">Trí Lê</span>
                 <span class="role-contact">Đội trưởng ca ngày</span>
             </a>
-            <a href="https://zalo.me/090" target="_blank" class="contact-btn"> <!-- Bạn nhớ điền lại số đúng của Hoàng Trần vào đây -->
+            <a href="https://zalo.me/090" target="_blank" class="contact-btn"> <!-- Cần điền số chính xác -->
                 <span class="name-contact">Hoàng Trần</span>
                 <span class="role-contact">Đội trưởng ca đêm</span>
             </a>
 
             <!-- BẢO TRÌ -->
             <div style="grid-column: 1/3; font-weight: 700; color: var(--primary); padding-top: 15px; border-bottom: 1px dashed #ccc; margin-bottom: 5px;">BẢO TRÌ XE</div>
-            <a href="https://zalo.me/090" target="_blank" class="contact-btn"> <!-- Điền số Hoàng Trung -->
+            <a href="https://zalo.me/090" target="_blank" class="contact-btn">
                 <span class="name-contact">Hoàng Trung</span>
                 <span class="role-contact">Bảo trì Thaco, Isuzu</span>
             </a>
@@ -353,14 +452,11 @@ body.dark footer { background: var(--card-dark); }
                 <span class="name-contact">Đặng Quốc Thái</span>
                 <span class="role-contact">Điều phối VP</span>
             </a>
-            <a href="https://zalo.me/0972251731" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0972251731" target="_blank" class="contact-btn" style="grid-column: 1/3;">
                 <span class="name-contact">Nguyễn Tiến Trung</span>
                 <span class="role-contact">TTTC (7h-16h)</span>
             </a>
-            <a href="https://zalo.me/0869814645" target="_blank" class="contact-btn">
-                <span class="name-contact">Nguyễn Thành Vinh</span>
-                <span class="role-contact">Xe 5T-9T</span>
-            </a>
+            <!-- Đã chuyển Nguyễn Thành Vinh sang Ca Tối -->
 
             <!-- CA CHIỀU -->
             <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(255, 165, 0, 0.2); color: #CC6600; border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA NGÀY (12h - 21h) 🟠</div>
@@ -378,10 +474,26 @@ body.dark footer { background: var(--card-dark); }
             </a>
 
             <!-- CA TỐI -->
-            <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(204, 0, 0, 0.15); color: var(--primary); border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA TỐI (18h - 4h) 🔴</div>
+            <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(204, 0, 0, 0.15); color: var(--primary); border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA TỐI (18h - 3h/4h) 🔴</div>
             <a href="https://zalo.me/0886468035" target="_blank" class="contact-btn">
                 <span class="name-contact">Hồ Sỹ Lưu</span>
                 <span class="role-contact">18h-3h</span>
+            </a>
+            <a href="https://zalo.me/0933450410" target="_blank" class="contact-btn">
+                <span class="name-contact">Nguyễn G.Q Mạnh</span>
+                <span class="role-contact">18h-3h</span>
+            </a>
+            <a href="https://zalo.me/0363456035" target="_blank" class="contact-btn">
+                <span class="name-contact">Đặng Tuấn Kiệt</span>
+                <span class="role-contact">18h-3h</span>
+            </a>
+            <a href="https://zalo.me/0964543757" target="_blank" class="contact-btn">
+                <span class="name-contact">Phạm Đức Huy</span>
+                <span class="role-contact">18h-3h</span>
+            </a>
+            <a href="https://zalo.me/0869814645" target="_blank" class="contact-btn">
+                <span class="name-contact">Nguyễn Thành Vinh</span>
+                <span class="role-contact">TTTC xe 5T- 9T</span>
             </a>
             <a href="https://zalo.me/0336492538" target="_blank" class="contact-btn">
                 <span class="name-contact">Hoàng Hải</span>
@@ -399,9 +511,24 @@ body.dark footer { background: var(--card-dark); }
                 <span class="name-contact">Phúc Hậu</span>
                 <span class="role-contact">GW6 (18h-3h)</span>
             </a>
-            <a href="https://zalo.me/0332277821" target="_blank" class="contact-btn">
+             <a href="https://zalo.me/0332277821" target="_blank" class="contact-btn">
                 <span class="name-contact">Minh Quang</span>
                 <span class="role-contact">GW5 (19h-4h)</span>
+            </a>
+
+            <!-- TTTC ĐÊM -->
+            <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: #34495e; color: #fff; border-radius: 4px; padding: 4px 0; margin-top: 8px;">TTTC ĐÊM (21h - 6h) 🟣</div>
+            <a href="https://zalo.me/0374749130" target="_blank" class="contact-btn">
+                <span class="name-contact">Đào Đức Đạt</span>
+                <span class="role-contact">TTTC (21h-6h)</span>
+            </a>
+            <a href="https://zalo.me/0369702372" target="_blank" class="contact-btn">
+                <span class="name-contact">Đỗ Nhật Quang</span>
+                <span class="role-contact">TTTC (21h-6h)</span>
+            </a>
+            <a href="https://zalo.me/0947550239" target="_blank" class="contact-btn" style="grid-column: 1/3;">
+                <span class="name-contact">Nguyễn Quốc Trung</span>
+                <span class="role-contact">TTTC (21h-6h)</span>
             </a>
 
             <!-- TUYẾN TỈNH -->
@@ -417,7 +544,7 @@ body.dark footer { background: var(--card-dark); }
         </div>
     </div>
   </div>
-
+  
   <!-- 4. MAPS -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
@@ -461,8 +588,8 @@ body.dark footer { background: var(--card-dark); }
         <table class="log-list" id="fuelLogList"></table>
 
         <div class="log-summary">
-            <div>Đã chạy: <span id="totalKm" class="result-value">0 km</span></div>
-            <div>Đã đổ: <span id="totalLiters" class="result-value">0 Lít</span></div>
+            <div>Xe đã chạy : <span id="totalKm" class="result-value">0 km</span></div>
+            <div>Dầu đã đổ : <span id="totalLiters" class="result-value">0 Lít</span></div>
             <div style="border-top:1px dashed #999; margin-top:8px; padding-top:8px; color:var(--primary); font-weight:700; text-align:center">
                 Tiêu hao trung bình: <span id="avgCons" style="font-size:1.2em">0</span> Lít/100km
             </div>
@@ -584,14 +711,14 @@ body.dark footer { background: var(--card-dark); }
     </div>
   </div>
 
-  <!-- 7. TIỆN ÍCH GOM NHÓM -->
+<!-- 7. TIỆN ÍCH GOM NHÓM (CÓ GÓC MUA SẮM MỚI) -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
       <span class="title">🧩 Tiện ích khác</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
       
-      <!-- SỔ TAY TÀI XẾ (ĐƯA VÀO ĐÂY - TRÊN CÙNG) -->
+      <!-- SỔ TAY TÀI XẾ -->
       <div class="section-title" style="margin-top:0">📝 SỔ TAY TÀI XẾ</div>
       <div class="calc-content" style="padding:0">
         <textarea id="myNote" class="note-area" placeholder="Ghi chú nhanh: ODO thay nhớt, Tiền nợ, Sự việc... (Lưu trên máy)"></textarea>
@@ -610,6 +737,102 @@ body.dark footer { background: var(--card-dark); }
       <a class="link-card" href="https://www.csgt.vn/tra-cuu-phuong-tien-vi-pham.html" target="_blank"><div class="link-left">🚨 Tra cứu Phạt Nguội (Cục CSGT)</div></a>
       <a class="link-card" href="https://dichvucong.gov.vn/p/home/dvc-thanh-toan-vi-pham-giao-thong.html" target="_blank"><div class="link-left">💸 Nộp phạt Vi phạm giao thông</div></a>
       <a class="link-card" href="https://dvc4.gplx.gov.vn/p/home/dvc-trang-chu.html" target="_blank"><div class="link-left">🆔 Đổi Giấy phép lái xe Online</div></a>
+
+      <!-- GÓC MUA SẮM (Đã thêm sản phẩm mới) -->
+      <div class="section-title">🛒 GÓC MUA SẮM</div>
+      <div class="shop-grid">
+          
+          <!-- ITEM 1: TẨU SẠC -->
+          <a href="https://s.shopee.vn/2VkXVpJqkQ" target="_blank" class="shop-item">
+              <div class="shop-img-box">
+                  <img src="https://i.postimg.cc/B6787LRn/Shopee-1a8e18ca37f1d070e010c5023f8e00d3.jpg" class="shop-img" alt="Tẩu sạc">
+              </div>
+              <div class="shop-content">
+                  <div class="shop-name">Tẩu Sạc Xiaomi 100W (12V-24V)</div>
+                  <div class="shop-desc">Sạc siêu nhanh, đã test</div>
+                  <div class="shop-footer">
+                      <span class="shop-price">~300k</span>
+                      <span class="shop-btn-buy">Mua Ngay</span>
+                  </div>
+              </div>
+          </a>
+
+          <!-- ITEM 2: GƯƠNG CẦU -->
+          <a href="https://s.shopee.vn/AKTOufJwNG" target="_blank" class="shop-item">
+              <div class="shop-img-box">
+                  <img src="https://i.postimg.cc/kGV20Mds/Shopee-05231e9d4544a8ebd68df6cfad3aea5b.jpg" class="shop-img" alt="Gương cầu">
+              </div>
+              <div class="shop-content">
+                  <div class="shop-name">Gương Cầu Lồi Soi Cảng (26cm)</div>
+                  <div class="shop-desc">Anh em hay nhờ mua giúp</div>
+                  <div class="shop-footer">
+                      <span class="shop-price">~165k</span>
+                      <span class="shop-btn-buy">Mua Ngay</span>
+                  </div>
+              </div>
+          </a>
+
+          <!-- ITEM 3: MÓC KHÓA QR -->
+          <a href="https://s.shopee.vn/3LJeaCo28I" target="_blank" class="shop-item">
+              <div class="shop-img-box">
+                  <img src="https://i.postimg.cc/vT14J8sy/Shopee-070258dbf39d64e99ed103eeac5cc0bb.jpg" class="shop-img" alt="Móc khóa QR">
+              </div>
+              <div class="shop-content">
+                  <div class="shop-name">Mã QR Đổ Dầu Móc Khóa</div>
+                  <div class="shop-desc">Tiện lợi khi đổ dầu</div>
+                  <div class="shop-footer">
+                      <span class="shop-price">~10k</span>
+                      <span class="shop-btn-buy">Mua Ngay</span>
+                  </div>
+              </div>
+          </a>
+
+          <!-- ITEM 4: RELAY -->
+          <a href="https://s.shopee.vn/6ptWkuYJJ2" target="_blank" class="shop-item">
+              <div class="shop-img-box">
+                  <img src="https://i.postimg.cc/gjwxCcWF/Shopee-87221e5cbf0a35a9553b0e6189f99120.jpg" class="shop-img" alt="Relay">
+              </div>
+              <div class="shop-content">
+                  <div class="shop-name">Relay 4 Chân (12/24V)</div>
+                  <div class="shop-desc">Đấu đèn sườn chớp theo xi nhan</div>
+                  <div class="shop-footer">
+                      <span class="shop-price">~25k</span>
+                      <span class="shop-btn-buy">Mua Ngay</span>
+                  </div>
+              </div>
+          </a>
+
+           <!-- ITEM 5: ĐÈN SƯỜN (MỚI) -->
+           <a href="https://s.shopee.vn/VzTZRHHLl" target="_blank" class="shop-item">
+              <div class="shop-img-box">
+                  <img src="https://i.postimg.cc/50FGs09b/Shopee-78a7b99a78462d101b94b4e5dcff8942.jpg" class="shop-img" alt="Đèn sườn">
+              </div>
+              <div class="shop-content">
+                  <div class="shop-name">Đèn Sườn Led 12V/24V Chịu Nước</div>
+                  <div class="shop-desc">Mẫu đẹp, rẻ siêu sáng</div>
+                  <div class="shop-footer">
+                      <span class="shop-price">~23k</span>
+                      <span class="shop-btn-buy">Mua Ngay</span>
+                  </div>
+              </div>
+          </a>
+
+           <!-- ITEM 6: CAMERA LÙI (MỚI) -->
+           <a href="https://s.shopee.vn/4fp2Xoae6M" target="_blank" class="shop-item">
+              <div class="shop-img-box">
+                  <img src="https://i.postimg.cc/wBrZ5Jp4/sg-11134201-7raub-ma4243cshljj8c.avif" class="shop-img" alt="Camera lùi">
+              </div>
+              <div class="shop-content">
+                  <div class="shop-name">Camera Lùi Xe Tải AHD/CCD</div>
+                  <div class="shop-desc">Gắn Xe Linker có màn hình, Góc rộng, nhìn đêm rõ</div>
+                  <div class="shop-footer">
+                      <span class="shop-price">~279k</span>
+                      <span class="shop-btn-buy">Mua Ngay</span>
+                  </div>
+              </div>
+          </a>
+
+      </div>
     </div>
   </div>
   
@@ -643,7 +866,7 @@ body.dark footer { background: var(--card-dark); }
 
         <div class="author-box">
             <p>Mọi ý kiến đóng góp hoặc cần hỗ trợ cách sử dụng,<br>anh em cứ nhắn tin Zalo cho mình nhé.</p>
-            <a href="https://zalo.me/0708312789" class="contact-btn" style="height:auto; width:fit-content; margin:10px auto; padding:8px 20px;">
+            <a href="https://zalo.me/0708312789" target="_blank" class="contact-btn" style="height:auto; width:fit-content; margin:10px auto; padding:8px 20px;">
                 <span style="font-weight:bold; color:var(--blue-text)">💬 Nhắn tin cho Lê Tỉnh</span>
             </a>
         </div>
@@ -865,6 +1088,8 @@ window.tinhDau = function() {
 }
 
 // --- NHẬT KÝ DẦU ---
+setToday('logDate'); // Gán ngày hiện tại (đã sửa lỗi)
+
 let closingOdo = parseFloat(localStorage.getItem('closingOdo')) || 0;
 if(closingOdo > 0) {
     document.getElementById('closingOdo').value = closingOdo;
@@ -873,6 +1098,7 @@ if(closingOdo > 0) {
 
 let fuelLogs = JSON.parse(localStorage.getItem('fuelLogs')) || [];
 let editFuelIndex = -1; 
+renderLogs();
 
 function saveClosingOdo() {
     const val = parseFloat(document.getElementById('closingOdo').value);
@@ -983,8 +1209,16 @@ window.tinhLuong = function() {
 }
 
 // --- NHẬT KÝ TĂNG CA ---
+setToday('otLogDate'); // Gán ngày hiện tại (đã sửa lỗi)
+
 let otLogs = JSON.parse(localStorage.getItem('otLogs')) || [];
 let editOTIndex = -1;
+
+// *** QUAN TRỌNG: LOAD DỮ LIỆU CŨ TRƯỚC - RỒI MỚI TÍNH TOÁN ***
+// 1. Load các con số 31, 4 từ bộ nhớ lên ô input
+loadSalarySettings();
+// 2. Sau đó mới chạy hàm render (tính toán dựa trên số vừa load)
+renderOTLogs();
 
 function addOTLog() {
     const date = document.getElementById('otLogDate').value;
@@ -1088,4 +1322,4 @@ function initApp() {
 initApp();
 </script>
 </body>
-</html>
+  </html>
