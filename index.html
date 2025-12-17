@@ -711,7 +711,7 @@ body.dark footer { background: var(--card-dark); }
     </div>
   </div>
 
-<!-- 7. TIỆN ÍCH GOM NHÓM (CÓ GÓC MUA SẮM MỚI) -->
+<!-- 7. TIỆN ÍCH GOM NHÓM (CÓ GÓC MUA SẮM & LINK COLLECTION) -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
       <span class="title">🧩 Tiện ích khác</span><span class="arrow">▶</span>
@@ -738,7 +738,7 @@ body.dark footer { background: var(--card-dark); }
       <a class="link-card" href="https://dichvucong.gov.vn/p/home/dvc-thanh-toan-vi-pham-giao-thong.html" target="_blank"><div class="link-left">💸 Nộp phạt Vi phạm giao thông</div></a>
       <a class="link-card" href="https://dvc4.gplx.gov.vn/p/home/dvc-trang-chu.html" target="_blank"><div class="link-left">🆔 Đổi Giấy phép lái xe Online</div></a>
 
-      <!-- GÓC MUA SẮM (Đã thêm sản phẩm mới) -->
+      <!-- GÓC MUA SẮM -->
       <div class="section-title">🛒 GÓC MUA SẮM</div>
       <div class="shop-grid">
           
@@ -802,7 +802,7 @@ body.dark footer { background: var(--card-dark); }
               </div>
           </a>
 
-           <!-- ITEM 5: ĐÈN SƯỜN (MỚI) -->
+           <!-- ITEM 5: ĐÈN SƯỜN -->
            <a href="https://s.shopee.vn/VzTZRHHLl" target="_blank" class="shop-item">
               <div class="shop-img-box">
                   <img src="https://i.postimg.cc/50FGs09b/Shopee-78a7b99a78462d101b94b4e5dcff8942.jpg" class="shop-img" alt="Đèn sườn">
@@ -817,7 +817,7 @@ body.dark footer { background: var(--card-dark); }
               </div>
           </a>
 
-           <!-- ITEM 6: CAMERA LÙI (MỚI) -->
+           <!-- ITEM 6: CAMERA LÙI -->
            <a href="https://s.shopee.vn/4fp2Xoae6M" target="_blank" class="shop-item">
               <div class="shop-img-box">
                   <img src="https://i.postimg.cc/wBrZ5Jp4/sg-11134201-7raub-ma4243cshljj8c.avif" class="shop-img" alt="Camera lùi">
@@ -833,9 +833,15 @@ body.dark footer { background: var(--card-dark); }
           </a>
 
       </div>
+
+      <!-- NÚT LIÊN KẾT ĐẾN BỘ SƯU TẬP (MỚI THÊM) -->
+      <a href="https://collshp.com/letinhclover1612" target="_blank" class="share-btn-native" style="width:96%; margin: 15px auto 5px auto; background: linear-gradient(90deg, #ee4d2d, #ff7337); justify-content:center; text-decoration:none; display:flex; color: white;">
+          🛍️ Xem thêm
+      </a>
+
     </div>
   </div>
-  
+ 
     <!-- 8. GIỚI THIỆU & HỖ TRỢ -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
@@ -1150,6 +1156,8 @@ function editFuelLog(index) {
     document.getElementById('btnAddFuel').innerText = "💾 Cập nhật";
     document.getElementById('btnAddFuel').classList.add('btn-update');
     document.getElementById('btnCancelFuel').style.display = "inline-block";
+    // --- THÊM DÒNG NÀY ĐỂ TỰ CUỘN LÊN ---
+    document.getElementById('logDate').scrollIntoView({ behavior: 'smooth', block: 'center' });    
 }
 
 function cancelFuelEdit() {
@@ -1256,6 +1264,8 @@ function editOTLog(index) {
     document.getElementById('btnAddOT').innerText = "💾 Cập nhật";
     document.getElementById('btnAddOT').classList.add('btn-update');
     document.getElementById('btnCancelOT').style.display = "inline-block";
+    // --- THÊM DÒNG NÀY ĐỂ TỰ CUỘN LÊN ---
+    document.getElementById('otLogDate').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function cancelOTEdit() {
@@ -1331,4 +1341,4 @@ function initApp() {
 initApp();
 </script>
 </body>
-                </html>
+</html>
