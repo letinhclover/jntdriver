@@ -884,13 +884,22 @@ body.dark footer { background: var(--card-dark); }
 </footer>
 
 <script>
-// --- SW REGISTRATION (OFFLINE MODE) ---
+// --- HỦY ĐĂNG KÝ SERVICE WORKER (TẮT OFFLINE & UPDATE CODE MỚI) ---
 if ('serviceWorker' in navigator) {
-   window.addEventListener('load', () => {
-     navigator.serviceWorker.register('sw.js')
-       .then(reg => console.log('SW registered!', reg))
-       .catch(err => console.log('SW failed', err));
-   });
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+            registration.unregister();
+            console.log('Đã hủy Service Worker:', registration);
+        }
+    });
+    // Xóa cache để đảm bảo tải code mới nhất
+    if ('caches' in window) {
+        caches.keys().then(function(names) {
+            for (let name of names) {
+                caches.delete(name);
+            }
+        });
+    }
 }
 
 // --- HÀM LẤY NGÀY HIỆN TẠI (THEO GIỜ VIỆT NAM) ---
@@ -1322,4 +1331,4 @@ function initApp() {
 initApp();
 </script>
 </body>
-</html>
+                </html>
