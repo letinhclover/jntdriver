@@ -387,11 +387,12 @@ body.dark footer { background: var(--card-dark); }
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwao5eoTslB2Ds1auT05WPg" target="_blank"><div class="link-left">BÁO CÁO HÀNH TRÌNH</div></a>
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwwFr50osovPX8c5EuYkpVe" target="_blank"><div class="link-left">ĐIỀN THÔNG TIN TĂNG CA</div></a>
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgeJOb7CxaLL18zxNj6gz1kd" target="_blank"><div class="link-left">ĐĂNG KÍ NGHỈ PHÉP</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgcx3ZWJlUeZ007y7NOMDtAf" target="_blank"><div class="link-left">KIỂM TRA XE HẰNG NGÀY</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlg4jTyiyUBTxoWnXnh3E2jVh" target="_blank"><div class="link-left">KHÔNG BẤM APP ĐƯỢC</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlglpEg10qLFAoBoN6FYGm0Nv" target="_blank"><div class="link-left">GỬI HÌNH VÁ VỎ</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgcx3ZWJlUeZ007y7NOMDtAf" target="_blank"><div class="link-left">CHECK LIST KIỂM TRA XE HẰNG NGÀY</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlg4jTyiyUBTxoWnXnh3E2jVh" target="_blank"><div class="link-left">KHÔNG BẤM APP, ĐIỀN NGUYÊN NHÂN</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlglpEg10qLFAoBoN6FYGm0Nv" target="_blank"><div class="link-left">GỬI HÌNH VÁ VỎ, LINK CHUẨN</div></a>
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgj3VYEKTEh7tTSaZvfpP7HL" target="_blank"><div class="link-left">BÁO CÁO THÙNG XE TRỐNG</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgHKbeP4ff2P8AoaQcWUzicc" target="_blank"><div class="link-left">THÔNG TIN ĐỔ DẦU</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgHKbeP4ff2P8AoaQcWUzicc" target="_blank"><div class="link-left">BÁO CÁO THÔNG TIN ĐỔ DẦU</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgPi18jGohtl9znrsxLdlDhh" target="_blank"><div class="link-left">BỔ SUNG TĂNG CA BỊ THIẾU</div></a>
     </div>
   </div>
 
@@ -858,7 +859,7 @@ body.dark footer { background: var(--card-dark); }
                 <li><b>Nhật ký vận hành:</b> Ghi chép ODO, tính định mức dầu.</li>
                 <li><b>Tra cứu nhanh:</b> Link nộp phạt, tra cứu phạt nguội...</li>
             </ul>
-            Đặc biệt, ứng dụng rất hữu ích đối với anh em <b>tài xế mới</b>.
+            Ứng dụng hoạt động tốt ngay cả khi <b>không có mạng (Offline)</b>.
         </div>
         
         <!-- QR CODE & CHIA SẺ -->
@@ -929,11 +930,17 @@ function formatInputMoney(el) {
     el.value = Number(val).toLocaleString('vi-VN');
 }
 
-// --- HÀM LẤY SỐ TỪ INPUT (XÓA DẤU CHẤM TRƯỚC KHI TÍNH) ---
+// --- HÀM LẤY SỐ TỪ INPUT (XÓA DẤU CHẤM - DÙNG CHO TIỀN) ---
 function parseMoney(id) {
     let val = document.getElementById(id).value;
-    // Xóa dấu chấm phân cách ngàn, chuyển dấu phẩy thập phân thành chấm (nếu có)
     return parseFloat(val.replace(/\./g, '').replace(/,/g, '.')) || 0;
+}
+
+// --- HÀM MỚI: LẤY SỐ GIỜ (GIỮ LẠI DẤU CHẤM - DÙNG CHO GIỜ TĂNG CA) ---
+function parseHours(id) {
+    let val = document.getElementById(id).value;
+    // Chỉ thay dấu phẩy thành chấm, KHÔNG xóa dấu chấm
+    return parseFloat(val.replace(/,/g, '.')) || 0;
 }
 
 // --- AUTO SAVE SALARY SETTINGS ---
@@ -1195,30 +1202,34 @@ function renderLogs() {
     document.getElementById('avgCons').innerText = avg.toFixed(2);
 }
 
-// --- TÍNH LƯƠNG ---
+// --- TÍNH LƯƠNG (ĐÃ CẬP NHẬT DÙNG parseHours) ---
 window.tinhLuong = function() {
+    // Các ô Tiền và Ngày công -> Dùng parseMoney (Xóa dấu chấm ngàn)
     const luongCB = parseMoney('ot_luongCanBan');
     const ngayThang = parseMoney('ot_soNgayTrongThang');
     const ngayCN = parseMoney('ot_soNgayChuNhat');
     
-    // Giờ tăng ca cũng có thể nhập số lẻ, dùng parseMoney cho an toàn
-    const gio15 = parseMoney('ot_gioTCTuong');
-    const gio20 = parseMoney('ot_gioTCNghi');
+    // Các ô Giờ -> Dùng parseHours (Giữ dấu chấm thập phân để hiểu 8.5)
+    const gio15 = parseHours('ot_gioTCTuong');
+    const gio20 = parseHours('ot_gioTCNghi');
     
     document.getElementById('ketQuaLuong').style.display = 'block';
     
     if(luongCB < 0 || ngayThang < 0 || ngayCN < 0 || gio15 < 0 || gio20 < 0) { alert("Số không được âm!"); return; }
 
     if (luongCB <= 0 || ngayThang <= 0) { alert("Nhập Lương CB và Ngày công!"); return; }
+    
     const ngayCongChuan = ngayThang - ngayCN;
+    if (ngayCongChuan <= 0) { alert("Số ngày công không hợp lệ"); return; }
+
     const luongGio = luongCB / (ngayCongChuan * 8);
     const tien15 = gio15 * luongGio * 1.5;
     const tien20 = gio20 * luongGio * 2.0;
 
     document.getElementById('luongGioCoBan').innerText = formatMoney(luongGio) + "/giờ";
-    document.getElementById('showH15').innerText = fmt(gio15); 
+    document.getElementById('showH15').innerText = fmt(gio15) + "h"; 
     document.getElementById('tienTCTuong').innerText = formatMoney(tien15);
-    document.getElementById('showH20').innerText = fmt(gio20); 
+    document.getElementById('showH20').innerText = fmt(gio20) + "h"; 
     document.getElementById('tienTCNghi').innerText = formatMoney(tien20);
     document.getElementById('tongTienTangCa').innerText = formatMoney(tien15 + tien20);
     
