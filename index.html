@@ -6,35 +6,39 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Link Tài Xế J&T Express</title>
+<title>Link Tài Xế J&T - Vui Xuân 2026</title>
 
 <!-- 2. PWA & ICONS -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#ff0033">
+<meta name="theme-color" content="#d40000"> <!-- Màu đỏ Tết -->
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="application-name" content="Link Tài Xế J&T">
+<meta name="application-name" content="J&T Tết">
 
 <!-- 3. FONTS & SEO -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<meta name="description" content="Link tài xế J&T Express: Tổng hợp Link nội bộ, Nhóm Zalo, Tính lương, Dầu, Map kho. Tất cả trong một.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://letinhclover.github.io/jntdriver">
+<!-- Font Thư pháp cho Tết -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"> 
 
 <style>
-/* CSS GIAO DIỆN */
+/* CSS GIAO DIỆN TẾT */
 :root {
-  --bg-light: #f8fafc; --bg-dark: #111214;
-  --text-light: #0b0b0b; --text-dark: #f5f5f5;
-  --primary: #CC0000; --accent: #198845;
-  --card: #ffffff; --card-dark: #1d1f21;
-  --highlight-bg: #fff3f2;
+  --bg-light: #fffceb; /* Màu kem vàng sáng */
+  --bg-dark: #2c0b0e; /* Màu đỏ đen tối */
+  --text-light: #330000; 
+  --text-dark: #ffe6a1;
+  --primary: #d40000; /* Đỏ tươi */
+  --accent: #ffcc00; /* Vàng kim */
+  --card: #ffffff; 
+  --card-dark: #3e1216;
+  --highlight-bg: #fff0f0;
   --edit: #f39c12;
-  --blue-text: #007bff; 
+  --blue-text: #0056b3; 
   --red-text: #d32f2f;
+  --border-tet: 1px solid #ffcc00;
 }
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -43,38 +47,48 @@ body {
   margin: 0; background: var(--bg-light); color: var(--text-light);
   transition: background .25s, color .25s;
   -webkit-tap-highlight-color: transparent; font-size: 15px; line-height: 1.4;
+  overflow-x: hidden; /* Tránh thanh cuộn ngang do hiệu ứng */
 }
 body.dark { background: var(--bg-dark); color: var(--text-dark); }
 
+/* HEADER TẾT */
 header {
-  background: linear-gradient(90deg, var(--primary), #dd2476);
-  color: #fff; padding: 14px 16px; text-align: center;
-  position: relative; font-weight: 800; font-size: 1.2em;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #b30000, #ff4d4d);
+  color: #ffeb3b; padding: 15px 16px; text-align: center;
+  position: relative; font-weight: 800; font-size: 1.3em;
+  box-shadow: 0 4px 10px rgba(212, 0, 0, 0.3);
+  border-bottom: 3px solid var(--accent);
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
+.tet-font { font-family: 'Dancing Script', cursive; font-size: 1.2em; }
+
 #toggleTheme {
-  position: absolute; right: 12px; top: 10px;
+  position: absolute; right: 12px; top: 15px;
   background: none; border: none; color: #fff;
   font-size: 18px; cursor: pointer; padding: 5px;
 }
 
-.container { max-width: 720px; margin: 10px auto; padding: 10px; }
+.container { max-width: 720px; margin: 10px auto; padding: 10px; position: relative; z-index: 2; }
 
 /* GROUP STYLES */
 .group {
-  margin-bottom: 14px; border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  margin-bottom: 14px; border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(212, 0, 0, 0.1);
   background: var(--card);
+  border: 1px solid rgba(255, 204, 0, 0.3); /* Viền vàng nhẹ */
 }
-body.dark .group { box-shadow: 0 2px 6px rgba(0,0,0,.3); background: var(--card-dark); }
+body.dark .group { box-shadow: 0 2px 6px rgba(0,0,0,.5); background: var(--card-dark); border-color: #5c1e23; }
 
 .group-header {
   display: flex; justify-content: space-between; align-items: center;
   padding: 12px 14px; cursor: pointer; font-weight: 700;
-  background: rgba(0,0,0,0.02); border-radius: 10px 10px 0 0; user-select: none;
+  background: rgba(255, 204, 0, 0.1); /* Nền vàng nhạt */
+  border-radius: 12px 12px 0 0; user-select: none;
 }
 .group-header span.title { color: var(--primary); }
-.group-header .arrow { transition: transform .25s; }
+body.dark .group-header span.title { color: #ffcc00; }
+.group-header .arrow { transition: transform .25s; color: var(--primary); }
 .group.open .group-header .arrow { transform: rotate(90deg); }
 .group-content { display: none; padding-bottom: 5px; animation: fadeIn 0.2s ease; }
 .group.open .group-content { display: block; }
@@ -86,132 +100,55 @@ a.link-card {
   text-decoration: none; color: inherit;
   padding: 10px; border-radius: 8px; margin: 6px 10px;
   background: rgba(0,0,0,0.03); transition: transform .1s;
+  border-left: 3px solid transparent;
 }
-a.link-card:active { transform: scale(0.98); background: rgba(0,0,0,0.08); }
+a.link-card:active { transform: scale(0.98); background: rgba(255, 204, 0, 0.2); }
 body.dark a.link-card { background: rgba(255,255,255,0.05); }
+a.link-card:hover { border-left: 3px solid var(--primary); }
 
-/* --- SHOPPING GRID (GÓC MUA SẮM) --- */
-.shop-grid {
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 12px; 
-    padding: 10px 5px;
-}
-
+/* --- SHOPPING GRID --- */
+.shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px 5px; }
 .shop-item {
-    background: var(--card);
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 12px; 
-    padding: 0; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    text-align: left;
-    text-decoration: none; 
-    color: inherit; 
-    transition: transform 0.2s;
-    overflow: hidden;
+    background: var(--card); border: 1px solid rgba(255, 204, 0, 0.3);
+    border-radius: 12px; padding: 0; display: flex; flex-direction: column; 
+    align-items: center; text-align: left; text-decoration: none; color: inherit; 
+    transition: transform 0.2s; overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
-
-body.dark .shop-item { 
-    background: rgba(255,255,255,0.05); 
-    border-color: rgba(255,255,255,0.1); 
-}
-
+body.dark .shop-item { background: rgba(255,255,255,0.05); border-color: #5c1e23; }
 .shop-item:active { transform: scale(0.98); }
-
 .shop-img-box {
-    width: 100%;
-    height: 140px; /* Chiều cao ảnh */
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    padding: 5px;
+    width: 100%; height: 140px; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05); padding: 5px;
 }
-
-.shop-img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.shop-content {
-    padding: 10px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.shop-name { 
-    font-weight: 700; 
-    font-size: 0.9em; 
-    line-height: 1.3; 
-    margin-bottom: 4px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    height: 38px;
-}
-
-.shop-desc { 
-    font-size: 0.75em; 
-    opacity: 0.7; 
-    margin-bottom: 8px; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-}
-
-.shop-footer {
-    margin-top: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.shop-price {
-    color: var(--primary);
-    font-weight: 800;
-    font-size: 0.95em;
-}
-
-.shop-btn-buy {
-    background: var(--primary);
-    color: white;
-    font-size: 0.7em;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-weight: bold;
-}
+.shop-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.shop-content { padding: 10px; width: 100%; display: flex; flex-direction: column; flex-grow: 1; }
+.shop-name { font-weight: 700; font-size: 0.9em; line-height: 1.3; margin-bottom: 4px; height: 38px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.shop-desc { font-size: 0.75em; opacity: 0.7; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shop-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
+.shop-price { color: var(--primary); font-weight: 800; font-size: 0.95em; }
+.shop-btn-buy { background: var(--primary); color: white; font-size: 0.7em; padding: 5px 10px; border-radius: 4px; font-weight: bold; }
 
 /* CONTACT GRID */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px 12px; }
 a.contact-btn {
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   padding: 8px 5px; border-radius: 8px;
-  background: rgba(0,0,0,0.03); color: var(--text-light);
-  text-decoration: none; height: 60px; text-align: center;
+  background: rgba(255, 204, 0, 0.1); color: var(--text-light); /* Nền vàng nhạt */
+  text-decoration: none; height: 60px; text-align: center; border: 1px dashed rgba(212,0,0,0.2);
 }
-body.dark a.contact-btn { background: rgba(255,255,255,0.05); color: var(--text-dark); }
+body.dark a.contact-btn { background: rgba(255,255,255,0.05); color: var(--text-dark); border-color: #555; }
 .contact-btn .name-contact { font-weight: 700; font-size: 0.95em; }
 .contact-btn .role-contact { font-size: 0.75em; opacity: 0.7; margin-top: 2px; }
-
-.contact-note {
-    text-align: center; margin-bottom: 10px;
-    font-size: 0.9em; font-style: italic; opacity: 0.8;
-    color: var(--text-light);
-}
+.contact-note { text-align: center; margin-bottom: 10px; font-size: 0.9em; font-style: italic; opacity: 0.8; color: var(--text-light); }
 body.dark .contact-note { color: var(--text-dark); }
 
 /* INPUTS & BUTTONS */
 .calc-content { padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .input-group-calc { width: 94%; max-width: 580px; }
-.calc-label { display: block; margin-top: 8px; font-weight: 600; font-size: 15px; }
+.calc-label { display: block; margin-top: 8px; font-weight: 600; font-size: 15px; color: var(--primary); }
+body.dark .calc-label { color: #ffcc00; }
 .calc-input {
   width: 100%; padding: 12px; margin-top: 4px;
   border: 1px solid #ccc; border-radius: 8px; font-size: 16px;
@@ -224,6 +161,7 @@ button.calc-submit {
   border-radius: 10px; font-size: 16px; font-weight: 700;
   margin-top: 15px;
   border: none; background: var(--primary); color: #fff; cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 button.calc-submit:active { opacity: .9; transform: translateY(1px); }
 button.btn-update { background: var(--edit) !important; }
@@ -241,27 +179,22 @@ button.btn-update { background: var(--edit) !important; }
 }
 .result-box { background: rgba(0,0,0,0.05); }
 body.dark .result-box { background: rgba(255,255,255,0.05); color: var(--text-dark); }
-.result-box-ot { background-color: var(--highlight-bg); border: 1px solid var(--primary); }
+.result-box-ot { background-color: #fff8e1; border: 1px solid var(--accent); }
 body.dark .result-box-ot { background-color: #312121; border: 1px solid rgba(255,255,255,0.1); }
 
 .result-box-ot h3 { color: var(--primary); font-size: 1.1em; margin: 0 0 8px 0; border-bottom: 1px dashed #ccc; padding-bottom: 5px; text-align: center; }
 
 /* GRID KẾT QUẢ LƯƠNG */
 .result-grid-row {
-    display: grid;
-    grid-template-columns: 45% 15% 40%; 
-    align-items: center;
-    margin: 10px 0;
-    border-bottom: 1px dashed rgba(0,0,0,0.1);
-    padding-bottom: 6px;
+    display: grid; grid-template-columns: 45% 15% 40%; 
+    align-items: center; margin: 10px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 6px;
 }
 body.dark .result-grid-row { border-color: rgba(255,255,255,0.1); }
-
 .grid-label { font-weight: 700; text-align: left; font-size: 1.0em; }
 .grid-hours { font-weight: 700; text-align: center; font-size: 1.1em; } 
 .grid-money { font-weight: 700; text-align: right; font-size: 1.1em; }
 
-/* MÀU SẮC TĂNG CA */
 .text-blue { color: var(--blue-text); }
 body.dark .text-blue { color: #4da3ff; }
 .text-red { color: var(--red-text); }
@@ -273,29 +206,23 @@ body.dark .text-red { color: #ff6659; }
 
 /* LOGBOOK STYLE */
 .odo-setup {
-    background: rgba(0,0,0,0.03); padding: 10px; 
-    border-radius: 8px; border: 1px solid var(--accent);
+    background: rgba(255,255,255,0.6); padding: 10px; 
+    border-radius: 8px; border: 1px solid var(--primary);
     margin-bottom: 10px; width: 100%;
 }
 body.dark .odo-setup { background: rgba(25, 136, 69, 0.1); }
 
-.log-input-container {
-    width: 100%; background: rgba(0,0,0,0.02);
-    padding: 8px; border-radius: 8px; border: 1px solid #eee;
-}
+.log-input-container { width: 100%; background: rgba(0,0,0,0.02); padding: 8px; border-radius: 8px; border: 1px solid #eee; }
 body.dark .log-input-container { background: rgba(255,255,255,0.05); border-color: #333; }
-
 .log-row-1 { width: 100%; margin-bottom: 8px; } 
 .log-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } 
 
-.log-input { padding: 12px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; }
-body.dark .log-input { background: #2b2b2b; border-color: #555; color: #fff; }
 .log-select { padding: 12px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; background: #fff; }
 body.dark .log-select { background: #2b2b2b; color: #fff; border-color: #555; }
 
 .log-list { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
-.log-list th { background: rgba(0,0,0,0.05); padding: 8px 4px; text-align: left; font-size: 12px; color: var(--primary); }
-body.dark .log-list th { background: rgba(255,255,255,0.1); }
+.log-list th { background: rgba(212,0,0,0.1); padding: 8px 4px; text-align: left; font-size: 12px; color: var(--primary); }
+body.dark .log-list th { background: rgba(255,255,255,0.1); color: #ffcc00; }
 .log-list td { border-bottom: 1px solid rgba(0,0,0,0.1); padding: 10px 4px; vertical-align: middle; }
 body.dark .log-list td { border-bottom: 1px solid rgba(255,255,255,0.3); } 
 
@@ -304,7 +231,7 @@ body.dark .log-list td { border-bottom: 1px solid rgba(255,255,255,0.3); }
 .btn-del { color: #999; }
 
 .log-summary {
-    background: var(--highlight-bg); border: 1px dashed var(--primary);
+    background: #fff8e1; border: 1px dashed var(--primary);
     border-radius: 8px; padding: 10px; margin-top: 15px; width: 100%;
     font-size: 14px;
 }
@@ -316,36 +243,35 @@ body.dark .log-summary { background: #312121; border-color: rgba(255,255,255,0.2
   width: 96%; height: 120px; padding: 10px;
   border: 1px solid #ccc; border-radius: 8px;
   font-family: inherit; margin: 10px auto; display: block;
-  background: var(--bg-light); color: var(--text-light); font-size: 16px;
+  background: #fff; color: var(--text-light); font-size: 16px;
 }
 body.dark .note-area { background: #2b2b2b; color: var(--text-dark); border-color: #555; }
-.save-btn { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+.save-btn { background: var(--accent); color: #b30000; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
 /* SECTION DIVIDER */
 .section-title {
     padding: 10px 10px 5px 10px; font-weight: bold; color: var(--primary); 
-    border-bottom: 1px solid rgba(0,0,0,0.1); margin: 15px 10px 5px 10px;
+    border-bottom: 2px solid var(--accent); margin: 15px 10px 5px 10px;
     font-size: 0.95em; text-transform: uppercase;
 }
-body.dark .section-title { border-color: rgba(255,255,255,0.1); }
+body.dark .section-title { border-color: #5c1e23; color: #ffcc00; }
 
 /* QR SHARE */
 .qr-container { text-align: center; padding: 10px; margin-top:10px;}
 .qr-img { 
     width: 160px; height: 160px; 
-    mix-blend-mode: multiply;
-    margin-bottom: 10px;
+    mix-blend-mode: multiply; margin-bottom: 10px;
     background-color: #fff; border: 5px solid #fff; border-radius: 8px;
 }
 body.dark .qr-img { mix-blend-mode: normal; border: 4px solid #fff; }
 
 .share-btn-native {
-    background: #007bff; color: white; border: none;
+    background: linear-gradient(90deg, #d40000, #ff4d4d); color: white; border: none;
     padding: 12px 25px; border-radius: 30px;
     font-weight: bold; cursor: pointer;
     font-size: 16px; display: inline-flex; align-items: center; gap: 8px;
-    box-shadow: 0 4px 10px rgba(0,123,255,0.3);
-    transition: transform 0.1s;
+    box-shadow: 0 4px 10px rgba(212,0,0,0.3);
+    transition: transform 0.1s; border: 2px solid #ffcc00;
 }
 .share-btn-native:active { transform: scale(0.95); }
 
@@ -353,7 +279,7 @@ body.dark .qr-img { mix-blend-mode: normal; border: 4px solid #fff; }
 .intro-box {
     padding: 15px; margin: 10px 5px;
     font-size: 0.95em; color: #444; line-height: 1.6; text-align: justify;
-    background: rgba(0,0,0,0.02); border-radius: 8px; border-left: 3px solid #ccc;
+    background: rgba(255,255,255,0.7); border-radius: 8px; border-left: 3px solid var(--primary);
 }
 body.dark .intro-box { color: #ccc; background: rgba(255,255,255,0.05); }
 
@@ -362,16 +288,34 @@ body.dark .intro-box { color: #ccc; background: rgba(255,255,255,0.05); }
 }
 body.dark .author-box { color: var(--text-dark); }
 
-footer { padding: 15px; text-align: center; background: var(--card); border-top: 1px solid rgba(0,0,0,.04); margin-top: 20px; }
+footer { padding: 15px; text-align: center; background: var(--card); border-top: 1px solid rgba(0,0,0,.04); margin-top: 20px; border-top: 3px solid var(--accent); }
 body.dark footer { background: var(--card-dark); }
 .footer-text { font-weight: bold; color: var(--primary); font-size: 0.9em; }
-.footer-link { color: var(--accent); font-weight: 700; text-decoration: none; }
+.footer-link { color: var(--primary); font-weight: 700; text-decoration: none; }
+
+/* HIỆU ỨNG HOA RƠI */
+.falling-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 1; overflow: hidden;
+}
+.flower {
+    position: absolute; top: -10%;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
 </style>
 </head>
 <body>
 
+<!-- HIỆU ỨNG HOA RƠI -->
+<div class="falling-container" id="flowerContainer"></div>
+
 <header>
-  LINK TÀI XẾ J&T
+  <div class="tet-font">🌸 CHÚC MỪNG NĂM MỚI 2026 🌸</div>
+  <div style="font-size: 0.7em; margin-top: 5px; opacity: 0.9;">J&T DRIVER - VẠN DẶM BÌNH AN</div>
   <button id="toggleTheme" aria-label="chuyển sáng tối">🌙</button>
 </header>
 
@@ -380,7 +324,7 @@ body.dark footer { background: var(--card-dark); }
   <!-- 1. CÔNG VIỆC -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
-      <span class="title">📋 Công việc nội bộ</span><span class="arrow">▶</span>
+      <span class="title">🧧 Công việc nội bộ</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
       <a class="link-card" href="https://jntexpress.vn/attendance" target="_blank"><div class="link-left">CHẤM CÔNG CRM</div></a>
@@ -392,7 +336,7 @@ body.dark footer { background: var(--card-dark); }
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlglpEg10qLFAoBoN6FYGm0Nv" target="_blank"><div class="link-left">GỬI HÌNH VÁ VỎ, LINK CHUẨN</div></a>
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgj3VYEKTEh7tTSaZvfpP7HL" target="_blank"><div class="link-left">BÁO CÁO THÙNG XE TRỐNG</div></a>
       <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgHKbeP4ff2P8AoaQcWUzicc" target="_blank"><div class="link-left">BÁO CÁO THÔNG TIN ĐỔ DẦU</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgPi18jGohtl9znrsxLdlDhh" target="_blank"><div class="link-left">BỔ SUNG TĂNG CA BỊ THIẾU</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgPi18jGohtl9znrsxLdlDhh" target="_blank"><div class="link-left">BỔ SUNG TĂNG CA</div></a>
     </div>
   </div>
 
@@ -412,7 +356,7 @@ body.dark footer { background: var(--card-dark); }
   <!-- 3. LIÊN HỆ -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
-      <span class="title">📞 Liên hệ Zalo Hỗ trợ</span><span class="arrow">▶</span>
+      <span class="title">☎️ Liên hệ Zalo Hỗ trợ</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
         <div class="contact-note">⚠️ Bấm vào tên để nhắn tin Zalo trực tiếp.</div>
@@ -428,14 +372,14 @@ body.dark footer { background: var(--card-dark); }
                 <span class="name-contact">Trí Lê</span>
                 <span class="role-contact">Đội trưởng ca ngày</span>
             </a>
-            <a href="https://zalo.me/0357088743" target="_blank" class="contact-btn"> <!-- Cần điền số chính xác -->
+            <a href="#" target="_blank" class="contact-btn"> <!-- Chưa có số -->
                 <span class="name-contact">Hoàng Trần</span>
                 <span class="role-contact">Đội trưởng ca đêm</span>
             </a>
 
             <!-- BẢO TRÌ -->
             <div style="grid-column: 1/3; font-weight: 700; color: var(--primary); padding-top: 15px; border-bottom: 1px dashed #ccc; margin-bottom: 5px;">BẢO TRÌ XE</div>
-            <a href="https://zalo.me/0937427708" target="_blank" class="contact-btn">
+            <a href="#" target="_blank" class="contact-btn"> <!-- Chưa có số -->
                 <span class="name-contact">Hoàng Trung</span>
                 <span class="role-contact">Bảo trì Thaco, Isuzu</span>
             </a>
@@ -457,7 +401,6 @@ body.dark footer { background: var(--card-dark); }
                 <span class="name-contact">Nguyễn Tiến Trung</span>
                 <span class="role-contact">TTTC (7h-16h)</span>
             </a>
-            <!-- Đã chuyển Nguyễn Thành Vinh sang Ca Tối -->
 
             <!-- CA CHIỀU -->
             <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(255, 165, 0, 0.2); color: #CC6600; border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA NGÀY (12h - 21h) 🟠</div>
@@ -540,7 +483,7 @@ body.dark footer { background: var(--card-dark); }
             </a>
             <a href="https://zalo.me/0962073741" target="_blank" class="contact-btn"> 
                 <span class="name-contact">Hồ Sỹ Tiến</span>
-                <span class="role-contact">GW0 (7h-19h30)</span>
+                <span class="role-contact">GW0 (21h-6h)</span>
             </a>
         </div>
     </div>
@@ -571,7 +514,7 @@ body.dark footer { background: var(--card-dark); }
                  <input type="number" id="closingOdo" class="calc-input" placeholder="VD: 22000" inputmode="numeric" onfocus="this.select()" min="0">
                  <button class="save-btn" onclick="saveClosingOdo()" style="width:90px">Lưu</button>
              </div>
-             <div id="savedOdoText" style="font-size:14px; color:var(--accent); margin-top:5px; font-style:italic; font-weight:500"></div>
+             <div id="savedOdoText" style="font-size:14px; color:var(--red-text); margin-top:5px; font-style:italic; font-weight:500"></div>
         </div>
 
         <div class="log-input-container">
@@ -836,8 +779,8 @@ body.dark footer { background: var(--card-dark); }
       </div>
 
       <!-- NÚT LIÊN KẾT ĐẾN BỘ SƯU TẬP (MỚI THÊM) -->
-      <a href="https://collshp.com/letinhclover1612" target="_blank" class="share-btn-native" style="width:96%; margin: 15px auto 5px auto; background: linear-gradient(90deg, #ee4d2d, #ff7337); justify-content:center; text-decoration:none; display:flex; color: white;">
-          🛍️ Xem thêm
+      <a href="https://collshp.com/letinhclover1612" target="_blank" class="share-btn-native" style="width:96%; margin: 15px auto 5px auto; background: linear-gradient(90deg, #d40000, #ffcc00); justify-content:center; text-decoration:none; display:flex; color: white;">
+          🛍️ Sắm đồ Tết cho xe
       </a>
 
     </div>
@@ -850,16 +793,12 @@ body.dark footer { background: var(--card-dark); }
     </div>
     <div class="group-content">
         <div class="intro-box">
-            <b>Link Tài Xế J&T Express</b> là ứng dụng web miễn phí, được phát triển bởi <b>Lê Tỉnh</b> nhằm hỗ trợ anh em tài xế trong công việc hàng ngày.
+            <b>CHÚC MỪNG NĂM MỚI 2026!</b> 🎆<br>
+            Nhân dịp xuân mới, Lê Tỉnh chúc toàn thể anh em tài xế J&T và gia đình một năm mới:
             <br><br>
-            <b>Các tính năng chính:</b>
-            <ul style="padding-left:20px; margin:5px 0;">
-                <li><b>Tổng hợp Link & Zalo:</b> Gom tất cả các nhóm Zalo, link báo cáo, SĐT điều phối về một nơi, không cần tìm kiếm.</li>
-                <li><b>Tính lương tăng ca:</b> Tự động quy đổi giờ ra tiền chính xác.</li>
-                <li><b>Nhật ký vận hành:</b> Ghi chép ODO, tính định mức dầu.</li>
-                <li><b>Tra cứu nhanh:</b> Link nộp phạt, tra cứu phạt nguội...</li>
-            </ul>
-            Ứng dụng rất hữu ích với anh em <b>tài xế mới</b>.
+            🎋 <b>AN KHANG - THỊNH VƯỢNG - VẠN DẶM BÌNH AN</b> 🎋
+            <br><br>
+            Ứng dụng này vẫn hoạt động xuyên Tết để hỗ trợ anh em. Cảm ơn anh em đã đồng hành trong năm qua!
         </div>
         
         <!-- QR CODE & CHIA SẺ -->
@@ -867,14 +806,14 @@ body.dark footer { background: var(--card-dark); }
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://letinhclover.github.io/jntdriver" alt="QR Code" class="qr-img">
             <br>
             <button class="share-btn-native" onclick="shareApp()">
-                📤 Chia sẻ cho đồng đội
+                🧧 Lì xì Link App cho đồng đội
             </button>
         </div>
 
         <div class="author-box">
-            <p>Mọi ý kiến đóng góp hoặc cần hỗ trợ cách sử dụng,<br>anh em cứ nhắn tin Zalo cho mình nhé.</p>
+            <p>Cần hỗ trợ trong Tết, anh em cứ nhắn Zalo nhé.</p>
             <a href="https://zalo.me/0708312789" target="_blank" class="contact-btn" style="height:auto; width:fit-content; margin:10px auto; padding:8px 20px;">
-                <span style="font-weight:bold; color:var(--blue-text)">💬 Nhắn tin cho Lê Tỉnh</span>
+                <span style="font-weight:bold; color:var(--red-text)">💬 Nhắn tin cho Lê Tỉnh</span>
             </a>
         </div>
     </div>
@@ -883,10 +822,10 @@ body.dark footer { background: var(--card-dark); }
 </main>
 
 <footer>
-  <div class="footer-text">Trang này chỉ dành cho nội bộ tài xế J&T</div>
+  <div class="footer-text">J&T DRIVER - CHÚC MỪNG NĂM MỚI</div>
   <div class="visitor-count" id="visitCount">Đang tải lượt truy cập...</div>
   <div style="margin-top:4px;">
-    © 2025 <a href="https://zalo.me/0708312789" class="footer-link">Lê Tỉnh</a>
+    © 2026 <a href="https://zalo.me/0708312789" class="footer-link">Lê Tỉnh</a>
   </div>
 </footer>
 
@@ -899,7 +838,6 @@ if ('serviceWorker' in navigator) {
             console.log('Đã hủy Service Worker:', registration);
         }
     });
-    // Xóa cache để đảm bảo tải code mới nhất
     if ('caches' in window) {
         caches.keys().then(function(names) {
             for (let name of names) {
@@ -907,6 +845,48 @@ if ('serviceWorker' in navigator) {
             }
         });
     }
+}
+
+// --- HÀM TẠO HOA RƠI ---
+function createFlowers() {
+    const container = document.getElementById('flowerContainer');
+    const flowers = ['🌸', '🌼', '🧧', '🏮'];
+    
+    // Chỉ tạo tối đa 15 bông để không lag máy
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = (Math.random() * 5 + 5) + 's'; // 5-10s
+            flower.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            container.appendChild(flower);
+            
+            // Xóa đi tạo lại để lặp vô tận mà không đầy DOM
+            flower.addEventListener('animationend', () => {
+                flower.remove();
+                createOneFlower();
+            });
+        }, i * 800);
+    }
+}
+
+function createOneFlower() {
+    const container = document.getElementById('flowerContainer');
+    if(!container) return;
+    const flowers = ['🌸', '🌼', '🧧', '🏮'];
+    const flower = document.createElement('div');
+    flower.classList.add('flower');
+    flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+    flower.style.left = Math.random() * 100 + 'vw';
+    flower.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    flower.style.fontSize = (Math.random() * 20 + 20) + 'px';
+    container.appendChild(flower);
+    flower.addEventListener('animationend', () => {
+        flower.remove();
+        createOneFlower();
+    });
 }
 
 // --- HÀM LẤY NGÀY HIỆN TẠI (THEO GIỜ VIỆT NAM) ---
@@ -922,11 +902,8 @@ function setToday(elementId) {
 
 // --- HÀM ĐỊNH DẠNG TIỀN KHI NHẬP (VD: 5.000.000) ---
 function formatInputMoney(el) {
-    // 1. Lấy giá trị hiện tại và xóa hết ký tự không phải số
     let val = el.value.replace(/\D/g, ''); 
-    // 2. Nếu rỗng thì thoát
     if(val === '') { el.value = ''; return; }
-    // 3. Định dạng lại có dấu chấm
     el.value = Number(val).toLocaleString('vi-VN');
 }
 
@@ -939,7 +916,6 @@ function parseMoney(id) {
 // --- HÀM MỚI: LẤY SỐ GIỜ (GIỮ LẠI DẤU CHẤM - DÙNG CHO GIỜ TĂNG CA) ---
 function parseHours(id) {
     let val = document.getElementById(id).value;
-    // Chỉ thay dấu phẩy thành chấm, KHÔNG xóa dấu chấm
     return parseFloat(val.replace(/,/g, '.')) || 0;
 }
 
@@ -952,7 +928,6 @@ function loadSalarySettings() {
         if (saved) {
             const el = document.getElementById(id);
             el.value = saved;
-            // Nếu là ô lương (có id chứa 'luong'), chạy định dạng ngay
             if(id === 'ot_luongCanBan') formatInputMoney(el);
         }
     });
@@ -963,7 +938,6 @@ function saveSalarySettings() {
         const val = document.getElementById(id).value;
         localStorage.setItem(id, val);
     });
-    // Tự động tính lại tiền khi thay đổi thông số
     reCalcSalaryAuto();
 }
 
@@ -1047,12 +1021,6 @@ noteArea.addEventListener('input', () => localStorage.setItem('userNote', noteAr
 
 // --- HELPER ---
 const fmt = (n) => parseFloat(n.toFixed(2));
-function evaluateExpression(val) {
-    if (!val) return 0;
-    let clean = val.toString().replace(/,/g, '.').replace(/[^\d.+-x*]/gi, '').replace(/x/gi, '*');
-    try { return Function('"use strict";return (' + clean + ')')() || 0; } catch { return 0; }
-}
-
 function formatMoney(n) { return Math.round(n).toLocaleString('vi-VN') + ' VNĐ'; }
 
 async function shareApp() {
@@ -1075,7 +1043,7 @@ fetch("https://api.counterapi.dev/v1/letinhclover.github.io/jntdriver/up")
 
 // --- TÍNH DẦU ---
 window.tinhDau = function() {
-  const khoan = parseMoney('khoan'); // Dùng parseMoney để xử lý số có thể có dấu chấm
+  const khoan = parseMoney('khoan');
   const km = parseMoney('km');
   const thuc = parseMoney('thuc');
   const gia = parseMoney('gia');
@@ -1094,7 +1062,7 @@ window.tinhDau = function() {
     const chenhlech = dauKhoan - thuc;
     html += `<div class="result-item"><span>Theo khoán:</span><span class="result-value">${fmt(dauKhoan)} Lít</span></div>`;
     html += `<div class="result-item"><span>Thực tế:</span><span class="result-value">${fmt(thuc)} Lít</span></div>`;
-    let msgClass = chenhlech >= 0 ? 'color:var(--accent)' : 'color:var(--primary)';
+    let msgClass = chenhlech >= 0 ? 'color:#2ecc71' : 'color:var(--primary)';
     let msgText = chenhlech >= 0 ? `DƯ ${fmt(chenhlech)} LÍT` : `THIẾU ${fmt(Math.abs(chenhlech))} LÍT`;
     let moneyText = '';
     if(gia > 0) {
@@ -1110,7 +1078,7 @@ window.tinhDau = function() {
 }
 
 // --- NHẬT KÝ DẦU ---
-setToday('logDate'); // Gán ngày hiện tại (đã sửa lỗi)
+setToday('logDate'); 
 
 let closingOdo = parseFloat(localStorage.getItem('closingOdo')) || 0;
 if(closingOdo > 0) {
@@ -1163,7 +1131,6 @@ function editFuelLog(index) {
     document.getElementById('btnAddFuel').innerText = "💾 Cập nhật";
     document.getElementById('btnAddFuel').classList.add('btn-update');
     document.getElementById('btnCancelFuel').style.display = "inline-block";
-    // --- THÊM DÒNG NÀY ĐỂ TỰ CUỘN LÊN ---
     document.getElementById('logDate').scrollIntoView({ behavior: 'smooth', block: 'center' });    
 }
 
@@ -1202,21 +1169,17 @@ function renderLogs() {
     document.getElementById('avgCons').innerText = avg.toFixed(2);
 }
 
-// --- TÍNH LƯƠNG (ĐÃ CẬP NHẬT DÙNG parseHours) ---
+// --- TÍNH LƯƠNG ---
 window.tinhLuong = function() {
-    // Các ô Tiền và Ngày công -> Dùng parseMoney (Xóa dấu chấm ngàn)
     const luongCB = parseMoney('ot_luongCanBan');
     const ngayThang = parseMoney('ot_soNgayTrongThang');
     const ngayCN = parseMoney('ot_soNgayChuNhat');
-    
-    // Các ô Giờ -> Dùng parseHours (Giữ dấu chấm thập phân để hiểu 8.5)
     const gio15 = parseHours('ot_gioTCTuong');
     const gio20 = parseHours('ot_gioTCNghi');
     
     document.getElementById('ketQuaLuong').style.display = 'block';
     
     if(luongCB < 0 || ngayThang < 0 || ngayCN < 0 || gio15 < 0 || gio20 < 0) { alert("Số không được âm!"); return; }
-
     if (luongCB <= 0 || ngayThang <= 0) { alert("Nhập Lương CB và Ngày công!"); return; }
     
     const ngayCongChuan = ngayThang - ngayCN;
@@ -1232,20 +1195,16 @@ window.tinhLuong = function() {
     document.getElementById('showH20').innerText = fmt(gio20) + "h"; 
     document.getElementById('tienTCNghi').innerText = formatMoney(tien20);
     document.getElementById('tongTienTangCa').innerText = formatMoney(tien15 + tien20);
-    
     reCalcSalaryAuto();
 }
 
 // --- NHẬT KÝ TĂNG CA ---
-setToday('otLogDate'); // Gán ngày hiện tại (đã sửa lỗi)
+setToday('otLogDate'); 
 
 let otLogs = JSON.parse(localStorage.getItem('otLogs')) || [];
 let editOTIndex = -1;
 
-// *** QUAN TRỌNG: LOAD DỮ LIỆU CŨ TRƯỚC - RỒI MỚI TÍNH TOÁN ***
-// 1. Load các con số 31, 4 từ bộ nhớ lên ô input
 loadSalarySettings();
-// 2. Sau đó mới chạy hàm render (tính toán dựa trên số vừa load)
 renderOTLogs();
 
 function addOTLog() {
@@ -1275,7 +1234,6 @@ function editOTLog(index) {
     document.getElementById('btnAddOT').innerText = "💾 Cập nhật";
     document.getElementById('btnAddOT').classList.add('btn-update');
     document.getElementById('btnCancelOT').style.display = "inline-block";
-    // --- THÊM DÒNG NÀY ĐỂ TỰ CUỘN LÊN ---
     document.getElementById('otLogDate').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
@@ -1295,16 +1253,13 @@ function renderOTLogs() {
     const list = document.getElementById('otLogList');
     list.innerHTML = `<tr><th>Ngày</th><th>Loại</th><th>Giờ</th><th></th></tr>`;
     let sum15 = 0; let sum20 = 0;
-    
     otLogs.sort((a, b) => new Date(a.date) - new Date(b.date));
-
     otLogs.forEach((log, index) => {
         if(log.type === 1.5) sum15 += log.hours;
         if(log.type === 2.0) sum20 += log.hours;
         const d = log.date.split('-'); const shortDate = `${d[2]}/${d[1]}`;
         const typeClass = log.type === 1.5 ? 'text-blue' : 'text-red';
         const typeLabel = log.type === 1.5 ? 'Tăng ca thường' : 'Tăng ca OFF';
-        
         const row = document.createElement('tr');
         row.innerHTML = `<td>${shortDate}</td><td class="${typeClass}" style="font-weight:bold">${typeLabel}</td><td class="${typeClass}" style="font-weight:bold">${fmt(log.hours)}</td><td><button class="log-action-btn btn-edit" onclick="editOTLog(${index})">✎</button><button class="log-action-btn btn-del" onclick="deleteOTLog(${index})">×</button></td>`;
         list.appendChild(row);
@@ -1315,7 +1270,6 @@ function renderOTLogs() {
 }
 
 function calculateOTMoney(h15, h20) {
-    // Dùng hàm parseMoney mới để xử lý số có dấu chấm
     const luongCB = parseMoney('ot_luongCanBan');
     const ngayCong = parseMoney('ot_soNgayTrongThang');
     const ngayCN = parseMoney('ot_soNgayChuNhat');
@@ -1323,7 +1277,6 @@ function calculateOTMoney(h15, h20) {
     if(luongCB > 0 && ngayCong > 0) {
         const ngayChuan = ngayCong - ngayCN;
         const luongGio = luongCB / (ngayChuan * 8);
-        
         const tien15 = h15 * 1.5 * luongGio;
         const tien20 = h20 * 2.0 * luongGio;
         const total = tien15 + tien20;
@@ -1334,21 +1287,16 @@ function calculateOTMoney(h15, h20) {
     }
 }
 
-// --- KHỞI TẠO ỨNG DỤNG (CHẠY CUỐI CÙNG ĐỂ ĐẢM BẢO THỨ TỰ) ---
+// --- KHỞI TẠO ỨNG DỤNG ---
 function initApp() {
-    // 1. Lấy ngày giờ hiện tại
     setToday('logDate');
     setToday('otLogDate');
-
-    // 2. Tải cài đặt lương TRƯỚC (QUAN TRỌNG)
     loadSalarySettings();
-
-    // 3. Tải nhật ký sau (Khi số liệu cài đặt đã có trong ô input)
     renderLogs();
     renderOTLogs();
+    createFlowers(); // Chạy hiệu ứng hoa rơi
 }
 
-// Gọi hàm khởi tạo
 initApp();
 </script>
 </body>
