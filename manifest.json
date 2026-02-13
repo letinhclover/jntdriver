@@ -1,6 +1,6 @@
 {
   "name": "Link Tài Xế J&T Express",
-  "short_name": "J&T Driver Link",
+  "short_name": "J&T Driver",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
