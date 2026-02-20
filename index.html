@@ -6,39 +6,37 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Link Tài Xế J&T - Vui Xuân 2026</title>
+<title>Link Tài Xế J&T Express</title>
 
 <!-- 2. PWA & ICONS -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#d40000"> <!-- Màu đỏ Tết -->
+<meta name="theme-color" content="#ff0033">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="application-name" content="J&T Tết">
+<meta name="application-name" content="Link Tài Xế J&T">
 
 <!-- 3. FONTS & SEO -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<!-- Font Thư pháp cho Tết -->
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"> 
+<meta name="description" content="Link tài xế J&T Express: Tổng hợp Link nội bộ, Nhóm Zalo, Tính lương, Dầu, Map kho. Tất cả trong một.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://letinhclover.github.io/jntdriver">
 
 <style>
-/* CSS GIAO DIỆN TẾT */
+/* CSS GIAO DIỆN */
 :root {
-  --bg-light: #fffceb; /* Màu kem vàng sáng */
-  --bg-dark: #2c0b0e; /* Màu đỏ đen tối */
-  --text-light: #330000; 
-  --text-dark: #ffe6a1;
-  --primary: #d40000; /* Đỏ tươi */
-  --accent: #ffcc00; /* Vàng kim */
-  --card: #ffffff; 
-  --card-dark: #3e1216;
-  --highlight-bg: #fff0f0;
+  --bg-light: #f8fafc; --bg-dark: #111214;
+  --text-light: #0b0b0b; --text-dark: #f5f5f5;
+  --primary: #CC0000; --accent: #198845;
+  --card: #ffffff; --card-dark: #1d1f21;
+  --highlight-bg: #fff3f2;
   --edit: #f39c12;
-  --blue-text: #0056b3; 
+  --blue-text: #007bff; 
   --red-text: #d32f2f;
-  --border-tet: 1px solid #ffcc00;
+  --safe: #2ecc71; 
+  --warn: #f1c40f;
 }
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -47,48 +45,38 @@ body {
   margin: 0; background: var(--bg-light); color: var(--text-light);
   transition: background .25s, color .25s;
   -webkit-tap-highlight-color: transparent; font-size: 15px; line-height: 1.4;
-  overflow-x: hidden; /* Tránh thanh cuộn ngang do hiệu ứng */
 }
 body.dark { background: var(--bg-dark); color: var(--text-dark); }
 
-/* HEADER TẾT */
 header {
-  background: linear-gradient(135deg, #b30000, #ff4d4d);
-  color: #ffeb3b; padding: 15px 16px; text-align: center;
-  position: relative; font-weight: 800; font-size: 1.3em;
-  box-shadow: 0 4px 10px rgba(212, 0, 0, 0.3);
-  border-bottom: 3px solid var(--accent);
-  text-transform: uppercase;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  background: linear-gradient(90deg, var(--primary), #dd2476);
+  color: #fff; padding: 14px 16px; text-align: center;
+  position: relative; font-weight: 800; font-size: 1.2em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-.tet-font { font-family: 'Dancing Script', cursive; font-size: 1.2em; }
-
 #toggleTheme {
-  position: absolute; right: 12px; top: 15px;
+  position: absolute; right: 12px; top: 10px;
   background: none; border: none; color: #fff;
   font-size: 18px; cursor: pointer; padding: 5px;
 }
 
-.container { max-width: 720px; margin: 10px auto; padding: 10px; position: relative; z-index: 2; }
+.container { max-width: 720px; margin: 10px auto; padding: 10px; }
 
 /* GROUP STYLES */
 .group {
-  margin-bottom: 14px; border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(212, 0, 0, 0.1);
+  margin-bottom: 14px; border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
   background: var(--card);
-  border: 1px solid rgba(255, 204, 0, 0.3); /* Viền vàng nhẹ */
 }
-body.dark .group { box-shadow: 0 2px 6px rgba(0,0,0,.5); background: var(--card-dark); border-color: #5c1e23; }
+body.dark .group { box-shadow: 0 2px 6px rgba(0,0,0,.3); background: var(--card-dark); }
 
 .group-header {
   display: flex; justify-content: space-between; align-items: center;
   padding: 12px 14px; cursor: pointer; font-weight: 700;
-  background: rgba(255, 204, 0, 0.1); /* Nền vàng nhạt */
-  border-radius: 12px 12px 0 0; user-select: none;
+  background: rgba(0,0,0,0.02); border-radius: 10px 10px 0 0; user-select: none;
 }
 .group-header span.title { color: var(--primary); }
-body.dark .group-header span.title { color: #ffcc00; }
-.group-header .arrow { transition: transform .25s; color: var(--primary); }
+.group-header .arrow { transition: transform .25s; }
 .group.open .group-header .arrow { transform: rotate(90deg); }
 .group-content { display: none; padding-bottom: 5px; animation: fadeIn 0.2s ease; }
 .group.open .group-content { display: block; }
@@ -100,55 +88,33 @@ a.link-card {
   text-decoration: none; color: inherit;
   padding: 10px; border-radius: 8px; margin: 6px 10px;
   background: rgba(0,0,0,0.03); transition: transform .1s;
-  border-left: 3px solid transparent;
 }
-a.link-card:active { transform: scale(0.98); background: rgba(255, 204, 0, 0.2); }
+a.link-card:active { transform: scale(0.98); background: rgba(0,0,0,0.08); }
 body.dark a.link-card { background: rgba(255,255,255,0.05); }
-a.link-card:hover { border-left: 3px solid var(--primary); }
-
-/* --- SHOPPING GRID --- */
-.shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px 5px; }
-.shop-item {
-    background: var(--card); border: 1px solid rgba(255, 204, 0, 0.3);
-    border-radius: 12px; padding: 0; display: flex; flex-direction: column; 
-    align-items: center; text-align: left; text-decoration: none; color: inherit; 
-    transition: transform 0.2s; overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-body.dark .shop-item { background: rgba(255,255,255,0.05); border-color: #5c1e23; }
-.shop-item:active { transform: scale(0.98); }
-.shop-img-box {
-    width: 100%; height: 140px; background: #fff;
-    display: flex; align-items: center; justify-content: center;
-    border-bottom: 1px solid rgba(0,0,0,0.05); padding: 5px;
-}
-.shop-img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.shop-content { padding: 10px; width: 100%; display: flex; flex-direction: column; flex-grow: 1; }
-.shop-name { font-weight: 700; font-size: 0.9em; line-height: 1.3; margin-bottom: 4px; height: 38px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.shop-desc { font-size: 0.75em; opacity: 0.7; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.shop-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
-.shop-price { color: var(--primary); font-weight: 800; font-size: 0.95em; }
-.shop-btn-buy { background: var(--primary); color: white; font-size: 0.7em; padding: 5px 10px; border-radius: 4px; font-weight: bold; }
 
 /* CONTACT GRID */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px 12px; }
 a.contact-btn {
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   padding: 8px 5px; border-radius: 8px;
-  background: rgba(255, 204, 0, 0.1); color: var(--text-light); /* Nền vàng nhạt */
-  text-decoration: none; height: 60px; text-align: center; border: 1px dashed rgba(212,0,0,0.2);
+  background: rgba(0,0,0,0.03); color: var(--text-light);
+  text-decoration: none; height: 60px; text-align: center;
 }
-body.dark a.contact-btn { background: rgba(255,255,255,0.05); color: var(--text-dark); border-color: #555; }
+body.dark a.contact-btn { background: rgba(255,255,255,0.05); color: var(--text-dark); }
 .contact-btn .name-contact { font-weight: 700; font-size: 0.95em; }
 .contact-btn .role-contact { font-size: 0.75em; opacity: 0.7; margin-top: 2px; }
-.contact-note { text-align: center; margin-bottom: 10px; font-size: 0.9em; font-style: italic; opacity: 0.8; color: var(--text-light); }
+
+.contact-note {
+    text-align: center; margin-bottom: 10px;
+    font-size: 0.9em; font-style: italic; opacity: 0.8;
+    color: var(--text-light);
+}
 body.dark .contact-note { color: var(--text-dark); }
 
 /* INPUTS & BUTTONS */
 .calc-content { padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .input-group-calc { width: 94%; max-width: 580px; }
-.calc-label { display: block; margin-top: 8px; font-weight: 600; font-size: 15px; color: var(--primary); }
-body.dark .calc-label { color: #ffcc00; }
+.calc-label { display: block; margin-top: 8px; font-weight: 600; font-size: 15px; }
 .calc-input {
   width: 100%; padding: 12px; margin-top: 4px;
   border: 1px solid #ccc; border-radius: 8px; font-size: 16px;
@@ -161,7 +127,6 @@ button.calc-submit {
   border-radius: 10px; font-size: 16px; font-weight: 700;
   margin-top: 15px;
   border: none; background: var(--primary); color: #fff; cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 button.calc-submit:active { opacity: .9; transform: translateY(1px); }
 button.btn-update { background: var(--edit) !important; }
@@ -179,22 +144,27 @@ button.btn-update { background: var(--edit) !important; }
 }
 .result-box { background: rgba(0,0,0,0.05); }
 body.dark .result-box { background: rgba(255,255,255,0.05); color: var(--text-dark); }
-.result-box-ot { background-color: #fff8e1; border: 1px solid var(--accent); }
+.result-box-ot { background-color: var(--highlight-bg); border: 1px solid var(--primary); }
 body.dark .result-box-ot { background-color: #312121; border: 1px solid rgba(255,255,255,0.1); }
 
 .result-box-ot h3 { color: var(--primary); font-size: 1.1em; margin: 0 0 8px 0; border-bottom: 1px dashed #ccc; padding-bottom: 5px; text-align: center; }
 
 /* GRID KẾT QUẢ LƯƠNG */
 .result-grid-row {
-    display: grid; grid-template-columns: 45% 15% 40%; 
-    align-items: center; margin: 10px 0;
-    border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 6px;
+    display: grid;
+    grid-template-columns: 45% 15% 40%; 
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    padding-bottom: 6px;
 }
 body.dark .result-grid-row { border-color: rgba(255,255,255,0.1); }
+
 .grid-label { font-weight: 700; text-align: left; font-size: 1.0em; }
 .grid-hours { font-weight: 700; text-align: center; font-size: 1.1em; } 
 .grid-money { font-weight: 700; text-align: right; font-size: 1.1em; }
 
+/* MÀU SẮC TĂNG CA */
 .text-blue { color: var(--blue-text); }
 body.dark .text-blue { color: #4da3ff; }
 .text-red { color: var(--red-text); }
@@ -206,32 +176,105 @@ body.dark .text-red { color: #ff6659; }
 
 /* LOGBOOK STYLE */
 .odo-setup {
-    background: rgba(255,255,255,0.6); padding: 10px; 
-    border-radius: 8px; border: 1px solid var(--primary);
+    background: rgba(0,0,0,0.03); padding: 10px; 
+    border-radius: 8px; border: 1px solid var(--accent);
     margin-bottom: 10px; width: 100%;
 }
 body.dark .odo-setup { background: rgba(25, 136, 69, 0.1); }
 
-.log-input-container { width: 100%; background: rgba(0,0,0,0.02); padding: 8px; border-radius: 8px; border: 1px solid #eee; }
+/* HEADER ROW CHO NHẬT KÝ DẦU */
+.fuel-log-header {
+    display: grid;
+    grid-template-columns: 15% 12% 18% 13% 17% 25%;
+    gap: 4px;
+    padding: 10px 8px;
+    background: linear-gradient(135deg, var(--primary), #dd2476);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8em;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.fuel-log-header > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log-input-container {
+    width: 100%; background: rgba(0,0,0,0.02);
+    padding: 8px; border-radius: 8px; border: 1px solid #eee;
+}
 body.dark .log-input-container { background: rgba(255,255,255,0.05); border-color: #333; }
+
 .log-row-1 { width: 100%; margin-bottom: 8px; } 
 .log-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } 
 
+.log-input { padding: 12px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; }
+body.dark .log-input { background: #2b2b2b; border-color: #555; color: #fff; }
 .log-select { padding: 12px; border: 1px solid #ccc; border-radius: 5px; width: 100%; font-size: 15px; background: #fff; }
 body.dark .log-select { background: #2b2b2b; color: #fff; border-color: #555; }
 
 .log-list { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
-.log-list th { background: rgba(212,0,0,0.1); padding: 8px 4px; text-align: left; font-size: 12px; color: var(--primary); }
-body.dark .log-list th { background: rgba(255,255,255,0.1); color: #ffcc00; }
+.log-list th { background: rgba(0,0,0,0.05); padding: 8px 4px; text-align: left; font-size: 12px; color: var(--primary); }
+body.dark .log-list th { background: rgba(255,255,255,0.1); }
 .log-list td { border-bottom: 1px solid rgba(0,0,0,0.1); padding: 10px 4px; vertical-align: middle; }
 body.dark .log-list td { border-bottom: 1px solid rgba(255,255,255,0.3); } 
 
-.log-action-btn { font-size: 16px; border: none; background: none; cursor: pointer; margin-left: 8px; }
+/* FUEL LOG CARD - Grid Layout */
+.log-card-fuel {
+    display: grid;
+    grid-template-columns: 15% 12% 18% 13% 17% 25%;
+    gap: 4px;
+    align-items: center;
+    padding: 8px 8px;
+    margin: 0 0 3px 0;
+    background: rgba(0,0,0,0.03);
+    border-radius: 6px;
+    font-size: 0.85em;
+    transition: all 0.15s;
+}
+.log-card-fuel:active {
+    transform: scale(0.98);
+    background: rgba(0,0,0,0.08);
+}
+body.dark .log-card-fuel {
+    background: rgba(255,255,255,0.05);
+}
+body.dark .log-card-fuel:active {
+    background: rgba(255,255,255,0.1);
+}
+
+.log-card-fuel > div {
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.log-card-fuel .fuel-date {
+    font-weight: 600;
+    color: var(--text-light);
+}
+body.dark .log-card-fuel .fuel-date {
+    color: var(--text-dark);
+}
+
+.log-card-fuel .fuel-actions {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+ 
+
+.log-action-btn { font-size: 16px; border: none; background: none; cursor: pointer; margin-left: 4px; padding: 2px 4px; }
 .btn-edit { color: var(--edit); }
 .btn-del { color: #999; }
 
 .log-summary {
-    background: #fff8e1; border: 1px dashed var(--primary);
+    background: var(--highlight-bg); border: 1px dashed var(--primary);
     border-radius: 8px; padding: 10px; margin-top: 15px; width: 100%;
     font-size: 14px;
 }
@@ -243,35 +286,234 @@ body.dark .log-summary { background: #312121; border-color: rgba(255,255,255,0.2
   width: 96%; height: 120px; padding: 10px;
   border: 1px solid #ccc; border-radius: 8px;
   font-family: inherit; margin: 10px auto; display: block;
-  background: #fff; color: var(--text-light); font-size: 16px;
+  background: var(--bg-light); color: var(--text-light); font-size: 16px;
 }
 body.dark .note-area { background: #2b2b2b; color: var(--text-dark); border-color: #555; }
-.save-btn { background: var(--accent); color: #b30000; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+.save-btn { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+/* --- NHẮC LỊCH XE STYLE COMPACT --- */
+.reminder-compact-row {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 96%; margin: 6px auto; padding: 12px 14px;
+    background: rgba(0,0,0,0.03); border-radius: 10px; border: 1px solid #eee;
+}
+body.dark .reminder-compact-row { background: rgba(255,255,255,0.05); border-color: #333; }
+
+.reminder-info { flex: 1; }
+.reminder-label-main { font-weight: 700; font-size: 1.05em; display: block; margin-bottom: 2px; }
+.reminder-status-text { font-size: 0.92em; font-weight: 500; }
+
+.btn-edit-toggle {
+    background: #7f8c8d; color: white; border: none; padding: 8px 14px;
+    border-radius: 8px; font-size: 13px; font-weight: 800; cursor: pointer; 
+    margin-left: 12px; min-width: 65px;
+}
+.btn-edit-toggle.active { background: var(--accent); }
+
+.edit-area { 
+    display: none; width: 96%; margin: -4px auto 10px; padding: 15px; 
+    background: var(--card); border-radius: 0 0 10px 10px; 
+    border: 2px solid #ddd; border-top: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+body.dark .edit-area { background: var(--card-dark); border-color: #444; }
+
+.reminder-input-pro { 
+    width: 100%; height: 50px; padding: 0 15px; 
+    border: 2px solid #cbd5e1; border-radius: 10px; 
+    font-size: 18px; font-weight: 700; color: var(--text-light);
+    background: var(--bg-light); font-family: inherit;
+    box-sizing: border-box;
+}
+body.dark .reminder-input-pro { background: #2b2b2b; color: #fff; border-color: #444; }
+.reminder-input-pro:focus { border-color: var(--blue-text); outline: none; background: #fff; }
+
+.expert-advice-box {
+    width: 96%; margin: 12px auto; padding: 14px; border-radius: 12px;
+    background: #e1f5fe; color: #01579b; border: 1px solid #b3e5fc; 
+    font-size: 0.95em; line-height: 1.5;
+}
+body.dark .expert-advice-box { background: #012b3d; color: #b3e5fc; border-color: #01579b; }
+
+/* BẢNG TRA CỨU HÀNG NGANG */
+.maintenance-header-row {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 96%; margin: 18px auto 5px; padding: 0 5px;
+}
+.maintenance-title { font-weight: 800; color: var(--primary); font-size: 0.95em; text-transform: uppercase; }
+.btn-lookup-toggle {
+    background: var(--blue-text); color: white; border: none; padding: 6px 18px;
+    border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px;
+}
+
+.maintenance-table {
+    display: none; width: 96%; margin: 5px auto 15px; border-collapse: collapse;
+    font-size: 15px; background: var(--card); border-radius: 8px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+body.dark .maintenance-table { background: var(--card-dark); border: 1px solid #444; }
+.maintenance-table th { background: var(--primary); color: white; padding: 12px 10px; text-align: left; font-size: 14px; }
+.maintenance-table td { padding: 14px 10px; border-bottom: 1px solid #eee; vertical-align: top; line-height: 1.4; }
+body.dark .maintenance-table td { border-bottom: 1px solid #444; }
+.maintenance-table tr:last-child td { border: none; }
+.m-cap { font-weight: 800; color: var(--primary); font-size: 1.05em; display: block; margin-bottom: 2px; }
+.m-odo { font-weight: 700; color: var(--text-light); opacity: 0.8; font-size: 0.9em; }
+body.dark .m-odo { color: var(--text-dark); }
+
+/* TOAST NOTIFICATION STYLE */
+#toast {
+    visibility: hidden; min-width: 250px; background-color: #333; color: #fff;
+    text-align: center; border-radius: 50px; padding: 16px; position: fixed;
+    z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%);
+    font-size: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+#toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+@keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+/* SINGLE LINE LIST ITEM CHO NHẬT KÝ (COMPACT PRO) */
+.log-cards-container {
+    width: 100%; padding: 8px 5px;
+}
+
+/* HEADER ROW CHO NHẬT KÝ TĂNG CA */
+.ot-log-header {
+    display: grid;
+    grid-template-columns: 22% 28% 23% 27%;
+    gap: 4px;
+    padding: 10px 8px;
+    background: linear-gradient(135deg, var(--blue-text), #4da3ff);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8em;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.ot-log-header > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* OT LOG CARD - Grid Layout */
+.log-card-ot {
+    display: grid;
+    grid-template-columns: 22% 28% 23% 27%;
+    gap: 4px;
+    align-items: center;
+    padding: 8px 8px;
+    margin: 0 0 3px 0;
+    background: rgba(0,0,0,0.03);
+    border-radius: 6px;
+    font-size: 0.88em;
+    transition: all 0.15s;
+}
+.log-card-ot:active {
+    transform: scale(0.98);
+    background: rgba(0,0,0,0.08);
+}
+body.dark .log-card-ot {
+    background: rgba(255,255,255,0.05);
+}
+body.dark .log-card-ot:active {
+    background: rgba(255,255,255,0.1);
+}
+
+.log-card-ot > div {
+    text-align: center;
+}
+
+.log-card-ot .ot-date {
+    font-weight: 600;
+    color: var(--text-light);
+}
+body.dark .log-card-ot .ot-date {
+    color: var(--text-dark);
+}
+
+.log-card-ot .ot-actions {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+
+/* Giữ lại style cũ cho backward compatibility */
+.log-card {
+    background: var(--card); border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px; padding: 10px 12px; margin-bottom: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex; align-items: center; justify-content: space-between;
+    transition: transform 0.1s;
+}
+body.dark .log-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+.log-card:active { transform: scale(0.98); }
+
+.log-card-date {
+    font-weight: 700; font-size: 0.85em; color: var(--primary);
+    min-width: 55px; flex-shrink: 0;
+}
+
+.log-card-info {
+    flex: 1; padding: 0 10px;
+    display: flex; gap: 8px; align-items: center;
+    font-size: 0.88em;
+}
+
+.log-card-actions {
+    display: flex; gap: 6px; flex-shrink: 0;
+}
+
+/* Màu cho Tăng ca */
+.card-ot-normal .log-card-type, .card-ot-normal .log-card-hours {
+    color: var(--blue-text); font-weight: 700;
+}
+body.dark .card-ot-normal .log-card-type, body.dark .card-ot-normal .log-card-hours {
+    color: #4da3ff;
+}
+.card-ot-off .log-card-type, .card-ot-off .log-card-hours {
+    color: var(--red-text); font-weight: 700;
+}
+body.dark .card-ot-off .log-card-type, body.dark .card-ot-off .log-card-hours {
+    color: #ff6659;
+}
+
+.log-card-value {
+    font-weight: 600;
+}
+
+/* Empty state */
+.log-empty-state {
+    text-align: center; padding: 30px 20px;
+    opacity: 0.5; font-style: italic; font-size: 0.95em;
+}
 
 /* SECTION DIVIDER */
 .section-title {
     padding: 10px 10px 5px 10px; font-weight: bold; color: var(--primary); 
-    border-bottom: 2px solid var(--accent); margin: 15px 10px 5px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1); margin: 15px 10px 5px 10px;
     font-size: 0.95em; text-transform: uppercase;
 }
-body.dark .section-title { border-color: #5c1e23; color: #ffcc00; }
+body.dark .section-title { border-color: rgba(255,255,255,0.1); }
 
 /* QR SHARE */
 .qr-container { text-align: center; padding: 10px; margin-top:10px;}
 .qr-img { 
     width: 160px; height: 160px; 
-    mix-blend-mode: multiply; margin-bottom: 10px;
+    mix-blend-mode: multiply;
+    margin-bottom: 10px;
     background-color: #fff; border: 5px solid #fff; border-radius: 8px;
 }
 body.dark .qr-img { mix-blend-mode: normal; border: 4px solid #fff; }
 
 .share-btn-native {
-    background: linear-gradient(90deg, #d40000, #ff4d4d); color: white; border: none;
+    background: #007bff; color: white; border: none;
     padding: 12px 25px; border-radius: 30px;
     font-weight: bold; cursor: pointer;
     font-size: 16px; display: inline-flex; align-items: center; gap: 8px;
-    box-shadow: 0 4px 10px rgba(212,0,0,0.3);
-    transition: transform 0.1s; border: 2px solid #ffcc00;
+    box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+    transition: transform 0.1s;
 }
 .share-btn-native:active { transform: scale(0.95); }
 
@@ -279,7 +521,7 @@ body.dark .qr-img { mix-blend-mode: normal; border: 4px solid #fff; }
 .intro-box {
     padding: 15px; margin: 10px 5px;
     font-size: 0.95em; color: #444; line-height: 1.6; text-align: justify;
-    background: rgba(255,255,255,0.7); border-radius: 8px; border-left: 3px solid var(--primary);
+    background: rgba(0,0,0,0.02); border-radius: 8px; border-left: 3px solid #ccc;
 }
 body.dark .intro-box { color: #ccc; background: rgba(255,255,255,0.05); }
 
@@ -288,34 +530,122 @@ body.dark .intro-box { color: #ccc; background: rgba(255,255,255,0.05); }
 }
 body.dark .author-box { color: var(--text-dark); }
 
-footer { padding: 15px; text-align: center; background: var(--card); border-top: 1px solid rgba(0,0,0,.04); margin-top: 20px; border-top: 3px solid var(--accent); }
+footer { padding: 15px; text-align: center; background: var(--card); border-top: 1px solid rgba(0,0,0,.04); margin-top: 20px; }
 body.dark footer { background: var(--card-dark); }
 .footer-text { font-weight: bold; color: var(--primary); font-size: 0.9em; }
-.footer-link { color: var(--primary); font-weight: 700; text-decoration: none; }
+.footer-link { color: var(--accent); font-weight: 700; text-decoration: none; }
 
-/* HIỆU ỨNG HOA RƠI */
-.falling-container {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 1; overflow: hidden;
+/* BACKUP CONTAINER */
+.backup-container {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+    border: 2px dashed #2196f3;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 10px;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.1);
 }
-.flower {
-    position: absolute; top: -10%;
-    animation: fall linear infinite;
+body.dark .backup-container {
+    background: linear-gradient(135deg, #1a237e 0%, #4a148c 100%);
+    border-color: #42a5f5;
 }
-@keyframes fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+
+.backup-description {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
+body.dark .backup-description {
+    border-bottom-color: rgba(255,255,255,0.1);
+}
+
+.backup-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.backup-btn {
+    flex: 1;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.backup-export {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+.backup-export:active {
+    transform: scale(0.97);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.backup-import {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+.backup-import:active {
+    transform: scale(0.97);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.backup-guide {
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.85em;
+}
+body.dark .backup-guide {
+    background: rgba(0,0,0,0.3);
+}
+
+.guide-step {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    align-items: flex-start;
+}
+
+.step-number {
+    font-size: 1.1em;
+    flex-shrink: 0;
+}
+
+.step-text {
+    flex: 1;
+    color: var(--text-light);
+}
+body.dark .step-text {
+    color: var(--text-dark);
+}
+
+.guide-note {
+    margin-top: 12px;
+    padding: 8px 10px;
+    background: #fff9e6;
+    border-left: 3px solid #f1c40f;
+    border-radius: 4px;
+    color: #856404;
+    line-height: 1.4;
+}
+body.dark .guide-note {
+    background: #3d3500;
+    color: #ffd54f;
+    border-color: #ffc107;
+}
+
 </style>
 </head>
 <body>
 
-<!-- HIỆU ỨNG HOA RƠI -->
-<div class="falling-container" id="flowerContainer"></div>
-
 <header>
-  <div class="tet-font">CHÚC MỪNG NĂM MỚI 2026</div>
-  <div style="font-size: 0.7em; margin-top: 5px; opacity: 0.9;">J&T DRIVER - VẠN DẶM BÌNH AN</div>
+  LINK TÀI XẾ J&T
   <button id="toggleTheme" aria-label="chuyển sáng tối">🌙</button>
 </header>
 
@@ -324,19 +654,19 @@ body.dark footer { background: var(--card-dark); }
   <!-- 1. CÔNG VIỆC -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
-      <span class="title">🧧 Công việc nội bộ</span><span class="arrow">▶</span>
+      <span class="title">📋 Công việc nội bộ</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
-      <a class="link-card" href="https://jntexpress.vn/attendance" target="_blank"><div class="link-left">CHẤM CÔNG CRM</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwao5eoTslB2Ds1auT05WPg" target="_blank"><div class="link-left">BÁO CÁO HÀNH TRÌNH</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwwFr50osovPX8c5EuYkpVe" target="_blank"><div class="link-left">ĐIỀN THÔNG TIN TĂNG CA</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgeJOb7CxaLL18zxNj6gz1kd" target="_blank"><div class="link-left">ĐĂNG KÍ NGHỈ PHÉP</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgcx3ZWJlUeZ007y7NOMDtAf" target="_blank"><div class="link-left">CHECK LIST KIỂM TRA XE HẰNG NGÀY</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlg4jTyiyUBTxoWnXnh3E2jVh" target="_blank"><div class="link-left">KHÔNG BẤM APP, ĐIỀN NGUYÊN NHÂN</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlglpEg10qLFAoBoN6FYGm0Nv" target="_blank"><div class="link-left">GỬI HÌNH VÁ VỎ, LINK CHUẨN</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgj3VYEKTEh7tTSaZvfpP7HL" target="_blank"><div class="link-left">BÁO CÁO THÙNG XE TRỐNG</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgHKbeP4ff2P8AoaQcWUzicc" target="_blank"><div class="link-left">BÁO CÁO THÔNG TIN ĐỔ DẦU</div></a>
-      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgPi18jGohtl9znrsxLdlDhh" target="_blank"><div class="link-left">BỔ SUNG TĂNG CA</div></a>
+      <a class="link-card" href="https://jntexpress.vn/attendance" target="_blank" rel="noopener noreferrer"><div class="link-left">CHẤM CÔNG CRM</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwao5eoTslB2Ds1auT05WPg" target="_blank" rel="noopener noreferrer"><div class="link-left">BÁO CÁO HÀNH TRÌNH</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwwFr50osovPX8c5EuYkpVe" target="_blank" rel="noopener noreferrer"><div class="link-left">ĐIỀN THÔNG TIN TĂNG CA</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgeJOb7CxaLL18zxNj6gz1kd" target="_blank" rel="noopener noreferrer"><div class="link-left">ĐĂNG KÍ NGHỈ PHÉP</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgcx3ZWJlUeZ007y7NOMDtAf" target="_blank" rel="noopener noreferrer"><div class="link-left">CHECK LIST KIỂM TRA XE HẰNG NGÀY</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlg4jTyiyUBTxoWnXnh3E2jVh" target="_blank" rel="noopener noreferrer"><div class="link-left">KHÔNG BẤM APP, ĐIỀN NGUYÊN NHÂN</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlglpEg10qLFAoBoN6FYGm0Nv" target="_blank" rel="noopener noreferrer"><div class="link-left">GỬI HÌNH VÁ VỎ, LINK CHUẨN</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgj3VYEKTEh7tTSaZvfpP7HL" target="_blank" rel="noopener noreferrer"><div class="link-left">BÁO CÁO THÙNG XE TRỐNG</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgHKbeP4ff2P8AoaQcWUzicc" target="_blank" rel="noopener noreferrer"><div class="link-left">BÁO CÁO THÔNG TIN ĐỔ DẦU</div></a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgPi18jGohtl9znrsxLdlDhh" target="_blank" rel="noopener noreferrer"><div class="link-left">BỔ SUNG TĂNG CA BỊ THIẾU</div></a>
     </div>
   </div>
 
@@ -346,44 +676,44 @@ body.dark footer { background: var(--card-dark); }
       <span class="title">💬 Group Zalo</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
-      <a class="link-card" href="https://zalo.me/g/uolmnc539" target="_blank"><div class="link-left">Nhóm báo cáo nội thành</div></a>
-      <a class="link-card" href="https://zalo.me/g/plhjmt899" target="_blank"><div class="link-left">Nhóm bất thường nội thành</div></a>
-      <a class="link-card" href="https://zalo.me/g/byikns239" target="_blank"><div class="link-left">Nhóm thông báo tài xế J&T</div></a>
-      <a class="link-card" href="https://zalo.me/g/xuizfi412" target="_blank"><div class="link-left">Nhóm báo cáo đổ dầu tuyến nhánh</div></a>
+      <a class="link-card" href="https://zalo.me/g/uolmnc539" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm báo cáo nội thành</div></a>
+      <a class="link-card" href="https://zalo.me/g/plhjmt899" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm bất thường nội thành</div></a>
+      <a class="link-card" href="https://zalo.me/g/byikns239" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm thông báo tài xế J&T</div></a>
+      <a class="link-card" href="https://zalo.me/g/xuizfi412" target="_blank" rel="noopener noreferrer"><div class="link-left">Nhóm báo cáo đổ dầu tuyến nhánh</div></a>
     </div>
   </div>
 
   <!-- 3. LIÊN HỆ -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
-      <span class="title">☎️ Liên hệ Zalo Hỗ trợ</span><span class="arrow">▶</span>
+      <span class="title">📞 Liên hệ Zalo Hỗ trợ</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
-        <div class="contact-note">⚠️ Bấm vào tên để nhắn tin Zalo trực tiếp.</div>
+        <div class="contact-note"><i>⚠️ Bấm vào tên để nhắn tin Zalo trực tiếp.</i></div>
         <div class="contact-grid">
             
             <!-- ĐỘI TRƯỞNG -->
             <div style="grid-column: 1/3; font-weight: 700; color: var(--primary); padding-top: 5px; border-bottom: 1px dashed #ccc; margin-bottom: 5px;">ĐỘI TRƯỞNG</div>
-            <a href="https://zalo.me/0973235381" target="_blank" class="contact-btn" style="grid-column: 1/3;">
+            <a href="https://zalo.me/0973235381" target="_blank" rel="noopener noreferrer" class="contact-btn" style="grid-column: 1/3;">
                 <span class="name-contact">Giang Nguyễn</span>
                 <span class="role-contact">Đội trưởng đội xe</span>
             </a>
-            <a href="https://zalo.me/0762244662" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0762244662" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Trí Lê</span>
                 <span class="role-contact">Đội trưởng ca ngày</span>
             </a>
-            <a href="#" target="_blank" class="contact-btn"> <!-- Chưa có số -->
+            <a href="https://zalo.me/0357088743" target="_blank" rel="noopener noreferrer" class="contact-btn"> 
                 <span class="name-contact">Hoàng Trần</span>
                 <span class="role-contact">Đội trưởng ca đêm</span>
             </a>
 
             <!-- BẢO TRÌ -->
             <div style="grid-column: 1/3; font-weight: 700; color: var(--primary); padding-top: 15px; border-bottom: 1px dashed #ccc; margin-bottom: 5px;">BẢO TRÌ XE</div>
-            <a href="#" target="_blank" class="contact-btn"> <!-- Chưa có số -->
+            <a href="https://zalo.me/0937427708" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Hoàng Trung</span>
                 <span class="role-contact">Bảo trì Thaco, Isuzu</span>
             </a>
-            <a href="https://zalo.me/0906722489" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0906722489" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Thanh Liêm</span>
                 <span class="role-contact">Bảo trì Jac, Gaz</span>
             </a>
@@ -393,97 +723,97 @@ body.dark footer { background: var(--card-dark); }
             
             <!-- CA SÁNG -->
             <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(25, 136, 69, 0.15); color: var(--accent); border-radius: 4px; padding: 4px 0;">CA SÁNG (7h - 17h30) 🟢</div>
-            <a href="https://zalo.me/0399007309" target="_blank" class="contact-btn" style="grid-column: 1/3;">
+            <a href="https://zalo.me/0399007309" target="_blank" rel="noopener noreferrer" class="contact-btn" style="grid-column: 1/3;">
                 <span class="name-contact">Đặng Quốc Thái</span>
                 <span class="role-contact">Điều phối VP</span>
             </a>
-            <a href="https://zalo.me/0972251731" target="_blank" class="contact-btn" style="grid-column: 1/3;">
+            <a href="https://zalo.me/0972251731" target="_blank" rel="noopener noreferrer" class="contact-btn" style="grid-column: 1/3;">
                 <span class="name-contact">Nguyễn Tiến Trung</span>
                 <span class="role-contact">TTTC (7h-16h)</span>
             </a>
 
             <!-- CA CHIỀU -->
             <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(255, 165, 0, 0.2); color: #CC6600; border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA NGÀY (12h - 21h) 🟠</div>
-            <a href="https://zalo.me/0962073793" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0962073793" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Phạm Minh Kỳ</span>
                 <span class="role-contact">GW0 (12h-21h)</span>
             </a>
-            <a href="https://zalo.me/0365762179" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0365762179" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Nguyễn Tấn Tài</span>
                 <span class="role-contact">GW0 (12h-21h)</span>
             </a>
-            <a href="https://zalo.me/0764341791" target="_blank" class="contact-btn" style="grid-column: 1/3;">
+            <a href="https://zalo.me/0764341791" target="_blank" rel="noopener noreferrer" class="contact-btn" style="grid-column: 1/3;">
                 <span class="name-contact">Nguyễn Hoàng Phúc</span>
                 <span class="role-contact">GW0 (12h-21h)</span>
             </a>
 
             <!-- CA TỐI -->
             <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: rgba(204, 0, 0, 0.15); color: var(--primary); border-radius: 4px; padding: 4px 0; margin-top: 8px;">CA TỐI (18h - 3h/4h) 🔴</div>
-            <a href="https://zalo.me/0886468035" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0886468035" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Hồ Sỹ Lưu</span>
                 <span class="role-contact">18h-3h</span>
             </a>
-            <a href="https://zalo.me/0933450410" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0933450410" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Nguyễn G.Q Mạnh</span>
                 <span class="role-contact">18h-3h</span>
             </a>
-            <a href="https://zalo.me/0363456035" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0363456035" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Đặng Tuấn Kiệt</span>
                 <span class="role-contact">18h-3h</span>
             </a>
-            <a href="https://zalo.me/0964543757" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0964543757" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Phạm Đức Huy</span>
                 <span class="role-contact">18h-3h</span>
             </a>
-            <a href="https://zalo.me/0869814645" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0869814645" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Nguyễn Thành Vinh</span>
                 <span class="role-contact">TTTC xe 5T- 9T</span>
             </a>
-            <a href="https://zalo.me/0336492538" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0336492538" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Hoàng Hải</span>
                 <span class="role-contact">GW3 (18h-3h)</span>
             </a>
-            <a href="https://zalo.me/0326466205" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0326466205" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Trung Hậu</span>
                 <span class="role-contact">GW4 (18h-3h)</span>
             </a>
-            <a href="https://zalo.me/0372026225" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0372026225" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Tấn Sang</span>
                 <span class="role-contact">18h-3h</span>
             </a>
-            <a href="https://zalo.me/0903969713" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0903969713" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Phúc Hậu</span>
                 <span class="role-contact">GW6 (18h-3h)</span>
             </a>
-             <a href="https://zalo.me/0332277821" target="_blank" class="contact-btn">
+             <a href="https://zalo.me/0332277821" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Minh Quang</span>
                 <span class="role-contact">GW5 (19h-4h)</span>
             </a>
 
             <!-- TTTC ĐÊM -->
             <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 600; background: #34495e; color: #fff; border-radius: 4px; padding: 4px 0; margin-top: 8px;">TTTC ĐÊM (21h - 6h) 🟣</div>
-            <a href="https://zalo.me/0374749130" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0374749130" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Đào Đức Đạt</span>
                 <span class="role-contact">TTTC (21h-6h)</span>
             </a>
-            <a href="https://zalo.me/0369702372" target="_blank" class="contact-btn">
+            <a href="https://zalo.me/0369702372" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 <span class="name-contact">Đỗ Nhật Quang</span>
                 <span class="role-contact">TTTC (21h-6h)</span>
             </a>
-            <a href="https://zalo.me/0947550239" target="_blank" class="contact-btn" style="grid-column: 1/3;">
+            <a href="https://zalo.me/0947550239" target="_blank" rel="noopener noreferrer" class="contact-btn" style="grid-column: 1/3;">
                 <span class="name-contact">Nguyễn Quốc Trung</span>
                 <span class="role-contact">TTTC (21h-6h)</span>
             </a>
 
             <!-- TUYẾN TỈNH -->
             <div style="grid-column: 1/3; text-align: center; font-size: 0.85em; font-weight: 700; color: #007bff; border-top: 1px dashed #ccc; padding-top: 10px; margin-top: 10px;">BÌNH DƯƠNG - TÂY NINH 🔵</div>
-             <a href="https://zalo.me/0334457083" target="_blank" class="contact-btn"> 
+             <a href="https://zalo.me/0334457083" target="_blank" rel="noopener noreferrer" class="contact-btn"> 
                  <span class="name-contact">Quốc Anh</span>
                  <span class="role-contact">GW0 (21h-6h30)</span>
             </a>
-            <a href="https://zalo.me/0962073741" target="_blank" class="contact-btn"> 
+            <a href="https://zalo.me/0962073741" target="_blank" rel="noopener noreferrer" class="contact-btn"> 
                 <span class="name-contact">Hồ Sỹ Tiến</span>
-                <span class="role-contact">GW0 (21h-6h)</span>
+                <span class="role-contact">GW0 (7h-19h30)</span>
             </a>
         </div>
     </div>
@@ -506,7 +836,7 @@ body.dark footer { background: var(--card-dark); }
       <div class="calc-content">
         
         <!-- NHẬT KÝ -->
-        <div class="section-title" style="margin-top:0">📒 NHẬT KÝ ODO (GHI SỔ)</div>
+        <div class="section-title" style="margin-top:0" id="fuelInputAnchor">📒 NHẬT KÝ ODO (GHI SỔ)</div>
         
         <div class="odo-setup">
              <label class="calc-label" style="margin:0">📌 ODO Chốt Tháng Trước:</label>
@@ -514,7 +844,7 @@ body.dark footer { background: var(--card-dark); }
                  <input type="number" id="closingOdo" class="calc-input" placeholder="VD: 22000" inputmode="numeric" onfocus="this.select()" min="0">
                  <button class="save-btn" onclick="saveClosingOdo()" style="width:90px">Lưu</button>
              </div>
-             <div id="savedOdoText" style="font-size:14px; color:var(--red-text); margin-top:5px; font-style:italic; font-weight:500"></div>
+             <div id="savedOdoText" style="font-size:14px; color:var(--accent); margin-top:5px; font-style:italic; font-weight:500"></div>
         </div>
 
         <div class="log-input-container">
@@ -529,7 +859,7 @@ body.dark footer { background: var(--card-dark); }
         <button class="calc-submit" id="btnAddFuel" onclick="addFuelLog()">➕ Thêm Nhật Ký</button>
         <button class="calc-submit" id="btnCancelFuel" onclick="cancelFuelEdit()" style="background:#7f8c8d; display:none; margin-top:8px">Hủy Sửa</button>
 
-        <table class="log-list" id="fuelLogList"></table>
+        <div class="log-cards-container" id="fuelLogList"></div>
 
         <div class="log-summary">
             <div>Xe đã chạy : <span id="totalKm" class="result-value">0 km</span></div>
@@ -559,9 +889,7 @@ body.dark footer { background: var(--card-dark); }
           <input type="text" id="gia" placeholder="VD: 19.000" inputmode="numeric" class="calc-input" onfocus="this.select()" oninput="formatInputMoney(this)" min="0">
         </div>
         <button class="calc-submit" onclick="tinhDau()">TÍNH KẾT QUẢ</button>
-        <div id="resultDau" class="result-box-ot" style="display:none;">
-             <!-- KẾT QUẢ DẦU HIỆN Ở ĐÂY -->
-        </div>
+        <div id="resultDau" class="result-box-ot" style="display:none;"></div>
       </div>
     </div>
   </div>
@@ -574,7 +902,7 @@ body.dark footer { background: var(--card-dark); }
     <div class="group-content">
       <div class="calc-content">
           <!-- CÀI ĐẶT LƯƠNG -->
-          <div class="salary-row">
+          <div class="salary-row" id="otInputAnchor">
               <div class="salary-col">
                   <label class="calc-label">Lương CB</label>
                   <input type="text" id="ot_luongCanBan" value="5.310.000" class="calc-input" inputmode="numeric" onfocus="this.select()" oninput="formatInputMoney(this)" min="0">
@@ -588,6 +916,9 @@ body.dark footer { background: var(--card-dark); }
                   <input type="text" id="ot_soNgayChuNhat" value="4" class="calc-input" inputmode="numeric" onfocus="this.select()" min="0">
               </div>
           </div>
+          <button onclick="autoCalcSundays()" style="width:94%; max-width:580px; padding:9px; border-radius:8px; border:1px dashed var(--accent); background:rgba(25,136,69,0.07); color:var(--accent); font-size:13px; font-weight:700; cursor:pointer; margin-top:4px;">
+              📅 Tự tính ngày công & chủ nhật tháng này
+          </button>
           
           <!-- NHẬT KÝ TĂNG CA -->
           <div class="section-title" style="margin-top:15px">🗓 NHẬT KÝ TĂNG CA (GHI SỔ)</div>
@@ -600,13 +931,13 @@ body.dark footer { background: var(--card-dark); }
                      <option value="1.5">Tăng ca thường</option>
                      <option value="2">Tăng ca OFF</option>
                  </select>
-                 <input type="number" id="otLogHours" class="log-input" placeholder="Số giờ (VD: 8)" inputmode="decimal" onfocus="this.select()" min="0">
+                 <input type="number" id="otLogHours" class="log-input" placeholder="Số giờ" inputmode="decimal" onfocus="this.select()" min="0">
              </div>
           </div>
           <button class="calc-submit" id="btnAddOT" onclick="addOTLog()">➕ Thêm Nhật Ký</button>
           <button class="calc-submit" id="btnCancelOT" onclick="cancelOTEdit()" style="background:#7f8c8d; display:none; margin-top:8px">Hủy Sửa</button>
 
-          <table class="log-list" id="otLogList"></table>
+          <div class="log-cards-container" id="otLogList"></div>
 
           <div class="log-summary">
               <div>Tăng ca thường: <span id="sum15" class="result-value text-blue">0h</span> - <span id="money15" style="font-weight:bold">0đ</span></div>
@@ -632,36 +963,43 @@ body.dark footer { background: var(--card-dark); }
           <button onclick="tinhLuong()" class="calc-submit">TÍNH KẾT QUẢ</button>
           <div class="result-box-ot" id="ketQuaLuong" style="display:none;">
               <h3>📊 KẾT QUẢ</h3>
-              <div class="result-grid-row">
-                  <span class="grid-label">Lương/Giờ:</span>
-                  <span class="grid-money" style="grid-column: span 2; text-align:right" id="luongGioCoBan">...</span>
+              <div style="display:flex; justify-content:space-between; margin:10px 0; padding-bottom:6px; border-bottom:1px dashed rgba(0,0,0,0.1)">
+                  <span style="font-weight:600">Lương/Giờ:</span>
+                  <span style="font-weight:700" id="luongGioCoBan">...</span>
               </div>
-              <div class="result-grid-row">
-                  <span class="grid-label text-blue">TC Thường:</span>
-                  <span class="grid-hours text-blue" id="showH15">0h</span>
-                  <span class="grid-money text-blue" id="tienTCTuong">0 VNĐ</span>
+              <div style="display:flex; justify-content:space-between; margin:10px 0; padding-bottom:6px; border-bottom:1px dashed rgba(0,0,0,0.1)">
+                  <span class="text-blue" style="font-weight:600">TC Thường:</span>
+                  <span class="text-blue" style="font-weight:700" id="tienTCTuong">0 VNĐ</span>
               </div>
-              <div class="result-grid-row">
-                  <span class="grid-label text-red">TC OFF:</span>
-                  <span class="grid-hours text-red" id="showH20">0h</span>
-                  <span class="grid-money text-red" id="tienTCNghi">0 VNĐ</span>
+              <div style="display:flex; justify-content:space-between; margin:10px 0; padding-bottom:6px; border-bottom:1px dashed rgba(0,0,0,0.1)">
+                  <span class="text-red" style="font-weight:600">TC OFF:</span>
+                  <span class="text-red" style="font-weight:700" id="tienTCNghi">0 VNĐ</span>
               </div>
-              <div class="result-item-total">
-                  <span>TỔNG CỘNG:</span>
+              <div class="result-item-total" style="border-top:2px solid #ff9788; padding-top:8px; margin-top:8px">
+                  <span>TỔNG TIỀN TĂNG CA:</span>
                   <span class="big-number" id="tongTienTangCa">0 VNĐ</span>
+              </div>
+              <div style="background:linear-gradient(135deg,#ff0033,#dd2476); padding:12px; border-radius:10px; margin-top:15px; color:#fff">
+                  <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:nowrap">
+                      <span style="font-weight:700; font-size:0.95em; white-space:nowrap">LƯƠNG TẠM TÍNH:</span>
+                      <span style="font-weight:800; font-size:1.15em; white-space:nowrap" id="thucNhanTamTinh">0 VNĐ</span>
+                  </div>
+              </div>
+              <div style="font-size:0.85em; font-style:italic; opacity:0.8; margin-top:12px; padding-top:10px; border-top:1px solid #ddd; text-align:center; line-height:1.4">
+                  *Lưu ý: Lương tạm tính = tổng tiền tăng ca + 8tr - 557.550 VNĐ tiền BHXH. Thực tế có thể khác do phụ thuộc ngày công, thưởng, phạt, thuế TNCN.<br>KẾT QUẢ CHỈ MANG TÍNH THAM KHẢO.
               </div>
           </div>
       </div>
     </div>
   </div>
 
-<!-- 7. TIỆN ÍCH GOM NHÓM (CÓ GÓC MUA SẮM & LINK COLLECTION) -->
+  <!-- 7. TIỆN ÍCH GOM NHÓM -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
       <span class="title">🧩 Tiện ích khác</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
-      
+        
       <!-- SỔ TAY TÀI XẾ -->
       <div class="section-title" style="margin-top:0">📝 SỔ TAY TÀI XẾ</div>
       <div class="calc-content" style="padding:0">
@@ -671,134 +1009,170 @@ body.dark footer { background: var(--card-dark); }
         </div>
       </div>
 
+      <!-- NHẮC LỊCH XE (STYLE NÂNG CẤP CHUYÊN NGHIỆP) -->
+      <div class="section-title">🔔 QUẢN LÝ & NHẮC LỊCH XE</div>
+      <div class="calc-content" style="padding:0">
+          
+          <!-- Đăng kiểm -->
+          <div class="reminder-compact-row" id="rowRegistry">
+              <div class="reminder-info">
+                  <span class="reminder-label-main">📅 Đăng kiểm</span>
+                  <span class="reminder-status-text" id="textRegistry">Đang tải...</span>
+              </div>
+              <button class="btn-edit-toggle" onclick="toggleEdit('editRegistry', this)">Sửa</button>
+          </div>
+          <div class="edit-area" id="editRegistry">
+              <label class="calc-label" style="font-size:14px; margin-bottom:8px;">Cập nhật ngày hết hạn:</label>
+              <input type="date" id="dateRegistry" class="reminder-input-pro" onchange="saveReminders()">
+          </div>
+
+          <!-- Bảo hiểm -->
+          <div class="reminder-compact-row" id="rowInsurance">
+              <div class="reminder-info">
+                  <span class="reminder-label-main">🛡️ Bảo hiểm TNDS</span>
+                  <span class="reminder-status-text" id="textInsurance">Đang tải...</span>
+              </div>
+              <button class="btn-edit-toggle" onclick="toggleEdit('editInsurance', this)">Sửa</button>
+          </div>
+          <div class="edit-area" id="editInsurance">
+              <label class="calc-label" style="font-size:14px; margin-bottom:8px;">Cập nhật ngày hết hạn:</label>
+              <input type="date" id="dateInsurance" class="reminder-input-pro" onchange="saveReminders()">
+          </div>
+
+          <!-- Thay nhớt -->
+          <div class="reminder-compact-row" id="rowMaintenance">
+              <div class="reminder-info">
+                  <span class="reminder-label-main">🔧 Thay nhớt (Theo ODO)</span>
+                  <span class="reminder-status-text" id="textMaintenance">Đang tải...</span>
+              </div>
+              <button class="btn-edit-toggle" onclick="toggleEdit('editMaintenance', this)">Sửa</button>
+          </div>
+          <div class="edit-area" id="editMaintenance">
+              <label class="calc-label" style="font-size:14px; margin-bottom:8px;">Mốc ODO cần thay tiếp theo:</label>
+              <input type="number" id="odoMaintenance" class="reminder-input-pro" placeholder="VD: 55000" oninput="saveReminders()">
+              <div style="font-size: 12px; margin-top:8px; opacity:0.8; font-style:italic;">* App lấy ODO từ Nhật ký dầu để nhắc anh em.</div>
+          </div>
+
+          <!-- Gợi ý bảo dưỡng xe -->
+          <div class="expert-advice-box" id="expertAdvice">
+              💡 <b>Lưu ý cho anh em:</b> Đang phân tích ODO...
+          </div>
+
+          <!-- BẢNG TRA CỨU HÀNG NGANG -->
+          <div class="maintenance-header-row">
+              <span class="maintenance-title">Mốc bảo dưỡng quan trọng</span>
+              <button class="btn-lookup-toggle" id="btnShowLookup" onclick="toggleMaintenanceTable()">Xem</button>
+          </div>
+
+          <table class="maintenance-table" id="maintenanceTable">
+              <thead>
+                  <tr>
+                      <th>Cấp / ODO</th>
+                      <th>Nội dung tham khảo</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><span class="m-cap">Lần đầu</span><span class="m-odo">3k - 5k km</span></td>
+                      <td>Thay nhớt & Lọc máy. Nên báo xưởng <b>siết lại gầm & cabin</b> cho chắc chắn.</td>
+                  </tr>
+                  <tr>
+                      <td><span class="m-cap">Cấp Nhỏ</span><span class="m-odo">Mỗi 10.000km</span></td>
+                      <td>Thay nhớt máy + Lọc nhớt. Vệ sinh lọc gió. <b>Kiểm tra má phanh (thắng).</b></td>
+                  </tr>
+                  <tr>
+                      <td><span class="m-cap">Cấp Trung</span><span class="m-odo">Mỗi 20.000km</span></td>
+                      <td><b>Thay Lọc Dầu</b>. Vệ sinh thắng 4 bánh. Bơm mỡ gầm.</td>
+                  </tr>
+                  <tr>
+                      <td><span class="m-cap">Cấp Lớn 1</span><span class="m-odo">Mỗi 40.000km</span></td>
+                      <td>Thay dầu Hộp số, dầu Cầu, Nước làm mát. Thay dầu Phanh & Trợ lực lái.</td>
+                  </tr>
+                  <tr>
+                      <td><span class="m-cap">Cấp Lớn 2</span><span class="m-odo">Mỗi 80.000km</span></td>
+                      <td>Thay dây Curoa tổng. Thay nhớt moay-ơ. Vệ sinh kim phun & họng nạp.</td>
+                  </tr>
+                  <tr>
+                      <td><span class="m-cap">Tổng quát</span><span class="m-odo">> 100.000km</span></td>
+                      <td>Kiểm tra hệ thống Côn (Ly hợp), rơ thước lái và nhíp / giảm chấn gầm.</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+
+      <!-- SAO LƯU DỮ LIỆU (MỚI - PRO VERSION) -->
+      <div class="section-title">💾 SAO LƯU DỮ LIỆU</div>
+      <div class="backup-container">
+          <div class="backup-description">
+              <p style="margin:0 0 8px 0; font-size:0.95em; line-height:1.5;">
+                  <strong>📦 Sao lưu toàn bộ:</strong> Nhật ký dầu, tăng ca, ghi chú, lịch xe
+              </p>
+              <p style="margin:0; font-size:0.85em; opacity:0.85; line-height:1.4;">
+                  Phòng trường hợp đổi máy, xóa cache hoặc cài đặt lại trình duyệt
+              </p>
+          </div>
+          
+          <div class="backup-buttons">
+              <button class="backup-btn backup-export" onclick="exportBackup()">
+                  📤 Xuất mã
+              </button>
+              <button class="backup-btn backup-import" onclick="importBackup()">
+                  📥 Nhập mã
+              </button>
+          </div>
+          
+          <div class="backup-guide">
+              <div class="guide-step">
+                  <span class="step-number">1️⃣</span>
+                  <span class="step-text"><strong>Xuất mã:</strong> Bấm "📤 Xuất mã" → Sao chép đoạn mã → Lưu vào Notepad hoặc gửi cho mình qua Zalo</span>
+              </div>
+              <div class="guide-step">
+                  <span class="step-number">2️⃣</span>
+                  <span class="step-text"><strong>Nhập mã:</strong> Bấm "📥 Nhập mã" → Dán đoạn mã đã lưu → Xác nhận → Dữ liệu khôi phục!</span>
+              </div>
+              <div class="guide-note">
+                  💡 <strong>Mẹo:</strong> Nên sao lưu trước khi đổi máy hoặc dọn rác điện thoại  để đảm bảo dữ liệu an toàn
+              </div>
+          </div>
+      </div>
+
       <!-- TẢI APP -->
       <div class="section-title">📱 TẢI APP NHIỆM VỤ (VnDriver)</div>
-      <a class="link-card" href="https://drive.google.com/file/d/1F5Ln5qr86FPn5zybBKha72jKkFyEVwKB/view?usp=drivesdk" target="_blank"><div class="link-left">Tải App Android (APK)</div></a>
-      <a class="link-card" href="https://testflight.apple.com/join/ngwb0Mpe" target="_blank"><div class="link-left">Tải App iOS (TestFlight)</div></a>
+      <a class="link-card" href="https://drive.google.com/file/d/1F5Ln5qr86FPn5zybBKha72jKkFyEVwKB/view?usp=drivesdk" target="_blank" rel="noopener noreferrer"><div class="link-left">Tải App Android (APK)</div></a>
+      <a class="link-card" href="https://testflight.apple.com/join/ngwb0Mpe" target="_blank" rel="noopener noreferrer"><div class="link-left">Tải App iOS (TestFlight)</div></a>
 
       <!-- DỊCH VỤ CÔNG -->
       <div class="section-title">🚦 DỊCH VỤ CÔNG TRỰC TUYẾN</div>
-      <a class="link-card" href="https://www.csgt.vn/tra-cuu-phuong-tien-vi-pham.html" target="_blank"><div class="link-left">🚨 Tra cứu Phạt Nguội (Cục CSGT)</div></a>
-      <a class="link-card" href="https://dichvucong.gov.vn/p/home/dvc-thanh-toan-vi-pham-giao-thong.html" target="_blank"><div class="link-left">💸 Nộp phạt Vi phạm giao thông</div></a>
-      <a class="link-card" href="https://dvc4.gplx.gov.vn/p/home/dvc-trang-chu.html" target="_blank"><div class="link-left">🆔 Đổi Giấy phép lái xe Online</div></a>
-
-      <!-- GÓC MUA SẮM -->
-      <div class="section-title">🛒 GÓC MUA SẮM</div>
-      <div class="shop-grid">
-          
-          <!-- ITEM 1: TẨU SẠC -->
-          <a href="https://s.shopee.vn/2VkXVpJqkQ" target="_blank" class="shop-item">
-              <div class="shop-img-box">
-                  <img src="https://i.postimg.cc/B6787LRn/Shopee-1a8e18ca37f1d070e010c5023f8e00d3.jpg" class="shop-img" alt="Tẩu sạc">
-              </div>
-              <div class="shop-content">
-                  <div class="shop-name">Tẩu Sạc Xiaomi 100W (12V-24V)</div>
-                  <div class="shop-desc">Sạc siêu nhanh, đã test</div>
-                  <div class="shop-footer">
-                      <span class="shop-price">~300k</span>
-                      <span class="shop-btn-buy">Mua Ngay</span>
-                  </div>
-              </div>
-          </a>
-
-          <!-- ITEM 2: GƯƠNG CẦU -->
-          <a href="https://s.shopee.vn/AKTOufJwNG" target="_blank" class="shop-item">
-              <div class="shop-img-box">
-                  <img src="https://i.postimg.cc/kGV20Mds/Shopee-05231e9d4544a8ebd68df6cfad3aea5b.jpg" class="shop-img" alt="Gương cầu">
-              </div>
-              <div class="shop-content">
-                  <div class="shop-name">Gương Cầu Lồi Soi Cảng (26cm)</div>
-                  <div class="shop-desc">Anh em hay nhờ mua giúp</div>
-                  <div class="shop-footer">
-                      <span class="shop-price">~165k</span>
-                      <span class="shop-btn-buy">Mua Ngay</span>
-                  </div>
-              </div>
-          </a>
-
-          <!-- ITEM 3: MÓC KHÓA QR -->
-          <a href="https://s.shopee.vn/3LJeaCo28I" target="_blank" class="shop-item">
-              <div class="shop-img-box">
-                  <img src="https://i.postimg.cc/vT14J8sy/Shopee-070258dbf39d64e99ed103eeac5cc0bb.jpg" class="shop-img" alt="Móc khóa QR">
-              </div>
-              <div class="shop-content">
-                  <div class="shop-name">Mã QR Đổ Dầu Móc Khóa</div>
-                  <div class="shop-desc">Tiện lợi khi đổ dầu</div>
-                  <div class="shop-footer">
-                      <span class="shop-price">~10k</span>
-                      <span class="shop-btn-buy">Mua Ngay</span>
-                  </div>
-              </div>
-          </a>
-
-          <!-- ITEM 4: RELAY -->
-          <a href="https://s.shopee.vn/6ptWkuYJJ2" target="_blank" class="shop-item">
-              <div class="shop-img-box">
-                  <img src="https://i.postimg.cc/gjwxCcWF/Shopee-87221e5cbf0a35a9553b0e6189f99120.jpg" class="shop-img" alt="Relay">
-              </div>
-              <div class="shop-content">
-                  <div class="shop-name">Relay 4 Chân (12/24V)</div>
-                  <div class="shop-desc">Đấu đèn sườn chớp theo xi nhan</div>
-                  <div class="shop-footer">
-                      <span class="shop-price">~25k</span>
-                      <span class="shop-btn-buy">Mua Ngay</span>
-                  </div>
-              </div>
-          </a>
-
-           <!-- ITEM 5: ĐÈN SƯỜN -->
-           <a href="https://s.shopee.vn/VzTZRHHLl" target="_blank" class="shop-item">
-              <div class="shop-img-box">
-                  <img src="https://i.postimg.cc/50FGs09b/Shopee-78a7b99a78462d101b94b4e5dcff8942.jpg" class="shop-img" alt="Đèn sườn">
-              </div>
-              <div class="shop-content">
-                  <div class="shop-name">Đèn Sườn Led 12V/24V Chịu Nước</div>
-                  <div class="shop-desc">Mẫu đẹp, rẻ siêu sáng</div>
-                  <div class="shop-footer">
-                      <span class="shop-price">~23k</span>
-                      <span class="shop-btn-buy">Mua Ngay</span>
-                  </div>
-              </div>
-          </a>
-
-           <!-- ITEM 6: CAMERA LÙI -->
-           <a href="https://s.shopee.vn/4fp2Xoae6M" target="_blank" class="shop-item">
-              <div class="shop-img-box">
-                  <img src="https://i.postimg.cc/wBrZ5Jp4/sg-11134201-7raub-ma4243cshljj8c.avif" class="shop-img" alt="Camera lùi">
-              </div>
-              <div class="shop-content">
-                  <div class="shop-name">Camera Lùi Xe Tải AHD/CCD</div>
-                  <div class="shop-desc">Gắn Xe Linker có màn hình, Góc rộng, nhìn đêm rõ</div>
-                  <div class="shop-footer">
-                      <span class="shop-price">~279k</span>
-                      <span class="shop-btn-buy">Mua Ngay</span>
-                  </div>
-              </div>
-          </a>
-
-      </div>
-
-      <!-- NÚT LIÊN KẾT ĐẾN BỘ SƯU TẬP (MỚI THÊM) -->
-      <a href="https://collshp.com/letinhclover1612" target="_blank" class="share-btn-native" style="width:96%; margin: 15px auto 5px auto; background: linear-gradient(90deg, #d40000, #ffcc00); justify-content:center; text-decoration:none; display:flex; color: white;">
-          🛍️ Sắm đồ Tết cho xe
-      </a>
+      <a class="link-card" href="https://www.csgt.vn/tra-cuu-phuong-tien-vi-pham.html" target="_blank" rel="noopener noreferrer"><div class="link-left">🚨 Tra cứu Phạt Nguội (Cục CSGT)</div></a>
+      <a class="link-card" href="https://dichvucong.gov.vn/p/home/dvc-thanh-toan-vi-pham-giao-thong.html" target="_blank" rel="noopener noreferrer"><div class="link-left">💸 Nộp phạt Vi phạm giao thông</div></a>
+      <a class="link-card" href="https://dvc4.gplx.gov.vn/p/home/dvc-trang-chu.html" target="_blank" rel="noopener noreferrer"><div class="link-left">🆔 Đổi Giấy phép lái xe Online</div></a>
 
     </div>
   </div>
  
-    <!-- 8. GIỚI THIỆU & HỖ TRỢ -->
+    <!-- 9. GIỚI THIỆU & HỖ TRỢ (ĐÃ KHÔI PHỤC 100% BẢN GỐC) -->
   <div class="group">
     <div class="group-header" role="button" tabindex="0">
       <span class="title">ℹ️ Giới thiệu</span><span class="arrow">▶</span>
     </div>
     <div class="group-content">
         <div class="intro-box">
-            <b>CHÚC MỪNG NĂM MỚI 2026!</b> 🎆<br>
-            Nhân dịp xuân mới, Lê Tỉnh chúc toàn thể anh em tài xế J&T và gia đình một năm mới:
+            <b>Link Tài Xế J&T Express</b> là ứng dụng web miễn phí, được phát triển bởi <b>Lê Tỉnh</b> nhằm hỗ trợ anh em tài xế trong công việc hàng ngày.
             <br><br>
-            <b>AN KHANG - THỊNH VƯỢNG - VẠN DẶM BÌNH AN</b>
-            <br><br>
-            Ứng dụng này vẫn hoạt động xuyên Tết để hỗ trợ anh em. Cảm ơn anh em đã đồng hành trong năm qua!
+            <b>Các tính năng chính:</b>
+            <ul style="padding-left:20px; margin:5px 0;">
+                <li><b>Tổng hợp Link & Zalo:</b> Gom tất cả các nhóm Zalo, link báo cáo, SĐT điều phối về một nơi, không cần tìm kiếm.</li>
+                <li><b>Tính lương tăng ca:</b> Tự động quy đổi giờ ra tiền chính xác.</li>
+                <li><b>Nhật ký vận hành:</b> Ghi chép ODO, tính định mức dầu.</li>
+                <li><b>Tra cứu nhanh:</b> Link nộp phạt, tra cứu phạt nguội...nhắc lịch bảo dưỡng, hạn đăng kiểm...</li>
+            </ul>
+            <div style="border-top:1px dashed #ccc; margin:10px 0; padding-top:10px;">
+                <b>💡 MẸO SỬ DỤNG HIỆU QUẢ:</b><br>
+                1. <b>Cài đặt:</b> Nên dùng <b>Google Chrome</b> -> Chọn <b>"Thêm vào màn hình chính"</b> để dùng như App.<br>
+                2. <b>Tính Dầu:</b> "ODO Chốt" là ODO tại cây xăng lần đổ cuối cùng của tháng trước. Nhập 1 lần đầu tháng rồi bấm Lưu.<br>
+                3. <b>Tính Lương:</b> Mỗi tháng nhớ sửa lại ô <b>"Ngày công"</b> và <b>"Chủ nhật"</b> (VD: Tháng 2 có 28 ngày và 4 ngày chủ nhật thì sửa lại nhé) để tính tiền chính xác.<br>
+                4. <b>Chia sẻ:</b> Thấy tiện thì chia sẻ Link cho anh em đồng đội cùng dùng nhé! Đặc biệt với anh em tài xế mới.
+            </div>
         </div>
         
         <!-- QR CODE & CHIA SẺ -->
@@ -806,14 +1180,14 @@ body.dark footer { background: var(--card-dark); }
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://letinhclover.github.io/jntdriver" alt="QR Code" class="qr-img">
             <br>
             <button class="share-btn-native" onclick="shareApp()">
-                🧧 Lì xì Link App cho đồng đội
+                📤 Chia sẻ cho đồng đội
             </button>
         </div>
 
         <div class="author-box">
-            <p>Cần hỗ trợ trong Tết, anh em cứ nhắn trong nhóm Zalo nhé.</p>
-            <a href="https://zalo.me/g/lgwxjz988" target="_blank" class="contact-btn" style="height:auto; width:fit-content; margin:10px auto; padding:8px 20px;">
-                <span style="font-weight:bold; color:var(--red-text)">💬 Tham gia nhóm </span>
+            <p>Mọi ý kiến đóng góp hoặc cần hỗ trợ cách sử dụng,<br>anh em cứ nhắn tin trong nhóm Zalo nhé.</p>
+            <a href="https://zalo.me/g/lgwxjz988" target="_blank" rel="noopener noreferrer" class="contact-btn" style="height:auto; width:fit-content; margin:10px auto; padding:8px 20px;">
+                <span style="font-weight:bold; color:var(--blue-text)">💬 Nhắn tin cho Lê Tỉnh</span>
             </a>
         </div>
     </div>
@@ -822,74 +1196,43 @@ body.dark footer { background: var(--card-dark); }
 </main>
 
 <footer>
-  <div class="footer-text">J&T DRIVER - CHÚC MỪNG NĂM MỚI</div>
+  <div class="footer-text">Trang này chỉ dành cho nội bộ tài xế J&T</div>
   <div class="visitor-count" id="visitCount">Đang tải lượt truy cập...</div>
   <div style="margin-top:4px;">
-    © 2026 <a href="https://zalo.me/g/lgwxjz988" class="footer-link">Lê Tỉnh</a>
+    © 2026 <a href="https://zalo.me/g/lgwxjz988" class="footer-link" rel="noopener noreferrer">Lê Tỉnh</a>
   </div>
 </footer>
 
+<!-- TOAST -->
+<div id="toast">Thông báo</div>
+
 <script>
-// --- HỦY ĐĂNG KÝ SERVICE WORKER (TẮT OFFLINE & UPDATE CODE MỚI) ---
+// --- HÀM HIỂN THỊ TOAST ---
+function showToast(message) {
+    var x = document.getElementById("toast");
+    x.innerText = message;
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+// --- HÀM CUỘN TRANG MỚI ---
+function scrollToElement(id) {
+    const el = document.getElementById(id);
+    if(el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// --- HỦY ĐĂNG KÝ SERVICE WORKER (Đảm bảo tải mã mới nhất) ---
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(function(registrations) {
         for(let registration of registrations) {
             registration.unregister();
-            console.log('Đã hủy Service Worker:', registration);
         }
     });
-    if ('caches' in window) {
-        caches.keys().then(function(names) {
-            for (let name of names) {
-                caches.delete(name);
-            }
-        });
-    }
 }
 
-// --- HÀM TẠO HOA RƠI ---
-function createFlowers() {
-    const container = document.getElementById('flowerContainer');
-    const flowers = ['🌸', '🌼', '🧧', '🏮'];
-    
-    // Chỉ tạo tối đa 15 bông để không lag máy
-    for (let i = 0; i < 15; i++) {
-        setTimeout(() => {
-            const flower = document.createElement('div');
-            flower.classList.add('flower');
-            flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
-            flower.style.left = Math.random() * 100 + 'vw';
-            flower.style.animationDuration = (Math.random() * 5 + 5) + 's'; // 5-10s
-            flower.style.fontSize = (Math.random() * 20 + 20) + 'px';
-            container.appendChild(flower);
-            
-            // Xóa đi tạo lại để lặp vô tận mà không đầy DOM
-            flower.addEventListener('animationend', () => {
-                flower.remove();
-                createOneFlower();
-            });
-        }, i * 800);
-    }
-}
-
-function createOneFlower() {
-    const container = document.getElementById('flowerContainer');
-    if(!container) return;
-    const flowers = ['🌸', '🌼', '🧧', '🏮'];
-    const flower = document.createElement('div');
-    flower.classList.add('flower');
-    flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
-    flower.style.left = Math.random() * 100 + 'vw';
-    flower.style.animationDuration = (Math.random() * 5 + 5) + 's';
-    flower.style.fontSize = (Math.random() * 20 + 20) + 'px';
-    container.appendChild(flower);
-    flower.addEventListener('animationend', () => {
-        flower.remove();
-        createOneFlower();
-    });
-}
-
-// --- HÀM LẤY NGÀY HIỆN TẠI (THEO GIỜ VIỆT NAM) ---
+// --- HÀM LẤY NGÀY HIỆN TẠI ---
 function setToday(elementId) {
     const now = new Date();
     const year = now.getFullYear();
@@ -897,23 +1240,21 @@ function setToday(elementId) {
     const day = String(now.getDate()).padStart(2, '0');
     const todayStr = `${year}-${month}-${day}`;
     const el = document.getElementById(elementId);
-    if(el) el.value = todayStr;
+    if(el && !el.value) el.value = todayStr;
 }
 
-// --- HÀM ĐỊNH DẠNG TIỀN KHI NHẬP (VD: 5.000.000) ---
+// --- ĐỊNH DẠNG TIỀN ---
 function formatInputMoney(el) {
     let val = el.value.replace(/\D/g, ''); 
     if(val === '') { el.value = ''; return; }
     el.value = Number(val).toLocaleString('vi-VN');
 }
 
-// --- HÀM LẤY SỐ TỪ INPUT (XÓA DẤU CHẤM - DÙNG CHO TIỀN) ---
 function parseMoney(id) {
     let val = document.getElementById(id).value;
     return parseFloat(val.replace(/\./g, '').replace(/,/g, '.')) || 0;
 }
 
-// --- HÀM MỚI: LẤY SỐ GIỜ (GIỮ LẠI DẤU CHẤM - DÙNG CHO GIỜ TĂNG CA) ---
 function parseHours(id) {
     let val = document.getElementById(id).value;
     return parseFloat(val.replace(/,/g, '.')) || 0;
@@ -921,7 +1262,6 @@ function parseHours(id) {
 
 // --- AUTO SAVE SALARY SETTINGS ---
 const salaryFields = ['ot_luongCanBan', 'ot_soNgayTrongThang', 'ot_soNgayChuNhat'];
-
 function loadSalarySettings() {
     salaryFields.forEach(id => {
         const saved = localStorage.getItem(id);
@@ -932,7 +1272,6 @@ function loadSalarySettings() {
         }
     });
 }
-
 function saveSalarySettings() {
     salaryFields.forEach(id => {
         const val = document.getElementById(id).value;
@@ -940,19 +1279,11 @@ function saveSalarySettings() {
     });
     reCalcSalaryAuto();
 }
-
-function reCalcSalaryAuto() {
-    let h15 = parseFloat(document.getElementById('sum15').innerText) || 0;
-    let h20 = parseFloat(document.getElementById('sum20').innerText) || 0;
-    calculateOTMoney(h15, h20);
-}
-
-// Gắn sự kiện lắng nghe nhập liệu
 salaryFields.forEach(id => {
     document.getElementById(id).addEventListener('input', saveSalarySettings);
 });
 
-// --- MAPS ---
+// --- MAPS DATA ---
 const googleMapsData = [
     { code: 'GW0', address: 'Kho 1, Lô TT1, QL22, KCN Tân Phú Trung, Củ Chi', link: 'https://maps.app.goo.gl/8ue4xcmMdxwMS5uX9', type: 'GW' },
     { code: 'GW3', address: '1103 QL1A, Bình Trị Đông A, Bình Tân', link: 'https://maps.app.goo.gl/qdCVdF9DygSqSWin7', type: 'GW' },
@@ -981,9 +1312,9 @@ function generateMapLinks() {
     const gws = googleMapsData.filter(x => x.type === 'GW');
     const hubs = googleMapsData.filter(x => x.type !== 'GW');
     let html = '';
-    html += gws.map(item => `<a class="link-card" href="${item.link}" target="_blank"><div class="link-left"><strong>${item.code}</strong><br><span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span></div><span style="color: var(--primary);">📍</span></a>`).join('');
+    html += gws.map(item => `<a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer"><div class="link-left"><strong>${item.code}</strong><br><span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span></div><span style="color: var(--primary);">📍</span></a>`).join('');
     html += `<div style="border-top: 1px dashed #ccc; margin: 10px 15px;"></div>`;
-    html += hubs.map(item => `<a class="link-card" href="${item.link}" target="_blank"><div class="link-left"><strong>${item.code}</strong><br><span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span></div><span style="color: var(--primary);">📍</span></a>`).join('');
+    html += hubs.map(item => `<a class="link-card" href="${item.link}" target="_blank" rel="noopener noreferrer"><div class="link-left"><strong>${item.code}</strong><br><span style="font-size: 0.9em; opacity: 0.8;">${item.address}</span></div><span style="color: var(--primary);">📍</span></a>`).join('');
     container.innerHTML = html;
 }
 generateMapLinks();
@@ -997,8 +1328,7 @@ function applyTheme(isDark) {
 }
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') applyTheme(true);
-else if (savedTheme === 'light') applyTheme(false);
-else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme(true);
+else applyTheme(false); // Mặc định SÁNG nếu chưa chọn, không auto theo hệ thống
 
 btnTheme.onclick = () => {
     const isDark = !body.classList.contains('dark');
@@ -1020,50 +1350,81 @@ const noteArea = document.getElementById('myNote');
 if(localStorage.getItem('userNote')) noteArea.value = localStorage.getItem('userNote');
 noteArea.addEventListener('input', () => localStorage.setItem('userNote', noteArea.value));
 
-// --- HELPER ---
+// --- SAO LƯU & KHÔI PHỤC DỮ LIỆU (PRO VERSION) ---
+function exportBackup() {
+    try {
+        // Gom toàn bộ localStorage thành object
+        const backupData = {
+            fuelLogs: localStorage.getItem('fuelLogs'),
+            otLogs: localStorage.getItem('otLogs'),
+            closingOdo: localStorage.getItem('closingOdo'),
+            ot_luongCanBan: localStorage.getItem('ot_luongCanBan'),
+            ot_soNgayTrongThang: localStorage.getItem('ot_soNgayTrongThang'),
+            ot_soNgayChuNhat: localStorage.getItem('ot_soNgayChuNhat'),
+            dateRegistry: localStorage.getItem('dateRegistry'),
+            dateInsurance: localStorage.getItem('dateInsurance'),
+            odoMaintenance: localStorage.getItem('odoMaintenance'),
+            userNote: localStorage.getItem('userNote'),
+            theme: localStorage.getItem('theme')
+        };
+        // Chuyển thành JSON
+        const jsonString = JSON.stringify(backupData);
+        // Mã hóa Base64
+        const base64Code = btoa(unescape(encodeURIComponent(jsonString)));
+        // Copy vào clipboard
+        const tempInput = document.createElement("textarea");
+        tempInput.value = base64Code;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        showToast("✅ Đã sao chép mã sao lưu vào máy!");
+    } catch(e) {
+        alert("Lỗi khi xuất dữ liệu: " + e.message);
+    }
+}
+
+function importBackup() {
+    try {
+        const code = prompt("Dán mã sao lưu vào đây:");
+        if (!code) return;
+        // Giải mã Base64
+        const jsonString = decodeURIComponent(escape(atob(code.trim())));
+        const backupData = JSON.parse(jsonString);
+        // Nạp lại vào localStorage
+        Object.keys(backupData).forEach(key => {
+            if (backupData[key] !== null && backupData[key] !== undefined) {
+                localStorage.setItem(key, backupData[key]);
+            }
+        });
+        showToast("✅ Đã khôi phục dữ liệu!");
+        setTimeout(() => location.reload(), 1500);
+    } catch(e) {
+        alert("Mã sao lưu không hợp lệ hoặc bị lỗi: " + e.message);
+    }
+}
+
+// --- TÍNH DẦU ---
 const fmt = (n) => parseFloat(n.toFixed(2));
 function formatMoney(n) { return Math.round(n).toLocaleString('vi-VN') + ' VNĐ'; }
 
-async function shareApp() {
-    const shareData = { url: 'https://letinhclover.github.io/jntdriver' };
-    if (navigator.share) { try { await navigator.share(shareData); } catch (err) { } } else { copyLink(); }
-}
-function copyLink() {
-    const url = "https://letinhclover.github.io/jntdriver";
-    var tempInput = document.createElement("input");
-    tempInput.value = url; document.body.appendChild(tempInput);
-    tempInput.select(); tempInput.setSelectionRange(0, 99999);
-    try { document.execCommand("copy"); alert("Đã sao chép Link!"); } catch (e) { }
-    document.body.removeChild(tempInput);
-}
-
-fetch("https://api.counterapi.dev/v1/letinhclover.github.io/jntdriver/up")
-    .then(res => res.json())
-    .then(data => { document.getElementById('visitCount').innerText = "👀 Lượt truy cập: " + data.count.toLocaleString(); })
-    .catch(err => { document.getElementById('visitCount').style.display = "none"; });
-
-// --- TÍNH DẦU ---
 window.tinhDau = function() {
   const khoan = parseMoney('khoan');
   const km = parseMoney('km');
   const thuc = parseMoney('thuc');
   const gia = parseMoney('gia');
-  
   const resultDiv = document.getElementById('resultDau');
   resultDiv.style.display = 'block';
-
-  if(khoan < 0 || km < 0 || thuc < 0 || gia < 0) { alert("Số không được âm!"); return; }
-
-  if (km <= 0 || thuc < 0) { resultDiv.innerHTML = '<b style="color:var(--primary);">⚠️ Vui lòng nhập Quãng đường (>0) và Dầu thực tế.</b>'; return; }
+  if (km <= 0) { resultDiv.innerHTML = '<b style="color:var(--primary);">⚠️ Nhập Quãng đường (>0).</b>'; return; }
   const tieuhao = (thuc / km) * 100;
   let html = `<div class="result-item"><span>Mức khoán:</span><span class="result-value">${fmt(khoan)} Lít</span></div>`;
   html += `<div class="result-item"><span>Quãng đường:</span><span class="result-value">${fmt(km)} km</span></div>`;
   if (khoan > 0) {
     const dauKhoan = (km * khoan) / 100;
     const chenhlech = dauKhoan - thuc;
-    html += `<div class="result-item"><span>Theo khoán:</span><span class="result-value">${fmt(dauKhoan)} Lít</span></div>`;
     html += `<div class="result-item"><span>Thực tế:</span><span class="result-value">${fmt(thuc)} Lít</span></div>`;
-    let msgClass = chenhlech >= 0 ? 'color:#2ecc71' : 'color:var(--primary)';
+    html += `<div class="result-item"><span>Tiêu hao TB:</span><span class="result-value">${fmt(tieuhao)} L/100km</span></div>`;
+    let msgClass = chenhlech >= 0 ? 'color:var(--accent)' : 'color:var(--primary)';
     let msgText = chenhlech >= 0 ? `DƯ ${fmt(chenhlech)} LÍT` : `THIẾU ${fmt(Math.abs(chenhlech))} LÍT`;
     let moneyText = '';
     if(gia > 0) {
@@ -1072,24 +1433,21 @@ window.tinhDau = function() {
     }
     html += `<div class="result-item-total" style="${msgClass}"><span>${msgText}</span><span>${moneyText}</span></div>`;
   } else {
-      html += `<div class="result-item"><span>Thực tế:</span><span class="result-value">${fmt(thuc)} Lít</span></div>`;
-      html += `<div class="result-item"><span>Tiêu hao trung bình:</span><span class="result-value">${fmt(tieuhao)} L/100km</span></div>`;
+      html += `<div class="result-item"><span>Tiêu hao TB:</span><span class="result-value">${fmt(tieuhao)} L/100km</span></div>`;
   }
   resultDiv.innerHTML = html;
 }
 
 // --- NHẬT KÝ DẦU ---
-setToday('logDate'); 
-
+setToday('logDate');
 let closingOdo = parseFloat(localStorage.getItem('closingOdo')) || 0;
 if(closingOdo > 0) {
     document.getElementById('closingOdo').value = closingOdo;
     document.getElementById('savedOdoText').innerText = "Đã lưu ODO chốt: " + closingOdo;
 }
-
-let fuelLogs = JSON.parse(localStorage.getItem('fuelLogs')) || [];
-let editFuelIndex = -1; 
-renderLogs();
+let fuelLogs = [];
+try { fuelLogs = JSON.parse(localStorage.getItem('fuelLogs')) || []; } catch(e) { fuelLogs = []; localStorage.removeItem('fuelLogs'); }
+let editFuelIndex = -1;
 
 function saveClosingOdo() {
     const val = parseFloat(document.getElementById('closingOdo').value);
@@ -1097,32 +1455,30 @@ function saveClosingOdo() {
         localStorage.setItem('closingOdo', val);
         closingOdo = val;
         document.getElementById('savedOdoText').innerText = "Đã lưu ODO chốt: " + val;
-        alert("Đã lưu ODO cuối tháng trước!");
+        showToast("Đã lưu ODO chốt!");
         renderLogs(); 
     }
 }
-
 function addFuelLog() {
-    if(closingOdo === 0) { alert("Vui lòng lưu 'ODO Chốt' trước!"); return; }
+    if(closingOdo === 0) { alert("Lưu ODO Chốt trước!"); return; }
     const date = document.getElementById('logDate').value;
     const liters = parseFloat(document.getElementById('logLiters').value);
     const currentOdo = parseFloat(document.getElementById('logOdo').value);
-    
     if(!date || isNaN(liters) || isNaN(currentOdo)) { alert("Nhập đủ thông tin!"); return; }
-    if(liters < 0 || currentOdo < 0) { alert("Số không được âm!"); return; }
+    if(liters <= 0) { alert("Số lít phải lớn hơn 0!"); return; }
     if(currentOdo <= closingOdo) { alert("ODO hiện tại phải lớn hơn ODO chốt!"); return; }
-    
     if(editFuelIndex > -1) {
         fuelLogs[editFuelIndex] = { date, liters, odo: currentOdo };
         cancelFuelEdit();
+        showToast("✅ Đã cập nhật nhật ký dầu!");
     } else {
         fuelLogs.push({ date, liters, odo: currentOdo });
+        showToast("✅ Đã thêm nhật ký dầu!");
     }
     saveAndRender();
     document.getElementById('logLiters').value = '';
     document.getElementById('logOdo').value = '';
 }
-
 function editFuelLog(index) {
     editFuelIndex = index;
     const log = fuelLogs[index];
@@ -1132,55 +1488,126 @@ function editFuelLog(index) {
     document.getElementById('btnAddFuel').innerText = "💾 Cập nhật";
     document.getElementById('btnAddFuel').classList.add('btn-update');
     document.getElementById('btnCancelFuel').style.display = "inline-block";
-    document.getElementById('logDate').scrollIntoView({ behavior: 'smooth', block: 'center' });    
+    scrollToElement('fuelInputAnchor');
 }
-
 function cancelFuelEdit() {
     editFuelIndex = -1;
-    document.getElementById('logLiters').value = '';
-    document.getElementById('logOdo').value = '';
     document.getElementById('btnAddFuel').innerText = "➕ Thêm Nhật Ký";
     document.getElementById('btnAddFuel').classList.remove('btn-update');
     document.getElementById('btnCancelFuel').style.display = "none";
 }
-
-function deleteLog(index) { if(confirm("Xóa dòng này?")) { fuelLogs.splice(index, 1); saveAndRender(); } }
-function resetFuelMonth() { if(confirm("Xóa hết nhật ký tháng này?")) { fuelLogs = []; saveAndRender(); } }
-function saveAndRender() { localStorage.setItem('fuelLogs', JSON.stringify(fuelLogs)); renderLogs(); }
-
-function renderLogs() {
-    const list = document.getElementById('fuelLogList');
-    list.innerHTML = `<tr><th>Ngày</th><th>Lít</th><th>ODO</th><th>Km chạy</th><th>L/100km</th><th></th></tr>`;
-    let totalLiters = 0; let totalKm = 0;
-    fuelLogs.sort((a, b) => a.odo - b.odo);
-    let previousOdo = closingOdo;
-    fuelLogs.forEach((log, index) => {
-        let dist = log.odo - previousOdo;
-        let cons = 0; if(dist > 0) cons = (log.liters / dist) * 100;
-        totalLiters += log.liters; totalKm += dist;
-        const d = log.date.split('-'); const shortDate = `${d[2]}/${d[1]}`;
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${shortDate}</td><td>${log.liters}</td><td>${log.odo}</td><td style="color:var(--primary);font-weight:bold">${dist}</td><td>${cons > 0 ? cons.toFixed(1) : '-'}</td><td><button class="log-action-btn btn-edit" onclick="editFuelLog(${index})">✎</button><button class="log-action-btn btn-del" onclick="deleteLog(${index})">×</button></td>`;
-        list.appendChild(row);
-        previousOdo = log.odo;
-    });
-    document.getElementById('totalLiters').innerText = totalLiters.toFixed(1) + " Lít";
-    document.getElementById('totalKm').innerText = totalKm + " km";
-    let avg = 0; if(totalKm > 0) avg = (totalLiters / totalKm) * 100;
-    document.getElementById('avgCons').innerText = avg.toFixed(2);
+function saveAndRender() { localStorage.setItem('fuelLogs', JSON.stringify(fuelLogs)); renderLogs(); calcReminders(); }
+function resetFuelMonth() { 
+    if(window.confirm("Bạn có chắc chắn muốn xóa hết nhật ký dầu tháng này không?")) { 
+        fuelLogs = []; 
+        saveAndRender(); 
+        showToast("🗑️ Đã xóa nhật ký dầu tháng này!");
+    }
 }
 
-// --- TÍNH LƯƠNG ---
+function resetOTMonth() { 
+    if(window.confirm("Bạn có chắc chắn muốn xóa hết nhật ký tăng ca tháng này không?")) { 
+        otLogs = []; 
+        saveAndRenderOT(); 
+        showToast("🗑️ Đã xóa nhật ký tăng ca tháng này!");
+    }
+}
+
+function renderLogs() {
+    const container = document.getElementById('fuelLogList');
+    container.innerHTML = '';
+    let totalLiters = 0, totalKm = 0, prev = closingOdo;
+    const sorted = [...fuelLogs].sort((a,b) => a.odo - b.odo);
+
+    if (sorted.length === 0) {
+        container.innerHTML = `<div class="log-empty-state">Chưa có nhật ký dầu nào</div>`;
+    } else {
+        // Thêm header row
+        const header = document.createElement('div');
+        header.className = 'fuel-log-header';
+        header.innerHTML = `
+            <div>Ngày</div>
+            <div>Lít</div>
+            <div>ODO</div>
+            <div>Km</div>
+            <div>L/100</div>
+            <div>Sửa/Xóa</div>
+        `;
+        container.appendChild(header);
+        
+        sorted.forEach((log, i) => {
+            let dist = log.odo - prev;
+            let cons = dist > 0 ? (log.liters / dist) * 100 : 0;
+            totalLiters += log.liters; totalKm += dist;
+            const d = log.date.split('-');
+            const shortDate = `${d[2]}/${d[1]}`;
+            
+            const card = document.createElement('div');
+            card.className = 'log-card-fuel';
+            card.innerHTML = `
+                <div class="fuel-date">${shortDate}</div>
+                <div>${fmt(log.liters)}</div>
+                <div style="font-weight:600">${log.odo}</div>
+                <div style="color:var(--primary); font-weight:600">${dist}</div>
+                <div>${cons > 0 ? cons.toFixed(1) : '-'}</div>
+                <div class="fuel-actions">
+                    <button class="log-action-btn btn-edit" onclick="editFuelLog(${i})" style="font-size:15px">✎</button>
+                    <button class="log-action-btn btn-del" onclick="deleteFuelLog(${i})" style="font-size:16px">✘</button>
+                </div>
+            `;
+            container.appendChild(card);
+            prev = log.odo;
+        });
+    }
+    document.getElementById('totalLiters').innerText = totalLiters.toFixed(1) + " Lít";
+    document.getElementById('totalKm').innerText = totalKm + " km";
+    document.getElementById('avgCons').innerText = totalKm > 0 ? ((totalLiters/totalKm)*100).toFixed(2) : 0;
+}
+
+function deleteFuelLog(index) {
+    if(window.confirm("Bạn có chắc chắn muốn xóa dòng nhật ký này không?")) { 
+        fuelLogs.splice(index, 1); 
+        saveAndRender(); 
+        showToast("✅ Đã xóa!");
+    }
+}
+
+// --- TỰ TÍNH NGÀY CÔNG & CHỦ NHẬT THEO THÁNG ---
+function autoCalcSundays() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth(); // 0-based
+    // Tổng số ngày trong tháng
+    const totalDays = new Date(year, month + 1, 0).getDate();
+    // Đếm số chủ nhật
+    let sundays = 0;
+    for (let d = 1; d <= totalDays; d++) {
+        if (new Date(year, month, d).getDay() === 0) sundays++;
+    }
+    // Ngày công = tổng số ngày trong tháng (VD: tháng 2/2026 = 28)
+    // Chủ nhật = số ngày CN trong tháng (VD: 4)
+    document.getElementById('ot_soNgayTrongThang').value = totalDays;
+    document.getElementById('ot_soNgayChuNhat').value = sundays;
+    saveSalarySettings();
+    const monthName = `Tháng ${month + 1}/${year}`;
+    showToast(`✅ ${monthName}: ${totalDays} ngày, ${sundays} chủ nhật`);
+}
+
+// --- TÍNH LƯƠNG (ĐÃ CẬP NHẬT DÙNG parseHours) ---
 window.tinhLuong = function() {
+    // Các ô Tiền và Ngày công -> Dùng parseMoney (Xóa dấu chấm ngàn)
     const luongCB = parseMoney('ot_luongCanBan');
     const ngayThang = parseMoney('ot_soNgayTrongThang');
     const ngayCN = parseMoney('ot_soNgayChuNhat');
+    
+    // Các ô Giờ -> Dùng parseHours (Giữ dấu chấm thập phân để hiểu 8.5)
     const gio15 = parseHours('ot_gioTCTuong');
     const gio20 = parseHours('ot_gioTCNghi');
     
     document.getElementById('ketQuaLuong').style.display = 'block';
     
     if(luongCB < 0 || ngayThang < 0 || ngayCN < 0 || gio15 < 0 || gio20 < 0) { alert("Số không được âm!"); return; }
+
     if (luongCB <= 0 || ngayThang <= 0) { alert("Nhập Lương CB và Ngày công!"); return; }
     
     const ngayCongChuan = ngayThang - ngayCN;
@@ -1189,37 +1616,45 @@ window.tinhLuong = function() {
     const luongGio = luongCB / (ngayCongChuan * 8);
     const tien15 = gio15 * luongGio * 1.5;
     const tien20 = gio20 * luongGio * 2.0;
+    const tongTangCa = tien15 + tien20;
+    
+    // CÔNG THỨC LƯƠNG TẠM TÍNH: (8,000,000 - 557,550) + Tổng Tăng Ca
+    const thucNhan = (8000000 - 557550) + tongTangCa;
 
     document.getElementById('luongGioCoBan').innerText = formatMoney(luongGio) + "/giờ";
-    document.getElementById('showH15').innerText = fmt(gio15) + "h"; 
     document.getElementById('tienTCTuong').innerText = formatMoney(tien15);
-    document.getElementById('showH20').innerText = fmt(gio20) + "h"; 
     document.getElementById('tienTCNghi').innerText = formatMoney(tien20);
-    document.getElementById('tongTienTangCa').innerText = formatMoney(tien15 + tien20);
+    document.getElementById('tongTienTangCa').innerText = formatMoney(tongTangCa);
+    document.getElementById('thucNhanTamTinh').innerText = formatMoney(thucNhan);
+    
     reCalcSalaryAuto();
 }
 
+function reCalcSalaryAuto() {
+    let h15 = parseFloat(document.getElementById('sum15').innerText) || 0;
+    let h20 = parseFloat(document.getElementById('sum20').innerText) || 0;
+    calculateOTMoney(h15, h20);
+}
+
 // --- NHẬT KÝ TĂNG CA ---
-setToday('otLogDate'); 
-
-let otLogs = JSON.parse(localStorage.getItem('otLogs')) || [];
+let otLogs = [];
+try { otLogs = JSON.parse(localStorage.getItem('otLogs')) || []; } catch(e) { otLogs = []; localStorage.removeItem('otLogs'); }
 let editOTIndex = -1;
-
-loadSalarySettings();
-renderOTLogs();
 
 function addOTLog() {
     const date = document.getElementById('otLogDate').value;
     const type = parseFloat(document.getElementById('otLogType').value);
     const hours = parseFloat(document.getElementById('otLogHours').value);
     if(!date || isNaN(hours)) { alert("Nhập đủ thông tin!"); return; }
-    if(hours < 0) { alert("Giờ không được âm!"); return; }
+    if(hours <= 0) { alert("Số giờ phải lớn hơn 0!"); return; }
     
     if(editOTIndex > -1) {
         otLogs[editOTIndex] = { date, type, hours };
         cancelOTEdit();
+        showToast("✅ Đã cập nhật tăng ca!");
     } else {
         otLogs.push({ date, type, hours });
+        showToast("✅ Đã thêm tăng ca!");
     }
     saveAndRenderOT();
     document.getElementById('otLogHours').value = '';
@@ -1235,6 +1670,7 @@ function editOTLog(index) {
     document.getElementById('btnAddOT').innerText = "💾 Cập nhật";
     document.getElementById('btnAddOT').classList.add('btn-update');
     document.getElementById('btnCancelOT').style.display = "inline-block";
+    // --- TỰ CUỘN LÊN ---
     document.getElementById('otLogDate').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
@@ -1246,31 +1682,65 @@ function cancelOTEdit() {
     document.getElementById('btnCancelOT').style.display = "none";
 }
 
-function deleteOTLog(index) { if(confirm("Xóa dòng này?")) { otLogs.splice(index, 1); saveAndRenderOT(); } }
-function resetOTMonth() { if(confirm("Xóa hết?")) { otLogs = []; saveAndRenderOT(); } }
+function deleteOTLog(index) { 
+    if(window.confirm("Bạn có chắc chắn muốn xóa dòng tăng ca này không?")) { 
+        otLogs.splice(index, 1); 
+        saveAndRenderOT(); 
+        showToast("✅ Đã xóa!");
+    } 
+}
 function saveAndRenderOT() { localStorage.setItem('otLogs', JSON.stringify(otLogs)); renderOTLogs(); }
 
 function renderOTLogs() {
-    const list = document.getElementById('otLogList');
-    list.innerHTML = `<tr><th>Ngày</th><th>Loại</th><th>Giờ</th><th></th></tr>`;
+    const container = document.getElementById('otLogList');
+    container.innerHTML = '';
     let sum15 = 0; let sum20 = 0;
-    otLogs.sort((a, b) => new Date(a.date) - new Date(b.date));
-    otLogs.forEach((log, index) => {
-        if(log.type === 1.5) sum15 += log.hours;
-        if(log.type === 2.0) sum20 += log.hours;
-        const d = log.date.split('-'); const shortDate = `${d[2]}/${d[1]}`;
-        const typeClass = log.type === 1.5 ? 'text-blue' : 'text-red';
-        const typeLabel = log.type === 1.5 ? 'Tăng ca thường' : 'Tăng ca OFF';
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${shortDate}</td><td class="${typeClass}" style="font-weight:bold">${typeLabel}</td><td class="${typeClass}" style="font-weight:bold">${fmt(log.hours)}</td><td><button class="log-action-btn btn-edit" onclick="editOTLog(${index})">✎</button><button class="log-action-btn btn-del" onclick="deleteOTLog(${index})">×</button></td>`;
-        list.appendChild(row);
-    });
+    
+    const sorted = [...otLogs].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    if (sorted.length === 0) {
+        container.innerHTML = `<div class="log-empty-state">Chưa có nhật ký tăng ca nào</div>`;
+    } else {
+        // Thêm header row
+        const header = document.createElement('div');
+        header.className = 'ot-log-header';
+        header.innerHTML = `
+            <div>Ngày</div>
+            <div>Loại</div>
+            <div>Giờ</div>
+            <div>Sửa/Xóa</div>
+        `;
+        container.appendChild(header);
+        
+        sorted.forEach((log, index) => {
+            if(log.type === 1.5) sum15 += log.hours;
+            if(log.type === 2.0) sum20 += log.hours;
+            const d = log.date.split('-');
+            const shortDate = `${d[2]}/${d[1]}`;
+            const typeLabel = log.type === 1.5 ? 'Thường' : 'OFF';
+            const typeColor = log.type === 1.5 ? 'text-blue' : 'text-red';
+            
+            const card = document.createElement('div');
+            card.className = `log-card-ot`;
+            card.innerHTML = `
+                <div class="ot-date">${shortDate}</div>
+                <div class="${typeColor}" style="font-weight:700">${typeLabel}</div>
+                <div class="${typeColor}" style="font-weight:700">${fmt(log.hours)}</div>
+                <div class="ot-actions">
+                    <button class="log-action-btn btn-edit" onclick="editOTLog(${index})" style="font-size:15px">✎</button>
+                    <button class="log-action-btn btn-del" onclick="deleteOTLog(${index})" style="font-size:16px">✘</button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
     document.getElementById('sum15').innerText = fmt(sum15);
     document.getElementById('sum20').innerText = fmt(sum20);
     calculateOTMoney(sum15, sum20);
 }
 
 function calculateOTMoney(h15, h20) {
+    // Dùng hàm parseMoney mới để xử lý số có dấu chấm
     const luongCB = parseMoney('ot_luongCanBan');
     const ngayCong = parseMoney('ot_soNgayTrongThang');
     const ngayCN = parseMoney('ot_soNgayChuNhat');
@@ -1278,6 +1748,7 @@ function calculateOTMoney(h15, h20) {
     if(luongCB > 0 && ngayCong > 0) {
         const ngayChuan = ngayCong - ngayCN;
         const luongGio = luongCB / (ngayChuan * 8);
+        
         const tien15 = h15 * 1.5 * luongGio;
         const tien20 = h20 * 2.0 * luongGio;
         const total = tien15 + tien20;
@@ -1288,16 +1759,122 @@ function calculateOTMoney(h15, h20) {
     }
 }
 
-// --- KHỞI TẠO ỨNG DỤNG ---
-function initApp() {
-    setToday('logDate');
-    setToday('otLogDate');
-    loadSalarySettings();
-    renderLogs();
-    renderOTLogs();
-    createFlowers(); // Chạy hiệu ứng hoa rơi
+// --- NHẮC LỊCH XE (MỚI) ---
+function toggleEdit(id, btn) {
+    const el = document.getElementById(id);
+    const isOpen = el.style.display === 'block';
+    
+    document.querySelectorAll('.edit-area').forEach(area => area.style.display = 'none');
+    document.querySelectorAll('.btn-edit-toggle').forEach(b => {
+        b.innerText = 'Sửa';
+        b.classList.remove('active');
+    });
+
+    if (!isOpen) {
+        el.style.display = 'block';
+        btn.innerText = 'Xong';
+        btn.classList.add('active');
+    } else {
+        el.style.display = 'none';
+        btn.innerText = 'Sửa';
+        btn.classList.remove('active');
+    }
 }
 
+function toggleMaintenanceTable() {
+    const table = document.getElementById('maintenanceTable');
+    const btn = document.getElementById('btnShowLookup');
+    
+    if (table.style.display === 'table') {
+        table.style.display = 'none';
+        btn.innerText = 'Xem';
+        btn.style.background = 'var(--blue-text)';
+    } else {
+        table.style.display = 'table';
+        btn.innerText = 'Đóng';
+        btn.style.background = '#7f8c8d';
+    }
+}
+
+function loadReminders() {
+    ['dateRegistry', 'dateInsurance', 'odoMaintenance'].forEach(k => {
+        const s = localStorage.getItem(k); 
+        if (s) document.getElementById(k).value = s;
+    });
+    calcReminders(); 
+}
+function saveReminders() {
+    ['dateRegistry', 'dateInsurance', 'odoMaintenance'].forEach(k => { 
+        localStorage.setItem(k, document.getElementById(k).value); 
+    });
+    calcReminders();
+}
+
+function calcReminders() {
+    const today = new Date(); today.setHours(0,0,0,0);
+    [{id:'dateRegistry',t:'textRegistry'},{id:'dateInsurance',t:'textInsurance'}].forEach(item => {
+        const v = document.getElementById(item.id).value, el = document.getElementById(item.t);
+        if (!v) { el.innerText = "Chưa cài ngày"; el.style.color = "inherit"; }
+        else {
+            const diff = Math.ceil((new Date(v) - today) / (1000 * 60 * 60 * 24));
+            if (diff < 0) { el.innerText = "QUÁ HẠN " + Math.abs(diff) + " ngày 🔴"; el.style.color = "var(--primary)"; }
+            else if (diff <= 7) { el.innerText = "KHẨN CẤP: Còn " + diff + " ngày 🔴"; el.style.color = "var(--primary)"; }
+            else if (diff <= 30) { el.innerText = "Sắp hết hạn: Còn " + diff + " ngày 🟡"; el.style.color = "#d4a017"; }
+            else { el.innerText = "An toàn: Còn " + diff + " ngày 🟢"; el.style.color = "var(--accent)"; }
+        }
+    });
+    const target = parseFloat(document.getElementById('odoMaintenance').value) || 0, elM = document.getElementById('textMaintenance');
+    let cur = closingOdo; if (fuelLogs.length > 0) { const max = Math.max(...fuelLogs.map(l => l.odo)); if (max > cur) cur = max; }
+    if (target === 0) elM.innerText = "Chưa cài mốc ODO";
+    else {
+        const diffKm = target - cur;
+        if (diffKm < 0) { elM.innerText = "QUÁ KM: Lố " + Math.abs(diffKm) + " km 🔴"; elM.style.color = "var(--primary)"; }
+        else if (diffKm <= 500) { elM.innerText = "Sắp hạn: Còn " + diffKm + " km 🟡"; elM.style.color = "#d4a017"; }
+        else { elM.innerText = "An toàn: Còn " + diffKm + " km 🟢"; elM.style.color = "var(--accent)"; }
+    }
+    updateExpertAdvice(cur);
+}
+
+function updateExpertAdvice(odo) {
+    const el = document.getElementById('expertAdvice'); 
+    let adv = "💡 <b>Lưu ý cho anh em:</b> ";
+    if (odo === 0) adv += "Nhập nhật ký dầu để App theo dõi bảo dưỡng xe nhé!";
+    else if (odo < 3000) adv += "Xe mới chạy. Mốc <b>3k-5k km</b> đầu anh em nên báo công ty cho xe đi siết lại gầm và thay nhớt rà máy nhé.";
+    else if (odo >= 3000 && odo < 8000) adv += "Gần mốc 10.000km, anh em để ý báo thay nhớt máy và vệ sinh lọc gió cho xe bốc.";
+    else if (odo >= 8000 && odo <= 12000) adv += "Mốc <b>10.000km</b>: Nên báo thay nhớt, lọc nhớt và nhờ kỹ thuật xem qua má phanh cho an toàn.";
+    else if (odo >= 18000 && odo <= 22000) adv += "Mốc <b>20.000km</b>: Rất cần thay <b>Lọc Dầu</b> để tránh hư kim phun, anh em lưu ý nhé.";
+    else if (odo >= 38000 && odo <= 42000) adv += "Mốc <b>40.000km</b>: Tới kỳ bảo dưỡng lớn rồi, anh em báo đội xe kiểm tra dầu hộp số, dầu cầu và nước mát.";
+    else if (odo >= 78000 && odo <= 82000) adv += "Mốc <b>80.000km</b>: Cần lưu ý thay dây curoa và vệ sinh họng nạp để máy chạy êm, tiết kiệm dầu.";
+    else if (odo >= 98000) adv += "Xe chạy trên <b>10 vạn</b> rồi, anh em nên để ý kỹ hệ thống côn và gầm bệ khi vận hành.";
+    else adv += "Anh em nhớ kiểm tra nước làm mát và áp suất lốp hàng tuần để xe chạy ổn định nhé!";
+    el.innerHTML = adv;
+}
+
+// --- SHARE & VISIT COUNT ---
+async function shareApp() {
+    if (navigator.share) { try { await navigator.share({url:'https://letinhclover.github.io/jntdriver'}); } catch(e){} }
+    else {
+        const t = document.createElement("input"); t.value = "https://letinhclover.github.io/jntdriver"; document.body.appendChild(t);
+        t.select(); try { document.execCommand("copy"); showToast("Đã sao chép Link!"); } catch(e){} document.body.removeChild(t);
+    }
+}
+fetch("https://api.counterapi.dev/v1/letinhclover.github.io/jntdriver/up")
+    .then(r=>r.json()).then(d=>{document.getElementById('visitCount').innerText="👀 Lượt truy cập: "+d.count.toLocaleString()})
+    .catch(e=>{document.getElementById('visitCount').style.display="none"});
+
+// --- KHỞI TẠO ỨNG DỤNG (CHẠY CUỐI CÙNG, ĐẢM BẢO THỨ TỰ ĐÚNG) ---
+function initApp() {
+    // 1. Gán ngày hôm nay
+    setToday('logDate');
+    setToday('otLogDate');
+    // 2. Load cài đặt lương TRƯỚC (quan trọng: số liệu phải có trước khi render)
+    loadSalarySettings();
+    // 3. Render nhật ký (dựa trên số liệu đã load)
+    renderLogs();
+    renderOTLogs();
+    // 4. Load nhắc lịch xe
+    loadReminders();
+}
 initApp();
 </script>
 </body>
