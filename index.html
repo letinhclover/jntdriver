@@ -1475,4 +1475,416 @@ function tinhDau() {
         `;
         
         let msgClass = chenhlech >= 0 ? 'color:var(--accent)' : 'color:var(--primary)';
-        let msgText = chenhlech >= 0 ? `DƯ ${fm
+        let msgText = chenhlech >= 0 ? `DƯ ${fmt(chenhlech)} LÍT` : `THIẾU ${fmt(Math.abs(chenhlech))} LÍT`;
+        let moneyText = gia > 0 ? formatMoney(Math.abs(chenhlech * gia)) : '';
+        
+        if(moneyText) {
+            moneyText = chenhlech >= 0 ? "(+" + moneyText + ")" : "(-" + moneyText + ")";
+        }
+        
+        html += `<div class="result-item-total" style="${msgClass}"><span>${msgText}</span><span>${moneyText}</span></div>`;
+    } else {
+        html += `<div class="result-item"><span>Tiêu hao TB:</span><span class="result-value">${fmt(tieuhao)} L/100km</span></div>`;
+    }
+    
+    resultDiv.innerHTML = html;
+    
+    const container = document.getElementById('appContainer');
+    container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+}
+
+let closingOdo = parseFloat(appStorage.get('closingOdo')) || 0;
+let fuelLogs =[];
+try { 
+    const saved = appStorage.get('fuelLogs');
+    if(saved) {
+        fuelLogs = JSON.parse(saved); 
+    }
+} catch(e) { 
+    fuelLogs =[]; 
+    appStorage.remove('fuelLogs'); 
+}
+
+let editFuelIndex = -1;
+
+function saveClosingOdo() {
+    const val = parseFloat(document.getElementById('closingOdo').value);
+    if(!isNaN(val) && val > 0) {
+        appStorage.set('closingOdo', val);
+        closingOdo = val;
+        document.getElementById('savedOdoText').innerText = "Đã lưu ODO chốt: " + val;
+        showToast("Đã lưu ODO chốt!");
+        renderLogs(); 
+    }
+}
+
+function addFuelLog() {
+    if(closingOdo === 0) { 
+        alert("Lưu ODO Chốt trước!"); 
+        return; 
+    }
+    const date = document.getElementById('logDate').value;
+    const liters = parseFloat(document.getElementById('logLiters').value);
+    const currentOdo = parseFloat(document.getElementById('logOdo').value);
+    
+    if(!date || isNaN(liters) || isNaN(currentOdo)) { 
+        alert("Nhập đủ thông tin!"); 
+        return; 
+    }
+    if(liters <= 0) { 
+        alert("Số lít phải > 0!"); 
+        return; 
+    }
+    if(currentOdo <= closingOdo) { 
+        alert("ODO hiện tại phải > ODO chốt!"); 
+        return; 
+    }
+    
+    if(editFuelIndex > -1) {
+        fuelLogs[editFuelIndex] = { date, liters, odo: currentOdo };
+        cancelFuelEdit();
+        showToast("✅ Đã cập nhật!");
+    } else {
+        fuelLogs.push({ date, liters, odo: currentOdo });
+        showToast("✅ Đã thêm!");
+    }
+    saveAndRender();
+    document.getElementById('logLiters').value = '';
+    document.getElementById('logOdo').value = '';
+}
+
+function editFuelLog(index) {
+    editFuelIndex = index;
+    const log = fuelLogs[index];
+    
+    document.getElementById('logDate').value = log.date;
+    document.getElementById('logLiters').value = log.liters;
+    document.getElementById('logOdo').value = log.odo;
+    
+    document.getElementById('btnAddFuel').innerText = "💾 Cập nhật";
+    document.getElementById('btnAddFuel').classList.add('btn-update');
+    document.getElementById('btnCancelFuel').style.display = "block";
+    document.getElementById('closingOdo').scrollIntoView({ behavior: 'smooth' });
+}
+
+function cancelFuelEdit() {
+    editFuelIndex = -1;
+    document.getElementById('btnAddFuel').innerText = "➕ Thêm Nhật Ký";
+    document.getElementById('btnAddFuel').classList.remove('btn-update');
+    document.getElementById('btnCancelFuel').style.display = "none";
+}
+
+function saveAndRender() { 
+    appStorage.set('fuelLogs', JSON.stringify(fuelLogs)); 
+    renderLogs(); 
+}
+
+function resetFuelMonth() { 
+    if(window.confirm("Xóa hết nhật ký dầu tháng này?")) { 
+        fuelLogs =[]; 
+        saveAndRender(); 
+        showToast("🗑️ Đã xóa!"); 
+    } 
+}
+
+function renderLogs() {
+    const container = document.getElementById('fuelLogList');
+    container.innerHTML = '';
+    
+    let totalLiters = 0;
+    let totalKm = 0;
+    let prev = closingOdo;
+    
+    const sorted =[...fuelLogs].sort((a,b) => a.odo - b.odo);
+
+    if (sorted.length === 0) {
+        container.innerHTML = `<div class="log-empty-state">Chưa có nhật ký dầu</div>`;
+    } else {
+        const header = document.createElement('div');
+        header.className = 'fuel-log-header';
+        header.innerHTML = `<div>Ngày</div><div>Lít</div><div>ODO</div><div>Km</div><div>L/100</div><div>Xóa</div>`;
+        container.appendChild(header);
+        
+        sorted.forEach((log, i) => {
+            let dist = log.odo - prev;
+            let cons = dist > 0 ? (log.liters / dist) * 100 : 0;
+            
+            totalLiters += log.liters;
+            totalKm += dist;
+            
+            const d = log.date.split('-');
+            const card = document.createElement('div');
+            card.className = 'log-card-fuel';
+            card.innerHTML = `
+                <div style="font-weight:600">${d[2]}/${d[1]}</div>
+                <div>${fmt(log.liters)}</div>
+                <div style="font-weight:600">${log.odo}</div>
+                <div style="color:var(--primary); font-weight:700">${dist}</div>
+                <div>${cons > 0 ? cons.toFixed(1) : '-'}</div>
+                <div>
+                    <button class="log-action-btn btn-edit" onclick="editFuelLog(${i})">✎</button>
+                    <button class="log-action-btn btn-del" onclick="deleteFuelLog(${i})">✘</button>
+                </div>
+            `;
+            container.appendChild(card);
+            prev = log.odo;
+        });
+    }
+    
+    document.getElementById('totalLiters').innerText = totalLiters.toFixed(1) + " Lít";
+    document.getElementById('totalKm').innerText = totalKm + " km";
+    document.getElementById('avgCons').innerText = totalKm > 0 ? ((totalLiters/totalKm)*100).toFixed(2) : 0;
+}
+
+function deleteFuelLog(index) { 
+    if(window.confirm("Xóa dòng này?")) { 
+        fuelLogs.splice(index, 1); 
+        saveAndRender(); 
+        showToast("✅ Đã xóa!"); 
+    } 
+}
+
+// ================= LOGIC: TIỆN ÍCH (REMINDERS & BACKUP) =================
+function toggleEdit(id, btn) {
+    const el = document.getElementById(id);
+    const isOpen = el.style.display === 'block';
+    
+    document.querySelectorAll('.edit-area').forEach(area => {
+        area.style.display = 'none';
+    });
+    document.querySelectorAll('.btn-edit-toggle').forEach(b => { 
+        b.innerText = 'Sửa'; 
+        b.classList.remove('active'); 
+    });
+    
+    if (!isOpen) { 
+        el.style.display = 'block'; 
+        btn.innerText = 'Xong'; 
+        btn.classList.add('active'); 
+    } else { 
+        el.style.display = 'none'; 
+        btn.innerText = 'Sửa'; 
+        btn.classList.remove('active'); 
+    }
+}
+
+function loadReminders() {
+    const items =['dateRegistry', 'dateInsurance'];
+    items.forEach(k => {
+        const s = appStorage.get(k);
+        if (s && s !== "null") {
+            const el = document.getElementById(k);
+            if (el) el.value = s;
+        }
+    });
+    calcReminders(); 
+}
+
+function saveReminders() {
+    const items =['dateRegistry', 'dateInsurance'];
+    items.forEach(k => {
+        const el = document.getElementById(k);
+        if (el && el.value) {
+            appStorage.set(k, el.value);
+        }
+    });
+    calcReminders();
+}
+
+function calcReminders() {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    
+    const items =[
+        {id:'dateRegistry', t:'textRegistry'},
+        {id:'dateInsurance', t:'textInsurance'}
+    ];
+    
+    items.forEach(item => {
+        const inputEl = document.getElementById(item.id);
+        const textEl = document.getElementById(item.t);
+        
+        if (!inputEl || !textEl) return;
+        
+        const v = inputEl.value;
+        if (!v || v === "null") { 
+            textEl.innerText = "Chưa cài ngày"; 
+            textEl.style.color = "inherit"; 
+        } else {
+            const diff = Math.ceil((new Date(v) - today) / 86400000);
+            if (diff < 0) { 
+                textEl.innerText = "QUÁ HẠN " + Math.abs(diff) + " ngày 🔴"; 
+                textEl.style.color = "var(--primary)"; 
+            } else if (diff <= 7) { 
+                textEl.innerText = "KHẨN CẤP: Còn " + diff + " ngày 🔴"; 
+                textEl.style.color = "var(--primary)"; 
+            } else if (diff <= 30) { 
+                textEl.innerText = "Sắp hết: Còn " + diff + " ngày 🟡"; 
+                textEl.style.color = "#d4a017"; 
+            } else { 
+                textEl.innerText = "An toàn: Còn " + diff + " ngày 🟢"; 
+                textEl.style.color = "var(--accent)"; 
+            }
+        }
+    });
+}
+
+function exportBackup() {
+    try {
+        const backupData = {
+            fuelLogs: appStorage.get('fuelLogs'), 
+            otLogs: appStorage.get('otLogs'),
+            closingOdo: appStorage.get('closingOdo'), 
+            ot_luongCanBan: appStorage.get('ot_luongCanBan'),
+            ot_soNgayTrongThang: appStorage.get('ot_soNgayTrongThang'), 
+            ot_soNgayChuNhat: appStorage.get('ot_soNgayChuNhat'),
+            dateRegistry: appStorage.get('dateRegistry'), 
+            dateInsurance: appStorage.get('dateInsurance'),
+            theme: appStorage.get('theme'),
+            isPremiumUnlocked: appStorage.get('isPremiumUnlocked')
+        };
+        
+        const jsonString = JSON.stringify(backupData);
+        const base64Code = btoa(unescape(encodeURIComponent(jsonString)));
+        
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(base64Code).then(() => {
+                showToast("✅ Đã sao chép mã sao lưu vào máy!");
+            });
+        } else {
+            const temp = document.createElement("textarea");
+            temp.value = base64Code;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            document.body.removeChild(temp);
+            showToast("✅ Đã sao chép mã sao lưu!");
+        }
+    } catch(e) { 
+        alert("Lỗi xuất dữ liệu: " + e.message); 
+    }
+}
+
+function importBackup() {
+    try {
+        const code = prompt("Dán mã sao lưu vào đây:"); 
+        if (!code) return;
+        
+        const jsonString = decodeURIComponent(escape(atob(code.trim())));
+        const backupData = JSON.parse(jsonString);
+        
+        Object.keys(backupData).forEach(key => { 
+            if (backupData[key] !== null && backupData[key] !== undefined) {
+                appStorage.set(key, backupData[key]); 
+            }
+        });
+        
+        showToast("✅ Đã khôi phục dữ liệu!"); 
+        setTimeout(() => location.reload(), 1500);
+    } catch(e) { 
+        alert("Mã sao lưu không hợp lệ!"); 
+    }
+}
+
+// ================= LOGIC: THÔNG TIN & CHIA SẺ =================
+async function shareApp() {
+    if (navigator.share) { 
+        try { 
+            await navigator.share({url:'https://letinhclover.github.io/jntdriver'}); 
+        } catch(e){} 
+    } else {
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText("https://letinhclover.github.io/jntdriver").then(() => {
+                showToast("Đã sao chép Link!");
+            });
+        } else {
+            const t = document.createElement("input"); 
+            t.value = "https://letinhclover.github.io/jntdriver"; 
+            document.body.appendChild(t); 
+            t.select(); 
+            try { 
+                document.execCommand("copy"); 
+                showToast("Đã sao chép Link!"); 
+            } catch(e){} 
+            document.body.removeChild(t);
+        }
+    }
+}
+
+setTimeout(() => {
+    fetch("https://api.counterapi.dev/v1/letinhclover.github.io/jntdriver/up")
+        .then(r => r.json())
+        .then(d => {
+            const vc = document.getElementById('visitCount');
+            if(vc) {
+                vc.innerText = "Lượt truy cập: " + d.count.toLocaleString();
+            }
+        })
+        .catch(e => {
+            const vc = document.getElementById('visitCount');
+            if(vc) {
+                vc.style.display = "none";
+            }
+        });
+}, 3000);
+
+// ================= INIT & EVENT LISTENERS =================
+function initApp() {
+    const savedTheme = appStorage.get('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+    }
+    
+    checkPremiumLock(); 
+    setToday('logDate'); 
+    setToday('otLogDate');
+    
+    // Tự động kiểm tra và cập nhật ngày công nếu sang tháng mới
+    checkAndAutoCalcMonth();
+    
+    loadSalarySettings(); 
+    renderLogs(); 
+    renderOTLogs(); 
+    loadReminders();
+    
+    // Khôi phục hiển thị ô ODO chốt
+    if(closingOdo > 0) {
+        const el = document.getElementById('closingOdo');
+        if (el) el.value = closingOdo;
+        const textEl = document.getElementById('savedOdoText');
+        if (textEl) textEl.innerText = "Đã lưu ODO chốt: " + closingOdo;
+    }
+    
+    salaryFields.forEach(id => {
+        const el = document.getElementById(id);
+        if(el) {
+            el.addEventListener('input', saveSalarySettings);
+        }
+    });
+    
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            document.body.classList.add('keyboard-open');
+        });
+        input.addEventListener('blur', () => {
+            setTimeout(() => {
+                const activeEl = document.activeElement;
+                if (activeEl && activeEl.tagName !== 'INPUT' && activeEl.tagName !== 'SELECT') {
+                    document.body.classList.remove('keyboard-open');
+                }
+            }, 50);
+        });
+    });
+
+    const savedTab = appStorage.get('activeTab');
+    const savedTabTitle = appStorage.get('activeTabTitle');
+    if(savedTab && savedTabTitle && document.getElementById(savedTab)) {
+        switchTab(savedTab, savedTabTitle);
+    }
+}
+
+initApp();
+</script>
+</body>
+</html>
