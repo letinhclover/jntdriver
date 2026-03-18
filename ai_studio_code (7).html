@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- 1. XÁC MINH & CẤU HÌNH -->
+<meta name="google-site-verification" content="LqiwRvtXkmjr61OUO-Qhk7cQmQr3LhblxmSwBGm5_Qs" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Link Tài Xế J&T Express</title>
+
+<!-- 2. PWA & ICONS -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#CC0000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="application-name" content="App Tài Xế">
+
+<!-- 3. FONTS & SEO -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="Link tài xế J&T Express: Tính lương, Dầu, Lịch xe, Sao lưu. Tất cả trong một.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://letinhclover.github.io/jntdriver">
+
+<style>
+/* CSS CORE & VARIABLES */
+:root {
+  --bg-light: #f4f6f8; --bg-dark: #111214;
+  --text-light: #1a1a1a; --text-dark: #f5f5f5;
+  --primary: #CC0000; --accent: #198845;
+  --card: #ffffff; --card-dark: #1d1f21;
+  --highlight-bg: #fff3f2;
+  --edit: #f39c12;
+  --blue-text: #007bff; 
+  --red-text: #d32f2f;
+  --nav-height: 65px;
+  --header-height: 54px;
+}
+
+*, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+/* APP LAYOUT LOCK */
+html, body {
+  height: 100%; width: 100%; overflow: hidden;
+  margin: 0; padding: 0; font-family: 'Roboto', sans-serif;
+  background: var(--bg-light); color: var(--text-light);
+  font-size: 15px; line-height: 1.4; transition: background .2s, color .2s;
+}
+body.dark { background: var(--bg-dark); color: var(--text-dark); }
+
+/* HEADER FIXED */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--header-height);
+  padding-top: env(safe-area-inset-top, 0px);
+  background: linear-gradient(90deg, var(--primary), #dd2476);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1.15em; text-transform: uppercase;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+#toggleTheme {
+  position: absolute; right: 12px; bottom: 8px;
+  background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; padding: 5px;
+}
+
+/* MAIN SCROLLABLE AREA */
+#appContainer {
+  position: fixed;
+  top: var(--header-height); bottom: var(--nav-height);
+  left: 0; right: 0;
+  overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; 
+  padding: 12px; padding-bottom: 30px;
+}
+body.keyboard-open #appContainer { bottom: 0; }
+
+/* BOTTOM NAVIGATION BAR (4 TABS) */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-height); padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--card); display: flex; justify-content: space-around; align-items: center;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.08); transition: transform 0.2s ease;
+}
+body.dark .bottom-nav { background: var(--card-dark); box-shadow: 0 -2px 10px rgba(0,0,0,0.5); border-top: 1px solid #333; }
+body.keyboard-open .bottom-nav { display: none; } 
+
+.nav-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 25%; height: 100%; color: #7f8c8d; text-decoration: none; font-size: 0.75em; font-weight: 700;
+  cursor: pointer;
+}
+.nav-item .icon { font-size: 22px; margin-bottom: 3px; transition: transform 0.2s; filter: grayscale(100%); opacity: 0.6; }
+.nav-item.active { color: var(--primary); }
+.nav-item.active .icon { transform: translateY(-2px); filter: grayscale(0%); opacity: 1; }
+body.dark .nav-item { color: #888; }
+body.dark .nav-item.active { color: #ff4d4d; }
+
+/* TAB PANES */
+.tab-pane { display: none; animation: fadeIn 0.25s ease-out; padding-bottom: 20px; }
+.tab-pane.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* CARDS & CONTAINERS */
+.card-box {
+  background: var(--card); border-radius: 12px; padding: 12px; margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.02);
+}
+body.dark .card-box { background: var(--card-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.3); border-color: #2c2c2c; }
+
+h2.section-title {
+  font-weight: 800; color: var(--primary); font-size: 0.9em; text-transform: uppercase;
+  margin: 5px 0 12px 0; border-bottom: 2px solid rgba(204,0,0,0.1); padding-bottom: 5px;
+  display: block;
+}
+body.dark h2.section-title { border-bottom-color: rgba(255,0,0,0.2); color: #ff4d4d;}
+
+/* LINKS */
+a.link-card {
+  display: flex; justify-content: flex-start; align-items: center; gap: 8px;
+  text-decoration: none; color: inherit; padding: 12px; border-radius: 10px; margin-bottom: 8px;
+  background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.04); font-weight: 600; font-size: 0.95em;
+  transition: transform 0.1s, background 0.1s;
+}
+a.link-card:active { transform: scale(0.97); background: rgba(0,0,0,0.05); }
+body.dark a.link-card { background: rgba(255,255,255,0.03); border-color: #333; }
+body.dark a.link-card:active { background: rgba(255,255,255,0.08); }
+
+/* HIGHLIGHT LINKS */
+a.link-card.highlight-link {
+    color: var(--blue-text); border-color: rgba(0, 123, 255, 0.3); background: rgba(0, 123, 255, 0.04);
+}
+body.dark a.link-card.highlight-link {
+    color: #4da3ff; border-color: rgba(77, 163, 255, 0.3); background: rgba(77, 163, 255, 0.08);
+}
+
+/* INPUTS & BUTTONS */
+.input-group-calc { margin-bottom: 12px; width: 100%; }
+.calc-label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; opacity: 0.9; }
+.calc-input {
+  width: 100%; padding: 12px 14px; border: 1.5px solid #dcdde1; border-radius: 10px;
+  font-size: 16px; font-weight: 600; font-family: inherit;
+  background: var(--card); color: var(--text-light); transition: border-color 0.2s;
+}
+.calc-input:focus { outline: none; border-color: var(--blue-text); }
+body.dark .calc-input { border-color: #444; background: #25262a; color: var(--text-dark); }
+
+button.calc-submit, button.save-btn {
+  width: 100%; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 800;
+  border: none; background: var(--primary); color: #fff; cursor: pointer; text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(204,0,0,0.2); transition: transform 0.1s, opacity 0.1s;
+}
+button.calc-submit:active, button.save-btn:active { transform: scale(0.98); opacity: 0.9; }
+button.btn-update { background: var(--edit) !important; box-shadow: 0 4px 10px rgba(243,156,18,0.2) !important; }
+
+.btn-delete-month {
+  width: auto !important; padding: 8px 16px !important; font-size: 13px !important; 
+  background: #555555 !important; color: #ffffff !important; border-radius: 20px !important; 
+  margin: 15px auto 5px !important; display: block; text-transform: none !important; 
+  font-weight: 600 !important; box-shadow: none !important;
+}
+
+/* SALARY GRID */
+.salary-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.salary-row .calc-label { text-align: center; font-size: 13px; }
+.salary-row .calc-input { text-align: center; padding: 10px 5px; }
+
+/* RESULTS */
+.result-box-ot {
+  background: var(--highlight-bg); border: 1px solid var(--primary); border-radius: 10px;
+  padding: 15px; margin-top: 15px; font-size: 15px; line-height: 1.6;
+}
+body.dark .result-box-ot { background: #2a1111; border-color: rgba(255,0,0,0.3); }
+
+.result-item { display: flex; justify-content: space-between; font-weight: 500; margin-bottom: 6px; border-bottom: 1px dashed rgba(0,0,0,0.05); padding-bottom: 4px;}
+body.dark .result-item { border-bottom-color: rgba(255,255,255,0.05); }
+.result-value { font-weight: 700; font-size: 1.05em; }
+.result-item-total { display: flex; justify-content: space-between; align-items: center; font-size: 1.05em; font-weight: 800; color: var(--primary); margin-top: 10px; padding-top: 10px; border-top: 2px solid rgba(204,0,0,0.2); }
+body.dark .result-item-total { color: #ff4d4d; }
+
+.text-blue { color: var(--blue-text); } body.dark .text-blue { color: #4da3ff; }
+.text-red { color: var(--red-text); } body.dark .text-red { color: #ff6659; }
+
+/* LOGS STYLING */
+.log-input-container { background: rgba(0,0,0,0.02); padding: 12px; border-radius: 10px; border: 1px solid #eee; margin-bottom: 10px;}
+body.dark .log-input-container { background: rgba(255,255,255,0.02); border-color: #333; }
+.log-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.log-select { width: 100%; padding: 12px; border: 1.5px solid #dcdde1; border-radius: 10px; font-size: 15px; background: var(--card); font-family: inherit; font-weight: 600; color: inherit; }
+body.dark .log-select { border-color: #444; background: #25262a; }
+
+.fuel-log-header, .ot-log-header {
+  display: grid; padding: 10px 5px; color: #fff; font-weight: 700; font-size: 0.75em; text-align: center; border-radius: 8px 8px 0 0;
+  text-transform: uppercase; margin-bottom: 3px;
+}
+.fuel-log-header { grid-template-columns: 16% 12% 18% 13% 16% 25%; background: linear-gradient(135deg, var(--primary), #dd2476); }
+.ot-log-header { grid-template-columns: 22% 28% 23% 27%; background: linear-gradient(135deg, var(--blue-text), #2980b9); }
+
+.log-card-fuel, .log-card-ot {
+  display: grid; align-items: center; padding: 10px 5px; margin-bottom: 4px; border-radius: 6px; background: rgba(0,0,0,0.03); font-size: 0.88em; text-align: center;
+}
+body.dark .log-card-fuel, body.dark .log-card-ot { background: rgba(255,255,255,0.04); }
+.log-card-fuel { grid-template-columns: 16% 12% 18% 13% 16% 25%; }
+.log-card-ot { grid-template-columns: 22% 28% 23% 27%; }
+
+.log-action-btn { font-size: 16px; border: none; background: none; cursor: pointer; padding: 2px 6px; border-radius: 4px;}
+.btn-edit { color: var(--edit); background: rgba(243,156,18,0.1); }
+.btn-del { color: #e74c3c; background: rgba(231,76,60,0.1); margin-left: 4px;}
+.log-empty-state { text-align: center; padding: 20px; opacity: 0.5; font-style: italic; font-size: 0.9em; }
+
+.log-summary { background: var(--highlight-bg); border: 1px dashed var(--primary); border-radius: 10px; padding: 12px; margin-top: 12px; font-size: 14px; }
+body.dark .log-summary { background: #2a1111; border-color: rgba(255,0,0,0.3); }
+
+/* REMINDERS & UTILS */
+.reminder-compact-row {
+  display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 10px; border: 1px solid rgba(0,0,0,0.05); margin-bottom: 8px;
+}
+body.dark .reminder-compact-row { background: rgba(255,255,255,0.02); border-color: #333; }
+.reminder-label-main { font-weight: 800; font-size: 1em; display: block; margin-bottom: 2px; }
+.reminder-status-text { font-size: 0.9em; font-weight: 600; }
+.btn-edit-toggle { background: #7f8c8d; color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer; }
+.btn-edit-toggle.active { background: var(--accent); }
+.edit-area { display: none; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px; margin-bottom: 12px; border: 1px dashed #ccc;}
+body.dark .edit-area { background: #1a1a1a; border-color: #444; }
+
+.backup-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-size: 0.9em; font-weight: 800; color: white; cursor: pointer; text-align: center;}
+.backup-export { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+.backup-import { background: linear-gradient(135deg, #3498db, #2980b9); }
+
+.share-btn-native { 
+    background: #007bff; color: white; border: none; border-radius: 30px; 
+    font-weight: 800; cursor: pointer; box-shadow: 0 4px 10px rgba(0,123,255,0.3); 
+}
+.install-btn {
+    background: linear-gradient(135deg, var(--accent), #27ae60); color: white; border: none; border-radius: 30px; 
+    font-weight: 800; cursor: pointer; box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3); 
+}
+
+.contact-btn { display: inline-block; border-radius: 30px; background: rgba(0,123,255,0.1); color: var(--blue-text); text-decoration: none; font-weight: 800; text-align: center; }
+.footer-info { text-align: center; border-top: 1px dashed #ccc; font-size: 0.9em; opacity: 0.8; font-weight: 500;}
+body.dark .footer-info { border-color: #444; }
+
+/* LỚP PHỦ KHÓA TÍNH NĂNG (LOCK SCREEN) */
+.locked-screen {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 40px 20px; background: var(--card);
+    border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 20px;
+}
+body.dark .locked-screen { background: var(--card-dark); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.locked-icon { font-size: 60px; margin-bottom: 15px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+.locked-title { font-size: 1.2em; font-weight: 800; color: var(--primary); margin-bottom: 10px; text-transform: uppercase; }
+body.dark .locked-title { color: #ff4d4d; }
+.locked-desc { font-size: 0.95em; opacity: 0.8; margin-bottom: 25px; line-height: 1.5; }
+.btn-unlock {
+    background: linear-gradient(135deg, #007bff, #0056b3); color: #fff;
+    border: none; padding: 14px 20px; border-radius: 30px; font-weight: 800; font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3); cursor: pointer; transition: transform 0.1s;
+    width: 100%; max-width: 300px;
+}
+.btn-unlock:active { transform: scale(0.96); }
+
+/* TOAST */
+#toast { visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center; border-radius: 50px; padding: 14px; position: fixed; z-index: 1000; left: 50%; bottom: calc(var(--nav-height) + 10px); transform: translateX(-50%); font-size: 14px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+#toast.show { visibility: visible; animation: fadein 0.3s, fadeout 0.3s 2.7s; }
+@keyframes fadein { from { bottom: var(--nav-height); opacity: 0; } to { bottom: calc(var(--nav-height) + 10px); opacity: 1; } }
+@keyframes fadeout { from { bottom: calc(var(--nav-height) + 10px); opacity: 1; } to { bottom: var(--nav-height); opacity: 0; } }
+</style>
+</head>
+<body>
+
+<!-- FIXED HEADER (Sử dụng H1 để tốt cho SEO) -->
+<header id="mainHeader">
+  <h1 style="font-size:inherit; margin:0; font-weight:inherit; display:inline;">Công việc</h1>
+  <button id="toggleTheme" aria-label="chuyển chế độ sáng tối" onclick="window.toggleThemeHandler()">🌙</button>
+</header>
+
+<!-- MAIN SCROLLABLE CONTENT -->
+<main id="appContainer">
+
+  <!-- ================= TAB 1: CÔNG VIỆC ================= -->
+  <section id="tab-congviec" class="tab-pane active">
+    <div class="card-box" style="padding: 5px;">
+      <a class="link-card highlight-link" href="https://jntexpress.vn/attendance" target="_blank">🕒 Chấm công CRM</a>
+      <a class="link-card highlight-link" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwao5eoTslB2Ds1auT05WPg" target="_blank">📍 Báo cáo hành trình</a>
+      <a class="link-card highlight-link" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgwwFr50osovPX8c5EuYkpVe" target="_blank">⏳ Điền thông tin tăng ca</a>
+      <a class="link-card highlight-link" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgHKbeP4ff2P8AoaQcWUzicc" target="_blank">⛽ Báo cáo thông tin đổ dầu</a>
+      
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgeJOb7CxaLL18zxNj6gz1kd" target="_blank">🌴 Đăng kí nghỉ phép</a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgcx3ZWJlUeZ007y7NOMDtAf" target="_blank">✅ Check list kiểm tra xe hằng ngày</a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlg4jTyiyUBTxoWnXnh3E2jVh" target="_blank">⚠️ Không bấm app, điền nguyên nhân</a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlglpEg10qLFAoBoN6FYGm0Nv" target="_blank">🛞 Gửi hình vá vỏ, link chuẩn</a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgj3VYEKTEh7tTSaZvfpP7HL" target="_blank">📦 Báo cáo thùng xe trống</a>
+      <a class="link-card" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgPi18jGohtl9znrsxLdlDhh" target="_blank">📝 Bổ sung tăng ca bị thiếu</a>
+      <a class="link-card" href="https://jtexpress.feishu.cn/share/base/form/shrlglInNMOwkDFDQPUUneCVNsh" target="_blank">📱 Cập nhật SĐT trùng khớp app nhiệm vụ</a>
+      <a class="link-card" href="https://jtexpress.feishu.cn/share/base/form/shrcn1wua4Rb75DsxSj2Qj59wDb" target="_blank">📸 Kiểm tra hình ảnh xe 车辆形象巡检</a>
+      
+      <a class="link-card highlight-link" href="https://www.petrolimex.com.vn/stations.html" target="_blank">🛢 Tìm cây xăng Petrolimex gần đây</a>
+    </div>
+  </section>
+
+  <!-- ================= TAB 2: DẦU ================= -->
+  <section id="tab-dau" class="tab-pane">
+    
+    <!-- MÀN HÌNH KHÓA TÍNH DẦU -->
+    <div id="lock-screen-dau" class="locked-screen">
+        <div class="locked-icon">🔒</div>
+        <div class="locked-title">Tính năng nội bộ</div>
+        <div class="locked-desc">Các chức năng Tính Dầu, Tính Lương chỉ dành cho thành viên. Bạn cần tham gia <b>Nhóm Zalo nội bộ</b> để hệ thống tự động mở khóa nhé!</div>
+        <button class="btn-unlock" onclick="window.startUnlockFlow()">THAM GIA NHÓM ĐỂ MỞ KHÓA</button>
+    </div>
+
+    <!-- NỘI DUNG TÍNH DẦU (BỊ ẨN MẶC ĐỊNH) -->
+    <div id="premium-content-dau" style="display: none;">
+        <div class="card-box">
+            <h2 class="section-title">📒 Nhật ký ODO (Ghi sổ)</h2>
+            <div class="odo-setup">
+                 <label for="closingOdo" class="calc-label" style="margin:0">📌 ODO Chốt Tháng Trước:</label>
+                 <div style="display:flex; gap:8px; margin-top:8px;">
+                     <input type="number" id="closingOdo" class="calc-input" placeholder="VD: 22000" inputmode="numeric" onfocus="this.select()">
+                     <button class="save-btn" onclick="window.saveClosingOdo()" style="width:80px; padding:10px;">Lưu</button>
+                 </div>
+                 <div id="savedOdoText" style="font-size:13px; color:var(--accent); margin-top:5px; font-weight:600"></div>
+            </div>
+
+            <div class="log-input-container">
+                 <input type="date" id="logDate" class="calc-input" aria-label="Ngày đổ dầu" style="margin-bottom:10px; margin-top:0;">
+                 <div class="log-row-2" style="margin-top:0;">
+                     <input type="number" id="logLiters" class="calc-input" aria-label="Số lít dầu" placeholder="Số Lít" inputmode="decimal" onfocus="this.select()" style="margin-top:0;">
+                     <input type="number" id="logOdo" class="calc-input" aria-label="ODO hiện tại" placeholder="ODO Hiện tại" inputmode="numeric" onfocus="this.select()" style="margin-top:0;">
+                 </div>
+            </div>
+            <button class="calc-submit" id="btnAddFuel" onclick="window.addFuelLog()" style="margin-top:5px;">➕ Thêm Nhật Ký</button>
+            <button class="calc-submit btn-update" id="btnCancelFuel" onclick="window.cancelFuelEdit()" style="display:none; margin-top:8px">Hủy Sửa</button>
+
+            <div id="fuelLogList" style="margin-top: 15px;"></div>
+
+            <div class="log-summary">
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Xe đã chạy:</span> <span id="totalKm" class="result-value">0 km</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>Dầu đã đổ:</span> <span id="totalLiters" class="result-value">0 Lít</span></div>
+                <div style="border-top:1px dashed #999; margin-top:10px; padding-top:10px; color:var(--primary); font-weight:800; text-align:center;">
+                    Tiêu hao trung bình: <span id="avgCons" style="font-size:1.2em">0</span> L/100km
+                </div>
+            </div>
+            <button class="save-btn btn-delete-month" onclick="window.resetFuelMonth()">🗑️ Xóa sổ tháng này</button>
+        </div>
+
+        <div class="card-box">
+            <h2 class="section-title">⚡ Tính nhanh (Dự tính)</h2>
+            <div class="input-group-calc">
+              <label for="khoan" class="calc-label">Mức khoán (lít/100 km):</label>
+              <input type="text" id="khoan" placeholder="VD: 14" inputmode="decimal" class="calc-input" onfocus="this.select()">
+            </div>
+            <div class="input-group-calc">
+              <label for="km" class="calc-label">Quãng đường đã đi (km):</label>
+              <input type="text" id="km" placeholder="VD: 1000" inputmode="decimal" class="calc-input" onfocus="this.select()">
+            </div>
+            <div class="input-group-calc">
+              <label for="thuc" class="calc-label">Lượng dầu thực tế (lít):</label>
+              <input type="text" id="thuc" placeholder="VD: 130" inputmode="decimal" class="calc-input" onfocus="this.select()">
+            </div>
+            <div class="input-group-calc">
+              <label for="gia" class="calc-label">Giá dầu (VND/lít):</label>
+              <input type="text" id="gia" placeholder="VD: 19.000" inputmode="numeric" class="calc-input" onfocus="this.select()" oninput="window.formatInputMoney(this)">
+            </div>
+            <button class="calc-submit" onclick="window.tinhDau()" style="margin-top:5px;">TÍNH KẾT QUẢ</button>
+            <div id="resultDau" class="result-box-ot" style="display:none;"></div>
+        </div>
+    </div>
+  </section>
+
+  <!-- ================= TAB 3: LƯƠNG ================= -->
+  <section id="tab-luong" class="tab-pane">
+
+    <!-- MÀN HÌNH KHÓA TÍNH LƯƠNG -->
+    <div id="lock-screen-luong" class="locked-screen">
+        <div class="locked-icon">🔒</div>
+        <div class="locked-title">Tính năng nội bộ</div>
+        <div class="locked-desc">Các chức năng Tính Dầu, Tính Lương chỉ dành cho thành viên. Bạn cần tham gia <b>Nhóm Zalo nội bộ</b> để hệ thống tự động mở khóa nhé!</div>
+        <button class="btn-unlock" onclick="window.startUnlockFlow()">THAM GIA NHÓM ĐỂ MỞ KHÓA</button>
+    </div>
+
+    <!-- NỘI DUNG TÍNH LƯƠNG (BỊ ẨN MẶC ĐỊNH) -->
+    <div id="premium-content-luong" style="display: none;">
+        <div class="card-box">
+            <h2 class="section-title">⚙ Cài đặt lương cơ bản</h2>
+            <div class="salary-row">
+                <div class="salary-col">
+                    <label for="ot_luongCanBan" class="calc-label">Lương CB</label>
+                    <input type="text" id="ot_luongCanBan" value="5.310.000" class="calc-input" inputmode="numeric" onfocus="this.select()" oninput="window.formatInputMoney(this)">
+                </div>
+                <div class="salary-col">
+                    <label for="ot_soNgayTrongThang" class="calc-label">Ngày công</label>
+                    <input type="text" id="ot_soNgayTrongThang" value="30" class="calc-input" inputmode="numeric" onfocus="this.select()">
+                </div>
+                <div class="salary-col">
+                    <label for="ot_soNgayChuNhat" class="calc-label">Chủ nhật</label>
+                    <input type="text" id="ot_soNgayChuNhat" value="4" class="calc-input" inputmode="numeric" onfocus="this.select()">
+                </div>
+            </div>
+            <button onclick="window.autoCalcSundays()" style="width:100%; padding:10px; border-radius:8px; border:1px dashed var(--accent); background:rgba(25,136,69,0.07); color:var(--accent); font-size:13px; font-weight:700; cursor:pointer;">
+                📅 Tự điền ngày công tháng này
+            </button>
+        </div>
+
+        <div class="card-box">
+            <h2 class="section-title">🗓 Nhật ký tăng ca (Ghi sổ)</h2>
+            <div class="log-input-container">
+                 <input type="date" id="otLogDate" class="calc-input" aria-label="Ngày tăng ca" style="margin-bottom:10px; margin-top:0;">
+                 <div class="log-row-2" style="margin-top:0;">
+                     <select id="otLogType" class="log-select" aria-label="Loại tăng ca" style="margin-top:0;">
+                         <option value="1.5">TC Thường</option>
+                         <option value="2">TC OFF</option>
+                     </select>
+                     <input type="number" id="otLogHours" class="calc-input" aria-label="Số giờ tăng ca" placeholder="Số giờ" inputmode="decimal" onfocus="this.select()" style="margin-top:0;">
+                 </div>
+            </div>
+            <button class="calc-submit" id="btnAddOT" onclick="window.addOTLog()" style="margin-top:5px;">➕ Thêm Nhật Ký</button>
+            <button class="calc-submit btn-update" id="btnCancelOT" onclick="window.cancelOTEdit()" style="display:none; margin-top:8px">Hủy Sửa</button>
+
+            <div id="otLogList" style="margin-top: 15px;"></div>
+
+            <div class="log-summary">
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                    <span class="text-blue" style="font-weight:600">TC thường (<span id="sum15">0</span>h):</span> 
+                    <span id="money15" style="font-weight:700">0 VNĐ</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span class="text-red" style="font-weight:600">TC OFF (<span id="sum20">0</span>h):</span> 
+                    <span id="money20" style="font-weight:700">0 VNĐ</span>
+                </div>
+                <div class="result-item-total">
+                    <span>TỔNG TIỀN:</span>
+                    <span id="sumMoney">0 VNĐ</span>
+                </div>
+            </div>
+            <button class="save-btn btn-delete-month" onclick="window.resetOTMonth()">🗑️ Xóa sổ tháng này</button>
+        </div>
+
+        <div class="card-box">
+            <h2 class="section-title">⚡ Tính nhanh (Dự tính)</h2>
+            <div class="input-group-calc">
+                <label for="ot_gioTCTuong" class="calc-label">Tổng Giờ Thường (1.5x):</label>
+                <input type="text" id="ot_gioTCTuong" placeholder="Nhập giờ..." inputmode="decimal" class="calc-input" onfocus="this.select()">
+            </div>
+            <div class="input-group-calc">
+                <label for="ot_gioTCNghi" class="calc-label">Tổng Giờ OFF (2.0x):</label>
+                <input type="text" id="ot_gioTCNghi" placeholder="Nhập giờ..." inputmode="decimal" class="calc-input" onfocus="this.select()">
+            </div>
+            <button onclick="window.tinhLuong()" class="calc-submit" style="margin-top:5px;">TÍNH KẾT QUẢ</button>
+            
+            <div class="result-box-ot" id="ketQuaLuong" style="display:none;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px dashed rgba(0,0,0,0.1); padding-bottom:8px;">
+                    <span style="font-weight:600">Lương/Giờ:</span><span style="font-weight:700" id="luongGioCoBan">...</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                    <span class="text-blue" style="font-weight:600">TC Thường:</span><span class="text-blue" style="font-weight:700" id="tienTCTuong">0 VNĐ</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                    <span class="text-red" style="font-weight:600">TC OFF:</span><span class="text-red" style="font-weight:700" id="tienTCNghi">0 VNĐ</span>
+                </div>
+                <div class="result-item-total" style="margin-top:0;">
+                    <span>TIỀN TĂNG CA:</span><span id="tongTienTangCa">0 VNĐ</span>
+                </div>
+                <div style="background:linear-gradient(135deg,#ff0033,#dd2476); padding:15px; border-radius:8px; margin-top:15px; color:#fff; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-weight:700;">LƯƠNG TẠM TÍNH:</span>
+                    <span style="font-weight:800; font-size:1.15em;" id="thucNhanTamTinh">0 VNĐ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- ================= TAB 4: TIỆN ÍCH (GỘP THÔNG TIN) ================= -->
+  <section id="tab-tienich" class="tab-pane">
+    <!-- Group 1: Lịch xe -->
+    <div class="card-box">
+      <h2 class="section-title">🔔 Quản lý & Nhắc lịch xe</h2>
+      
+      <div class="reminder-compact-row">
+          <div class="reminder-info">
+              <span class="reminder-label-main">📅 Đăng kiểm</span>
+              <span class="reminder-status-text" id="textRegistry">Đang tải...</span>
+          </div>
+          <button class="btn-edit-toggle" onclick="window.toggleEdit('editRegistry', this)">Sửa</button>
+      </div>
+      <div class="edit-area" id="editRegistry">
+          <label for="dateRegistry" class="calc-label" style="font-size:13px; margin-bottom:5px;">Cập nhật ngày hết hạn:</label>
+          <input type="date" id="dateRegistry" class="calc-input" onchange="window.saveReminders()" style="margin-top:0;">
+      </div>
+
+      <div class="reminder-compact-row">
+          <div class="reminder-info">
+              <span class="reminder-label-main">🛡️ Bảo hiểm TNDS</span>
+              <span class="reminder-status-text" id="textInsurance">Đang tải...</span>
+          </div>
+          <button class="btn-edit-toggle" onclick="window.toggleEdit('editInsurance', this)">Sửa</button>
+      </div>
+      <div class="edit-area" id="editInsurance">
+          <label for="dateInsurance" class="calc-label" style="font-size:13px; margin-bottom:5px;">Cập nhật ngày hết hạn:</label>
+          <input type="date" id="dateInsurance" class="calc-input" onchange="window.saveReminders()" style="margin-top:0;">
+      </div>
+    </div>
+
+    <!-- Group 2: Backup & Tải App gom gọn -->
+    <div class="card-box">
+      <h2 class="section-title">📦 Tiện ích bổ sung</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+          <button class="backup-btn backup-export" onclick="window.exportBackup()">📤 Xuất mã Backup</button>
+          <button class="backup-btn backup-import" onclick="window.importBackup()">📥 Nhập mã Backup</button>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <a class="link-card" href="https://jtexpress.vn/app/#appDriver" target="_blank" style="margin:0; justify-content:center; text-align:center;">📱 VnDriver Android</a>
+          <a class="link-card" href="https://testflight.apple.com/join/ngwb0Mpe" target="_blank" style="margin:0; justify-content:center; text-align:center;">🍏 VnDriver iOS</a>
+      </div>
+    </div>
+
+    <!-- Group 3: Chia sẻ, Zalo & Cài App -->
+    <div class="card-box" style="padding: 15px 10px 10px;">
+        <h2 class="section-title" style="text-align: center; border:none; margin-bottom:10px;">CHIA SẺ & CỘNG ĐỒNG</h2>
+        
+        <div style="display: flex; justify-content: space-evenly; align-items: center; margin-bottom: 10px;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://letinhclover.github.io/jntdriver" alt="Mã QR chia sẻ ứng dụng Link Tài Xế J&T" class="qr-img" width="100" height="100" loading="lazy" style="margin: 0; padding: 4px;">
+            
+            <div style="display: flex; flex-direction: column; gap: 10px; min-width: 150px; width: 55%;">
+                <button class="share-btn-native" onclick="window.shareApp()" style="padding: 10px 15px; font-size: 13px; width: 100%;">📤 Chia sẻ ngay</button>
+                
+                <!-- Nút Zalo kiêm tính năng chờ Mở Khóa -->
+                <button class="contact-btn" style="border:none; padding: 10px 15px; font-size: 13px; margin: 0; width: 100%;" onclick="window.startUnlockFlow()">💬 Nhóm Zalo nội bộ</button>
+                
+                <!-- Nút Cài đặt PWA ra Màn hình chính -->
+                <button class="install-btn" style="padding: 10px 15px; font-size: 13px; margin: 0; width: 100%;" onclick="window.installPWA()">📲 Cài lên màn hình chính</button>
+            </div>
+        </div>
+
+        <div class="footer-info" style="margin-top: 15px; padding-top: 15px;">
+            <div style="font-weight:700; color:var(--primary); margin-bottom:3px; font-size:0.9em;">DÀNH CHO NỘI BỘ TÀI XẾ J&T</div>
+            <div id="visitCount" style="margin-bottom:3px; font-size:0.85em;">Đang tải lượt truy cập...</div>
+            <div style="font-size:0.85em; opacity:0.8;">© 2026 Lê Tỉnh</div>
+        </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- BOTTOM NAVIGATION BAR -->
+<nav class="bottom-nav" id="bottomNav">
+    <a href="#" class="nav-item active" onclick="window.switchTab('tab-congviec', 'Công việc'); return false;">
+        <span class="icon">📋</span>
+        <span>Công việc</span>
+    </a>
+    <a href="#" class="nav-item" onclick="window.switchTab('tab-dau', 'Tính Dầu'); return false;">
+        <span class="icon">🛢️</span>
+        <span>Dầu</span>
+    </a>
+    <a href="#" class="nav-item" onclick="window.switchTab('tab-luong', 'Tính Lương'); return false;">
+        <span class="icon">💰</span>
+        <span>Lương</span>
+    </a>
+    <a href="#" class="nav-item" onclick="window.switchTab('tab-tienich', 'Tiện ích'); return false;">
+        <span class="icon">🧩</span>
+        <span>Tiện ích</span>
+    </a>
+</nav>
+
+<!-- TOAST -->
+<div id="toast">Thông báo</div>
+
+<script>
+// --- 1. SAFE STORAGE WRAPPER (CHỐNG CRASH) ---
+const appStorage = {
+    get: function(key) { try { return window.localStorage.getItem(key); } catch(e) { return null; } },
+    set: function(key, val) { try { window.localStorage.setItem(key, val); } catch(e) {} },
+    remove: function(key) { try { window.localStorage.removeItem(key); } catch(e) {} }
+};
+
+try {
+    window.localStorage.setItem('test_key', '1');
+    window.localStorage.removeItem('test_key');
+} catch(e) {
+    setTimeout(() => { window.showToast("⚠️ Cảnh báo: Trình duyệt đang cấm lưu dữ liệu. Vui lòng mở bằng Chrome!"); }, 2500);
+}
+
+// --- 2. GLOBAL FUNCTIONS ---
+window.showToast = function(message) {
+    const x = document.getElementById("toast");
+    if(x) {
+        x.innerText = message; x.className = "show";
+        setTimeout(() => { x.className = x.className.replace("show", ""); }, 3000);
+    }
+};
+
+window.toggleThemeHandler = function() {
+    const isDark = !document.body.classList.contains('dark');
+    if (isDark) { document.body.classList.add('dark'); } else { document.body.classList.remove('dark'); }
+    appStorage.set('theme', isDark ? 'dark' : 'light');
+    const btn = document.getElementById('toggleTheme');
+    if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+};
+
+// --- 3. LOGIC MỞ KHÓA THÔNG MINH (CHỜ QUAY LẠI TỪ ZALO) ---
+window.checkPremiumLock = function() {
+    const isUnlocked = appStorage.get('isPremiumUnlocked') === 'true';
+    if (isUnlocked) {
+        document.getElementById('lock-screen-dau').style.display = 'none';
+        document.getElementById('premium-content-dau').style.display = 'block';
+        document.getElementById('lock-screen-luong').style.display = 'none';
+        document.getElementById('premium-content-luong').style.display = 'block';
+    } else {
+        document.getElementById('lock-screen-dau').style.display = 'flex';
+        document.getElementById('premium-content-dau').style.display = 'none';
+        document.getElementById('lock-screen-luong').style.display = 'flex';
+        document.getElementById('premium-content-luong').style.display = 'none';
+    }
+};
+
+// Bước 1: Khi bấm nút -> Lưu cờ "Đang đợi" và mở Zalo
+window.startUnlockFlow = function() {
+    appStorage.set('waitingForUnlock', 'true');
+    window.open("https://zalo.me/g/lgwxjz988", '_blank');
+};
+
+// Bước 2: Bắt sự kiện quay lại trang web (visibilitychange)
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === 'visible') {
+        if (appStorage.get('waitingForUnlock') === 'true') {
+            appStorage.remove('waitingForUnlock');
+            appStorage.set('isPremiumUnlocked', 'true');
+            window.checkPremiumLock();
+            // Trì hoãn một chút để hiển thị toast đẹp mắt sau khi gỡ màn hình khóa
+            setTimeout(() => { window.showToast("🔓 Đã mở khóa tính năng Tính Lương & Dầu!"); }, 500);
+        }
+    }
+});
+
+// --- 4. LOGIC CÀI ĐẶT PWA LÊN MÀN HÌNH CHÍNH ---
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault(); // Ngăn Chrome tự hiện popup
+    deferredPrompt = e; // Lưu lại event để dùng khi bấm nút
+});
+
+window.installPWA = function() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    const isZaloFB = /Zalo|FBAV|FBAN/.test(ua); // Bắt dính In-App Browser của Zalo/Facebook
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+    // Đã cài đặt rồi
+    if (isStandalone) {
+        window.showToast("✅ Ứng dụng đã được cài đặt trên máy của bạn!");
+        return;
+    }
+
+    // Đang mở trong Zalo/Messenger -> Bắt buộc thoát ra Chrome
+    if (isZaloFB) {
+        alert("⚠️ Tính năng này không hỗ trợ trong Zalo.\n\nHãy bấm vào nút [ ⋮ ] hoặc [ ⋯ ] ở góc trên bên phải màn hình, chọn 'Mở bằng trình duyệt' (Chrome/Safari) để cài đặt nhé!");
+        return;
+    }
+
+    // Đang dùng iPhone -> Hướng dẫn thủ công do Apple cấm tự động
+    if (isIOS) {
+        alert("🍏 Hướng dẫn cài trên iPhone:\n\n1. Bấm vào biểu tượng [Chia sẻ] (hình vuông có mũi tên lên) ở thanh dưới cùng.\n2. Vuốt lên và chọn 'Thêm vào MH chính' (Add to Home Screen).");
+        return;
+    }
+
+    // Điện thoại Android (Mở bằng Chrome) -> Kích hoạt bảng cài đặt của Google
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            deferredPrompt = null;
+        });
+    } else {
+        // Trường hợp trình duyệt lạ, ẩn danh, hoặc đã từ chối popup trước đó
+        alert("💡 Hướng dẫn cài đặt:\n\nVui lòng mở trang web này bằng Google Chrome, bấm vào Menu [ ⋮ ] góc phải trên cùng và chọn 'Thêm vào màn hình chính'.");
+    }
+};
+
+// --- UI
