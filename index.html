@@ -114,7 +114,7 @@ header {
 }
 body.keyboard-open #appContainer { bottom: 0; }
 
-/* BOTTOM NAVIGATION BAR (4 TABS) */
+/* BOTTOM NAVIGATION BAR (4 TABS) - ĐÃ FIX MÀU TƯƠNG PHẢN PAGE SPEED */
 .bottom-nav {
   position: fixed; 
   bottom: 0; 
@@ -144,7 +144,7 @@ body.keyboard-open .bottom-nav { display: none; }
   justify-content: center;
   width: 25%; 
   height: 100%; 
-  color: #7f8c8d; 
+  color: #5f6368; /* Màu xám đậm chuẩn Contrast 4.5:1 */
   text-decoration: none; 
   font-size: 0.75em; 
   font-weight: 700;
@@ -163,7 +163,7 @@ body.keyboard-open .bottom-nav { display: none; }
     filter: grayscale(0%); 
     opacity: 1; 
 }
-body.dark .nav-item { color: #888; }
+body.dark .nav-item { color: #aaaaaa; } /* Màu xám sáng chuẩn Contrast cho Dark Mode */
 body.dark .nav-item.active { color: #ff4d4d; }
 
 /* TAB PANES */
@@ -239,12 +239,12 @@ body.dark a.link-card:active {
 
 /* HIGHLIGHT LINKS TỐI ƯU MÀU SẮC ĐỂ ĐẠT 100 ĐIỂM PAGE SPEED */
 a.link-card.highlight-link {
-    color: #0056b3; /* Xanh đậm hơn cho Light Mode */
+    color: #0056b3; 
     border-color: rgba(0, 86, 179, 0.3); 
     background: rgba(0, 86, 179, 0.05);
 }
 body.dark a.link-card.highlight-link {
-    color: #66b2ff; /* Xanh sáng hơn cho Dark Mode */
+    color: #66b2ff; 
     border-color: rgba(102, 178, 255, 0.3); 
     background: rgba(102, 178, 255, 0.1);
 }
@@ -303,6 +303,7 @@ button.btn-update {
     box-shadow: 0 4px 10px rgba(243,156,18,0.2) !important; 
 }
 
+/* NÚT XÓA SỔ GỌN GÀNG */
 .btn-delete-month {
   width: auto !important; 
   padding: 8px 16px !important; 
@@ -665,7 +666,7 @@ body.dark .locked-title { color: #ff4d4d; }
 </head>
 <body>
 
-<!-- FIXED HEADER (Sử dụng H1 để tốt cho SEO) -->
+<!-- FIXED HEADER (H1 chuẩn SEO) -->
 <header id="mainHeader">
   <h1 style="font-size:inherit; margin:0; font-weight:inherit; display:inline;">Công việc</h1>
   <button id="toggleTheme" aria-label="chuyển chế độ sáng tối" onclick="toggleThemeHandler()">🌙</button>
@@ -801,7 +802,7 @@ body.dark .locked-title { color: #ff4d4d; }
                 </div>
             </div>
             <button onclick="autoCalcSundays()" style="width:100%; padding:10px; border-radius:8px; border:1px dashed var(--accent); background:rgba(25,136,69,0.07); color:var(--accent); font-size:13px; font-weight:700; cursor:pointer;">
-                📅 Tự điền ngày công tháng này
+                📅 Phục hồi ngày công tháng này
             </button>
         </div>
 
@@ -923,7 +924,7 @@ body.dark .locked-title { color: #ff4d4d; }
       </div>
     </div>
 
-    <!-- Group 3: Chia sẻ, Zalo & Cài App -->
+    <!-- Group 3: Chia sẻ & Liên hệ -->
     <div class="card-box" style="padding: 15px 10px 10px;">
         <h2 class="section-title" style="text-align: center; border:none; margin-bottom:10px;">CHIA SẺ & CỘNG ĐỒNG</h2>
         
@@ -951,7 +952,7 @@ body.dark .locked-title { color: #ff4d4d; }
 
 </main>
 
-<!-- BOTTOM NAVIGATION BAR -->
+<!-- BOTTOM NAVIGATION BAR (SỬ DỤNG TRỰC TIẾP ONCLICK) -->
 <nav class="bottom-nav" id="bottomNav">
     <a href="#" class="nav-item active" onclick="switchTab('tab-congviec', 'Công việc'); return false;">
         <span class="icon">📋</span>
@@ -975,31 +976,30 @@ body.dark .locked-title { color: #ff4d4d; }
 <div id="toast">Thông báo</div>
 
 <script>
-// --- 1. SAFE STORAGE WRAPPER (CHỐNG CRASH TRÊN TRÌNH DUYỆT CHẶN BỘ NHỚ) ---
-function safeGetItem(key) {
-    try {
-        return localStorage.getItem(key);
-    } catch(e) {
-        return null;
+// --- 1. SAFE STORAGE WRAPPER (CHỐNG CRASH) ---
+const appStorage = {
+    get: function(key) {
+        try {
+            return window.localStorage.getItem(key);
+        } catch(e) {
+            return null;
+        }
+    },
+    set: function(key, val) {
+        try {
+            window.localStorage.setItem(key, val);
+        } catch(e) {}
+    },
+    remove: function(key) {
+        try {
+            window.localStorage.removeItem(key);
+        } catch(e) {}
     }
-}
+};
 
-function safeSetItem(key, value) {
-    try {
-        localStorage.setItem(key, value);
-    } catch(e) {}
-}
-
-function safeRemoveItem(key) {
-    try {
-        localStorage.removeItem(key);
-    } catch(e) {}
-}
-
-// Cảnh báo nếu trình duyệt cấm localStorage (thường do mở trực tiếp bằng File Manager Android)
 try {
-    localStorage.setItem('test_key', '1');
-    localStorage.removeItem('test_key');
+    window.localStorage.setItem('test_key', '1');
+    window.localStorage.removeItem('test_key');
 } catch(e) {
     setTimeout(() => {
         showToast("⚠️ Trình duyệt đang cấm lưu dữ liệu. Hãy mở bằng Google Chrome!");
@@ -1025,7 +1025,7 @@ function toggleThemeHandler() {
     } else {
         document.body.classList.remove('dark');
     }
-    safeSetItem('theme', isDark ? 'dark' : 'light');
+    appStorage.set('theme', isDark ? 'dark' : 'light');
     
     const btn = document.getElementById('toggleTheme');
     if (btn) {
@@ -1035,7 +1035,7 @@ function toggleThemeHandler() {
 
 // --- 3. LOGIC MỞ KHÓA THÔNG MINH (CHỜ QUAY LẠI TỪ ZALO) ---
 function checkPremiumLock() {
-    const isUnlocked = safeGetItem('isPremiumUnlocked') === 'true';
+    const isUnlocked = appStorage.get('isPremiumUnlocked') === 'true';
     
     if (isUnlocked) {
         document.getElementById('lock-screen-dau').style.display = 'none';
@@ -1050,21 +1050,18 @@ function checkPremiumLock() {
     }
 }
 
-// Bước 1: Khi bấm nút -> Lưu cờ "Đang đợi" và mở Zalo
 function startUnlockFlow() {
-    safeSetItem('waitingForUnlock', 'true');
+    appStorage.set('waitingForUnlock', 'true');
     window.open("https://zalo.me/g/lgwxjz988", '_blank');
 }
 
-// Bước 2: Bắt sự kiện quay lại trang web (visibilitychange)
 document.addEventListener("visibilitychange", function() {
     if (document.visibilityState === 'visible') {
-        if (safeGetItem('waitingForUnlock') === 'true') {
-            safeRemoveItem('waitingForUnlock');
-            safeSetItem('isPremiumUnlocked', 'true');
+        if (appStorage.get('waitingForUnlock') === 'true') {
+            appStorage.remove('waitingForUnlock');
+            appStorage.set('isPremiumUnlocked', 'true');
             checkPremiumLock();
             
-            // Trì hoãn một chút để hiển thị toast đẹp mắt sau khi gỡ màn hình khóa
             setTimeout(() => { 
                 showToast("🔓 Đã mở khóa tính năng Tính Lương & Dầu!"); 
             }, 500);
@@ -1076,14 +1073,14 @@ document.addEventListener("visibilitychange", function() {
 let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault(); // Ngăn Chrome tự hiện popup
-    deferredPrompt = e; // Lưu lại event để dùng khi bấm nút
+    e.preventDefault(); 
+    deferredPrompt = e; 
 });
 
 function installPWA() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-    const isZaloFB = /Zalo|FBAV|FBAN/.test(ua); // Bắt dính In-App Browser của Zalo/Facebook
+    const isZaloFB = /Zalo|FBAV|FBAN/.test(ua); 
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
     if (isStandalone) {
@@ -1092,7 +1089,7 @@ function installPWA() {
     }
 
     if (isZaloFB) {
-        alert("⚠️ Tính năng này không hỗ trợ trong Zalo.\n\nHãy bấm vào nút [ ⋮ ] hoặc [ ⋯ ] ở góc trên bên phải màn hình, chọn 'Mở bằng trình duyệt' (Chrome/Safari) để cài đặt nhé!");
+        alert("⚠️ Tính năng này không hỗ trợ trong Zalo.\n\nHãy bấm vào nút [ ⋮ ] hoặc[ ⋯ ] ở góc trên bên phải màn hình, chọn 'Mở bằng trình duyệt' (Chrome/Safari) để cài đặt nhé!");
         return;
     }
 
@@ -1139,8 +1136,8 @@ function switchTab(targetId, title) {
         container.scrollTop = 0;
     }
     
-    safeSetItem('activeTab', targetId);
-    safeSetItem('activeTabTitle', title);
+    appStorage.set('activeTab', targetId);
+    appStorage.set('activeTabTitle', title);
 }
 
 // --- UI: KEYBOARD HIDE BOTTOM NAV ---
@@ -1200,12 +1197,27 @@ function parseHours(id) {
     return parseFloat(val.replace(/,/g, '.')) || 0;
 }
 
+
+// ================= LOGIC: TỰ ĐỘNG NHẬN DIỆN THÁNG =================
+function checkAndAutoCalcMonth() {
+    const now = new Date();
+    const currentMonthStr = `${now.getMonth() + 1}-${now.getFullYear()}`;
+    const lastCalcMonth = appStorage.get('lastCalcMonth');
+    
+    // Nếu là tháng mới (hoặc lần đầu mở App), hệ thống tự động điền ngày công và lưu lại mốc thời gian
+    if (lastCalcMonth !== currentMonthStr) {
+        autoCalcSundays(true); 
+        appStorage.set('lastCalcMonth', currentMonthStr);
+    }
+}
+
+
 // ================= LOGIC: LƯƠNG & OT =================
 const salaryFields =['ot_luongCanBan', 'ot_soNgayTrongThang', 'ot_soNgayChuNhat'];
 
 function loadSalarySettings() {
     salaryFields.forEach(id => {
-        const saved = safeGetItem(id);
+        const saved = appStorage.get(id);
         if (saved) {
             const el = document.getElementById(id);
             if(el) {
@@ -1221,12 +1233,12 @@ function loadSalarySettings() {
 function saveSalarySettings() {
     salaryFields.forEach(id => {
         const val = document.getElementById(id).value;
-        safeSetItem(id, val);
+        appStorage.set(id, val);
     });
     reCalcSalaryAuto();
 }
 
-function autoCalcSundays() {
+function autoCalcSundays(isAuto = false) {
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth(); 
@@ -1242,7 +1254,10 @@ function autoCalcSundays() {
     document.getElementById('ot_soNgayTrongThang').value = totalDays;
     document.getElementById('ot_soNgayChuNhat').value = sundays;
     saveSalarySettings();
-    showToast(`✅ Tháng ${month + 1}/${year}: ${totalDays} ngày, ${sundays} chủ nhật`);
+    
+    if(!isAuto) {
+        showToast(`✅ Tháng ${month + 1}/${year}: ${totalDays} ngày, ${sundays} chủ nhật`);
+    }
 }
 
 function tinhLuong() {
@@ -1305,13 +1320,13 @@ function reCalcSalaryAuto() {
 
 let otLogs =[];
 try { 
-    const saved = safeGetItem('otLogs');
+    const saved = appStorage.get('otLogs');
     if(saved) {
         otLogs = JSON.parse(saved); 
     }
 } catch(e) { 
     otLogs =[]; 
-    safeRemoveItem('otLogs'); 
+    appStorage.remove('otLogs'); 
 }
 
 let editOTIndex = -1;
@@ -1373,7 +1388,7 @@ function deleteOTLog(index) {
 }
 
 function saveAndRenderOT() { 
-    safeSetItem('otLogs', JSON.stringify(otLogs)); 
+    appStorage.set('otLogs', JSON.stringify(otLogs)); 
     renderOTLogs(); 
 }
 
@@ -1426,7 +1441,9 @@ function renderOTLogs() {
     
     document.getElementById('sum15').innerText = fmt(sum15);
     document.getElementById('sum20').innerText = fmt(sum20);
-    calculateOTMoney(sum15, sum20);
+    
+    // Đã thay thế gọi hàm cũ bằng gọi hàm tự động an toàn để sửa lỗi Crash JS
+    reCalcSalaryAuto();
 }
 
 // ================= LOGIC: DẦU =================
@@ -1458,412 +1475,4 @@ function tinhDau() {
         `;
         
         let msgClass = chenhlech >= 0 ? 'color:var(--accent)' : 'color:var(--primary)';
-        let msgText = chenhlech >= 0 ? `DƯ ${fmt(chenhlech)} LÍT` : `THIẾU ${fmt(Math.abs(chenhlech))} LÍT`;
-        let moneyText = gia > 0 ? formatMoney(Math.abs(chenhlech * gia)) : '';
-        
-        if(moneyText) {
-            moneyText = chenhlech >= 0 ? "(+" + moneyText + ")" : "(-" + moneyText + ")";
-        }
-        
-        html += `<div class="result-item-total" style="${msgClass}"><span>${msgText}</span><span>${moneyText}</span></div>`;
-    } else {
-        html += `<div class="result-item"><span>Tiêu hao TB:</span><span class="result-value">${fmt(tieuhao)} L/100km</span></div>`;
-    }
-    
-    resultDiv.innerHTML = html;
-    
-    const container = document.getElementById('appContainer');
-    container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
-}
-
-let closingOdo = parseFloat(safeGetItem('closingOdo')) || 0;
-let fuelLogs =[];
-try { 
-    const saved = safeGetItem('fuelLogs');
-    if(saved) {
-        fuelLogs = JSON.parse(saved); 
-    }
-} catch(e) { 
-    fuelLogs =[]; 
-    safeRemoveItem('fuelLogs'); 
-}
-
-let editFuelIndex = -1;
-
-function saveClosingOdo() {
-    const val = parseFloat(document.getElementById('closingOdo').value);
-    if(!isNaN(val) && val > 0) {
-        safeSetItem('closingOdo', val);
-        closingOdo = val;
-        document.getElementById('savedOdoText').innerText = "Đã lưu ODO chốt: " + val;
-        showToast("Đã lưu ODO chốt!");
-        renderLogs(); 
-    }
-}
-
-function addFuelLog() {
-    if(closingOdo === 0) { 
-        alert("Lưu ODO Chốt trước!"); 
-        return; 
-    }
-    const date = document.getElementById('logDate').value;
-    const liters = parseFloat(document.getElementById('logLiters').value);
-    const currentOdo = parseFloat(document.getElementById('logOdo').value);
-    
-    if(!date || isNaN(liters) || isNaN(currentOdo)) { 
-        alert("Nhập đủ thông tin!"); 
-        return; 
-    }
-    if(liters <= 0) { 
-        alert("Số lít phải > 0!"); 
-        return; 
-    }
-    if(currentOdo <= closingOdo) { 
-        alert("ODO hiện tại phải > ODO chốt!"); 
-        return; 
-    }
-    
-    if(editFuelIndex > -1) {
-        fuelLogs[editFuelIndex] = { date, liters, odo: currentOdo };
-        cancelFuelEdit();
-        showToast("✅ Đã cập nhật!");
-    } else {
-        fuelLogs.push({ date, liters, odo: currentOdo });
-        showToast("✅ Đã thêm!");
-    }
-    saveAndRender();
-    document.getElementById('logLiters').value = '';
-    document.getElementById('logOdo').value = '';
-}
-
-function editFuelLog(index) {
-    editFuelIndex = index;
-    const log = fuelLogs[index];
-    
-    document.getElementById('logDate').value = log.date;
-    document.getElementById('logLiters').value = log.liters;
-    document.getElementById('logOdo').value = log.odo;
-    
-    document.getElementById('btnAddFuel').innerText = "💾 Cập nhật";
-    document.getElementById('btnAddFuel').classList.add('btn-update');
-    document.getElementById('btnCancelFuel').style.display = "block";
-    document.getElementById('closingOdo').scrollIntoView({ behavior: 'smooth' });
-}
-
-function cancelFuelEdit() {
-    editFuelIndex = -1;
-    document.getElementById('btnAddFuel').innerText = "➕ Thêm Nhật Ký";
-    document.getElementById('btnAddFuel').classList.remove('btn-update');
-    document.getElementById('btnCancelFuel').style.display = "none";
-}
-
-function saveAndRender() { 
-    safeSetItem('fuelLogs', JSON.stringify(fuelLogs)); 
-    renderLogs(); 
-}
-
-function resetFuelMonth() { 
-    if(window.confirm("Xóa hết nhật ký dầu tháng này?")) { 
-        fuelLogs =[]; 
-        saveAndRender(); 
-        showToast("🗑️ Đã xóa!"); 
-    } 
-}
-
-function renderLogs() {
-    const container = document.getElementById('fuelLogList');
-    container.innerHTML = '';
-    
-    let totalLiters = 0;
-    let totalKm = 0;
-    let prev = closingOdo;
-    
-    const sorted = [...fuelLogs].sort((a,b) => a.odo - b.odo);
-
-    if (sorted.length === 0) {
-        container.innerHTML = `<div class="log-empty-state">Chưa có nhật ký dầu</div>`;
-    } else {
-        const header = document.createElement('div');
-        header.className = 'fuel-log-header';
-        header.innerHTML = `<div>Ngày</div><div>Lít</div><div>ODO</div><div>Km</div><div>L/100</div><div>Xóa</div>`;
-        container.appendChild(header);
-        
-        sorted.forEach((log, i) => {
-            let dist = log.odo - prev;
-            let cons = dist > 0 ? (log.liters / dist) * 100 : 0;
-            
-            totalLiters += log.liters;
-            totalKm += dist;
-            
-            const d = log.date.split('-');
-            const card = document.createElement('div');
-            card.className = 'log-card-fuel';
-            card.innerHTML = `
-                <div style="font-weight:600">${d[2]}/${d[1]}</div>
-                <div>${fmt(log.liters)}</div>
-                <div style="font-weight:600">${log.odo}</div>
-                <div style="color:var(--primary); font-weight:700">${dist}</div>
-                <div>${cons > 0 ? cons.toFixed(1) : '-'}</div>
-                <div>
-                    <button class="log-action-btn btn-edit" onclick="editFuelLog(${i})">✎</button>
-                    <button class="log-action-btn btn-del" onclick="deleteFuelLog(${i})">✘</button>
-                </div>
-            `;
-            container.appendChild(card);
-            prev = log.odo;
-        });
-    }
-    
-    document.getElementById('totalLiters').innerText = totalLiters.toFixed(1) + " Lít";
-    document.getElementById('totalKm').innerText = totalKm + " km";
-    document.getElementById('avgCons').innerText = totalKm > 0 ? ((totalLiters/totalKm)*100).toFixed(2) : 0;
-}
-
-function deleteFuelLog(index) { 
-    if(window.confirm("Xóa dòng này?")) { 
-        fuelLogs.splice(index, 1); 
-        saveAndRender(); 
-        showToast("✅ Đã xóa!"); 
-    } 
-}
-
-// ================= LOGIC: TIỆN ÍCH (REMINDERS & BACKUP) =================
-function toggleEdit(id, btn) {
-    const el = document.getElementById(id);
-    const isOpen = el.style.display === 'block';
-    
-    document.querySelectorAll('.edit-area').forEach(area => {
-        area.style.display = 'none';
-    });
-    document.querySelectorAll('.btn-edit-toggle').forEach(b => { 
-        b.innerText = 'Sửa'; 
-        b.classList.remove('active'); 
-    });
-    
-    if (!isOpen) { 
-        el.style.display = 'block'; 
-        btn.innerText = 'Xong'; 
-        btn.classList.add('active'); 
-    } else { 
-        el.style.display = 'none'; 
-        btn.innerText = 'Sửa'; 
-        btn.classList.remove('active'); 
-    }
-}
-
-function loadReminders() {
-    const items =['dateRegistry', 'dateInsurance'];
-    items.forEach(k => {
-        const s = safeGetItem(k);
-        if (s) {
-            const el = document.getElementById(k);
-            if (el) el.value = s;
-        }
-    });
-    calcReminders(); 
-}
-
-function saveReminders() {
-    const items = ['dateRegistry', 'dateInsurance'];
-    items.forEach(k => {
-        const el = document.getElementById(k);
-        if (el) safeSetItem(k, el.value);
-    });
-    calcReminders();
-}
-
-function calcReminders() {
-    const today = new Date();
-    today.setHours(0,0,0,0);
-    
-    const items =[
-        {id:'dateRegistry', t:'textRegistry'},
-        {id:'dateInsurance', t:'textInsurance'}
-    ];
-    
-    items.forEach(item => {
-        const inputEl = document.getElementById(item.id);
-        const textEl = document.getElementById(item.t);
-        
-        if (!inputEl || !textEl) return;
-        
-        const v = inputEl.value;
-        if (!v) { 
-            textEl.innerText = "Chưa cài ngày"; 
-            textEl.style.color = "inherit"; 
-        } else {
-            const diff = Math.ceil((new Date(v) - today) / 86400000);
-            if (diff < 0) { 
-                textEl.innerText = "QUÁ HẠN " + Math.abs(diff) + " ngày 🔴"; 
-                textEl.style.color = "var(--primary)"; 
-            } else if (diff <= 7) { 
-                textEl.innerText = "KHẨN CẤP: Còn " + diff + " ngày 🔴"; 
-                textEl.style.color = "var(--primary)"; 
-            } else if (diff <= 30) { 
-                textEl.innerText = "Sắp hết: Còn " + diff + " ngày 🟡"; 
-                textEl.style.color = "#d4a017"; 
-            } else { 
-                textEl.innerText = "An toàn: Còn " + diff + " ngày 🟢"; 
-                textEl.style.color = "var(--accent)"; 
-            }
-        }
-    });
-}
-
-function exportBackup() {
-    try {
-        const backupData = {
-            fuelLogs: safeGetItem('fuelLogs'), 
-            otLogs: safeGetItem('otLogs'),
-            closingOdo: safeGetItem('closingOdo'), 
-            ot_luongCanBan: safeGetItem('ot_luongCanBan'),
-            ot_soNgayTrongThang: safeGetItem('ot_soNgayTrongThang'), 
-            ot_soNgayChuNhat: safeGetItem('ot_soNgayChuNhat'),
-            dateRegistry: safeGetItem('dateRegistry'), 
-            dateInsurance: safeGetItem('dateInsurance'),
-            theme: safeGetItem('theme'),
-            isPremiumUnlocked: safeGetItem('isPremiumUnlocked')
-        };
-        
-        const jsonString = JSON.stringify(backupData);
-        const base64Code = btoa(unescape(encodeURIComponent(jsonString)));
-        
-        if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText(base64Code).then(() => {
-                showToast("✅ Đã sao chép mã sao lưu vào máy!");
-            });
-        } else {
-            const temp = document.createElement("textarea");
-            temp.value = base64Code;
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand("copy");
-            document.body.removeChild(temp);
-            showToast("✅ Đã sao chép mã sao lưu!");
-        }
-    } catch(e) { 
-        alert("Lỗi xuất dữ liệu: " + e.message); 
-    }
-}
-
-function importBackup() {
-    try {
-        const code = prompt("Dán mã sao lưu vào đây:"); 
-        if (!code) return;
-        
-        const jsonString = decodeURIComponent(escape(atob(code.trim())));
-        const backupData = JSON.parse(jsonString);
-        
-        Object.keys(backupData).forEach(key => { 
-            if (backupData[key] !== null && backupData[key] !== undefined) {
-                safeSetItem(key, backupData[key]); 
-            }
-        });
-        
-        showToast("✅ Đã khôi phục dữ liệu!"); 
-        setTimeout(() => location.reload(), 1500);
-    } catch(e) { 
-        alert("Mã sao lưu không hợp lệ!"); 
-    }
-}
-
-// ================= LOGIC: THÔNG TIN & CHIA SẺ =================
-async function shareApp() {
-    if (navigator.share) { 
-        try { 
-            await navigator.share({url:'https://letinhclover.github.io/jntdriver'}); 
-        } catch(e){} 
-    } else {
-        if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText("https://letinhclover.github.io/jntdriver").then(() => {
-                showToast("Đã sao chép Link!");
-            });
-        } else {
-            const t = document.createElement("input"); 
-            t.value = "https://letinhclover.github.io/jntdriver"; 
-            document.body.appendChild(t); 
-            t.select(); 
-            try { 
-                document.execCommand("copy"); 
-                showToast("Đã sao chép Link!"); 
-            } catch(e){} 
-            document.body.removeChild(t);
-        }
-    }
-}
-
-// Trì hoãn việc gọi API để tránh giật lag khi trang web vừa mới được mở (Tốt cho PageSpeed)
-setTimeout(() => {
-    fetch("https://api.counterapi.dev/v1/letinhclover.github.io/jntdriver/up")
-        .then(r => r.json())
-        .then(d => {
-            const vc = document.getElementById('visitCount');
-            if(vc) {
-                vc.innerText = "Lượt truy cập: " + d.count.toLocaleString();
-            }
-        })
-        .catch(e => {
-            const vc = document.getElementById('visitCount');
-            if(vc) {
-                vc.style.display = "none";
-            }
-        });
-}, 3000);
-
-// ================= INIT & EVENT LISTENERS =================
-function initApp() {
-    const savedTheme = safeGetItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
-    }
-    
-    checkPremiumLock(); 
-    setToday('logDate'); 
-    setToday('otLogDate');
-    
-    loadSalarySettings(); 
-    renderLogs(); 
-    renderOTLogs(); 
-    loadReminders();
-    
-    if(closingOdo > 0) {
-        const el = document.getElementById('closingOdo');
-        if (el) el.value = closingOdo;
-    }
-    
-    salaryFields.forEach(id => {
-        const el = document.getElementById(id);
-        if(el) {
-            el.addEventListener('input', saveSalarySettings);
-        }
-    });
-    
-    // Gắn sự kiện ẩn tab khi gõ phím để chống đẩy UI trên điện thoại
-    const inputs = document.querySelectorAll('input, select');
-    inputs.forEach(input => {
-        input.addEventListener('focus', () => {
-            document.body.classList.add('keyboard-open');
-        });
-        input.addEventListener('blur', () => {
-            setTimeout(() => {
-                const activeEl = document.activeElement;
-                if (activeEl && activeEl.tagName !== 'INPUT' && activeEl.tagName !== 'SELECT') {
-                    document.body.classList.remove('keyboard-open');
-                }
-            }, 50);
-        });
-    });
-
-    // Khôi phục Tab cuối cùng người dùng xem
-    const savedTab = safeGetItem('activeTab');
-    const savedTabTitle = safeGetItem('activeTabTitle');
-    if(savedTab && savedTabTitle && document.getElementById(savedTab)) {
-        switchTab(savedTab, savedTabTitle);
-    }
-}
-
-// Chạy hàm khởi tạo khi trang web đã nạp xong HTML
-initApp();
-</script>
-</body>
-</html>
+        let msgText = chenhlech >= 0 ? `DƯ ${fm
