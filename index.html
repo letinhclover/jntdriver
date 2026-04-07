@@ -4,8 +4,7 @@
 <!-- 1. XÁC MINH & CẤU HÌNH -->
 <meta name="google-site-verification" content="LqiwRvtXkmjr61OUO-Qhk7cQmQr3LhblxmSwBGm5_Qs" />
 <meta charset="utf-8" />
-<!-- CẬP NHẬT THEO HTML1: Giao quyền xử lý tai thỏ cho hệ điều hành -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Link Tài Xế J&T Express</title>
 
@@ -15,6 +14,7 @@
 <meta name="theme-color" content="#CC0000">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="application-name" content="App Tài Xế">
 
 <!-- 3. FONTS & SEO -->
@@ -69,14 +69,15 @@ body.dark {
     --blue-text: #66b2ff; /* Tương phản cao cho Dark Mode */
 }
 
-/* HEADER FIXED */
+/* HEADER FIXED - ĐÃ FIX CHUẨN TAI THỎ iPHONE */
 header {
   position: fixed; 
   top: 0; 
   left: 0; 
   right: 0; 
   z-index: 100;
-  height: var(--header-height);
+  height: calc(var(--header-height) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
   background: linear-gradient(90deg, var(--primary), #dd2476);
   color: #fff; 
   display: flex; 
@@ -90,20 +91,24 @@ header {
 #toggleTheme {
   position: absolute; 
   right: 12px; 
-  bottom: 8px;
+  top: env(safe-area-inset-top, 0px);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none; 
   border: none; 
   color: #fff; 
   font-size: 22px; 
   cursor: pointer; 
-  padding: 5px;
+  padding: 0 10px;
 }
 
 /* MAIN SCROLLABLE AREA */
 #appContainer {
   position: fixed;
-  top: var(--header-height); 
-  bottom: var(--nav-height);
+  top: calc(var(--header-height) + env(safe-area-inset-top, 0px)); 
+  bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
   left: 0; 
   right: 0;
   overflow-y: auto; 
@@ -114,14 +119,16 @@ header {
 }
 body.keyboard-open #appContainer { bottom: 0; }
 
-/* BOTTOM NAVIGATION BAR (5 TABS) */
+/* BOTTOM NAVIGATION BAR (5 TABS) - ĐÃ FIX LINH HOẠT ĐỂ TẠO KHÔNG GIAN DƯỚI ĐÁY */
 .bottom-nav {
   position: fixed; 
   bottom: 0; 
   left: 0; 
   right: 0; 
   z-index: 100;
-  height: var(--nav-height); 
+  /* Dùng padding thay vì height cố định để nhấc bổng nav trên iPhone */
+  padding-top: 12px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
   background: var(--card); 
   display: flex; 
   justify-content: space-around; 
@@ -142,8 +149,8 @@ body.keyboard-open .bottom-nav { display: none; }
   align-items: center; 
   justify-content: center;
   width: 20%; 
-  height: 100%; 
-  color: #5f6368; /* Đã tối ưu độ tương phản */
+  /* Bỏ height: 100% để nội dung chữ và icon tự do không bị ép sát */
+  color: #5f6368; 
   text-decoration: none; 
   font-size: 0.72em; 
   font-weight: 700;
@@ -162,7 +169,7 @@ body.keyboard-open .bottom-nav { display: none; }
     filter: grayscale(0%); 
     opacity: 1; 
 }
-body.dark .nav-item { color: #aaaaaa; } /* Đã tối ưu độ tương phản */
+body.dark .nav-item { color: #aaaaaa; } 
 body.dark .nav-item.active { color: #ff4d4d; }
 
 /* TAB PANES */
