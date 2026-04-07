@@ -40,7 +40,7 @@
   --edit: #f39c12;
   --blue-text: #0056b3; /* Tương phản cao cho Light Mode */
   --red-text: #d32f2f;
-  --nav-height: 65px;
+  --nav-height: 58px; /* Đã fix chuẩn độ mỏng Tab Bar của Zalo */
   --header-height: 54px;
 }
 
@@ -69,7 +69,7 @@ body.dark {
     --blue-text: #66b2ff; /* Tương phản cao cho Dark Mode */
 }
 
-/* HEADER FIXED - ĐÃ FIX CHUẨN TAI THỎ iPHONE */
+/* HEADER FIXED */
 header {
   position: fixed; 
   top: 0; 
@@ -119,16 +119,17 @@ header {
 }
 body.keyboard-open #appContainer { bottom: 0; }
 
-/* BOTTOM NAVIGATION BAR (5 TABS) - ĐÃ FIX LINH HOẠT ĐỂ TẠO KHÔNG GIAN DƯỚI ĐÁY */
+/* BOTTOM NAVIGATION BAR (5 TABS) - FIX CHUẨN UI ZALO */
 .bottom-nav {
   position: fixed; 
   bottom: 0; 
   left: 0; 
   right: 0; 
   z-index: 100;
-  /* Dùng padding thay vì height cố định để nhấc bổng nav trên iPhone */
-  padding-top: 12px;
-  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  /* Tổng chiều cao = Chiều cao Nav chuẩn + Vùng vuốt đáy iPhone */
+  height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px)); 
+  /* Ép nội dung chữ và icon lên trên vùng an toàn */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: var(--card); 
   display: flex; 
   justify-content: space-around; 
@@ -149,7 +150,8 @@ body.keyboard-open .bottom-nav { display: none; }
   align-items: center; 
   justify-content: center;
   width: 20%; 
-  /* Bỏ height: 100% để nội dung chữ và icon tự do không bị ép sát */
+  /* Khóa cứng vùng thao tác đúng 58px để không bị xê dịch hay nở to */
+  height: var(--nav-height); 
   color: #5f6368; 
   text-decoration: none; 
   font-size: 0.72em; 
@@ -169,7 +171,7 @@ body.keyboard-open .bottom-nav { display: none; }
     filter: grayscale(0%); 
     opacity: 1; 
 }
-body.dark .nav-item { color: #aaaaaa; } 
+body.dark .nav-item { color: #aaaaaa; }
 body.dark .nav-item.active { color: #ff4d4d; }
 
 /* TAB PANES */
