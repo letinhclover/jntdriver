@@ -40,7 +40,7 @@
   --edit: #f39c12;
   --blue-text: #0056b3; 
   --red-text: #d32f2f;
-  --nav-height: 50px; /* Đã ép chuẩn siêu mỏng 50px như Zalo */
+  --nav-height: 55px; /* Giảm xuống 55px cho cực kỳ gọn gàng */
   --header-height: 54px;
 }
 
@@ -108,7 +108,8 @@ header {
 #appContainer {
   position: fixed;
   top: calc(var(--header-height) + env(safe-area-inset-top, 0px)); 
-  bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
+  /* Điều chỉnh lại vùng cuộn cho khớp với Bottom Nav mới */
+  bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px) * 0.4);
   left: 0; 
   right: 0;
   overflow-y: auto; 
@@ -120,7 +121,7 @@ header {
 body.keyboard-open #appContainer { bottom: 0; }
 
 /* ========================================================
-   BOTTOM NAVIGATION BAR - ZALO STYLE NATIVE iOS CLONE 
+   BOTTOM NAVIGATION BAR - ĐÃ FIX SÁT ĐÁY MÀN HÌNH
    ======================================================== */
 .bottom-nav {
   position: fixed; 
@@ -129,29 +130,29 @@ body.keyboard-open #appContainer { bottom: 0; }
   right: 0; 
   z-index: 100;
   
-  /* Khóa chiều cao đúng 50px + vùng an toàn đáy iPhone */
-  height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px)); 
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+  /* Tuyệt chiêu: Thay vì cộng 34px (tạo khoảng đen to đùng), 
+     ta nhân với 0.4 (chỉ lấy 13px) vừa khít lót dưới thanh gạt Home của iPhone.
+     Trên Android env() = 0 nên sẽ trả về đúng 55px gọn gàng. */
+  height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px) * 0.4); 
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) * 0.4);
+  
+  /* Nền kính mờ giống Zalo, loại bỏ màu xám đặc */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 0.5px solid rgba(0,0,0,0.15); /* Thay viền siêu mỏng */
+  box-shadow: none;
   
   display: flex; 
   justify-content: space-around; 
   align-items: center;
-  
-  /* Nền kính mờ chuẩn Apple/Zalo */
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  
-  /* Bỏ bóng đổ thô kệch, thay bằng viền hairline siêu mảnh 0.5px */
-  border-top: 0.5px solid rgba(0,0,0,0.15); 
-  box-shadow: none; 
+  transition: transform 0.2s ease;
 }
 
 body.dark .bottom-nav { 
-    /* Nền đen kính mờ cho Dark Mode */
-    background: rgba(29, 31, 33, 0.88); 
+    /* Kính mờ màu đen cho chế độ Dark Mode */
+    background: rgba(26, 28, 30, 0.9); 
     border-top: 0.5px solid rgba(255,255,255,0.1); 
-    box-shadow: none; 
 }
 
 body.keyboard-open .bottom-nav { display: none; } 
@@ -162,33 +163,31 @@ body.keyboard-open .bottom-nav { display: none; }
   align-items: center; 
   justify-content: center;
   width: 20%; 
-  height: 100%; /* Căn vừa in khung 50px */
+  height: var(--nav-height); /* Khóa khung thao tác 55px */
   
-  color: #757575; /* Màu xám nhạt như Zalo */
+  color: #757575; 
   text-decoration: none; 
-  font-size: 10px; /* Ép chữ siêu nhỏ thanh lịch */
-  font-weight: 500; /* Nét chữ thường, không in đậm thô kệch */
+  font-size: 10px; /* Chữ nhỏ, tinh tế */
+  font-weight: 500; 
   cursor: pointer;
-  gap: 3px; /* Khoảng cách giữa icon và chữ cực sít */
+  gap: 3px; 
 }
 
 .nav-item .icon { 
-    font-size: 20px; /* Thu nhỏ Emoji lại cho vừa mắt */
+    font-size: 21px; 
     transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); 
     filter: grayscale(100%); 
-    opacity: 0.45; 
+    opacity: 0.5; 
 }
-
 .nav-item.active { 
     color: var(--primary); 
-    font-weight: 700; /* Chỉ in đậm chữ khi đang chọn */
+    font-weight: 700; 
 }
 .nav-item.active .icon { 
-    transform: scale(1.15); /* Thay vì nảy lên, nó sẽ to ra nhẹ nhàng */
+    transform: scale(1.1); 
     filter: grayscale(0%); 
     opacity: 1; 
 }
-
 body.dark .nav-item { color: #8e8e93; } 
 body.dark .nav-item.active { color: #ff4d4d; }
 
