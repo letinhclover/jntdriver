@@ -1226,7 +1226,7 @@ function tinhDau() {
         html += `<div class="result-item"><span>Tiêu hao TB:</span><span class="result-value" style="color:${msgColor}; font-weight:800;">${fmt(tieuhao)} L/100km</span></div>`;
         
         let msgText = chenhlech >= 0 ? `DƯ ${fmt(chenhlech)} LÍT` : `HAO ${fmt(Math.abs(chenhlech))} LÍT`;
-        let iconText = chenhlech >= 0 ? "🤑👇" : "💸👇";
+        let iconText = chenhlech >= 0 ? "🤑👇🤑" : "💸👇💸";
         
         html += `<div class="result-item-total" style="color:${msgColor};"><span>${msgText}</span><span>${iconText}</span></div>`;
 
