@@ -1055,23 +1055,41 @@ function renderOTLogs() {
     reCalcSalaryAuto();
 }
 
-// ================= LOGIC: DẦU =================
+// ================= LOGIC: ĐỒNG BỘ DỮ LIỆU TÍNH NHANH CHUẨN =================
 function syncOTData() {
-    const sum15 = document.getElementById('sum15').innerText.replace(/[^\d.]/g, '');
-    const sum20 = document.getElementById('sum20').innerText.replace(/[^\d.]/g, '');
-    document.getElementById('ot_gioTCTuong').value = sum15;
-    document.getElementById('ot_gioTCNghi').value = sum20;
+    let sum15 = 0;
+    let sum20 = 0;
+    otLogs.forEach(log => {
+        if(log.type === 1.5) sum15 += log.hours;
+        if(log.type === 2.0) sum20 += log.hours;
+    });
+    // Format thành chuỗi tiếng Việt (thay . bằng ,)
+    document.getElementById('ot_gioTCTuong').value = sum15 > 0 ? String(sum15).replace('.', ',') : '';
+    document.getElementById('ot_gioTCNghi').value = sum20 > 0 ? String(sum20).replace('.', ',') : '';
     showToast("✅ Đã lấy dữ liệu tăng ca!");
 }
 
 function syncFuelData() {
-    const kmStr = document.getElementById('totalKm').innerText.replace(/[^\d.]/g, '');
-    const litStr = document.getElementById('totalLiters').innerText.replace(/[^\d.]/g, '');
-    document.getElementById('km').value = kmStr;
-    document.getElementById('thuc').value = litStr;
+    let totalLiters = 0;
+    let totalKm = 0;
+    let prev = closingOdo;
+    
+    // Tính tổng chính xác từ mảng
+    const sorted = [...fuelLogs].sort((a,b) => a.odo - b.odo);
+    sorted.forEach(log => {
+        let dist = log.odo - prev;
+        if (dist > 0) totalKm += dist;
+        totalLiters += log.liters;
+        prev = log.odo;
+    });
+
+    // Format thành chuỗi tiếng Việt (thay . bằng ,) để hàm parseMoney xử lý đúng
+    document.getElementById('km').value = totalKm > 0 ? String(totalKm).replace('.', ',') : '';
+    document.getElementById('thuc').value = totalLiters > 0 ? String(fmt(totalLiters)).replace('.', ',') : '';
     showToast("✅ Đã lấy dữ liệu dầu!");
 }
 
+// ================= LOGIC: DẦU =================
 let closingOdo = parseFloat(safeGetItem('closingOdo')) || 0;
 let fuelLogs =[];
 try { const saved = safeGetItem('fuelLogs'); if(saved) fuelLogs = JSON.parse(saved); } catch(e) { fuelLogs =[]; safeRemoveItem('fuelLogs'); }
