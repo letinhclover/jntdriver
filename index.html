@@ -8,10 +8,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Link Tài Xế J&T Express</title>
 
-<!-- TỐI ƯU TỐC ĐỘ MẠNG DƯỚI NỀN -->
+<!-- TỐI ƯU TỐC ĐỘ MẠNG & FONT (PAGESPEED HACK) -->
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap"></noscript>
 
 <!-- 2. PWA & ICONS -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -22,8 +25,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="application-name" content="App Tài Xế">
 
-<!-- 3. FONTS & SEO -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+<!-- 3. SEO -->
 <meta name="description" content="Link tài xế J&T Express: Công việc, Map, Tính lương, Dầu, Lịch xe. Tất cả trong một.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://letinhclover.github.io/jntdriver">
@@ -181,15 +183,14 @@ h2.section-title {
 }
 body.dark h2.section-title { border-bottom-color: rgba(255,0,0,0.2); color: #ff4d4d;}
 
-/* TỐI ƯU HIỂN THỊ CẢNH BÁO CHO TRÌNH ĐỌC MÀN HÌNH (ACCESSIBILITY) */
+/* TỐI ƯU ACCESSIBILITY (TƯƠNG PHẢN MÀU > 4.5:1) */
 .warning-block {
-    background: rgba(243,156,18,0.1); border: 1px dashed var(--edit); padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: left; width: 100%; max-width: 320px;
+    background: rgba(243,156,18,0.1); border: 1px dashed #d68910; padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: left; width: 100%; max-width: 320px;
 }
-.warning-title {
-    font-weight: 800; color: #b35900; font-size: 13px; margin-bottom: 4px;
-}
+.warning-title { font-weight: 800; color: #8a4000; font-size: 13px; margin-bottom: 4px; }
 body.dark .warning-title { color: #f39c12; }
-.warning-text { font-size: 12.5px; opacity: 0.9; line-height: 1.5; color: inherit; }
+.warning-text { font-size: 12.5px; opacity: 0.95; line-height: 1.5; color: #1a1a1a; }
+body.dark .warning-text { color: #f5f5f5; }
 
 /* LINKS */
 a.link-card {
@@ -220,12 +221,12 @@ body.dark a.link-card.highlight-link {
 .calc-input:focus { outline: none; border-color: var(--blue-text); }
 body.dark .calc-input { border-color: #444; background: #25262a; color: var(--text-dark); }
 
-button.calc-submit, button.save-btn, .btn-confirm, .btn-unlock-pin {
+button.calc-submit, button.save-btn {
   width: 100%; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 800;
   border: none; background: var(--primary); color: #fff; cursor: pointer; text-transform: uppercase;
   box-shadow: 0 4px 10px rgba(204,0,0,0.2); transition: transform 0.1s, opacity 0.1s;
 }
-button.calc-submit:active, button.save-btn:active, .btn-confirm:active, .btn-unlock-pin:active { transform: scale(0.98); opacity: 0.9; }
+button.calc-submit:active, button.save-btn:active { transform: scale(0.98); opacity: 0.9; }
 button.btn-update { background: var(--edit) !important; box-shadow: 0 4px 10px rgba(243,156,18,0.2) !important; }
 
 .btn-delete-month {
@@ -278,9 +279,12 @@ body.dark .log-card-fuel, body.dark .log-card-ot { background: rgba(255,255,255,
 .log-card-fuel { grid-template-columns: 16% 12% 18% 13% 16% 25%; }
 .log-card-ot { grid-template-columns: 22% 28% 23% 27%; }
 
-.log-action-btn { font-size: 16px; border: none; background: none; cursor: pointer; padding: 2px 6px; border-radius: 4px;}
-.btn-edit { color: var(--edit); background: rgba(243,156,18,0.1); }
-.btn-del { color: #e74c3c; background: rgba(231,76,60,0.1); margin-left: 4px;}
+/* TỐI ƯU ACCESSIBILITY (CÁC NÚT LOG) */
+.log-action-btn { font-size: 16px; border: none; background: none; cursor: pointer; padding: 2px 6px; border-radius: 4px; font-weight: bold;}
+.btn-edit { color: #a85800; background: rgba(243,156,18,0.1); }
+body.dark .btn-edit { color: var(--edit); }
+.btn-del { color: #b32417; background: rgba(231,76,60,0.1); margin-left: 4px;}
+body.dark .btn-del { color: #e74c3c; }
 .log-empty-state { text-align: center; padding: 20px; opacity: 0.5; font-style: italic; font-size: 0.9em; }
 
 .log-summary { background: var(--highlight-bg); border: 1px dashed var(--primary); border-radius: 10px; padding: 12px; margin-top: 12px; font-size: 14px; }
@@ -293,7 +297,7 @@ body.dark .log-summary { background: #2a1111; border-color: rgba(255,0,0,0.3); }
 body.dark .reminder-compact-row { background: rgba(255,255,255,0.02); border-color: #333; }
 .reminder-label-main { font-weight: 800; font-size: 1em; display: block; margin-bottom: 2px; }
 .reminder-status-text { font-size: 0.9em; font-weight: 600; }
-.btn-edit-toggle { background: #7f8c8d; color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer; }
+.btn-edit-toggle { background: #555; color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer; }
 .btn-edit-toggle.active { background: var(--accent); }
 .edit-area { display: none; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px; margin-bottom: 12px; border: 1px dashed #ccc;}
 body.dark .edit-area { background: #1a1a1a; border-color: #444; }
@@ -309,6 +313,10 @@ body.dark .edit-area { background: #1a1a1a; border-color: #444; }
 .footer-info { text-align: center; border-top: 1px dashed #ccc; font-size: 0.9em; opacity: 0.8; font-weight: 500;}
 body.dark .footer-info { border-color: #444; }
 
+/* TỐI ƯU ACCESSIBILITY (NÚT DONATE) */
+#btnDonateToggle { color: #8a4000 !important; border-color: #8a4000 !important; }
+body.dark #btnDonateToggle { color: var(--edit) !important; border-color: var(--edit) !important; }
+
 /* LỚP PHỦ KHÓA MÃ PIN CHO TAB CÔNG VIỆC */
 .locked-screen {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -317,9 +325,10 @@ body.dark .footer-info { border-color: #444; }
 }
 body.dark .locked-screen { background: var(--card-dark); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
 .locked-icon { font-size: 50px; margin-bottom: 10px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
-.locked-title { font-size: 1.1em; font-weight: 800; color: var(--primary); margin-bottom: 10px; text-transform: uppercase; }
+.locked-title { font-size: 1.1em; font-weight: 800; color: #b30000; margin-bottom: 10px; text-transform: uppercase; }
 body.dark .locked-title { color: #ff4d4d; }
-.locked-desc { font-size: 0.9em; opacity: 0.8; margin-bottom: 15px; line-height: 1.5; }
+.locked-desc { font-size: 0.95em; opacity: 0.9; margin-bottom: 15px; line-height: 1.5; color: #1a1a1a;}
+body.dark .locked-desc { color: #f5f5f5;}
 
 .pin-input-box { display: flex; gap: 8px; width: 100%; max-width: 300px; margin-bottom: 15px; }
 .pin-input {
@@ -329,6 +338,7 @@ body.dark .locked-title { color: #ff4d4d; }
 body.dark .pin-input { background: #222; border-color: #444; color: #fff;}
 .pin-input:focus { border-color: var(--primary); outline: none;}
 
+.btn-unlock-pin { background: var(--primary); color: white; border: none; border-radius: 8px; padding: 0 20px; font-weight: bold; cursor: pointer; }
 .btn-zalo-hint {
     background: rgba(0,123,255,0.1); color: var(--blue-text); border: none; padding: 12px 20px; border-radius: 30px; 
     font-weight: 800; font-size: 13px; cursor: pointer; text-decoration: none; width: 100%; max-width: 300px; display: inline-block;
@@ -372,8 +382,9 @@ body.dark .modal-input { background: #222; border-color: #444; color: #fff; }
 .modal-btn:active { transform: scale(0.96); opacity: 0.9; }
 .btn-cancel { background: #e0e0e0; color: #333; border: 1.5px solid transparent;}
 body.dark .btn-cancel { background: #333; color: #ddd; }
-.btn-deny { background: #f39c12; color: #fff; border: 1.5px solid transparent; }
+.btn-deny { background: #e67e22; color: #fff; border: 1.5px solid transparent; }
 body.dark .btn-deny { background: #d35400; color: #fff; }
+.btn-confirm { background: var(--primary); color: #fff; }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-5px); }
@@ -397,10 +408,10 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
     
     <div id="lock-screen-congviec" class="locked-screen">
         <div class="locked-icon">🔒</div>
-        <div class="locked-title">Liên kết nội bộ J&T</div>
+        <div class="locked-title">LIÊN KẾT NỘI BỘ J&T</div>
         <div class="locked-desc">Các đường link báo cáo chỉ dành cho nhân viên. Bạn cần nhập mã PIN để truy cập:</div>
         
-        <!-- THÊM HƯỚNG DẪN CÀI ĐẶT APP TRƯỚC KHI NHẬP PIN -->
+        <!-- CẢNH BÁO TỐI ƯU HIỂN THỊ (A11Y) -->
         <div class="warning-block">
             <div class="warning-title">⚠️ LƯU Ý QUAN TRỌNG:</div>
             <div class="warning-text">Nếu anh em đang mở link từ Zalo, hãy chọn dấu [ ⋮ ] góc phải màn hình ➔ <b>Mở bằng trình duyệt (Chrome/Safari)</b> ➔ Chọn <b>THÊM VÀO MÀN HÌNH CHÍNH</b>.<br><br>Hãy làm việc này <b>TRƯỚC KHI</b> nhập mã để không bị mất dữ liệu và nhập mã pin nhiều lần</div>
@@ -692,7 +703,7 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
             <div style="font-weight:700; color:var(--primary); margin-bottom:10px; font-size:0.9em;">DÀNH CHO NỘI BỘ TÀI XẾ J&T</div>
             
             <!-- NÚT MỜI CAFE NHỎ GỌN TINH TẾ -->
-            <button id="btnDonateToggle" onclick="document.getElementById('donateQR').style.display = document.getElementById('donateQR').style.display === 'none' ? 'block' : 'none'" style="background: rgba(243,156,18,0.1); color: var(--edit); border: 1px dashed var(--edit); padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 12px; cursor: pointer; margin-bottom: 10px; transition: 0.2s;">
+            <button id="btnDonateToggle" onclick="document.getElementById('donateQR').style.display = document.getElementById('donateQR').style.display === 'none' ? 'block' : 'none'" style="background: rgba(243,156,18,0.1); border: 1px dashed #8a4000; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 12px; cursor: pointer; margin-bottom: 10px; transition: 0.2s;">
                 ☕ Mời tác giả ly cafe
             </button>
             
@@ -756,14 +767,6 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
 </div>
 
 <script>
-// --- LAZY LOAD GOOGLE ANALYTICS (Tối ưu PageSpeed) ---
-setTimeout(() => {
-    const script = document.createElement('script');
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-H2LBJYP9YE';
-    script.async = true;
-    document.head.appendChild(script);
-}, 3000);
-
 // --- 0. SECRET PIN CONFIG ---
 const SECRET_PIN = "T92026"; // Mã PIN bí mật để mở khóa Tab Công việc
 
@@ -1839,6 +1842,32 @@ function initApp() {
 }
 
 initApp();
+
+// --- LAZY LOAD GA4 THEO TƯƠNG TÁC NGƯỜI DÙNG (Tối ưu PageSpeed 100%) ---
+let gaLoaded = false;
+function loadGA() {
+    if (gaLoaded) return;
+    gaLoaded = true;
+    
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-H2LBJYP9YE';
+    script.async = true;
+    document.head.appendChild(script);
+    
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H2LBJYP9YE');
+    
+    // Gỡ bỏ sự kiện sau khi đã tải xong
+    ['touchstart', 'scroll', 'mousemove', 'click'].forEach(e => {
+        window.removeEventListener(e, loadGA);
+    });
+}
+// Kích hoạt GA4 khi người dùng bắt đầu chạm vào màn hình
+['touchstart', 'scroll', 'mousemove', 'click'].forEach(e => {
+    window.addEventListener(e, loadGA, { passive: true, once: true });
+});
 </script>
 </body>
 </html>
