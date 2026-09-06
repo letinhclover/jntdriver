@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DỰ ÁN TẠM DỪNG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #090a0f;
+  --card: #12141a;
+  --red: #ff3344;
+  --text: #e6e8ec;
+  --subtext: #8d929d;
+  --border: #232733;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  line-height: 1.6;
+}
+
+.shutdown-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 38px 24px 28px;
+  text-align: center;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+/* VIỀN ĐỎ TINH TẾ TRÊN ĐẦU CARD */
+.shutdown-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--red), #800000);
+}
+
+/* NGÓN TAY THỐI TO ĐÙNG VỚI HIỆU ỨNG GLOW */
+.finger-icon {
+  font-size: 80px;
+  line-height: 1;
+  margin-bottom: 22px;
+  display: inline-block;
+  filter: drop-shadow(0 0 25px rgba(255, 51, 68, 0.45));
+  user-select: none;
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(255, 51, 68, 0.4));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 35px rgba(255, 51, 68, 0.7));
+  }
+}
+
+.status-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red);
+  background: rgba(255, 51, 68, 0.08);
+  border: 1px solid rgba(255, 51, 68, 0.25);
+  padding: 6px 14px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.message-content {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 26px;
+  text-align: justify;
+  text-align-last: center;
+  padding: 0 4px;
+}
+
+.author-sign {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--subtext);
+  letter-spacing: 0.5px;
+  border-top: 1px dashed var(--border);
+  padding-top: 18px;
+  display: inline-block;
+  width: 100%;
+}
+</style>
+</head>
+<body>
+
+<div class="shutdown-card">
+  <!-- BIỂU TƯỢNG NGÓN TAY THỐI -->
+  <div class="finger-icon">🖕</div>
+
+  <!-- TIÊU ĐỀ TRẠNG THÁI -->
+  <div class="status-badge">DỰ ÁN TẠM DỪNG — CHƯA HẸN NGÀY TRỞ LẠI</div>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <p class="message-content">
+    Tôi cũng chỉ là tài xế, không phải dân IT chuyên nghiệp. Để làm ra được cái app hoàn chỉnh từ đầu đến cuối, mất rất nhiều thời gian. Nhưng đến hôm nay, khi đã hết nhiệt tình và sự hào hứng không còn nữa, thì dừng lại thôi.
+  </p>
+
+  <!-- CHỮ KÝ -->
+  <div class="author-sign">— Lê Tỉnh —</div>
+</div>
+
+</body>
+</html>
