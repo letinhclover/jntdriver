@@ -273,17 +273,31 @@ body.dark .log-select { border-color: #444; background: #25262a; }
 .ot-log-header { grid-template-columns: 22% 28% 23% 27%; background: linear-gradient(135deg, var(--blue-text), #2980b9); }
 
 .log-card-fuel, .log-card-ot {
-  display: grid; align-items: center; padding: 10px 5px; margin-bottom: 4px; border-radius: 6px; background: rgba(0,0,0,0.03); font-size: 0.88em; text-align: center;
+  display: grid; align-items: center; padding: 8px 4px; margin-bottom: 4px; border-radius: 6px; background: rgba(0,0,0,0.03); font-size: 0.88em; text-align: center;
 }
 body.dark .log-card-fuel, body.dark .log-card-ot { background: rgba(255,255,255,0.04); }
 .log-card-fuel { grid-template-columns: 16% 12% 18% 13% 16% 25%; }
 .log-card-ot { grid-template-columns: 22% 28% 23% 27%; }
 
-/* TỐI ƯU ACCESSIBILITY (CÁC NÚT LOG) */
-.log-action-btn { font-size: 16px; border: none; background: none; cursor: pointer; padding: 2px 6px; border-radius: 4px; font-weight: bold;}
-.btn-edit { color: #a85800; background: rgba(243,156,18,0.1); }
+/* TỐI ƯU VÙNG CHẠM CHO NÚT BẤM (ACCESSIBILITY CHO TÀI XẾ) */
+.log-action-btn { 
+  font-size: 15px; 
+  border: none; 
+  background: none; 
+  cursor: pointer; 
+  padding: 6px 8px; 
+  border-radius: 6px; 
+  font-weight: bold;
+  min-width: 32px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+.btn-edit { color: #a85800; background: rgba(243,156,18,0.12); }
 body.dark .btn-edit { color: var(--edit); }
-.btn-del { color: #b32417; background: rgba(231,76,60,0.1); margin-left: 4px;}
+.btn-del { color: #b32417; background: rgba(231,76,60,0.12); margin-left: 4px;}
 body.dark .btn-del { color: #e74c3c; }
 .log-empty-state { text-align: center; padding: 20px; opacity: 0.5; font-style: italic; font-size: 0.9em; }
 
@@ -313,9 +327,114 @@ body.dark .edit-area { background: #1a1a1a; border-color: #444; }
 .footer-info { text-align: center; border-top: 1px dashed #ccc; font-size: 0.9em; opacity: 0.8; font-weight: 500;}
 body.dark .footer-info { border-color: #444; }
 
-/* TỐI ƯU ACCESSIBILITY (NÚT DONATE) */
+/* NÚT & KHU VỰC MỜI NƯỚC / DONATE TINH TẾ */
 #btnDonateToggle { color: #8a4000 !important; border-color: #8a4000 !important; }
 body.dark #btnDonateToggle { color: var(--edit) !important; border-color: var(--edit) !important; }
+
+.donate-box-container {
+    display: none; 
+    margin: 15px auto 10px; 
+    padding: 14px; 
+    border-radius: 12px; 
+    background: rgba(0,0,0,0.02); 
+    border: 1px solid rgba(0,0,0,0.06); 
+    text-align: center; 
+    animation: fadeIn 0.3s ease-out;
+}
+body.dark .donate-box-container {
+    background: rgba(255,255,255,0.02);
+    border-color: #333;
+}
+
+.donate-story {
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: left;
+    background: rgba(204, 0, 0, 0.04);
+    border-left: 3px solid var(--primary);
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    color: var(--text-light);
+}
+body.dark .donate-story {
+    background: rgba(255, 77, 77, 0.06);
+    color: var(--text-dark);
+}
+
+.donate-chips {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.donate-chip {
+    background: var(--card);
+    border: 1px solid #ccc;
+    color: var(--text-light);
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+body.dark .donate-chip {
+    background: #25262a;
+    border-color: #444;
+    color: var(--text-dark);
+}
+.donate-chip.active {
+    background: var(--primary) !important;
+    color: #fff !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 2px 8px rgba(204,0,0,0.25);
+}
+
+/* THẺ HIỂN THỊ VCB CHUNG 1 HÀNG NGANG */
+.bank-card-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--card);
+    border: 1.5px dashed var(--primary);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 12px auto 8px;
+    max-width: 300px;
+}
+body.dark .bank-card-box {
+    background: #1e1f23;
+    border-color: #ff4d4d;
+}
+.bank-account-text {
+    font-size: 13.5px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: inherit;
+}
+.btn-copy-stk {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(204,0,0,0.25);
+    white-space: nowrap;
+}
+.btn-copy-stk:active { transform: scale(0.95); }
+
+.donate-blessing {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--status-green);
+    margin-top: 10px;
+}
 
 /* LỚP PHỦ KHÓA MÃ PIN CHO TAB CÔNG VIỆC */
 .locked-screen {
@@ -385,18 +504,13 @@ body.dark .btn-cancel { background: #333; color: #ddd; }
 .btn-deny { background: #e67e22; color: #fff; border: 1.5px solid transparent; }
 body.dark .btn-deny { background: #d35400; color: #fff; }
 .btn-confirm { background: var(--primary); color: #fff; }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 </style>
 </head>
 <body>
 
 <!-- FIXED HEADER -->
 <header id="mainHeader">
-  <h1 style="font-size:inherit; margin:0; font-weight:inherit; display:inline;">Công việc</h1>
+  <h1 id="headerTitle" style="font-size:inherit; margin:0; font-weight:inherit; display:inline;">Công việc</h1>
   <button id="toggleTheme" aria-label="chuyển chế độ sáng tối" onclick="toggleThemeHandler()">🌙</button>
 </header>
 
@@ -441,7 +555,7 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
           <a class="link-card" href="https://jtexpress.feishu.cn/share/base/form/shrlglInNMOwkDFDQPUUneCVNsh" target="_blank">📱 Cập nhật SĐT trùng khớp app nhiệm vụ</a>
           
           <a class="link-card" href="https://jtexpress.feishu.cn/share/base/form/shrcn1wua4Rb75DsxSj2Qj59wDb" target="_blank">📸 Kiểm tra hình ảnh xe</a>
-          <a class="link-card highlight-link" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgrxiju8NdfLdIbOXItgGmqc" target="_blank">📦 Báo cáo hàng còn sót trên thùng xe(Có thưởng💵)</a>
+          <a class="link-card highlight-link" href="https://jtexpress.sg.feishu.cn/share/base/form/shrlgrxiju8NdfLdIbOXItgGmqc" target="_blank">📦 Báo cáo hàng còn sót trên thùng xe</a>
           <a class="link-card highlight-link" href="https://www.petrolimex.com.vn/stations.html" target="_blank">🛢 Tìm cây xăng Petrolimex gần đây</a>
           <a class="link-card highlight-link" href="https://www.pvoil.com.vn/tin-gia-xang-dau" target="_blank">⛽️ Bảng giá xăng dầu</a>
         </div>
@@ -520,7 +634,7 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
           <label for="thuc" class="calc-label">Dầu đã đổ (lít):</label>
           <input type="text" id="thuc" placeholder="VD: 130.5" inputmode="decimal" class="calc-input" onfocus="this.select()">
         </div>
-        <button class="calc-submit" onclick="tinhDau()" style="margin-top:5px;">TÍNH KẾT QUẢ</button>
+        <button class="calc-submit" onclick="tinhDau(true)" style="margin-top:5px;">TÍNH KẾT QUẢ</button>
         <div id="resultDau" class="result-box-ot" style="display:none;"></div>
     </div>
   </section>
@@ -598,7 +712,7 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
             <label for="ot_gioTCNghi" class="calc-label">Tổng Giờ OFF (2.0x):</label>
             <input type="text" id="ot_gioTCNghi" placeholder="Nhập giờ..." inputmode="decimal" class="calc-input" onfocus="this.select()">
         </div>
-        <button onclick="tinhLuong()" class="calc-submit" style="margin-top:5px;">TÍNH KẾT QUẢ</button>
+        <button onclick="tinhLuong(true)" class="calc-submit" style="margin-top:5px;">TÍNH KẾT QUẢ</button>
         
         <div class="result-box-ot" id="ketQuaLuong" style="display:none;">
             <div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px dashed rgba(0,0,0,0.1); padding-bottom:8px;">
@@ -656,7 +770,7 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
           <input type="date" id="dateInsurance" class="calc-input" onchange="saveReminders()" style="margin-top:0;">
       </div>
       
-      <!-- NEW: Nhắc bảo dưỡng theo ODO -->
+      <!-- Nhắc bảo dưỡng theo ODO -->
       <div class="reminder-compact-row">
           <div class="reminder-info">
               <span class="reminder-label-main">🔧 Nhắc bảo dưỡng (ODO)</span>
@@ -702,18 +816,41 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
         <div class="footer-info" style="margin-top: 15px; padding-top: 15px;">
             <div style="font-weight:700; color:var(--primary); margin-bottom:10px; font-size:0.9em;">DÀNH CHO NỘI BỘ TÀI XẾ J&T</div>
             
-            <!-- NÚT MỜI CAFE NHỎ GỌN TINH TẾ -->
-            <button id="btnDonateToggle" onclick="document.getElementById('donateQR').style.display = document.getElementById('donateQR').style.display === 'none' ? 'block' : 'none'" style="background: rgba(243,156,18,0.1); border: 1px dashed #8a4000; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 12px; cursor: pointer; margin-bottom: 10px; transition: 0.2s;">
+            <!-- NÚT MỞ KHỐI MỜI NƯỚC -->
+            <button id="btnDonateToggle" onclick="toggleDonateBox()" style="background: rgba(243,156,18,0.1); border: 1px dashed #8a4000; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 12px; cursor: pointer; margin-bottom: 10px; transition: 0.2s;">
                 ☕ Mời tác giả ly cafe
             </button>
             
-            <!-- VÙNG HIỂN THỊ QR -->
-            <div id="donateQR" style="display: none; margin-bottom: 15px; animation: fadeIn 0.3s;">
-                <img src="https://img.vietqr.io/image/VCB-0501000117157-compact.png?amount=50000&addInfo=Moi%20cafe%20ung%20ho%20App" alt="Mời cafe" style="max-width: 140px; border-radius: 10px; border: 2px solid rgba(0,0,0,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.05);" loading="lazy">
-                <div style="font-size: 12px; margin-top: 8px; opacity: 0.9; font-weight: 700; line-height: 1.6;">
-                    VCB: 0501000117157<br>MoMo: 0973803789
+            <!-- KHU VỰC MỜI NƯỚC TINH TẾ (DONATE BOX) -->
+            <div id="donateQR" class="donate-box-container">
+                <div class="donate-story">
+                    Ứng dụng được xây dựng hoàn toàn miễn phí, nhằm giúp công việc hàng ngày của anh em trở nên nhanh chóng, chính xác và nhẹ nhàng hơn.<br><br>
+                    Nếu ứng dụng mang lại giá trị, bạn có thể chia sẻ nó hoặc gửi tặng tôi một ly cafe ☕️ để tiếp thêm động lực duy trì và cải tiến ứng dụng.
                 </div>
-                <div style="font-size: 11px; opacity: 0.6; font-style: italic; margin-top: 4px;">Ủng hộ nếu thấy App hữu ích !</div>
+
+                <!-- THANH CHỌN MÓN NHANH -->
+                <div class="donate-chips">
+                    <button class="donate-chip" onclick="selectDonateAmount(10000, 'Moi tra da ung ho App', this)">🍵 Trà đá 10k</button>
+                    <button class="donate-chip active" onclick="selectDonateAmount(20000, 'Moi cafe ung ho App', this)">☕ Cafe 20k</button>
+                    <button class="donate-chip" onclick="selectDonateAmount(50000, 'Moi bia ung ho App', this)">🍺 Bia 50k</button>
+                    <button class="donate-chip" onclick="selectDonateAmount(0, 'Ung ho App tuy tam', this)">❤️ Tùy tâm</button>
+                </div>
+
+                <!-- ẢNH MÃ VIETQR TỰ ĐỘNG CẬP NHẬT -->
+                <div style="display:flex; justify-content:center; margin: 10px 0;">
+                    <img id="donateQRImg" src="https://img.vietqr.io/image/VCB-0501000117157-compact.png?amount=20000&addInfo=Moi%20cafe%20ung%20ho%20App&accountName=LE%20TINH" alt="Mã QR Vietcombank" style="max-width: 155px; border-radius: 10px; border: 2px solid rgba(0,0,0,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.05);" loading="lazy">
+                </div>
+
+                <!-- KHỐI SAO CHÉP STK CHUNG 1 HÀNG NGANG -->
+                <div class="bank-card-box">
+                    <span class="bank-account-text">VCB: 0501000117157</span>
+                    <button class="btn-copy-stk" onclick="copyBankAccount()">📋 Sao chép</button>
+                </div>
+
+                <!-- LỜI CHÚC MỚI -->
+                <div class="donate-blessing">
+                    🚚💨 Chúc anh em vạn dặm bình an, tăng ca full, dư trăm lít dầu !
+                </div>
             </div>
 
             <div style="font-size:0.95em; font-weight: 500;">
@@ -768,7 +905,7 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
 
 <script>
 // --- 0. SECRET PIN CONFIG ---
-const SECRET_PIN = "T92026"; // Mã PIN bí mật để mở khóa Tab Công việc
+const SECRET_PIN = "T92026";
 
 // --- 1. SAFE STORAGE WRAPPER ---
 function safeGetItem(key) {
@@ -788,6 +925,19 @@ try {
     localStorage.removeItem('test_key');
 } catch(e) {
     setTimeout(() => { showToast("⚠️ Trình duyệt cấm lưu dữ liệu. Hãy mở bằng Google Chrome!"); }, 2500);
+}
+
+// CHUẨN HÓA MÃ HÓA UTF-8 BASE64
+function utf8ToBase64(str) {
+    const bytes = new TextEncoder().encode(str);
+    const binString = Array.from(bytes, (b) => String.fromCharCode(b)).join("");
+    return btoa(binString);
+}
+
+function base64ToUtf8(base64) {
+    const binString = atob(base64);
+    const bytes = Uint8Array.from(binString, (m) => m.charCodeAt(0));
+    return new TextDecoder().decode(bytes);
 }
 
 // --- 2. GLOBAL FUNCTIONS & CUSTOM MODAL API ---
@@ -870,9 +1020,6 @@ function toggleThemeHandler() {
 // --- 3. MÃ PIN & MỞ KHÓA TÍNH NĂNG CÔNG VIỆC ---
 function checkWorkTabLock() {
     const savedPin = safeGetItem('savedUnlockPin');
-    
-    // Thuật toán: Nếu mã PIN lưu trong máy giống hệt mã PIN cứng trên code -> Mở khóa.
-    // Nếu thay đổi SECRET_PIN, sẽ không khớp nữa -> Tự động văng khóa.
     if (savedPin === SECRET_PIN.toUpperCase()) {
         document.getElementById('lock-screen-congviec').style.display = 'none';
         document.getElementById('premium-content-congviec').style.display = 'block';
@@ -999,8 +1146,8 @@ function switchTab(targetId, title) {
     const activeNav = document.querySelector(`.nav-item[onclick*="${targetId}"]`);
     if (activeNav) activeNav.classList.add('active');
     
-    const isDark = document.body.classList.contains('dark');
-    document.getElementById('mainHeader').innerHTML = `<h1 style="font-size:inherit; margin:0; font-weight:inherit; display:inline;">${title}</h1> <button id="toggleTheme" aria-label="chuyển chế độ sáng tối" onclick="toggleThemeHandler()">${isDark ? '☀️' : '🌙'}</button>`;
+    const titleEl = document.getElementById('headerTitle');
+    if (titleEl) titleEl.innerText = title;
     
     const container = document.getElementById('appContainer');
     if (container) container.scrollTop = 0;
@@ -1009,11 +1156,10 @@ function switchTab(targetId, title) {
     safeSetItem('activeTabTitle', title);
 }
 
-// XỬ LÝ BÀN PHÍM CHE TAB BAR (CẢI TIẾN CHO ANDROID)
+// XỬ LÝ BÀN PHÍM CHE TAB BAR
 const inputs = document.querySelectorAll('input:not(.modal-input), select');
 inputs.forEach(input => {
     input.addEventListener('focus', () => document.body.classList.add('keyboard-open'));
-    // Vẫn giữ blur cho iOS (vì iOS xử lý mượt)
     input.addEventListener('blur', () => {
         setTimeout(() => {
             const activeEl = document.activeElement;
@@ -1024,13 +1170,10 @@ inputs.forEach(input => {
     });
 });
 
-// Fix kẹt bàn phím trên Android khi user bấm nút "Back" cứng
 let initialInnerHeight = window.innerHeight;
 window.addEventListener('resize', () => {
-    // Nếu chiều cao hiện tại phục hồi lớn hơn 85% chiều cao gốc -> bàn phím đã đóng
     if (window.innerHeight > initialInnerHeight * 0.85) {
         document.body.classList.remove('keyboard-open');
-        // Cập nhật lại chiều cao gốc đề phòng xoay màn hình
         initialInnerHeight = window.innerHeight; 
     }
 });
@@ -1040,12 +1183,51 @@ document.addEventListener('click', function(e) {
     const qrDiv = document.getElementById('donateQR');
     const btnToggle = document.getElementById('btnDonateToggle');
     if (qrDiv && qrDiv.style.display === 'block') {
-        // Nếu click không nằm trong khối QR và không chạm vào nút Mở QR
         if (!qrDiv.contains(e.target) && e.target !== btnToggle) {
             qrDiv.style.display = 'none';
         }
     }
 });
+
+function toggleDonateBox() {
+    const qrDiv = document.getElementById('donateQR');
+    if (!qrDiv) return;
+    qrDiv.style.display = qrDiv.style.display === 'none' || qrDiv.style.display === '' ? 'block' : 'none';
+}
+
+function selectDonateAmount(amount, msg, btn) {
+    document.querySelectorAll('.donate-chip').forEach(c => c.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    
+    const qrImg = document.getElementById('donateQRImg');
+    if (!qrImg) return;
+    
+    const encodedMsg = encodeURIComponent(msg);
+    if (amount > 0) {
+        qrImg.src = `https://img.vietqr.io/image/VCB-0501000117157-compact.png?amount=${amount}&addInfo=${encodedMsg}&accountName=LE%20TINH`;
+    } else {
+        qrImg.src = `https://img.vietqr.io/image/VCB-0501000117157-compact.png?addInfo=${encodedMsg}&accountName=LE%20TINH`;
+    }
+}
+
+function copyBankAccount() {
+    const stk = "0501000117157";
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(stk).then(() => {
+            showToast("✅ Đã chép số tài khoản VCB: 0501000117157");
+        });
+    } else {
+        const temp = document.createElement("input");
+        temp.value = stk;
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+            document.execCommand("copy");
+            showToast("✅ Đã chép số tài khoản VCB: 0501000117157");
+        } catch(e) {}
+        document.body.removeChild(temp);
+    }
+}
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(regs => { for(let reg of regs) { reg.unregister(); } });
@@ -1129,7 +1311,7 @@ function autoCalcSundays(isAuto = false) {
     if(!isAuto) showToast(`✅ Tháng ${month + 1}/${year}: ${totalDays} ngày, ${sundays} chủ nhật`);
 }
 
-function tinhLuong() {
+function tinhLuong(shouldScroll = true) {
     const luongCB = parseMoney('ot_luongCanBan');
     const ngayThang = parseMoney('ot_soNgayTrongThang');
     const ngayCN = parseMoney('ot_soNgayChuNhat');
@@ -1137,15 +1319,15 @@ function tinhLuong() {
     const gio20 = parseDecimal('ot_gioTCNghi');
     
     if(luongCB < 0 || ngayThang < 0 || ngayCN < 0 || gio15 < 0 || gio20 < 0) { 
-        showToast("⚠️ Số không được âm!"); return; 
+        if (shouldScroll) showToast("⚠️ Số không được âm!"); return; 
     }
     if (luongCB <= 0 || ngayThang <= 0) { 
-        showToast("⚠️ Nhập Lương CB và Ngày công!"); return; 
+        if (shouldScroll) showToast("⚠️ Nhập Lương CB và Ngày công!"); return; 
     }
     
     const ngayCongChuan = ngayThang - ngayCN;
     if (ngayCongChuan <= 0) { 
-        showToast("⚠️ Số ngày công không hợp lệ!"); return; 
+        if (shouldScroll) showToast("⚠️ Số ngày công không hợp lệ!"); return; 
     }
 
     document.getElementById('ketQuaLuong').style.display = 'block';
@@ -1163,8 +1345,10 @@ function tinhLuong() {
     document.getElementById('thucNhanTamTinh').innerText = formatMoney(thucNhan);
     
     reCalcSalaryAuto();
-    const container = document.getElementById('appContainer');
-    container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+    if (shouldScroll) {
+        const container = document.getElementById('appContainer');
+        container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+    }
 }
 
 function reCalcSalaryAuto() {
@@ -1200,7 +1384,6 @@ function addOTLog() {
     if(!date || isNaN(hours)) { showToast("⚠️ Vui lòng nhập đủ thông tin!"); return; }
     if(hours <= 0) { showToast("⚠️ Số giờ phải lớn hơn 0!"); return; }
     
-    // TÍNH TIỀN NGAY ĐỂ TẠO CẢM XÚC - CHỈ HIỂN THỊ TOAST RỒI BIẾN MẤT
     let msgTingTing = "✅ Đã thêm tăng ca!";
     const luongCB = parseMoney('ot_luongCanBan');
     const ngayCong = parseMoney('ot_soNgayTrongThang');
@@ -1222,14 +1405,14 @@ function addOTLog() {
         showToast("✅ Đã cập nhật tăng ca!");
     } else {
         otLogs.push({ date, type, hours }); 
-        showToast(msgTingTing); // DÙNG TOAST THAY VÌ MODAL BẮT BẤM
+        showToast(msgTingTing);
     }
     
     saveAndRenderOT();
     document.getElementById('otLogHours').value = '';
     
     syncOTData(true);
-    tinhLuong();
+    tinhLuong(false);
 }
 
 function editOTLog(originalIndex) {
@@ -1262,7 +1445,7 @@ function deleteOTLog(originalIndex) {
             saveAndRenderOT(); 
             showToast("✅ Đã xóa!");
             syncOTData(true);
-            tinhLuong();
+            tinhLuong(false);
         }
     });
 }
@@ -1372,7 +1555,7 @@ function saveFuelSettings() {
     document.getElementById('savedOdoText').innerText = "Đã lưu cài đặt thông số xe thành công!";
     showToast("Đã lưu thông số xe!"); 
     renderLogs(); 
-    calcReminders(); // Cập nhật luôn lịch bảo dưỡng nếu ODO chốt thay đổi
+    calcReminders();
 }
 
 function addFuelLog() {
@@ -1388,7 +1571,6 @@ function addFuelLog() {
     if(liters <= 0) { showToast("⚠️ Số lít phải > 0!"); return; }
     if(currentOdo <= closingOdo) { showToast("⚠️ ODO hiện tại phải lớn hơn ODO chốt!"); return; }
     
-    // TÍNH TOÁN DƯ/HAO ĐỂ TẠO CẢM XÚC - CHỈ HIỂN THỊ TOAST RỒI BIẾN MẤT
     let msgDau = "✅ Đã thêm vào sổ!";
     const khoan = parseDecimal('khoan');
     const gia = parseMoney('gia');
@@ -1422,7 +1604,7 @@ function addFuelLog() {
         showToast("✅ Đã cập nhật nhật ký!");
     } else {
         fuelLogs.push({ date, liters, odo: currentOdo }); 
-        showToast(msgDau); // DÙNG TOAST THAY VÌ MODAL BẮT BẤM
+        showToast(msgDau);
     }
     
     saveAndRender(); 
@@ -1430,7 +1612,7 @@ function addFuelLog() {
     document.getElementById('logOdo').value = '';
     
     syncFuelData(true);
-    tinhDau();
+    tinhDau(false);
 }
 
 function editFuelLog(originalIndex) {
@@ -1449,7 +1631,7 @@ function cancelFuelEdit() {
 function saveAndRender() { 
     safeSetItem('fuelLogs', JSON.stringify(fuelLogs)); 
     renderLogs(); 
-    calcReminders(); // Cập nhật tự động lịch bảo dưỡng
+    calcReminders();
 }
 function resetFuelMonth() { 
     if (fuelLogs.length === 0) {
@@ -1553,12 +1735,12 @@ function deleteFuelLog(originalIndex) {
             saveAndRender(); 
             showToast("✅ Đã xóa!");
             syncFuelData(true);
-            tinhDau();
+            tinhDau(false);
         }
     });
 }
 
-function tinhDau() {
+function tinhDau(shouldScroll = true) {
     const khoan = parseDecimal('khoan'); 
     const km = parseDecimal('km');       
     const thuc = parseDecimal('thuc');   
@@ -1567,7 +1749,7 @@ function tinhDau() {
     const resultDiv = document.getElementById('resultDau'); 
     
     if (km <= 0) { 
-        showToast("⚠️ Vui lòng nhập Số xe đã chạy (>0).");
+        if (shouldScroll) showToast("⚠️ Vui lòng nhập Số xe đã chạy (>0).");
         return; 
     }
     
@@ -1614,7 +1796,10 @@ function tinhDau() {
         html += `<div style="text-align:center; margin-top:10px; font-size:13px; opacity:0.8;">⚠️ Lưu "Khoán Lít" và "Giá Dầu" ở trên cùng để tính Thưởng/Phạt.</div>`;
     }
     resultDiv.innerHTML = html;
-    const container = document.getElementById('appContainer'); container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+    if (shouldScroll) {
+        const container = document.getElementById('appContainer'); 
+        container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+    }
 }
 
 // ================= LOGIC: TIỆN ÍCH (REMINDERS & BACKUP) =================
@@ -1636,7 +1821,6 @@ function loadReminders() {
         }
     });
     
-    // Tải ODO bảo dưỡng
     const odoM = safeGetItem('odoMaintenance');
     if (odoM && odoM !== "null") {
         const el = document.getElementById('odoMaintenance');
@@ -1655,24 +1839,41 @@ function saveReminders() {
 }
 
 function calcReminders() {
-    const today = new Date(); today.setHours(0,0,0,0);
+    const today = new Date(); 
+    today.setHours(0,0,0,0);
     const items =[ {id:'dateRegistry', t:'textRegistry'}, {id:'dateInsurance', t:'textInsurance'} ];
+    
     items.forEach(item => {
-        const inputEl = document.getElementById(item.id); const textEl = document.getElementById(item.t);
+        const inputEl = document.getElementById(item.id); 
+        const textEl = document.getElementById(item.t);
         if (!inputEl || !textEl) return;
         const v = inputEl.value;
         if (!v || v === "null") { 
             textEl.innerText = "Chưa cài ngày"; textEl.style.color = "inherit"; 
         } else {
-            const diff = Math.ceil((new Date(v) - today) / 86400000);
-            if (diff < 0) { textEl.innerText = "QUÁ HẠN " + Math.abs(diff) + " ngày 🔴"; textEl.style.color = "var(--primary)"; } 
-            else if (diff <= 7) { textEl.innerText = "KHẨN CẤP: Còn " + diff + " ngày 🔴"; textEl.style.color = "var(--primary)"; } 
-            else if (diff <= 30) { textEl.innerText = "Sắp hết: Còn " + diff + " ngày 🟡"; textEl.style.color = "#d4a017"; } 
-            else { textEl.innerText = "An toàn: Còn " + diff + " ngày 🟢"; textEl.style.color = "var(--status-green)"; }
+            const parts = v.split('-');
+            const targetDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10), 0, 0, 0);
+            const diff = Math.round((targetDate - today) / 86400000);
+            
+            if (diff < 0) { 
+                textEl.innerText = "QUÁ HẠN " + Math.abs(diff) + " ngày 🔴"; 
+                textEl.style.color = "var(--primary)"; 
+            } else if (diff === 0) {
+                textEl.innerText = "HẾT HẠN HÔM NAY 🔴";
+                textEl.style.color = "var(--primary)";
+            } else if (diff <= 7) { 
+                textEl.innerText = "KHẨN CẤP: Còn " + diff + " ngày 🔴"; 
+                textEl.style.color = "var(--primary)"; 
+            } else if (diff <= 30) { 
+                textEl.innerText = "Sắp hết: Còn " + diff + " ngày 🟡"; 
+                textEl.style.color = "#d4a017"; 
+            } else { 
+                textEl.innerText = "An toàn: Còn " + diff + " ngày 🟢"; 
+                textEl.style.color = "var(--status-green)"; 
+            }
         }
     });
 
-    // Xử lý nhắc bảo dưỡng ODO
     const odoInput = document.getElementById('odoMaintenance');
     const odoText = document.getElementById('textMaintenance');
     if (odoInput && odoText) {
@@ -1727,7 +1928,7 @@ function exportBackup() {
         };
         
         const jsonString = JSON.stringify(backupData);
-        const base64Code = btoa(unescape(encodeURIComponent(jsonString)));
+        const base64Code = utf8ToBase64(jsonString);
         
         if (navigator.clipboard && window.isSecureContext) {
             navigator.clipboard.writeText(base64Code).then(() => {
@@ -1756,7 +1957,7 @@ function importBackup() {
         onConfirm: (code) => {
             if (!code) return;
             try {
-                const jsonString = decodeURIComponent(escape(atob(code.trim())));
+                const jsonString = base64ToUtf8(code.trim());
                 const backupData = JSON.parse(jsonString);
                 
                 Object.keys(backupData).forEach(key => { 
@@ -1804,6 +2005,8 @@ function initApp() {
     const savedTheme = safeGetItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark');
+        const btn = document.getElementById('toggleTheme');
+        if (btn) btn.textContent = '☀️';
     }
     
     generateMapLinks();
@@ -1815,7 +2018,7 @@ function initApp() {
     checkAndAutoCalcMonth();
     
     loadSalarySettings(); 
-    loadFuelSettings(); // Tải cài đặt Dầu
+    loadFuelSettings();
     renderLogs(); 
     renderOTLogs(); 
     loadReminders();
@@ -1834,6 +2037,26 @@ function initApp() {
         }
     });
     
+    const pinInput = document.getElementById('pinInputCongViec');
+    if (pinInput) {
+        pinInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                verifyPIN('pinInputCongViec');
+            }
+        });
+    }
+
+    const modalInput = document.getElementById('modalInput');
+    if (modalInput) {
+        modalInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('modalBtnConfirm').click();
+            }
+        });
+    }
+
     const savedTab = safeGetItem('activeTab');
     const savedTabTitle = safeGetItem('activeTabTitle');
     if(savedTab && savedTabTitle && document.getElementById(savedTab)) {
@@ -1859,12 +2082,10 @@ function loadGA() {
     gtag('js', new Date());
     gtag('config', 'G-H2LBJYP9YE');
     
-    // Gỡ bỏ sự kiện sau khi đã tải xong
     ['touchstart', 'scroll', 'mousemove', 'click'].forEach(e => {
         window.removeEventListener(e, loadGA);
     });
 }
-// Kích hoạt GA4 khi người dùng bắt đầu chạm vào màn hình
 ['touchstart', 'scroll', 'mousemove', 'click'].forEach(e => {
     window.addEventListener(e, loadGA, { passive: true, once: true });
 });
