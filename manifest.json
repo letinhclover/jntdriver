@@ -1,21 +1,23 @@
 {
-  "name": "Link Tài Xế J&T Express",
-  "short_name": "J&T Driver",
+  "name": "Full Link - Công việc báo cáo",
+  "short_name": "Full Link",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ff0033",
-  "description": "Trang tổng hợp liên kết nội bộ dành cho tài xế J&T Express: nhóm Zalo, biểu mẫu công việc, địa chỉ Google Map và công cụ tính lượng dầu xe tải.",
+  "background_color": "#111214",
+  "theme_color": "#CC0000",
+  "description": "Full Link: Công việc báo cáo,bản đồ kho, tính dầu và lương tăng ca.",
   "icons": [
     {
       "src": "android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "favicon-32x32.png",
