@@ -671,7 +671,7 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
     </div>
 
     <div class="card-box">
-        <h2 class="section-title">📒 Nhật ký Ghi sổ</h2>
+        <h2 class="section-title">📒 Nhật ký Đổ Dầu</h2>
         <div class="log-input-container">
              <label for="logDate" style="display:none;">Ngày đổ dầu</label>
              <input type="date" id="logDate" class="calc-input" style="margin-bottom:10px; margin-top:0;">
@@ -752,12 +752,12 @@ body.dark .btn-deny { background: #d35400; color: #fff; }
             </div>
         </div>
         <button onclick="autoCalcSundays(false)" style="width:100%; padding:10px; border-radius:8px; border:1px dashed var(--status-green); background:rgba(25,136,69,0.07); color:var(--status-green); font-size:13px; font-weight:700; cursor:pointer;">
-            📅 Phục hồi ngày công tháng này
+            📅 Phục hồi ngày công chuẩn
         </button>
     </div>
 
     <div class="card-box">
-        <h2 class="section-title">🗓 Nhật ký tăng ca (Ghi sổ)</h2>
+        <h2 class="section-title">🗓 Nhật ký tăng ca</h2>
         <div class="log-input-container">
              <label for="otLogDate" style="display:none;">Ngày tăng ca</label>
              <input type="date" id="otLogDate" class="calc-input" style="margin-bottom:10px; margin-top:0;">
@@ -1154,7 +1154,7 @@ const googleMapsData =[
     { code: 'H85', address: 'Số 9 Thạnh Lộc 08, Q12', link: 'https://maps.app.goo.gl/Luaguf3a7NeSFvCs7', type: 'HUB' },
     { code: 'H87', address: 'Kho SoTrans KM7-9 Xa Lộ Hà Nội, Thủ Đức', link: 'https://maps.app.goo.gl/Eig83EZtiGpY7vgY9', type: 'HUB' },
     { code: 'H88', address: 'QJFG+26H Tân Phú, Thành phố Hồ Chí Minh', link: 'https://goo.gl/maps/9Zq7peBt7FxM1KLE6', type: 'HUB' },
-    { code: 'H89', address: '874/51 Tân Kỳ Tân Quý, Bình Hưng Hòa', link: 'https://maps.app.goo.gl/SjSMrEcVJGqnLzo76', type: 'HUB' },
+    { code: 'H89', address: '(GW3 cũ) 1103 QL1A, Bình Trị Đông A, Bình Tân', link: 'https://maps.app.goo.gl/fCSQpUTmEqM36fXeA?g_st=ic', type: 'HUB' },
     { code: 'H91', address: '285 Nơ Trang Long, Bình Thạnh', link: 'https://maps.app.goo.gl/uHE7xqVq4bTpQ4C37', type: 'HUB' },
     { code: 'H93', address: '4 Đào Trí, Q7', link: 'https://maps.app.goo.gl/7NX3CjqeSju77DRt6', type: 'HUB' },
     { code: 'H96', address: 'Lô B26, Cụm CN Xuân Thới Sơn, Hóc Môn', link: 'https://maps.app.goo.gl/om59mKEP1Z1u4PY36', type: 'HUB' },
@@ -1601,7 +1601,7 @@ function cancelOTEdit() {
 function deleteOTLog(originalIndex) { 
     showModal({
         title: 'Xác nhận xóa',
-        message: 'Bạn có chắc chắn muốn xóa dòng nhật ký này?',
+        message: 'Xóa dòng nhật ký này?',
         confirmText: 'Xóa',
         onConfirm: () => {
             otLogs.splice(originalIndex, 1); 
@@ -1616,7 +1616,7 @@ function saveAndRenderOT() { safeSetItem('otLogs', JSON.stringify(otLogs)); rend
 function resetOTMonth() { 
     showModal({
         title: 'Xóa sổ tháng',
-        message: 'Toàn bộ nhật ký tăng ca tháng này sẽ bị xóa. Bạn chắc chắn chứ?',
+        message: 'Toàn bộ nhật ký tăng ca tháng này sẽ bị xóa?',
         confirmText: 'Xóa sạch',
         onConfirm: () => {
             otLogs = []; 
@@ -1729,7 +1729,7 @@ function saveFuelSettings() {
 }
 
 function addFuelLog() {
-    if(closingOdo === 0) { showToast("⚠️ Vui lòng Lưu ODO Chốt trước!"); return; }
+    if(closingOdo === 0) { showToast("⚠️ Lưu ODO Chốt trước!"); return; }
     const date = document.getElementById('logDate').value; 
     
     const litersRaw = document.getElementById('logLiters').value;
@@ -1758,11 +1758,11 @@ function addFuelLog() {
         const chenhlech = litTieuChuan - liters;
         if (chenhlech > 0) {
             let tienThuong = Math.round((chenhlech * gia * 0.6)/1000);
-            msgDau = `🤑 Ngon luôn ! Dư ${chenhlech.toFixed(1)} lít. Lụm ${tienThuong}k. Giữ vững phong độ!`;
+            msgDau = `🤑 Ngon luôn ! Dư ${chenhlech.toFixed(1)} lít. Lụm ${tienThuong}k. Ngon luôn!`;
         } else if (chenhlech < 0) {
             let hao = Math.abs(chenhlech);
             let tienPhat = Math.round((hao * gia * 0.8)/1000);
-            msgDau = `💸 Toang ! Hao mất ${hao.toFixed(1)} lít. Lại rớt ${tienPhat}k rồi, nhẹ chân ga thôi!`;
+            msgDau = `💸 Toang ! Hao mất ${hao.toFixed(1)} lít. Lại rớt ${tienPhat}k rồi!`;
         } else {
             msgDau = "✅ Chuẩn đét, không thừa không thiếu!";
         }
@@ -1814,7 +1814,7 @@ function resetFuelMonth() {
 
     showModal({
         title: 'Xóa sổ tháng & Chốt ODO',
-        message: `Nhật ký dầu tháng này sẽ bị xóa. Lần đổ dầu cuối cùng ghi nhận ODO là <b>${maxOdo}</b>. Bạn có muốn lấy số này làm ODO chốt cho tháng mới không?`,
+        message: ' Lần đổ dầu cuối cùng ghi nhận ODO là <b>${maxOdo}</b>. Bấm 'Có' để lưu làm số ODO cho tháng mới?`,
         confirmText: 'Có',
         denyText: 'Không',
         cancelText: 'Hủy',
@@ -1898,7 +1898,7 @@ function renderLogs() {
 function deleteFuelLog(originalIndex) { 
     showModal({
         title: 'Xác nhận xóa',
-        message: 'Bạn có chắc chắn muốn xóa dòng nhật ký này?',
+        message: 'Xóa dòng nhật ký này?',
         confirmText: 'Xóa',
         onConfirm: () => {
             fuelLogs.splice(originalIndex, 1); 
@@ -1919,7 +1919,7 @@ function tinhDau(shouldScroll = true) {
     const resultDiv = document.getElementById('resultDau'); 
     
     if (km <= 0) { 
-        if (shouldScroll) showToast("⚠️ Vui lòng nhập Số xe đã chạy (>0).");
+        if (shouldScroll) showToast("⚠️ Nhập Số km đã chạy (>0).");
         return; 
     }
     
